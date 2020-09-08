@@ -1,0 +1,28 @@
+{
+  "extends": "./node_modules/@polkadot/dev/config/tsconfig",
+  "exclude": [
+    "build/**/*",
+    "**/build/**/*",
+    "docs/examples/promise/90_typegen/*",
+    "node_modules/@polkadot/api/types/consts.d.ts"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths":
+    {
+      "@darwinia/api": ["packages/api/src"],
+      "@darwinia/api/*": ["packages/api/src/*"],
+      "@darwinia/types": ["packages/types/src"],
+      "@darwinia/types/*": ["packages/types/src/*"],
+      "@darwinia/api-options": ["packages/api-options/src"],
+      "@darwinia/api-options/*": ["packages/api-options/src/*"],
+      "@polkadot/api/augment": ["packages/types/src/interfaces/augment-api.ts"],
+      "@polkadot/types/augment": ["packages/types/src/interfaces/augment-types.ts"]
+    },
+    "skipLibCheck": true,
+    "typeRoots": [
+      "./node_modules/@polkadot/ts",
+      "./node_modules/@types"
+    ]
+  }
+}

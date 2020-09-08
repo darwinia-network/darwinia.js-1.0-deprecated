@@ -1,0 +1,44 @@
+{
+  "repository": "https://github.com/darwinia-network/darwinia.js",
+  "license": "Apache-2",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0",
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "build": "yarn build:interfaces && polkadot-dev-build-ts && (cd packages/typegen && copyfiles scripts/* build)",
+    "build:interfaces": "polkadot-types-internal-interfaces",
+    "build:release": "polkadot-ci-ghact-build",
+    "build:ts": "polkadot-dev-build-ts",
+    "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
+    "docs:release": "polkadot-ci-ghact-docs",
+    "chain:info": "polkadot-types-chain-info",
+    "lint": "polkadot-dev-run-lint",
+    "clean": "polkadot-dev-clean-build",
+    "postinstall": "polkadot-dev-yarn-only",
+    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
+    "test:one": "polkadot-dev-run-test",
+    "test:watch": "polkadot-dev-run-test --watch",
+    "generate:defs": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-defs --package @darwinia/types/interfaces --input ./packages/types/src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/register": "^7.11.5",
+    "@babel/runtime": "^7.11.2",
+    "@polkadot/dev": "^0.55.46",
+    "@polkadot/ts": "^0.3.42",
+    "@polkadot/typegen": "1.32.0-beta.21",
+    "@types/jest": "^26.0.13",
+    "@vuepress/plugin-search": "^1.5.4",
+    "copyfiles": "^2.3.0",
+    "typedoc": "^0.19.1",
+    "typedoc-plugin-markdown": "^2.4.2",
+    "typedoc-plugin-no-inherit": "^1.1.10"
+  },
+  "version": "0.1.0"
+}
