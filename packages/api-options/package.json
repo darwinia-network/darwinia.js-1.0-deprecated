@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/api-options",
-  "version": "0.3.0-beta.3",
+  "version": "0.3.0-beta.4",
   "description": "Promise and RxJS wrappers around the Darwinia JS RPC",
   "main": "index.js",
   "keywords": [
