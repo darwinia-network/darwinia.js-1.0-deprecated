@@ -5,26 +5,17 @@
 import ApiPromise, { decorateMethod } from '@polkadot/api/promise';
 import { ApiOptions } from '@polkadot/api/types';
 import initOptionsFn, { ZERO_OPTIONS } from '@darwinia/api-options';
+import { mergeOptions } from '../util';
 
 const initOptions: ApiOptions = initOptionsFn();
 
 export default class DarwiniaApiPromise extends ApiPromise {
   constructor ({ derives, rpc, types, ...options }: ApiOptions = ZERO_OPTIONS) {
-    super({
-      derives: {
-        // ...initOptions.derives,
-        ...derives
-      },
-      rpc: {
-        ...initOptions.rpc,
-        ...rpc
-      },
-      types: {
-        ...initOptions.types,
-        ...types
-      },
-      ...options
-    });
+    super(mergeOptions(initOptions, { derives, rpc, types, ...options }));
+  }
+
+  public static create (options?: ApiOptions): Promise<ApiPromise> {
+    return new ApiPromise(mergeOptions(initOptions, options)).isReady;
   }
 }
 
