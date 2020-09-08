@@ -4,7 +4,7 @@ Javascript API and Types
 ### Installtion
 
 ```bash
-yarn add @polkadot/api
+yarn add @darwinia/api
 ```
  How to instantiate a Darwinia API object and use it to connect to a node using ApiPromise.
 
