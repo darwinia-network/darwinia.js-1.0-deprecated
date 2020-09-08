@@ -2,7 +2,7 @@
 
 function copy_folder () {
   SRC="packages/$1/build"
-  DST="../apps/node_modules/@darwiniia/$1"
+  DST="../apps/node_modules/@darwinia/$1"
 
   echo "** Copying $SRC to $DST"
 

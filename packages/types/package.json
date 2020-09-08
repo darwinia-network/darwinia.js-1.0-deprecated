@@ -1,15 +1,11 @@
 {
   "name": "@darwinia/types",
-  "version": "0.3.0-beta.0",
+  "version": "0.3.0-beta.2",
   "description": "Implementation of the Parity codec",
   "main": "index.js",
   "keywords": [
     "Polkadot",
     "JsonRPC"
-  ],
-  "author": "Jaco Greeff <jacogr@gmail.com>",
-  "maintainers": [
-    "Jaco Greeff <jacogr@gmail.com>"
   ],
   "contributors": [],
   "license": "Apache-2.0",
