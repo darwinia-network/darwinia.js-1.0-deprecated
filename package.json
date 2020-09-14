@@ -10,7 +10,7 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "yarn build:interfaces && polkadot-dev-build-ts && (cd packages/typegen && copyfiles scripts/* build)",
+    "build": "yarn polkadot-dev-build-ts && (cd packages/typegen && copyfiles scripts/* build)",
     "build:interfaces": "polkadot-types-internal-interfaces",
     "build:release": "polkadot-ci-ghact-build",
     "build:ts": "polkadot-dev-build-ts",
@@ -41,5 +41,5 @@
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
-  "version": "0.3.0-beta.4"
+  "version": "0.3.0-beta.10"
 }

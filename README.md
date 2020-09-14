@@ -17,7 +17,8 @@ async function main () {
   const provider = new WsProvider('wss://crab.darwinia.network');
 
   // Create the API and wait until ready
-  const api = await ApiPromise.create({ provider });
+  const api = new ApiPromise.create({ provider });
+  await api.isReady;
 
   // Retrieve the chain & node information information via rpc calls
   const [chain, nodeName, nodeVersion] = await Promise.all([
