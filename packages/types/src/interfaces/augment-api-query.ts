@@ -4,7 +4,7 @@
 import { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import { Option, U8aFixed, Vec } from '@polkadot/types/codec';
 import { Bytes, Data, bool, u32, u64 } from '@polkadot/types/primitive';
-import { AddressT, BalanceInfo, ElectionResultT, EthereumBlockNumber, EthereumHeader, EthereumTransactionIndex, ExposureT, GameId, H128, KtonBalance, Power, RKT, RelayProposalT, RingBalance, Round, StakingLedgerT, TcBlockNumber, TcHeaderHash, TcHeaderThing, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
+import { AddressT, BalanceInfo, ConfirmedEthereumHeaderInfo, ElectionResultT, EthereumBlockNumber, EthereumTransactionIndex, ExposureT, GameId, H128, KtonBalance, MappedRing, Power, RKT, RelayProposalT, RingBalance, Round, StakingLedgerT, TcBlockNumber, TcHeaderHash, TcHeaderThing, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
 import { UncleEntryItem } from '@polkadot/types/interfaces/authorship';
 import { BabeAuthorityWeight, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
 import { BalanceLock } from '@polkadot/types/interfaces/balances';
@@ -18,7 +18,7 @@ import { AuthIndex } from '@polkadot/types/interfaces/imOnline';
 import { DeferredOffenceOf, Kind, OffenceDetails, OpaqueTimeSlot, ReportIdOf } from '@polkadot/types/interfaces/offences';
 import { ProxyAnnouncement, ProxyDefinition } from '@polkadot/types/interfaces/proxy';
 import { ActiveRecovery, RecoveryConfig } from '@polkadot/types/interfaces/recovery';
-import { AccountId, AccountIndex, Balance, BalanceOf, BlockNumber, ExtrinsicsWeight, H256, Hash, KeyTypeId, Moment, OpaqueCall, Perbill, Releases, ValidatorId } from '@polkadot/types/interfaces/runtime';
+import { AccountId, AccountIndex, Balance, BalanceOf, BlockNumber, ExtrinsicsWeight, Hash, KeyTypeId, Moment, OpaqueCall, Perbill, Releases, ValidatorId } from '@polkadot/types/interfaces/runtime';
 import { Scheduled, TaskAddress } from '@polkadot/types/interfaces/scheduler';
 import { Keys, SessionIndex } from '@polkadot/types/interfaces/session';
 import { Bid, BidKind, SocietyVote, StrikeCount, VouchingStatus } from '@polkadot/types/interfaces/society';
@@ -167,6 +167,10 @@ declare module '@polkadot/api/types/storage' {
        **/
       voting: AugmentedQuery<ApiType, (arg: Hash | string | Uint8Array) => Observable<Option<Votes>>> & QueryableStorageEntry<ApiType>;
     };
+    crabIssuing: {
+      [key: string]: QueryableStorageEntry<ApiType>;
+      totalMappedRing: AugmentedQuery<ApiType, () => Observable<MappedRing>> & QueryableStorageEntry<ApiType>;
+    };
     electionsPhragmen: {
       [key: string]: QueryableStorageEntry<ApiType>;
       /**
@@ -195,40 +199,28 @@ declare module '@polkadot/api/types/storage' {
     };
     ethereumBacking: {
       [key: string]: QueryableStorageEntry<ApiType>;
-      depositProofVerified: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<Option<bool>>> & QueryableStorageEntry<ApiType>;
       depositRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
-      ktonProofVerified: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<Option<bool>>> & QueryableStorageEntry<ApiType>;
-      ktonRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
-      ringProofVerified: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<Option<bool>>> & QueryableStorageEntry<ApiType>;
-      ringRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      ktonTokenAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      ringTokenAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      tokenRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      verifiedProof: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<Option<bool>>> & QueryableStorageEntry<ApiType>;
     };
     ethereumRelay: {
       [key: string]: QueryableStorageEntry<ApiType>;
       /**
-       * The confirm blocks keep in month
+       * Confirmed Ethereum Block Numbers
+       * The orders are from small to large
        **/
-      confirmBlockKeepInMonth: AugmentedQuery<ApiType, () => Observable<EthereumBlockNumber>> & QueryableStorageEntry<ApiType>;
+      confirmedBlockNumbers: AugmentedQuery<ApiType, () => Observable<Vec<EthereumBlockNumber>>> & QueryableStorageEntry<ApiType>;
+      confirmedDepth: AugmentedQuery<ApiType, () => Observable<u32>> & QueryableStorageEntry<ApiType>;
       /**
-       * The number of ehtereum blocks in a month
+       * Confirmed Ethereum Headers
        **/
-      confirmBlocksInCycle: AugmentedQuery<ApiType, () => Observable<EthereumBlockNumber>> & QueryableStorageEntry<ApiType>;
-      /**
-       * The Ethereum headers confrimed by relayer game
-       * The actural storage needs to be defined
-       **/
-      confirmedHeadersDoubleMap: AugmentedQueryDoubleMap<ApiType, (key1: EthereumBlockNumber | AnyNumber | Uint8Array, key2: EthereumBlockNumber | AnyNumber | Uint8Array) => Observable<EthereumHeader>> & QueryableStorageEntry<ApiType>;
+      confirmedHeaders: AugmentedQuery<ApiType, (arg: EthereumBlockNumber | AnyNumber | Uint8Array) => Observable<Option<ConfirmedEthereumHeaderInfo>>> & QueryableStorageEntry<ApiType>;
       /**
        * Dags merkle roots of ethereum epoch (each epoch is 30000)
        **/
       dagsMerkleRoots: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<H128>> & QueryableStorageEntry<ApiType>;
-      /**
-       * The current confirm block cycle nubmer (default is one month one cycle)
-       **/
-      lastConfirmedBlockCycle: AugmentedQuery<ApiType, () => Observable<EthereumBlockNumber>> & QueryableStorageEntry<ApiType>;
-      /**
-       * Ethereum last confrimed header info including ethereum block number, hash, and mmr
-       **/
-      lastConfirmedHeaderInfo: AugmentedQuery<ApiType, () => Observable<ITuple<[EthereumBlockNumber, H256, H256]>>> & QueryableStorageEntry<ApiType>;
       receiptVerifyFee: AugmentedQuery<ApiType, () => Observable<RingBalance>> & QueryableStorageEntry<ApiType>;
     };
     ethereumRelayerGame: {

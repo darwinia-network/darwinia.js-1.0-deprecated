@@ -3,7 +3,7 @@
 
 import { Codec } from '@polkadot/types/types';
 import { Vec } from '@polkadot/types/codec';
-import { Bytes, u16, u32, u64, u8 } from '@polkadot/types/primitive';
+import { Bytes, u16, u32, u64 } from '@polkadot/types/primitive';
 import { KtonBalance, Power, RingBalance } from '@darwinia/types/interfaces/darwiniaInject';
 import { Balance, BalanceOf, BlockNumber, LockIdentifier, ModuleId, Moment, Perbill, Percent, Permill, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
 import { SessionIndex } from '@polkadot/types/interfaces/session';
@@ -59,7 +59,6 @@ declare module '@polkadot/api/types/consts' {
        * The treasury's module id, used for deriving its sovereign account ID.
        **/
       moduleId: ModuleId & AugmentedConst<ApiType>;
-      subKeyPrefix: u8 & AugmentedConst<ApiType>;
     };
     finalityTracker: {
       [key: string]: Codec;

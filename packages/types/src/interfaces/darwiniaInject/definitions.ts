@@ -115,6 +115,10 @@ export default {
       mmrRoot: 'H256',
       mmrProof: 'Vec<H256>'
     },
+    ConfirmedEthereumHeaderInfo: {
+      header: 'EthereumHeader',
+      mmrRoot: 'H256'
+    },
     EthereumHeaderThing: {
       header: 'EthereumHeader',
       mmrRoot: 'H256'
@@ -159,7 +163,7 @@ export default {
     },
     RedeemFor: {
       _enum: {
-        RedeemFor: null,
+        Token: null,
         Deposit: null
       }
     },
@@ -174,7 +178,11 @@ export default {
       headerHash: 'H256'
     },
     EthereumReceiptProofThing: '(EthereumHeader, EthereumReceiptProof, MMRProof)',
-    MMRProof: 'Vec<H256>',
+    MMRProof: {
+      memberLeafIndex: 'u64',
+      lastLeafIndex: 'u64',
+      proof: 'Vec<H256>'
+    },
     OtherSignature: {
       _enum: {
         Eth: 'EcdsaSignature',
@@ -231,6 +239,7 @@ export default {
     TcBlockNumber: 'u64',
     TcHeaderHash: 'H256',
     GameId: 'TcBlockNumber',
+    MappedRing: 'u128',
     RelayProposalT: {
       relayer: 'AccountId',
       bondedProposal: 'Vec<(Balance, TcHeaderThing)>',

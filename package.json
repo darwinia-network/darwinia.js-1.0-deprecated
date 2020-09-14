@@ -24,7 +24,8 @@
     "test:one": "polkadot-dev-run-test",
     "test:watch": "polkadot-dev-run-test --watch",
     "generate:defs": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-defs --package @darwinia/types/interfaces --input ./packages/types/src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces"
+    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
+    "lervaversion": "lerna version --skip-git"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
