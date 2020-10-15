@@ -1467,12 +1467,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@darwinia/api-options@0.3.0-beta.10, @darwinia/api-options@workspace:packages/api-options":
+"@darwinia/api-options@^1.0.0, @darwinia/api-options@workspace:packages/api-options":
   version: 0.0.0-use.local
   resolution: "@darwinia/api-options@workspace:packages/api-options"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@darwinia/types": 0.3.0-beta.10
+    "@darwinia/types": ^1.0.0
     "@polkadot/api": 1.32.0-beta.21
   languageName: unknown
   linkType: soft
@@ -1482,14 +1482,14 @@ __metadata:
   resolution: "@darwinia/api@workspace:packages/api"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@darwinia/api-options": 0.3.0-beta.10
+    "@darwinia/api-options": ^1.0.0
     "@polkadot/api": 1.32.0-beta.21
     "@polkadot/keyring": ^3.4.1
     "@polkadot/rpc-provider": 1.32.0-beta.21
   languageName: unknown
   linkType: soft
 
-"@darwinia/types@0.3.0-beta.10, @darwinia/types@workspace:packages/types":
+"@darwinia/types@^1.0.0, @darwinia/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@darwinia/types@workspace:packages/types"
   dependencies:
