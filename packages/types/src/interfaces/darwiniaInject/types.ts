@@ -44,6 +44,9 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
+/** @name CallHashOf */
+export interface CallHashOf extends Hash {}
+
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
@@ -262,14 +265,6 @@ export interface RelayProposalT extends Struct {
   readonly extendFromHeaderHash: Option<TcHeaderHash>;
 }
 
-/** @name RewardDestination */
-export interface RewardDestination extends Enum {
-  readonly isStaked: boolean;
-  readonly asStaked: Staked;
-  readonly isStash: boolean;
-  readonly isController: boolean;
-}
-
 /** @name RingBalance */
 export interface RingBalance extends Balance {}
 
@@ -286,11 +281,6 @@ export interface Round extends u64 {}
 export interface SpanRecord extends Struct {
   readonly slashed: RKT;
   readonly paidOut: RKT;
-}
-
-/** @name Staked */
-export interface Staked extends Struct {
-  readonly promiseMonth: u8;
 }
 
 /** @name StakingBalanceT */

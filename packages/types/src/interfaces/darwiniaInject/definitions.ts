@@ -68,16 +68,6 @@ export default {
       startTime: 'Compact<TsInMs>',
       expireTime: 'Compact<TsInMs>'
     },
-    RewardDestination: {
-      _enum: {
-        Staked: 'Staked',
-        Stash: null,
-        Controller: null
-      }
-    },
-    Staked: {
-      promiseMonth: 'u8'
-    },
     ExposureT: {
       ownRingBalance: 'Compact<Balance>',
       ownKtonBalance: 'Compact<Balance>',
@@ -239,12 +229,13 @@ export default {
     TcBlockNumber: 'u64',
     TcHeaderHash: 'H256',
     GameId: 'TcBlockNumber',
-    MappedRing: 'u128',
     RelayProposalT: {
       relayer: 'AccountId',
       bondedProposal: 'Vec<(Balance, TcHeaderThing)>',
       extendFromHeaderHash: 'Option<TcHeaderHash>'
-    }
+    },
+    CallHashOf: 'Hash',
+    MappedRing: 'u128'
   },
   rpc: {
 

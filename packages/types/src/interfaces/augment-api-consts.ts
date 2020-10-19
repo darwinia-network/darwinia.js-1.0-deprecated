@@ -44,6 +44,45 @@ declare module '@polkadot/api/types/consts' {
        **/
       prefix: Bytes & AugmentedConst<ApiType>;
     };
+    democracy: {
+      [key: string]: Codec;
+      /**
+       * Period in blocks where an external proposal may not be re-submitted after being vetoed.
+       **/
+      cooloffPeriod: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * The minimum period of locking and the period between a proposal being approved and enacted.
+       * 
+       * It should generally be a little more than the unstake period to ensure that
+       * voting stakers have an opportunity to remove themselves from the system in the case where
+       * they are on the losing side of a vote.
+       **/
+      enactmentPeriod: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * Minimum voting period allowed for an emergency referendum.
+       **/
+      fastTrackVotingPeriod: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * How often (in blocks) new public referenda are launched.
+       **/
+      launchPeriod: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of votes for an account.
+       **/
+      maxVotes: u32 & AugmentedConst<ApiType>;
+      /**
+       * The minimum amount to be used as a deposit for a public referendum proposal.
+       **/
+      minimumDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The amount of balance that must be deposited per byte of preimage stored.
+       **/
+      preimageByteDeposit: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * How often (in blocks) to check for new votes.
+       **/
+      votingPeriod: BlockNumber & AugmentedConst<ApiType>;
+    };
     electionsPhragmen: {
       [key: string]: Codec;
       candidacyBond: BalanceOf & AugmentedConst<ApiType>;
@@ -115,6 +154,22 @@ declare module '@polkadot/api/types/consts' {
        * The minimum amount required to keep an account open.
        **/
       existentialDeposit: Balance & AugmentedConst<ApiType>;
+    };
+    multisig: {
+      [key: string]: Codec;
+      /**
+       * The base amount of currency needed to reserve for creating a multisig execution or to store
+       * a dispatch call for later.
+       **/
+      depositBase: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The amount of currency needed per unit threshold when creating a multisig execution.
+       **/
+      depositFactor: BalanceOf & AugmentedConst<ApiType>;
+      /**
+       * The maximum amount of signatories allowed for a given multisig.
+       **/
+      maxSignatories: u16 & AugmentedConst<ApiType>;
     };
     proxy: {
       [key: string]: Codec;
@@ -205,6 +260,9 @@ declare module '@polkadot/api/types/consts' {
        * Number of eras that staked funds must remain bonded for.
        **/
       bondingDurationInEra: EraIndex & AugmentedConst<ApiType>;
+      /**
+       * Darwinia's hard cap default 10_000_000_000 * 10^9
+       **/
       cap: RingBalance & AugmentedConst<ApiType>;
       /**
        * The number of blocks before the end of the era from which election submissions are allowed.
@@ -245,6 +303,9 @@ declare module '@polkadot/api/types/consts' {
        * intervention.
        **/
       slashDeferDuration: EraIndex & AugmentedConst<ApiType>;
+      /**
+       * Darwinia's staking vote default 1_000_000_000
+       **/
       totalPower: Power & AugmentedConst<ApiType>;
     };
     system: {
@@ -298,13 +359,34 @@ declare module '@polkadot/api/types/consts' {
     treasury: {
       [key: string]: Codec;
       /**
+       * Percentage of the curator fee that will be reserved upfront as deposit for bounty curator.
+       **/
+      bountyCuratorDeposit: Permill & AugmentedConst<ApiType>;
+      /**
+       * The amount held on deposit for placing a bounty proposal.
+       **/
+      bountyDepositBase: RingBalance & AugmentedConst<ApiType>;
+      /**
+       * The delay period for which a bounty beneficiary need to wait before claim the payout.
+       **/
+      bountyDepositPayoutDelay: BlockNumber & AugmentedConst<ApiType>;
+      bountyValueMinimum: RingBalance & AugmentedConst<ApiType>;
+      /**
        * Percentage of spare funds (if any) that are burnt per spend period.
        **/
       burn: Permill & AugmentedConst<ApiType>;
       /**
+       * The amount held on deposit per byte within the tip report reason or bounty description.
+       **/
+      dataDepositPerByte: RingBalance & AugmentedConst<ApiType>;
+      /**
        * Minimum amount of *KTON* that should be placed in a deposit for making a proposal.
        **/
       ktonProposalBondMinimum: KtonBalance & AugmentedConst<ApiType>;
+      /**
+       * Maximum acceptable reason length.
+       **/
+      maximumReasonLength: u32 & AugmentedConst<ApiType>;
       /**
        * The treasury's module id, used for deriving its sovereign account ID.
        **/
@@ -334,10 +416,6 @@ declare module '@polkadot/api/types/consts' {
        * The amount held on deposit for placing a tip report.
        **/
       tipReportDepositBase: RingBalance & AugmentedConst<ApiType>;
-      /**
-       * The amount held on deposit per byte within the tip report reason.
-       **/
-      tipReportDepositPerByte: RingBalance & AugmentedConst<ApiType>;
     };
   }
 
