@@ -10,7 +10,7 @@
     "typescript": "^4.0.2"
   },
   "scripts": {
-    "build": "yarn polkadot-dev-build-ts && (cd packages/typegen && copyfiles scripts/* build)",
+    "build": "yarn polkadot-dev-build-ts",
     "build:interfaces": "polkadot-types-internal-interfaces",
     "build:release": "polkadot-ci-ghact-build",
     "build:ts": "polkadot-dev-build-ts",

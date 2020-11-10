@@ -3,7 +3,7 @@
 
 import { Codec } from '@polkadot/types/types';
 import { Vec } from '@polkadot/types/codec';
-import { Bytes, u16, u32, u64 } from '@polkadot/types/primitive';
+import { Bytes, u16, u32, u64, u8 } from '@polkadot/types/primitive';
 import { KtonBalance, Power, RingBalance } from '@darwinia/types/interfaces/darwiniaInject';
 import { Balance, BalanceOf, BlockNumber, LockIdentifier, ModuleId, Moment, Perbill, Percent, Permill, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
 import { SessionIndex } from '@polkadot/types/interfaces/session';
@@ -43,6 +43,10 @@ declare module '@polkadot/api/types/consts' {
        * The Prefix that is used in signed Ethereum messages for this network
        **/
       prefix: Bytes & AugmentedConst<ApiType>;
+    };
+    crabIssuing: {
+      [key: string]: Codec;
+      moduleId: ModuleId & AugmentedConst<ApiType>;
     };
     democracy: {
       [key: string]: Codec;
@@ -98,6 +102,17 @@ declare module '@polkadot/api/types/consts' {
        * The treasury's module id, used for deriving its sovereign account ID.
        **/
       moduleId: ModuleId & AugmentedConst<ApiType>;
+    };
+    ethereumRelay: {
+      [key: string]: Codec;
+      approveThreshold: Perbill & AugmentedConst<ApiType>;
+      confirmPeriod: BlockNumber & AugmentedConst<ApiType>;
+      moduleId: ModuleId & AugmentedConst<ApiType>;
+      rejectThreshold: Perbill & AugmentedConst<ApiType>;
+    };
+    ethereumRelayerGame: {
+      [key: string]: Codec;
+      maxActiveGames: u8 & AugmentedConst<ApiType>;
     };
     finalityTracker: {
       [key: string]: Codec;
@@ -291,6 +306,7 @@ declare module '@polkadot/api/types/consts' {
        * The threshold of improvement that should be provided for a new solution to be accepted.
        **/
       minSolutionScoreBump: Perbill & AugmentedConst<ApiType>;
+      moduleId: ModuleId & AugmentedConst<ApiType>;
       /**
        * Number of sessions per era.
        **/

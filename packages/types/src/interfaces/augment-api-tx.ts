@@ -4,7 +4,8 @@
 import { AnyNumber, ITuple } from '@polkadot/types/types';
 import { Compact, Option, U8aFixed, Vec } from '@polkadot/types/codec';
 import { Bytes, Data, bool, u16, u32, u64, u8 } from '@polkadot/types/primitive';
-import { EthereumBlockNumber, EthereumHeader, EthereumHeaderThing, EthereumHeaderThingWithProof, EthereumReceiptProof, EthereumReceiptProofThing, KtonBalance, MMRProof, OtherAddress, OtherSignature, RedeemFor, RingBalance, StakingBalanceT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
+import { EthereumBlockNumber, EthereumHeader, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, KtonBalance, MMRProof, OtherAddress, OtherSignature, RedeemFor, RingBalance, StakingBalanceT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
+import { RelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
 import { BabeEquivocationProof } from '@polkadot/types/interfaces/babe';
 import { EthereumAddress } from '@polkadot/types/interfaces/claims';
 import { MemberCount, ProposalIndex } from '@polkadot/types/interfaces/collective';
@@ -840,6 +841,7 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setDepositRedeemAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      setRedeemStatus: AugmentedSubmittable<(status: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Set a new ring redeem address.
        * 
@@ -855,24 +857,24 @@ declare module '@polkadot/api/types/submittable' {
     };
     ethereumRelay: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
-      approvePendingHeader: AugmentedSubmittable<(pending: EthereumBlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      affirm: AugmentedSubmittable<(ethereumRelayHeaderParcel: EthereumRelayHeaderParcel | { header?: any; mmrRoot?: any } | string | Uint8Array, optionalEthereumRelayProofs: Option<EthereumRelayProofs> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Check and verify the receipt
        * 
        * `check_receipt` will verify the validation of the ethereum receipt proof from ethereum.
        * Ethereum receipt proof are constructed with 3 parts.
        * 
-       * The first part `proof_record` is the Ethereum receipt and its merkle member proof regarding
+       * The first part `ethereum_proof_record` is the Ethereum receipt and its merkle member proof regarding
        * to the receipt root in related Ethereum block header.
        * 
-       * The second part `eth_header` is the Ethereum block header which included/generated this
+       * The second part `ethereum_header` is the Ethereum block header which included/generated this
        * receipt, we need to provide this as part of proof, because in Darwinia Relay, we only have
        * last confirmed block's MMR root, don't have previous blocks, so we need to include this to
        * provide the `receipt_root` inside it, we will need to verify validation by checking header hash.
        * 
        * The third part `mmr_proof` is the mmr proof generate according to
-       * `(member_index=[eth_header.number], last_index=last_confirmed_block_header.number)`
-       * it can prove that the `eth_header` is the chain which is committed by last confirmed block's `mmr_root`
+       * `(member_index=[ethereum_header.number], last_index=last_confirmed_block_header.number)`
+       * it can prove that the `ethereum_header` is the chain which is committed by last confirmed block's `mmr_root`
        * 
        * The dispatch origin for this call must be `Signed` by the transactor.
        * 
@@ -886,14 +888,19 @@ declare module '@polkadot/api/types/submittable' {
        * - `set_receipt_verify_fee` can be used to set the verify fee for each receipt check.
        * # </weight>
        **/
-      checkReceipt: AugmentedSubmittable<(proofRecord: EthereumReceiptProof | { index?: any; proof?: any; headerHash?: any } | string | Uint8Array, ethHeader: EthereumHeader | { parent_hash?: any; timestamp?: any; number?: any; author?: any; transactions_root?: any; uncles_hash?: any; extra_data?: any; state_root?: any; receipts_root?: any; log_bloom?: any; gas_used?: any; gas_limit?: any; difficulty?: any; seal?: any; hash?: any } | string | Uint8Array, mmrProof: MMRProof | { memberLeafIndex?: any; lastLeafIndex?: any; proof?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
-      cleanConfirmeds: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
-      rejectPendingHeader: AugmentedSubmittable<(pending: EthereumBlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      checkReceipt: AugmentedSubmittable<(ethereumProofRecord: EthereumReceiptProof | { index?: any; proof?: any; headerHash?: any } | string | Uint8Array, ethereumHeader: EthereumHeader | { parent_hash?: any; timestamp?: any; number?: any; author?: any; transactions_root?: any; uncles_hash?: any; extra_data?: any; state_root?: any; receipts_root?: any; log_bloom?: any; gas_used?: any; gas_limit?: any; difficulty?: any; seal?: any; hash?: any } | string | Uint8Array, mmrProof: MMRProof | { memberLeafIndex?: any; lastLeafIndex?: any; proof?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
-       * Remove the specific malicous block
+       * Caution: the genesis parcel will be removed too
        **/
-      removeConfirmedBlock: AugmentedSubmittable<(number: EthereumBlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
-      setConfirmed: AugmentedSubmittable<(headerThing: EthereumHeaderThing | { header?: any; mmrRoot?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      cleanConfirmedParcels: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
+      completeRelayProofs: AugmentedSubmittable<(affirmationId: RelayAffirmationId | { relayHeaderId?: any; round?: any; index?: any } | string | Uint8Array, ethereumRelayProofs: Vec<EthereumRelayProofs> | (EthereumRelayProofs | { ethashProof?: any; mmrProof?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>>;
+      disputeAndAffirm: AugmentedSubmittable<(ethereumRelayHeaderParcel: EthereumRelayHeaderParcel | { header?: any; mmrRoot?: any } | string | Uint8Array, optionalEthereumRelayProofs: Option<EthereumRelayProofs> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      extendAffirmation: AugmentedSubmittable<(extendedEthereumRelayAffirmationId: RelayAffirmationId | { relayHeaderId?: any; round?: any; index?: any } | string | Uint8Array, gameSamplePoints: Vec<EthereumRelayHeaderParcel> | (EthereumRelayHeaderParcel | { header?: any; mmrRoot?: any } | string | Uint8Array)[], optionalEthereumRelayProofs: Option<Vec<EthereumRelayProofs>> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Remove the specific malicous confirmed parcel
+       **/
+      removeConfirmedParcelOf: AugmentedSubmittable<(confirmedBlockNumber: EthereumBlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      setConfirmedParcel: AugmentedSubmittable<(ethereumRelayHeaderParcel: EthereumRelayHeaderParcel | { header?: any; mmrRoot?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Set verify receipt fee
        * 
@@ -903,7 +910,7 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setReceiptVerifyFee: AugmentedSubmittable<(updated: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
-      submitProposal: AugmentedSubmittable<(proposal: Vec<EthereumHeaderThingWithProof> | (EthereumHeaderThingWithProof | { header?: any; ethashProof?: any; mmrRoot?: any; mmrProof?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>>;
+      votePendingRelayHeaderParcel: AugmentedSubmittable<(blockNumber: EthereumBlockNumber | AnyNumber | Uint8Array, aye: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
     };
     finalityTracker: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
@@ -1556,7 +1563,7 @@ declare module '@polkadot/api/types/submittable' {
        * Weight is a function of the number of proxies the user has (P).
        * # </weight>
        **/
-      addProxy: AugmentedSubmittable<(delegate: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      addProxy: AugmentedSubmittable<(delegate: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking'|'IdentityJudgement'|'EthereumBridge' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Publish the hash of a proxy-call that will be made in the future.
        * 
@@ -1606,7 +1613,7 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        * TODO: Might be over counting 1 read
        **/
-      anonymous: AugmentedSubmittable<(proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      anonymous: AugmentedSubmittable<(proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking'|'IdentityJudgement'|'EthereumBridge' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array, index: u16 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Removes a previously spawned anonymous proxy.
        * 
@@ -1629,7 +1636,7 @@ declare module '@polkadot/api/types/submittable' {
        * Weight is a function of the number of proxies the user has (P).
        * # </weight>
        **/
-      killAnonymous: AugmentedSubmittable<(spawner: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<BlockNumber> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      killAnonymous: AugmentedSubmittable<(spawner: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking'|'IdentityJudgement'|'EthereumBridge' | number | Uint8Array, index: u16 | AnyNumber | Uint8Array, height: Compact<BlockNumber> | AnyNumber | Uint8Array, extIndex: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Dispatch the given `call` from an account that the sender is authorised for through
        * `add_proxy`.
@@ -1732,7 +1739,7 @@ declare module '@polkadot/api/types/submittable' {
        * Weight is a function of the number of proxies the user has (P).
        * # </weight>
        **/
-      removeProxy: AugmentedSubmittable<(delegate: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      removeProxy: AugmentedSubmittable<(delegate: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any'|'NonTransfer'|'Governance'|'Staking'|'IdentityJudgement'|'EthereumBridge' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
     };
     recovery: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
@@ -2386,7 +2393,7 @@ declare module '@polkadot/api/types/submittable' {
        * - Write: Bonded, Payee, [Origin Account], Locks, Ledger
        * # </weight>
        **/
-      bond: AugmentedSubmittable<(controller: LookupSource | string | Uint8Array, value: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array, payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | string | Uint8Array, promiseMonth: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      bond: AugmentedSubmittable<(controller: LookupSource | string | Uint8Array, value: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array, payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | string | Uint8Array, promiseMonth: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Add some extra amount that have appeared in the stash `free_balance` into the balance up
        * for staking.
@@ -2693,7 +2700,7 @@ declare module '@polkadot/api/types/submittable' {
        * - Write: Payee
        * # </weight>
        **/
-      setPayee: AugmentedSubmittable<(payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      setPayee: AugmentedSubmittable<(payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Sets the ideal number of validators.
        * 

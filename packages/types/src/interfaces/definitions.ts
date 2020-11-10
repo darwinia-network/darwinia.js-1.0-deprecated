@@ -5,3 +5,5 @@
 export { default as darwiniaInject } from './darwiniaInject/definitions';
 export { default as balances } from './balances/definitions';
 export { default as staking } from './staking/definitions';
+export { default as relayerGame } from './relayerGame/definitions';
+export { default as proxy } from './proxy/definitions';

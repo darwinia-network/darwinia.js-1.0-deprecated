@@ -44,9 +44,6 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
-/** @name CallHashOf */
-export interface CallHashOf extends Hash {}
-
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
@@ -59,12 +56,6 @@ export interface ChainProperties extends Struct {
 /** @name Common */
 export interface Common extends Struct {
   readonly amount: Balance;
-}
-
-/** @name ConfirmedEthereumHeaderInfo */
-export interface ConfirmedEthereumHeaderInfo extends Struct {
-  readonly header: EthereumHeader;
-  readonly mmrRoot: H256;
 }
 
 /** @name DepositId */
@@ -111,28 +102,6 @@ export interface EthereumHeader extends Struct {
   readonly hash: H256;
 }
 
-/** @name EthereumHeaderBrief */
-export interface EthereumHeaderBrief extends Struct {
-  readonly totalDifficulty: U256;
-  readonly parentHash: H256;
-  readonly number: EthereumBlockNumber;
-  readonly relayer: EthereumAddress;
-}
-
-/** @name EthereumHeaderThing */
-export interface EthereumHeaderThing extends Struct {
-  readonly header: EthereumHeader;
-  readonly mmrRoot: H256;
-}
-
-/** @name EthereumHeaderThingWithProof */
-export interface EthereumHeaderThingWithProof extends Struct {
-  readonly header: EthereumHeader;
-  readonly ethashProof: Vec<EthashProof>;
-  readonly mmrRoot: H256;
-  readonly mmrProof: Vec<H256>;
-}
-
 /** @name EthereumNetworkType */
 export interface EthereumNetworkType extends Enum {
   readonly isMainnet: boolean;
@@ -157,15 +126,20 @@ export interface EthereumReceiptProof extends Struct {
 /** @name EthereumReceiptProofThing */
 export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, EthereumReceiptProof, MMRProof]> {}
 
+/** @name EthereumRelayHeaderParcel */
+export interface EthereumRelayHeaderParcel extends Struct {
+  readonly header: EthereumHeader;
+  readonly mmrRoot: H256;
+}
+
+/** @name EthereumRelayProofs */
+export interface EthereumRelayProofs extends Struct {
+  readonly ethashProof: Vec<EthashProof>;
+  readonly mmrProof: Vec<H256>;
+}
+
 /** @name EthereumTransactionIndex */
 export interface EthereumTransactionIndex extends ITuple<[H256, u64]> {}
-
-/** @name EthReceiptProof */
-export interface EthReceiptProof extends Struct {
-  readonly index: u64;
-  readonly proof: Bytes;
-  readonly headerHash: H256;
-}
 
 /** @name Exposure */
 export interface Exposure extends ExposureT {}
@@ -178,9 +152,6 @@ export interface ExposureT extends Struct {
   readonly totalPower: Power;
   readonly others: Vec<IndividualExposure>;
 }
-
-/** @name GameId */
-export interface GameId extends TcBlockNumber {}
 
 /** @name H128 */
 export interface H128 extends U8aFixed {}
@@ -258,13 +229,6 @@ export interface RedeemFor extends Enum {
   readonly isDeposit: boolean;
 }
 
-/** @name RelayProposalT */
-export interface RelayProposalT extends Struct {
-  readonly relayer: AccountId;
-  readonly bondedProposal: Vec<ITuple<[Balance, TcHeaderThing]>>;
-  readonly extendFromHeaderHash: Option<TcHeaderHash>;
-}
-
 /** @name RingBalance */
 export interface RingBalance extends Balance {}
 
@@ -273,9 +237,6 @@ export interface RKT extends Struct {
   readonly r: Balance;
   readonly k: Balance;
 }
-
-/** @name Round */
-export interface Round extends u64 {}
 
 /** @name SpanRecord */
 export interface SpanRecord extends Struct {
@@ -308,18 +269,6 @@ export interface StakingLock extends Struct {
   readonly stakingAmount: Balance;
   readonly unbondings: Vec<Unbonding>;
 }
-
-/** @name TcBlockNumber */
-export interface TcBlockNumber extends u64 {}
-
-/** @name TcHeaderHash */
-export interface TcHeaderHash extends H256 {}
-
-/** @name TcHeaderThing */
-export interface TcHeaderThing extends EthereumHeaderThing {}
-
-/** @name TcHeaderThingWithProof */
-export interface TcHeaderThingWithProof extends EthereumHeaderThingWithProof {}
 
 /** @name TimeDepositItem */
 export interface TimeDepositItem extends Struct {

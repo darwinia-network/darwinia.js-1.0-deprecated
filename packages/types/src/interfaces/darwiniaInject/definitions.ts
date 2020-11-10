@@ -8,14 +8,12 @@ export default {
   types: {
     Address: 'AccountId',
     LookupSource: 'AccountId',
+
     BalanceInfo: {},
     BalanceLock: {
       id: 'LockIdentifier',
       lockFor: 'LockFor',
       reasons: 'Reasons'
-    },
-    Reasons: {
-      _enum: ['Fee', 'Misc', 'All']
     },
     LockFor: {
       _enum: {
@@ -29,6 +27,9 @@ export default {
     StakingLock: {
       stakingAmount: 'Balance',
       unbondings: 'Vec<Unbonding>'
+    },
+    Reasons: {
+      _enum: ['Fee', 'Misc', 'All']
     },
     Unbonding: {
       amount: 'Balance',
@@ -91,28 +92,31 @@ export default {
       r: 'Balance',
       k: 'Balance'
     },
+    SpanRecord: {
+      slashed: 'RKT',
+      paidOut: 'RKT'
+    },
+    UnappliedSlash: {
+      validator: 'AccountId',
+      own: 'RKT',
+      others: 'Vec<(AccountId, RKT)>',
+      reporters: 'Vec<AccountId>',
+      payout: 'RKT'
+    },
+
+    TreasuryProposal: {
+      proposer: 'AccountId',
+      beneficiary: 'AccountId',
+      ringValue: 'Balance',
+      ktonValue: 'Balance',
+      ringBond: 'Balance',
+      ktonBond: 'Balance'
+    },
+
+    MappedRing: 'u128',
+
     EthereumTransactionIndex: '(H256, u64)',
-    EthereumHeaderBrief: {
-      totalDifficulty: 'U256',
-      parentHash: 'H256',
-      number: 'EthereumBlockNumber',
-      relayer: 'EthereumAddress'
-    },
     EthereumBlockNumber: 'u64',
-    EthereumHeaderThingWithProof: {
-      header: 'EthereumHeader',
-      ethashProof: 'Vec<EthashProof>',
-      mmrRoot: 'H256',
-      mmrProof: 'Vec<H256>'
-    },
-    ConfirmedEthereumHeaderInfo: {
-      header: 'EthereumHeader',
-      mmrRoot: 'H256'
-    },
-    EthereumHeaderThing: {
-      header: 'EthereumHeader',
-      mmrRoot: 'H256'
-    },
     EthereumHeader: {
       parent_hash: 'H256',
       timestamp: 'u64',
@@ -128,7 +132,7 @@ export default {
       gas_limit: 'U256',
       difficulty: 'U256',
       seal: 'Vec<Bytes>',
-      hash: 'H256'
+      hash: 'Option<H256>'
     },
     EthereumAddress: 'H160',
     Bloom: '[u8; 256; Bloom]',
@@ -137,14 +141,16 @@ export default {
       dagNodes: '(H512, H512)',
       proof: 'Vec<H128>'
     },
-    LogEntry: {},
-    TransactionOutcome: {},
     EthereumReceipt: {
       gasUsed: 'U256',
       logBloom: 'Bloom',
       logs: 'Vec<LogEntry>',
       outcome: 'TransactionOutcome'
     },
+
+    LogEntry: {},
+    TransactionOutcome: {},
+
     EthereumNetworkType: {
       _enum: {
         Mainnet: null,
@@ -157,11 +163,6 @@ export default {
         Deposit: null
       }
     },
-    EthReceiptProof: {
-      index: 'u64',
-      proof: 'Bytes',
-      headerHash: 'H256'
-    },
     EthereumReceiptProof: {
       index: 'u64',
       proof: 'Bytes',
@@ -173,6 +174,15 @@ export default {
       lastLeafIndex: 'u64',
       proof: 'Vec<H256>'
     },
+    EthereumRelayHeaderParcel: {
+      header: 'EthereumHeader',
+      mmrRoot: 'H256'
+    },
+    EthereumRelayProofs: {
+      ethashProof: 'Vec<EthashProof>',
+      mmrProof: 'Vec<H256>'
+    },
+
     OtherSignature: {
       _enum: {
         Eth: 'EcdsaSignature',
@@ -188,10 +198,12 @@ export default {
       }
     },
     AddressT: '[u8; 20; AddressT]',
+
     MerkleMountainRangeRootLog: {
       prefix: '[u8; 4; Prefix]',
       mmrRoot: 'Hash'
     },
+
     ChainProperties: {
       ss58Format: 'Option<u8>',
       tokenDecimals: 'Option<u32>',
@@ -199,43 +211,12 @@ export default {
       ktonTokenDecimals: 'Option<u32>',
       ktonTokenSymbol: 'Option<Text>'
     },
-    SpanRecord: {
-      slashed: 'RKT',
-      paidOut: 'RKT'
-    },
-    UnappliedSlash: {
-      validator: 'AccountId',
-      own: 'RKT',
-      others: 'Vec<(AccountId, RKT)>',
-      reporters: 'Vec<AccountId>',
-      payout: 'RKT'
-    },
+
     AccountInfo: {
       nonce: 'Index',
       refcount: 'RefCount',
       data: 'AccountData'
-    },
-    TreasuryProposal: {
-      proposer: 'AccountId',
-      beneficiary: 'AccountId',
-      ringValue: 'Balance',
-      ktonValue: 'Balance',
-      ringBond: 'Balance',
-      ktonBond: 'Balance'
-    },
-    Round: 'u64',
-    TcHeaderThingWithProof: 'EthereumHeaderThingWithProof',
-    TcHeaderThing: 'EthereumHeaderThing',
-    TcBlockNumber: 'u64',
-    TcHeaderHash: 'H256',
-    GameId: 'TcBlockNumber',
-    RelayProposalT: {
-      relayer: 'AccountId',
-      bondedProposal: 'Vec<(Balance, TcHeaderThing)>',
-      extendFromHeaderHash: 'Option<TcHeaderHash>'
-    },
-    CallHashOf: 'Hash',
-    MappedRing: 'u128'
+    }
   },
   rpc: {
 
