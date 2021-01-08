@@ -187,7 +187,7 @@ export interface MappedRing extends u128 {}
 /** @name MerkleMountainRangeRootLog */
 export interface MerkleMountainRangeRootLog extends Struct {
   readonly prefix: U8aFixed;
-  readonly mmrRoot: Hash;
+  readonly ParentMmrRoot: Hash;
 }
 
 /** @name MMRProof */

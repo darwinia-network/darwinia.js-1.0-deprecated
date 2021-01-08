@@ -5,6 +5,7 @@ import { Compact, Option, Raw, Vec } from '@polkadot/types/codec';
 import { BitVec, Bytes, Data, DoNotConstruct, Null, StorageKey, Text, Type, U256, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types/primitive';
 import { UsableBalance } from '@darwinia/types/interfaces/balances';
 import { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, H128, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MappedRing, MerkleMountainRangeRootLog, OtherAddress, OtherSignature, Power, RKT, Reasons, RedeemFor, RingBalance, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
+import { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
 import { Announcement, ProxyAnnouncement, ProxyDefinition, ProxyType } from '@darwinia/types/interfaces/proxy';
 import { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import { PowerOf } from '@darwinia/types/interfaces/staking';
@@ -1604,6 +1605,9 @@ declare module '@polkadot/types/types/registry' {
     UsableBalance: UsableBalance;
     'Option<UsableBalance>': Option<UsableBalance>;
     'Vec<UsableBalance>': Vec<UsableBalance>;
+    MMRProofResult: MMRProofResult;
+    'Option<MMRProofResult>': Option<MMRProofResult>;
+    'Vec<MMRProofResult>': Vec<MMRProofResult>;
     PowerOf: PowerOf;
     'Option<PowerOf>': Option<PowerOf>;
     'Vec<PowerOf>': Vec<PowerOf>;

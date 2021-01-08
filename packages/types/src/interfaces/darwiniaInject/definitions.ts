@@ -201,7 +201,7 @@ export default {
 
     MerkleMountainRangeRootLog: {
       prefix: '[u8; 4; Prefix]',
-      mmrRoot: 'Hash'
+      ParentMmrRoot: 'Hash'
     },
 
     ChainProperties: {

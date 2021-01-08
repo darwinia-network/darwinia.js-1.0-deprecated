@@ -10,24 +10,24 @@ export default {
 
   },
   types: {
-    RelayHeaderId: "EthereumBlockNumber",
-    RelayHeaderParcel: "EthereumRelayHeaderParcel",
-    RelayProofs: "EthereumRelayProofs",
+    RelayHeaderId: 'EthereumBlockNumber',
+    RelayHeaderParcel: 'EthereumRelayHeaderParcel',
+    RelayProofs: 'EthereumRelayProofs',
     RelayAffirmationId: {
-      relayHeaderId: "EthereumBlockNumber",
-      round: "u32",
-      index: "u32"
+      relayHeaderId: 'EthereumBlockNumber',
+      round: 'u32',
+      index: 'u32'
     },
     RelayAffirmationT: {
-      relayer: "AccountId",
-      relayHeaderParcels: "EthereumRelayHeaderParcel",
-      bond: "Balance",
-      maybeExtendedRelayAffirmationId: "Option<RelayAffirmationId>",
-      verified: "bool"
+      relayer: 'AccountId',
+      relayHeaderParcels: 'EthereumRelayHeaderParcel',
+      bond: 'Balance',
+      maybeExtendedRelayAffirmationId: 'Option<RelayAffirmationId>',
+      verified: 'bool'
     },
     RelayVotingState: {
-      ayes: "Vec<AccountId>",
-      nays: "Vec<AccountId>"
+      ayes: 'Vec<AccountId>',
+      nays: 'Vec<AccountId>'
     }
   }
 };
