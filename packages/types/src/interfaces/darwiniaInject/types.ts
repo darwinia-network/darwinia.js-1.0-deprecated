@@ -61,6 +61,12 @@ export interface Common extends Struct {
 /** @name DepositId */
 export interface DepositId extends U256 {}
 
+/** @name EcdsaAddress */
+export interface EcdsaAddress extends EthereumAddress {}
+
+/** @name EcdsaMessage */
+export interface EcdsaMessage extends H256 {}
+
 /** @name EcdsaSignature */
 export interface EcdsaSignature extends U8aFixed {}
 
@@ -197,6 +203,9 @@ export interface MMRProof extends Struct {
   readonly proof: Vec<H256>;
 }
 
+/** @name MMRRoot */
+export interface MMRRoot extends Hash {}
+
 /** @name OtherAddress */
 export interface OtherAddress extends Enum {
   readonly isEth: boolean;
@@ -229,6 +238,23 @@ export interface RedeemFor extends Enum {
   readonly isDeposit: boolean;
 }
 
+/** @name RelayAuthorityMessage */
+export interface RelayAuthorityMessage extends EcdsaMessage {}
+
+/** @name RelayAuthoritySignature */
+export interface RelayAuthoritySignature extends EcdsaSignature {}
+
+/** @name RelayAuthoritySigner */
+export interface RelayAuthoritySigner extends EcdsaAddress {}
+
+/** @name RelayAuthorityT */
+export interface RelayAuthorityT extends Struct {
+  readonly accountId: AccountId;
+  readonly signer: Signer;
+  readonly stake: Balance;
+  readonly term: BlockNumber;
+}
+
 /** @name RingBalance */
 export interface RingBalance extends Balance {}
 
@@ -237,6 +263,9 @@ export interface RKT extends Struct {
   readonly r: Balance;
   readonly k: Balance;
 }
+
+/** @name Signer */
+export interface Signer extends EthereumAddress {}
 
 /** @name SpanRecord */
 export interface SpanRecord extends Struct {
@@ -269,6 +298,9 @@ export interface StakingLock extends Struct {
   readonly stakingAmount: Balance;
   readonly unbondings: Vec<Unbonding>;
 }
+
+/** @name Term */
+export interface Term extends BlockNumber {}
 
 /** @name TimeDepositItem */
 export interface TimeDepositItem extends Struct {

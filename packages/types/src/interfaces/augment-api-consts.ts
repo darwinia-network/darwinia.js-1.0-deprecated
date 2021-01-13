@@ -98,10 +98,13 @@ declare module '@polkadot/api/types/consts' {
     };
     ethereumBacking: {
       [key: string]: Codec;
+      advancedFee: RingBalance & AugmentedConst<ApiType>;
+      feeModuleId: ModuleId & AugmentedConst<ApiType>;
       /**
-       * The treasury's module id, used for deriving its sovereign account ID.
+       * The ethereum backing module id, used for deriving its sovereign account ID.
        **/
       moduleId: ModuleId & AugmentedConst<ApiType>;
+      syncReward: RingBalance & AugmentedConst<ApiType>;
     };
     ethereumRelay: {
       [key: string]: Codec;
@@ -110,8 +113,17 @@ declare module '@polkadot/api/types/consts' {
       moduleId: ModuleId & AugmentedConst<ApiType>;
       rejectThreshold: Perbill & AugmentedConst<ApiType>;
     };
+    ethereumRelayAuthorities: {
+      [key: string]: Codec;
+      lockId: LockIdentifier & AugmentedConst<ApiType>;
+      maxCandidates: u32 & AugmentedConst<ApiType>;
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      submitDuration: BlockNumber & AugmentedConst<ApiType>;
+      termDuration: BlockNumber & AugmentedConst<ApiType>;
+    };
     ethereumRelayerGame: {
       [key: string]: Codec;
+      lockId: LockIdentifier & AugmentedConst<ApiType>;
       maxActiveGames: u8 & AugmentedConst<ApiType>;
     };
     finalityTracker: {

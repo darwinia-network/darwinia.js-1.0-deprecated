@@ -12,7 +12,7 @@
   "scripts": {
     "build": "yarn polkadot-dev-build-ts",
     "build:interfaces": "polkadot-types-internal-interfaces",
-    "build:release": "polkadot-ci-ghact-build",
+    "build:publish": "polkadot-ci-ghact-build",
     "build:ts": "polkadot-dev-build-ts",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
     "docs:release": "polkadot-ci-ghact-docs",

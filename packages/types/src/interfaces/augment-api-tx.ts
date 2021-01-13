@@ -4,7 +4,7 @@
 import { AnyNumber, ITuple } from '@polkadot/types/types';
 import { Compact, Option, U8aFixed, Vec } from '@polkadot/types/codec';
 import { Bytes, Data, bool, u16, u32, u64, u8 } from '@polkadot/types/primitive';
-import { EthereumBlockNumber, EthereumHeader, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, KtonBalance, MMRProof, OtherAddress, OtherSignature, RedeemFor, RingBalance, StakingBalanceT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
+import { EthereumBlockNumber, EthereumHeader, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, KtonBalance, MMRProof, OtherAddress, OtherSignature, RedeemFor, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, StakingBalanceT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
 import { RelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
 import { BabeEquivocationProof } from '@polkadot/types/interfaces/babe';
 import { EthereumAddress } from '@polkadot/types/interfaces/claims';
@@ -822,6 +822,11 @@ declare module '@polkadot/api/types/submittable' {
     ethereumBacking: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
+       * Lock some balances into the module account
+       * which very similar to lock some assets into the contract on ethereum side
+       **/
+      lock: AugmentedSubmittable<(ringValue: Compact<RingBalance> | AnyNumber | Uint8Array, ktonValue: Compact<KtonBalance> | AnyNumber | Uint8Array, ethereumAccount: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
        * Redeem balances
        * 
        * # <weight>
@@ -854,6 +859,7 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setTokenRedeemAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      syncAuthoritiesSet: AugmentedSubmittable<(proof: EthereumReceiptProofThing) => SubmittableExtrinsic<ApiType>>;
     };
     ethereumRelay: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
@@ -910,7 +916,81 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setReceiptVerifyFee: AugmentedSubmittable<(updated: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
-      votePendingRelayHeaderParcel: AugmentedSubmittable<(blockNumber: EthereumBlockNumber | AnyNumber | Uint8Array, aye: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      votePendingRelayHeaderParcel: AugmentedSubmittable<(ethereumBlockNumber: EthereumBlockNumber | AnyNumber | Uint8Array, aye: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+    };
+    ethereumRelayAuthorities: {
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+      /**
+       * Require add origin
+       * 
+       * Add an authority from the candidates
+       * 
+       * This call is disallowed during the authorities change
+       **/
+      addAuthority: AugmentedSubmittable<(accountId: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * This would never fail. No-op if can't find the request
+       **/
+      cancelRequest: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
+      killAuthorities: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Require reset origin
+       * 
+       * Clear the candidates. Also, remember to release the stake
+       **/
+      killCandidates: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Require remove origin
+       * 
+       * This call is disallowed during the authorities change
+       * 
+       * No-op if can't find the authority
+       **/
+      removeAuthority: AugmentedSubmittable<(accountId: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Renounce the authority for you
+       * 
+       * This call is disallowed during the authorities change
+       * 
+       * No-op if can't find the authority
+       * 
+       * Will fail if you still in the term
+       **/
+      renounceAuthority: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Request to be an authority
+       * 
+       * This will be failed if match one of these sections:
+       * - already is a candidate
+       * - already is an authority
+       * - insufficient stake, required at least more than the last candidate's
+       * if too there're many candidates in the candidates' queue
+       **/
+      requestAuthority: AugmentedSubmittable<(stake: RingBalance | AnyNumber | Uint8Array, signer: RelayAuthoritySigner | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Require authority origin
+       * 
+       * This call is only allowed during the authorities change
+       * 
+       * No-op if already submit
+       * 
+       * Verify
+       * - the relay requirement is valid
+       * - the signature is signed by the submitter
+       **/
+      submitSignedAuthorities: AugmentedSubmittable<(signature: RelayAuthoritySignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Require authority origin
+       * 
+       * This call is disallowed during the authorities change
+       * 
+       * No-op if already submit
+       * 
+       * Verify
+       * - the relay requirement is valid
+       * - the signature is signed by the submitter
+       **/
+      submitSignedMmrRoot: AugmentedSubmittable<(blockNumber: BlockNumber | AnyNumber | Uint8Array, signature: RelayAuthoritySignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>>;
     };
     finalityTracker: {
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
@@ -2618,6 +2698,23 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       reapStash: AugmentedSubmittable<(stash: AccountId | string | Uint8Array, numSlashingSpans: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
+      /**
+       * Rebond a portion of the stash scheduled to be unlocked.
+       * 
+       * The dispatch origin must be signed by the controller, and it can be only called when
+       * [`EraElectionStatus`] is `Closed`.
+       * 
+       * # <weight>
+       * - Time complexity: O(L), where L is unlocking chunks
+       * - Bounded by `MAX_UNLOCKING_CHUNKS`.
+       * - Storage changes: Can't increase storage, only decrease it.
+       * ---------------
+       * - DB Weight:
+       * - Reads: EraElectionStatus, Ledger, Locks, [Origin Account]
+       * - Writes: [Origin Account], Locks, Ledger
+       * # </weight>
+       **/
+      rebond: AugmentedSubmittable<(planToRebondRing: Compact<RingBalance> | AnyNumber | Uint8Array, planToRebondKton: Compact<KtonBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>>;
       /**
        * Scale up the ideal number of validators by a factor.
        * 

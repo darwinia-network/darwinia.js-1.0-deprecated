@@ -216,7 +216,21 @@ export default {
       nonce: 'Index',
       refcount: 'RefCount',
       data: 'AccountData'
-    }
+    },
+    Signer: 'EthereumAddress',
+    RelayAuthorityT: {
+      accountId: 'AccountId',
+      signer: 'Signer',
+      stake: 'Balance',
+      term: 'BlockNumber'
+    },
+    MMRRoot: 'Hash',
+    EcdsaAddress: 'EthereumAddress',
+    EcdsaMessage: 'H256',
+    RelayAuthoritySigner: 'EcdsaAddress',
+    RelayAuthorityMessage: 'EcdsaMessage',
+    RelayAuthoritySignature: 'EcdsaSignature',
+    Term: 'BlockNumber'
   },
   rpc: {
 

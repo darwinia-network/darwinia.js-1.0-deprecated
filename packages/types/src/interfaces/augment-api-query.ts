@@ -4,7 +4,7 @@
 import { AnyNumber, ITuple, Observable } from '@polkadot/types/types';
 import { Option, U8aFixed, Vec } from '@polkadot/types/codec';
 import { Bytes, Data, bool, u32, u64 } from '@polkadot/types/primitive';
-import { AddressT, BalanceInfo, ElectionResultT, EthereumBlockNumber, EthereumRelayHeaderParcel, EthereumTransactionIndex, ExposureT, H128, KtonBalance, MappedRing, Power, RKT, RingBalance, StakingLedgerT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
+import { AddressT, BalanceInfo, ElectionResultT, EthereumBlockNumber, EthereumRelayHeaderParcel, EthereumTransactionIndex, ExposureT, H128, KtonBalance, MappedRing, Power, RKT, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthorityT, RingBalance, StakingLedgerT, Term, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
 import { RelayAffirmationT, RelayHeaderId, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import { UncleEntryItem } from '@polkadot/types/interfaces/authorship';
 import { BabeAuthorityWeight, MaybeRandomness, NextConfigDescriptor, Randomness } from '@polkadot/types/interfaces/babe';
@@ -25,7 +25,7 @@ import { Scheduled, TaskAddress } from '@polkadot/types/interfaces/scheduler';
 import { Keys, SessionIndex } from '@polkadot/types/interfaces/session';
 import { Bid, BidKind, SocietyVote, StrikeCount, VouchingStatus } from '@polkadot/types/interfaces/society';
 import { ActiveEraInfo, ElectionScore, ElectionStatus, EraIndex, EraRewardPoints, Forcing, Nominations, RewardDestination, SlashingSpans, SpanIndex, SpanRecord, UnappliedSlash, ValidatorPrefs } from '@polkadot/types/interfaces/staking';
-import { AccountInfo, DigestOf, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
+import { AccountInfo, DigestOf, Event, EventIndex, EventRecord, LastRuntimeUpgradeInfo, Phase } from '@polkadot/types/interfaces/system';
 import { Bounty, BountyIndex, OpenTip, TreasuryProposal } from '@polkadot/types/interfaces/treasury';
 import { Multiplier } from '@polkadot/types/interfaces/txpayment';
 import { Multisig } from '@polkadot/types/interfaces/utility';
@@ -280,10 +280,12 @@ declare module '@polkadot/api/types/storage' {
       [key: string]: QueryableStorageEntry<ApiType>;
       depositRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
       ktonTokenAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      lockAssetEvents: AugmentedQuery<ApiType, () => Observable<Vec<Event>>> & QueryableStorageEntry<ApiType>;
       redeemStatus: AugmentedQuery<ApiType, () => Observable<bool>> & QueryableStorageEntry<ApiType>;
       ringTokenAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
+      setAuthoritiesAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
       tokenRedeemAddress: AugmentedQuery<ApiType, () => Observable<EthereumAddress>> & QueryableStorageEntry<ApiType>;
-      verifiedProof: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<Option<bool>>> & QueryableStorageEntry<ApiType>;
+      verifiedProof: AugmentedQuery<ApiType, (arg: EthereumTransactionIndex) => Observable<bool>> & QueryableStorageEntry<ApiType>;
     };
     ethereumRelay: {
       [key: string]: QueryableStorageEntry<ApiType>;
@@ -309,6 +311,79 @@ declare module '@polkadot/api/types/storage' {
       pendingRelayHeaderParcels: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[BlockNumber, EthereumRelayHeaderParcel, RelayVotingState]>>>> & QueryableStorageEntry<ApiType>;
       receiptVerifyFee: AugmentedQuery<ApiType, () => Observable<RingBalance>> & QueryableStorageEntry<ApiType>;
     };
+    ethereumRelayAuthorities: {
+      [key: string]: QueryableStorageEntry<ApiType>;
+      /**
+       * Authority must elect from candidates
+       * 
+       * Only council or root can be the voter of the election
+       * 
+       * Once you become an authority, you must serve for a specific term. Before that, you can't renounce
+       **/
+      authorities: AugmentedQuery<ApiType, () => Observable<Vec<RelayAuthorityT>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * The state of current authorities set
+       * 
+       * Tuple Params
+       * 1. is on authority change
+       * 1. the authorities change signature submit deadline, this will be delay indefinitely if can't collect enough signatures
+       **/
+      authoritiesState: AugmentedQuery<ApiType, () => Observable<ITuple<[bool, BlockNumber]>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * The authorities change requirements
+       * 
+       * Once the signatures count reaches the sign threshold storage will be killed then raise a signed event
+       * 
+       * Params
+       * 1. the message to sign
+       * 1. collected signatures
+       **/
+      authoritiesToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[RelayAuthorityMessage, Vec<ITuple<[AccountId, RelayAuthoritySignature]>>]>>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * A term index counter, play the same role as nonce in extrinsic
+       **/
+      authorityTerm: AugmentedQuery<ApiType, () => Observable<Term>> & QueryableStorageEntry<ApiType>;
+      /**
+       * Anyone can request to be an authority with some stake
+       * Also submit your signer at the same time (for ethereum: your ethereum address in H160 format)
+       * 
+       * Once you requested, you'll enter the candidates
+       * 
+       * This request can be canceled at any time
+       **/
+      candidates: AugmentedQuery<ApiType, () => Observable<Vec<RelayAuthorityT>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * All the relay requirements from the backing module here
+       * 
+       * If the map's key has existed, it means the mmr root relay requirement is valid
+       * 
+       * Once the signatures count reaches the sign threshold storage will be killed then raise a signed event
+       * 
+       * Params
+       * 1. collected signatures
+       **/
+      mmrRootsToSign: AugmentedQuery<ApiType, (arg: BlockNumber | AnyNumber | Uint8Array) => Observable<Option<Vec<ITuple<[AccountId, RelayAuthoritySignature]>>>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * The `MMRRootsToSign` keys cache
+       * 
+       * Only use for update the `MMRRootsToSign` once the authorities changed
+       **/
+      mmrRootsToSignKeys: AugmentedQuery<ApiType, () => Observable<Vec<BlockNumber>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * A snapshot for the old authorities while authorities changed
+       **/
+      oldAuthorities: AugmentedQuery<ApiType, () => Observable<Vec<RelayAuthorityT>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * A cache for the old authorities who was renounce or kicked from authorities
+       * 
+       * Remove their lock while the submit authorities change signatures finished
+       **/
+      oldAuthoritiesLockToRemove: AugmentedQuery<ApiType, () => Observable<Vec<AccountId>>> & QueryableStorageEntry<ApiType>;
+      /**
+       * The mmr root signature submit duration, will be delayed if on authorities change
+       **/
+      submitDuration: AugmentedQuery<ApiType, () => Observable<BlockNumber>> & QueryableStorageEntry<ApiType>;
+    };
     ethereumRelayerGame: {
       [key: string]: QueryableStorageEntry<ApiType>;
       /**
@@ -332,7 +407,7 @@ declare module '@polkadot/api/types/storage' {
       /**
        * All the closed rounds here
        * 
-       * Record the closed rounds endpoint which use for settlling or updating
+       * Record the closed rounds endpoint which use for settling or updating
        * Settle or update a game will be scheduled which will start at this moment
        **/
       gamesToUpdate: AugmentedQuery<ApiType, (arg: BlockNumber | AnyNumber | Uint8Array) => Observable<Vec<RelayHeaderId>>> & QueryableStorageEntry<ApiType>;
@@ -411,7 +486,7 @@ declare module '@polkadot/api/types/storage' {
       /**
        * MMR struct of the previous blocks, from first(genesis) to parent hash.
        **/
-      mmrNodeList: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Hash>> & QueryableStorageEntry<ApiType>;
+      mmrNodeList: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Option<Hash>>> & QueryableStorageEntry<ApiType>;
     };
     identity: {
       [key: string]: QueryableStorageEntry<ApiType>;
