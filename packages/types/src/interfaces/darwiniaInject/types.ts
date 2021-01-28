@@ -44,15 +44,13 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
+
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
-  readonly tokenDecimals: Option<u32>;
-  readonly tokenSymbol: Option<Text>;
-  readonly ktonTokenDecimals: Option<u32>;
-  readonly ktonTokenSymbol: Option<Text>;
+  readonly tokenDecimals: Option<Vec<u32>>;
+  readonly tokenSymbol: Option<Vec<Text>>;
 }
-
 /** @name Common */
 export interface Common extends Struct {
   readonly amount: Balance;
@@ -206,6 +204,9 @@ export interface MMRProof extends Struct {
 /** @name MMRRoot */
 export interface MMRRoot extends Hash {}
 
+/** @name OpCode */
+export interface OpCode extends U8aFixed {}
+
 /** @name OtherAddress */
 export interface OtherAddress extends Enum {
   readonly isEth: boolean;
@@ -262,6 +263,12 @@ export interface RingBalance extends Balance {}
 export interface RKT extends Struct {
   readonly r: Balance;
   readonly k: Balance;
+}
+
+/** @name ScheduledAuthoritiesChangeT */
+export interface ScheduledAuthoritiesChangeT extends Struct {
+  readonly nextAuthorities: Vec<RelayAuthorityT>;
+  readonly deadline: BlockNumber;
 }
 
 /** @name Signer */

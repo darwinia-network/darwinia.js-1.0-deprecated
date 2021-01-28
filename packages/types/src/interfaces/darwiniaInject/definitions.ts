@@ -206,10 +206,8 @@ export default {
 
     ChainProperties: {
       ss58Format: 'Option<u8>',
-      tokenDecimals: 'Option<u32>',
-      tokenSymbol: 'Option<Text>',
-      ktonTokenDecimals: 'Option<u32>',
-      ktonTokenSymbol: 'Option<Text>'
+      tokenDecimals: 'Option<Vec<u32>>',
+      tokenSymbol: 'Option<Vec<Text>>'
     },
 
     AccountInfo: {
@@ -230,7 +228,12 @@ export default {
     RelayAuthoritySigner: 'EcdsaAddress',
     RelayAuthorityMessage: 'EcdsaMessage',
     RelayAuthoritySignature: 'EcdsaSignature',
-    Term: 'BlockNumber'
+    Term: 'BlockNumber',
+    OpCode: '[u8; 4; OpCode]',
+    ScheduledAuthoritiesChangeT: {
+      nextAuthorities: 'Vec<RelayAuthorityT>',
+      deadline: 'BlockNumber'
+    }
   },
   rpc: {
 
