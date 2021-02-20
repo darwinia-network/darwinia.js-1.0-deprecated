@@ -7,6 +7,7 @@
     "node_modules/@polkadot/api/types/consts.d.ts"
   ],
   "compilerOptions": {
+    "module": "commonjs",
     "baseUrl": ".",
     "paths":
     {
@@ -14,6 +15,8 @@
       "@darwinia/api/*": ["packages/api/src/*"],
       "@darwinia/types": ["packages/types/src"],
       "@darwinia/types/*": ["packages/types/src/*"],
+      "@darwinia/types-known": ["packages/types-known/src"],
+      "@darwinia/types-known/*": ["packages/types-known/src/*"],
       "@darwinia/api-options": ["packages/api-options/src"],
       "@darwinia/api-options/*": ["packages/api-options/src/*"],
       "@polkadot/api/augment": ["packages/types/src/interfaces/augment-api.ts"],

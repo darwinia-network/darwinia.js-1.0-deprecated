@@ -44,13 +44,13 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
-
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
   readonly tokenDecimals: Option<Vec<u32>>;
   readonly tokenSymbol: Option<Vec<Text>>;
 }
+
 /** @name Common */
 export interface Common extends Struct {
   readonly amount: Balance;

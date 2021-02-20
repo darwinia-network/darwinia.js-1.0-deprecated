@@ -6,29 +6,7 @@
 import { OverrideVersionedType } from '@polkadot/types/types';
 
 const sharedTypes = {
-  Judgement: 'IdentityJudgement',
-  RewardDestination: {
-    _enum: {
-      Staked: 'Null',
-      Stash: 'Null',
-      Controller: 'Null',
-      Account: 'AccountId'
-    }
-  },
-  Signer: 'EthereumAddress',
-  RelayAuthorityT: {
-    accountId: 'AccountId',
-    signer: 'Signer',
-    stake: 'Balance',
-    term: 'BlockNumber'
-  },
-  MMRRoot: 'Hash',
-  EcdsaAddress: 'EthereumAddress',
-  EcdsaSignature: '[u8; 65; EcdsaSignature]',
-  EcdsaMessage: 'H256',
-  RelayAuthoritySigner: 'EcdsaAddress',
-  RelayAuthorityMessage: 'EcdsaMessage',
-  RelayAuthoritySignature: 'EcdsaSignature'
+
 };
 
 const versioned: OverrideVersionedType[] = [

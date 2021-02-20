@@ -1,0 +1,67 @@
+{
+    "balances": {
+        "usableBalance": {
+            "alias": [
+                "balances_usableBalance"
+            ],
+            "description": "balances_usableBalance",
+            "params": [
+                {
+                    "name": "tokenType",
+                    "type": "u8"
+                },
+                {
+                    "name": "accountId",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "UsableBalance",
+            "isSubscription": false,
+            "jsonrpc": "balances_usableBalance",
+            "method": "usableBalance",
+            "section": "balances"
+        }
+    },
+    "headerMMR": {
+        "genProof": {
+            "alias": [
+                "headerMMR_genProof"
+            ],
+            "description": "headerMMR_genProof",
+            "params": [
+                {
+                    "name": "blockNumberOfMemberleaf",
+                    "type": "u64"
+                },
+                {
+                    "name": "blockNumberOfLastLeaf",
+                    "type": "u64"
+                }
+            ],
+            "type": "MMRProofResult",
+            "isSubscription": false,
+            "jsonrpc": "headerMMR_genProof",
+            "method": "genProof",
+            "section": "headerMMR"
+        }
+    },
+    "staking": {
+        "powerOf": {
+            "alias": [
+                "staking_powerOf"
+            ],
+            "description": "staking_powerOf",
+            "params": [
+                {
+                    "name": "accountId",
+                    "type": "AccountId"
+                }
+            ],
+            "type": "PowerOf",
+            "isSubscription": false,
+            "jsonrpc": "staking_powerOf",
+            "method": "powerOf",
+            "section": "staking"
+        }
+    }
+}

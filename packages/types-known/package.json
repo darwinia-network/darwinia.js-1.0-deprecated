@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/types-known",
-  "version": "1.0.12",
+  "version": "1.1.0-alpha.1",
   "description": "A JavaScript wrapper for the Polkadot JsonRPC interface",
   "main": "index.js",
   "keywords": [
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/type-known",
   "dependencies": {
     "@babel/runtime": "^7.9.6",
-    "@polkadot/types": "1.27.1",
+    "@polkadot/types": "3.6.4",
     "@polkadot/util": "^3.0.1",
     "bn.js": "^5.1.2"
   },
