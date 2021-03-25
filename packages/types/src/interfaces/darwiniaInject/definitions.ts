@@ -132,7 +132,7 @@ export default {
       gas_limit: 'U256',
       difficulty: 'U256',
       seal: 'Vec<Bytes>',
-      hash: 'Option<H256>'
+      hash: 'H256'
     },
     EthereumAddress: 'H160',
     Bloom: '[u8; 256; Bloom]',
@@ -233,6 +233,9 @@ export default {
     ScheduledAuthoritiesChangeT: {
       nextAuthorities: 'Vec<RelayAuthorityT>',
       deadline: 'BlockNumber'
+    },
+    ElectionCompute: {
+      _enum: ['OnChain', 'Signed', 'Authority']
     }
   },
   rpc: {

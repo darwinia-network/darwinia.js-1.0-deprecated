@@ -23,18 +23,23 @@
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
     "test:one": "polkadot-dev-run-test",
     "test:watch": "polkadot-dev-run-test --watch",
-    "generate:defs": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-defs --package @darwinia/types/interfaces --input ./packages/types/src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
+    "generate:defs": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-defs.cjs --package @darwinia/types/interfaces --input ./packages/types/src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain.cjs --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
     "lervaversion": "lerna version --skip-git",
-    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
+    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts",
+    "cp-types-to-darwinia-apps": "cp -r ./packages/types/build/* /Users/beiwan/WebstormProjects/darwinia-apps/node_modules/@darwinia/types/",
+    "cp-types-to-wormhole": "cp -r ./packages/types/build/* /Users/beiwan/WebstormProjects/claims/node_modules/@darwinia/types/",
+    "cp-types-known-to-darwinia-apps": "cp -r ./packages/types-known/build/ /Users/beiwan/WebstormProjects/darwinia-apps/node_modules/@darwinia/types-known/",
+    "cp-types-known-to-wormhole": "cp -r ./packages/types-known/build/* /Users/beiwan/WebstormProjects/claims/node_modules/@darwinia/types-known/"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
+    "@babel/node": "^7.13.10",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "@polkadot/dev": "^0.55.46",
     "@polkadot/ts": "^0.3.42",
-    "@polkadot/typegen": "1.35.0-beta.19",
+    "@polkadot/typegen": "4.0.4-5",
     "@types/jest": "^26.0.13",
     "@vuepress/plugin-search": "^1.5.4",
     "copyfiles": "^2.3.0",
@@ -44,5 +49,5 @@
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
-  "version": "1.0.1"
+  "version": "1.1.0"
 }

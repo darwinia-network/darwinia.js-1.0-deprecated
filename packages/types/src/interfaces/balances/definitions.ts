@@ -26,6 +26,12 @@ export default {
   types: {
     UsableBalance: {
       usableBalance: 'Balance'
+    },
+    Status: {
+      _enum: {
+        Free: null,
+        Reserved: null
+      }
     }
   }
 };

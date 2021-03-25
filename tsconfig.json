@@ -11,8 +11,8 @@
     "baseUrl": ".",
     "paths":
     {
-      "@darwinia/api": ["packages/api/src"],
-      "@darwinia/api/*": ["packages/api/src/*"],
+      // "@darwinia/api": ["packages/api/src"],
+      // "@darwinia/api/*": ["packages/api/src/*"],
       "@darwinia/types": ["packages/types/src"],
       "@darwinia/types/*": ["packages/types/src/*"],
       "@darwinia/types-known": ["packages/types-known/src"],

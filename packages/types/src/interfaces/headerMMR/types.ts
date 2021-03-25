@@ -1,8 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import { Struct } from '@polkadot/types/codec';
-import { Text, u64 } from '@polkadot/types/primitive';
+import type { Struct, Text, u64 } from '@polkadot/types';
 
 /** @name MMRProofResult */
 export interface MMRProofResult extends Struct {

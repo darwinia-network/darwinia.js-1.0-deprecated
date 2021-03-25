@@ -1,15 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import { Codec } from '@polkadot/types/types';
-import { Vec } from '@polkadot/types/codec';
-import { Bytes, u16, u32, u64, u8 } from '@polkadot/types/primitive';
-import { KtonBalance, Power, RingBalance } from '@darwinia/types/interfaces/darwiniaInject';
-import { Balance, BalanceOf, BlockNumber, LockIdentifier, ModuleId, Moment, Perbill, Percent, Permill, RuntimeDbWeight, Weight } from '@polkadot/types/interfaces/runtime';
-import { SessionIndex } from '@polkadot/types/interfaces/session';
-import { EraIndex } from '@polkadot/types/interfaces/staking';
-import { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
-import { ApiTypes } from '@polkadot/api/types';
+import type { Bytes, Vec, u16, u32, u64, u8 } from '@polkadot/types';
+import type { Codec } from '@polkadot/types/types';
+import type { KtonBalance, Power, RingBalance } from '@darwinia/types/interfaces/darwiniaInject';
+import type { Balance, BalanceOf, BlockNumber, LockIdentifier, ModuleId, Moment, Perbill, Percent, Permill, RuntimeDbWeight } from '@polkadot/types/interfaces/runtime';
+import type { SessionIndex } from '@polkadot/types/interfaces/session';
+import type { EraIndex } from '@polkadot/types/interfaces/staking';
+import type { RuntimeVersion } from '@polkadot/types/interfaces/state';
+import type { WeightToFeeCoefficient } from '@polkadot/types/interfaces/support';
+import type { BlockLength, BlockWeights } from '@polkadot/types/interfaces/system';
+import type { ApiTypes } from '@polkadot/api/types';
 
 declare module '@polkadot/api/types/consts' {
   export interface AugmentedConsts<ApiType> {
@@ -18,6 +19,9 @@ declare module '@polkadot/api/types/consts' {
       /**
        * The number of **slots** that an epoch takes. We couple sessions to
        * epochs, i.e. we start a new session once the new epoch begins.
+       * NOTE: Currently it is not possible to change the epoch duration
+       * after the chain has started. Attempting to do so will brick block
+       * production.
        **/
       epochDuration: u64 & AugmentedConst<ApiType>;
       /**
@@ -43,6 +47,10 @@ declare module '@polkadot/api/types/consts' {
        * The Prefix that is used in signed Ethereum messages for this network
        **/
       prefix: Bytes & AugmentedConst<ApiType>;
+    };
+    crabBacking: {
+      [key: string]: Codec;
+      moduleId: ModuleId & AugmentedConst<ApiType>;
     };
     crabIssuing: {
       [key: string]: Codec;
@@ -94,7 +102,8 @@ declare module '@polkadot/api/types/consts' {
       desiredRunnersUp: u32 & AugmentedConst<ApiType>;
       moduleId: LockIdentifier & AugmentedConst<ApiType>;
       termDuration: BlockNumber & AugmentedConst<ApiType>;
-      votingBond: BalanceOf & AugmentedConst<ApiType>;
+      votingBondBase: BalanceOf & AugmentedConst<ApiType>;
+      votingBondFactor: BalanceOf & AugmentedConst<ApiType>;
     };
     ethereumBacking: {
       [key: string]: Codec;
@@ -126,77 +135,12 @@ declare module '@polkadot/api/types/consts' {
       lockId: LockIdentifier & AugmentedConst<ApiType>;
       maxActiveGames: u8 & AugmentedConst<ApiType>;
     };
-    finalityTracker: {
-      [key: string]: Codec;
-      /**
-       * The delay after which point things become suspicious. Default is 1000.
-       **/
-      reportLatency: BlockNumber & AugmentedConst<ApiType>;
-      /**
-       * The number of recent samples to keep from this chain. Default is 101.
-       **/
-      windowSize: BlockNumber & AugmentedConst<ApiType>;
-    };
-    identity: {
-      [key: string]: Codec;
-      /**
-       * The amount held on deposit for a registered identity.
-       **/
-      basicDeposit: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The amount held on deposit per additional field for a registered identity.
-       **/
-      fieldDeposit: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * Maximum number of additional fields that may be stored in an ID. Needed to bound the I/O
-       * required to access an identity, but can be pretty high.
-       **/
-      maxAdditionalFields: u32 & AugmentedConst<ApiType>;
-      /**
-       * Maxmimum number of registrars allowed in the system. Needed to bound the complexity
-       * of, e.g., updating judgements.
-       **/
-      maxRegistrars: u32 & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of sub-accounts allowed per identified account.
-       **/
-      maxSubAccounts: u32 & AugmentedConst<ApiType>;
-      /**
-       * The amount held on deposit for a registered subaccount. This should account for the fact
-       * that one storage item's value will increase by the size of an account ID, and there will be
-       * another trie item whose value is the size of an account ID plus 32 bytes.
-       **/
-      subAccountDeposit: BalanceOf & AugmentedConst<ApiType>;
-    };
-    indices: {
-      [key: string]: Codec;
-      /**
-       * The deposit needed for reserving an index.
-       **/
-      deposit: BalanceOf & AugmentedConst<ApiType>;
-    };
     kton: {
       [key: string]: Codec;
       /**
        * The minimum amount required to keep an account open.
        **/
       existentialDeposit: Balance & AugmentedConst<ApiType>;
-    };
-    multisig: {
-      [key: string]: Codec;
-      /**
-       * The base amount of currency needed to reserve for creating a multisig execution or to store
-       * a dispatch call for later.
-       **/
-      depositBase: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The amount of currency needed per unit threshold when creating a multisig execution.
-       **/
-      depositFactor: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The maximum amount of signatories allowed for a given multisig.
-       **/
-      maxSignatories: u16 & AugmentedConst<ApiType>;
     };
     proxy: {
       [key: string]: Codec;
@@ -224,58 +168,6 @@ declare module '@polkadot/api/types/consts' {
        * The amount of currency needed per proxy added.
        **/
       proxyDepositFactor: BalanceOf & AugmentedConst<ApiType>;
-    };
-    recovery: {
-      [key: string]: Codec;
-      /**
-       * The base amount of currency needed to reserve for creating a recovery configuration.
-       **/
-      configDepositBase: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The amount of currency needed per additional user when creating a recovery configuration.
-       **/
-      friendDepositFactor: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The maximum amount of friends allowed in a recovery configuration.
-       **/
-      maxFriends: u16 & AugmentedConst<ApiType>;
-      /**
-       * The base amount of currency needed to reserve for starting a recovery.
-       **/
-      recoveryDeposit: BalanceOf & AugmentedConst<ApiType>;
-    };
-    society: {
-      [key: string]: Codec;
-      /**
-       * The minimum amount of a deposit required for a bid to be made.
-       **/
-      candidateDeposit: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The number of blocks between membership challenges.
-       **/
-      challengePeriod: BlockNumber & AugmentedConst<ApiType>;
-      /**
-       * The number of times a member may vote the wrong way (or not at all, when they are a skeptic)
-       * before they become suspended.
-       **/
-      maxStrikes: u32 & AugmentedConst<ApiType>;
-      /**
-       * The societies's module id
-       **/
-      moduleId: ModuleId & AugmentedConst<ApiType>;
-      /**
-       * The amount of incentive paid within each period. Doesn't include VoterTip.
-       **/
-      periodSpend: BalanceOf & AugmentedConst<ApiType>;
-      /**
-       * The number of blocks between candidate/membership rotation periods.
-       **/
-      rotationPeriod: BlockNumber & AugmentedConst<ApiType>;
-      /**
-       * The amount of the unpaid reward that gets deducted in the case that either a skeptic
-       * doesn't vote or someone votes in the wrong way.
-       **/
-      wrongSideDeduction: BalanceOf & AugmentedConst<ApiType>;
     };
     staking: {
       [key: string]: Codec;
@@ -339,29 +231,33 @@ declare module '@polkadot/api/types/consts' {
     system: {
       [key: string]: Codec;
       /**
-       * The base weight of executing a block, independent of the transactions in the block.
-       **/
-      blockExecutionWeight: Weight & AugmentedConst<ApiType>;
-      /**
-       * The maximum number of blocks to allow in mortal eras.
+       * Maximum number of block number to block hash mappings to keep (oldest pruned first).
        **/
       blockHashCount: BlockNumber & AugmentedConst<ApiType>;
+      /**
+       * The maximum length of a block (in bytes).
+       **/
+      blockLength: BlockLength & AugmentedConst<ApiType>;
+      /**
+       * Block & extrinsics weights: base values and limits.
+       **/
+      blockWeights: BlockWeights & AugmentedConst<ApiType>;
       /**
        * The weight of runtime database operations the runtime can invoke.
        **/
       dbWeight: RuntimeDbWeight & AugmentedConst<ApiType>;
       /**
-       * The base weight of an Extrinsic in the block, independent of the of extrinsic being executed.
+       * The designated SS85 prefix of this chain.
+       * 
+       * This replaces the "ss58Format" property declared in the chain spec. Reason is
+       * that the runtime should know about the prefix in order to make use of it as
+       * an identifier of the chain.
        **/
-      extrinsicBaseWeight: Weight & AugmentedConst<ApiType>;
+      ss58Prefix: u8 & AugmentedConst<ApiType>;
       /**
-       * The maximum length of a block (in bytes).
+       * Get the chain's current version.
        **/
-      maximumBlockLength: u32 & AugmentedConst<ApiType>;
-      /**
-       * The maximum weight of a block.
-       **/
-      maximumBlockWeight: Weight & AugmentedConst<ApiType>;
+      version: RuntimeVersion & AugmentedConst<ApiType>;
     };
     timestamp: {
       [key: string]: Codec;
@@ -444,6 +340,17 @@ declare module '@polkadot/api/types/consts' {
        * The amount held on deposit for placing a tip report.
        **/
       tipReportDepositBase: RingBalance & AugmentedConst<ApiType>;
+    };
+    tronBacking: {
+      [key: string]: Codec;
+      moduleId: ModuleId & AugmentedConst<ApiType>;
+    };
+    vesting: {
+      [key: string]: Codec;
+      /**
+       * The minimum amount to be transferred to create a new vesting schedule.
+       **/
+      minVestedTransfer: BalanceOf & AugmentedConst<ApiType>;
     };
   }
 
