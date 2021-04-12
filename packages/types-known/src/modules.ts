@@ -6,6 +6,12 @@ import { OverrideModuleType } from '@polkadot/types/types';
 
 // type overrides for modules (where duplication between modules exist)
 const typesModules: Record<string, OverrideModuleType> = {
+  assets: {
+    Approval: 'AssetApproval',
+    ApprovalKey: 'AssetApprovalKey',
+    Balance: 'TAssetBalance',
+    DestroyWitness: 'AssetDestroyWitness'
+  },
   babe: {
     EquivocationProof: 'BabeEquivocationProof'
   },
@@ -14,6 +20,9 @@ const typesModules: Record<string, OverrideModuleType> = {
   },
   contracts: {
     StorageKey: 'ContractStorageKey'
+  },
+  electionProviderMultiPhase: {
+    Phase: 'ElectionPhase'
   },
   ethereum: {
     Block: 'EthBlock',
@@ -34,14 +43,26 @@ const typesModules: Record<string, OverrideModuleType> = {
   identity: {
     Judgement: 'IdentityJudgement'
   },
+  inclusion: {
+    ValidatorIndex: 'ParaValidatorIndex'
+  },
   parachains: {
     Id: 'ParaId'
+  },
+  parasScheduler: {
+    ValidatorIndex: 'ParaValidatorIndex'
   },
   proposeParachain: {
     Proposal: 'ParachainProposal'
   },
   proxy: {
     Announcement: 'ProxyAnnouncement'
+  },
+  scheduler: {
+    ValidatorIndex: 'ParaValidatorIndex'
+  },
+  shared: {
+    ValidatorIndex: 'ParaValidatorIndex'
   },
   society: {
     Judgement: 'SocietyJudgement',

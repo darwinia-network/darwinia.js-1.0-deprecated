@@ -10,9 +10,26 @@ const sharedTypes = {
 
 const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, undefined],
+    minmax: [0, 41],
     types: {
       ...sharedTypes
+    }
+  },
+  {
+    minmax: [42, undefined],
+    types: {
+      ...sharedTypes,
+      Address: 'MultiAddress',
+      LookupSource: 'MultiAddress',
+      MultiAddress: 'GenericMultiAddress',
+      AccountInfo: 'AccountInfoWithTripleRefCount',
+      AccountInfoWithTripleRefCount: {
+        nonce: 'Index',
+        consumers: 'RefCount',
+        providers: 'RefCount',
+        data: 'AccountData'
+      },
+      ValidatorPrefs: 'ValidatorPrefsWithBlocked'
     }
   }
 ];
