@@ -118,21 +118,21 @@ export default {
     EthereumTransactionIndex: '(H256, u64)',
     EthereumBlockNumber: 'u64',
     EthereumHeader: {
-      parent_hash: 'H256',
+      parentHash: 'H256',
       timestamp: 'u64',
       number: 'EthereumBlockNumber',
       author: 'EthereumAddress',
-      transactions_root: 'H256',
-      uncles_hash: 'H256',
-      extra_data: 'Bytes',
-      state_root: 'H256',
-      receipts_root: 'H256',
-      log_bloom: 'Bloom',
-      gas_used: 'U256',
-      gas_limit: 'U256',
+      transactionsRoot: 'H256',
+      unclesHash: 'H256',
+      extraData: 'Bytes',
+      stateRoot: 'H256',
+      receiptsRoot: 'H256',
+      logBloom: 'Bloom',
+      gasUsed: 'U256',
+      gasLimit: 'U256',
       difficulty: 'U256',
       seal: 'Vec<Bytes>',
-      hash: 'H256'
+      blockHash: 'Option<H256>'
     },
     EthereumAddress: 'H160',
     Bloom: '[u8; 256; Bloom]',
@@ -176,7 +176,7 @@ export default {
     },
     EthereumRelayHeaderParcel: {
       header: 'EthereumHeader',
-      mmrRoot: 'H256'
+      parentMmrRoot: 'H256'
     },
     EthereumRelayProofs: {
       ethashProof: 'Vec<EthashProof>',

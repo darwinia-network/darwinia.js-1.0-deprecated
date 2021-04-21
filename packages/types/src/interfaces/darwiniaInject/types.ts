@@ -88,21 +88,21 @@ export interface EthereumBlockNumber extends u64 {}
 
 /** @name EthereumHeader */
 export interface EthereumHeader extends Struct {
-  readonly parent_hash: H256;
+  readonly parentHash: H256;
   readonly timestamp: u64;
   readonly number: EthereumBlockNumber;
   readonly author: EthereumAddress;
-  readonly transactions_root: H256;
-  readonly uncles_hash: H256;
-  readonly extra_data: Bytes;
-  readonly state_root: H256;
-  readonly receipts_root: H256;
-  readonly log_bloom: Bloom;
-  readonly gas_used: U256;
-  readonly gas_limit: U256;
+  readonly transactionsRoot: H256;
+  readonly unclesHash: H256;
+  readonly extraData: Bytes;
+  readonly stateRoot: H256;
+  readonly receiptsRoot: H256;
+  readonly logBloom: Bloom;
+  readonly gasUsed: U256;
+  readonly gasLimit: U256;
   readonly difficulty: U256;
   readonly seal: Vec<Bytes>;
-  readonly hash: H256;
+  readonly blockHash: Option<H256>;
 }
 
 /** @name EthereumNetworkType */
@@ -138,7 +138,7 @@ export interface EthereumRelayHeaderParcel extends Struct {
 /** @name EthereumRelayProofs */
 export interface EthereumRelayProofs extends Struct {
   readonly ethashProof: Vec<EthashProof>;
-  readonly mmrProof: Vec<H256>;
+  readonly parentMmrProof: Vec<H256>;
 }
 
 /** @name EthereumTransactionIndex */
