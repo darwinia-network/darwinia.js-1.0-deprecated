@@ -11,9 +11,22 @@ const sharedTypes = {
 
 const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, undefined],
+    minmax: [0, 22],
     types: {
       ...sharedTypes
+    }
+  },
+  {
+    minmax: [23, undefined],
+    types: {
+      ...sharedTypes,
+      AccountInfo: 'AccountInfoWithTripleRefCount',
+      AccountInfoWithTripleRefCount: {
+        nonce: 'Index',
+        consumers: 'RefCount',
+        providers: 'RefCount',
+        data: 'AccountData'
+      }
     }
   }
 ];
