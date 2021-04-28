@@ -20,6 +20,10 @@ const versioned: OverrideVersionedType[] = [
     minmax: [23, undefined],
     types: {
       ...sharedTypes,
+      Address: 'MultiAddress',
+      LookupSource: 'MultiAddress',
+      MultiAddress: 'GenericMultiAddress',
+      ValidatorPrefs: 'ValidatorPrefsWithBlocked',
       AccountInfo: 'AccountInfoWithTripleRefCount',
       AccountInfoWithTripleRefCount: {
         nonce: 'Index',
