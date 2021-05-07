@@ -13,8 +13,6 @@ export interface AccountData extends Struct {
   readonly reserved: Balance;
   readonly freeKton: Balance;
   readonly reservedKton: Balance;
-  readonly miscFrozen: Balance;
-  readonly feeFrozen: Balance;
 }
 
 /** @name AccountInfo */

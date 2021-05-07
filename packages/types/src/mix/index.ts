@@ -15,31 +15,11 @@ import staking from '../interfaces/staking/definitions';
 import { typesFromDefinitions, jsonrpcFromDefinitions } from './utils';
 
 const polkadotCompatibleTypes = {
-  BalanceLock: {
-    id: 'LockIdentifier',
-    lockFor: 'LockFor',
-    reasons: 'Reasons',
-    amount: 'Balance'
-  },
-  StakingLedgerT: {
-    stash: 'AccountId',
-    activeRing: 'Compact<Balance>',
-    activeDepositRing: 'Compact<Balance>',
-    activeKton: 'Compact<Balance>',
-    depositItems: 'Vec<TimeDepositItem>',
-    ringStakingLock: 'StakingLock',
-    ktonStakingLock: 'StakingLock',
-    claimedRewards: 'Vec<EraIndex>',
-    total: 'Compact<Balance>',
-    active: 'Compact<Balance>',
-    unlocking: 'Vec<UnlockChunk>'
-  },
   IndividualExposure: {
     who: 'AccountId',
-    ringBalance: 'Compact<Balance>',
+    value: 'Compact<Balance>',
     ktonBalance: 'Compact<Balance>',
-    power: 'Power',
-    value: 'Compact<Balance>'
+    power: 'Power'
   }
 };
 
