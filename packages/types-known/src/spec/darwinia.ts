@@ -6,7 +6,10 @@
 import { OverrideVersionedType } from '@polkadot/types/types';
 
 const sharedTypes = {
-
+  Address: 'MultiAddress',
+  LookupSource: 'MultiAddress',
+  MultiAddress: 'GenericMultiAddress',
+  ValidatorPrefs: 'ValidatorPrefsWithBlocked'
 };
 
 const versioned: OverrideVersionedType[] = [
@@ -17,18 +20,28 @@ const versioned: OverrideVersionedType[] = [
     }
   },
   {
-    minmax: [23, undefined],
+    minmax: [23, 24],
     types: {
       ...sharedTypes,
-      Address: 'MultiAddress',
-      LookupSource: 'MultiAddress',
-      MultiAddress: 'GenericMultiAddress',
-      ValidatorPrefs: 'ValidatorPrefsWithBlocked',
       AccountInfo: 'AccountInfoWithTripleRefCount',
       AccountInfoWithTripleRefCount: {
         nonce: 'Index',
         consumers: 'RefCount',
         providers: 'RefCount',
+        data: 'AccountData'
+      }
+    }
+  },
+  {
+    minmax: [24, undefined],
+    types: {
+      ...sharedTypes,
+      AccountInfo: 'AccountInfoWithTripleRefCount',
+      AccountInfoWithTripleRefCount: {
+        nonce: 'Index',
+        consumers: 'RefCount',
+        providers: 'RefCount',
+        sufficients: 'RefCount',
         data: 'AccountData'
       }
     }
