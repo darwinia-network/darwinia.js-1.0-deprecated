@@ -234,7 +234,8 @@ export default {
     },
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
-    }
+    },
+    PalletId: 'LockIdentifier'
   },
   rpc: {
 
