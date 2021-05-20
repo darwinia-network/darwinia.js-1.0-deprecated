@@ -3,7 +3,7 @@
 
 import type { BitVec, Bool, Bytes, Compact, Data, DoNotConstruct, I128, I16, I256, I32, I64, I8, Json, Null, Option, Raw, StorageKey, Text, Type, U128, U16, U256, U32, U64, U8, USize, Vec, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types';
 import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, OtherAddress, OtherSignature, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
+import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, BridgedBlockHash, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LaneId, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MessageId, MessageKey, MessageNonce, MessagePayload, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
 import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, ProxyAnnouncement, ProxyDefinition, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
@@ -91,6 +91,7 @@ declare module '@polkadot/types/types/registry' {
     'Compact<LeasePeriodOf>': Compact<LeasePeriodOf>;
     'Compact<MappedRing>': Compact<MappedRing>;
     'Compact<MemberCount>': Compact<MemberCount>;
+    'Compact<MessageNonce>': Compact<MessageNonce>;
     'Compact<Moment>': Compact<Moment>;
     'Compact<ParaId>': Compact<ParaId>;
     'Compact<ParaValidatorIndex>': Compact<ParaValidatorIndex>;
@@ -226,6 +227,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<BountyStatusActive>': Option<BountyStatusActive>;
     'Option<BountyStatusCuratorProposed>': Option<BountyStatusCuratorProposed>;
     'Option<BountyStatusPendingPayout>': Option<BountyStatusPendingPayout>;
+    'Option<BridgedBlockHash>': Option<BridgedBlockHash>;
     'Option<BufferedSessionChange>': Option<BufferedSessionChange>;
     'Option<Bytes>': Option<Bytes>;
     'Option<Call>': Option<Call>;
@@ -327,6 +329,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<EcdsaMessage>': Option<EcdsaMessage>;
     'Option<EcdsaSignature>': Option<EcdsaSignature>;
     'Option<Ed25519Signature>': Option<Ed25519Signature>;
+    'Option<ElectionCompute>': Option<ElectionCompute>;
     'Option<ElectionResultT>': Option<ElectionResultT>;
     'Option<EncodedFinalityProofs>': Option<EncodedFinalityProofs>;
     'Option<EpochAuthorship>': Option<EpochAuthorship>;
@@ -505,6 +508,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<KeyValueOption>': Option<KeyValueOption>;
     'Option<Kind>': Option<Kind>;
     'Option<KtonBalance>': Option<KtonBalance>;
+    'Option<LaneId>': Option<LaneId>;
     'Option<LastContribution>': Option<LastContribution>;
     'Option<LastRuntimeUpgradeInfo>': Option<LastRuntimeUpgradeInfo>;
     'Option<LeasePeriod>': Option<LeasePeriod>;
@@ -529,7 +533,11 @@ declare module '@polkadot/types/types/registry' {
     'Option<MemberCount>': Option<MemberCount>;
     'Option<MembershipProof>': Option<MembershipProof>;
     'Option<MerkleMountainRangeRootLog>': Option<MerkleMountainRangeRootLog>;
+    'Option<MessageId>': Option<MessageId>;
     'Option<MessageIngestionType>': Option<MessageIngestionType>;
+    'Option<MessageKey>': Option<MessageKey>;
+    'Option<MessageNonce>': Option<MessageNonce>;
+    'Option<MessagePayload>': Option<MessagePayload>;
     'Option<MessageQueueChain>': Option<MessageQueueChain>;
     'Option<MessagingStateSnapshot>': Option<MessagingStateSnapshot>;
     'Option<MessagingStateSnapshotEgressEntry>': Option<MessagingStateSnapshotEgressEntry>;
@@ -594,6 +602,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<OtherSignature>': Option<OtherSignature>;
     'Option<OutboundHrmpMessage>': Option<OutboundHrmpMessage>;
     'Option<Owner>': Option<Owner>;
+    'Option<PalletId>': Option<PalletId>;
     'Option<PalletsOrigin>': Option<PalletsOrigin>;
     'Option<PalletVersion>': Option<PalletVersion>;
     'Option<ParachainDispatchOrigin>': Option<ParachainDispatchOrigin>;
@@ -974,6 +983,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<BountyStatusActive>': Vec<BountyStatusActive>;
     'Vec<BountyStatusCuratorProposed>': Vec<BountyStatusCuratorProposed>;
     'Vec<BountyStatusPendingPayout>': Vec<BountyStatusPendingPayout>;
+    'Vec<BridgedBlockHash>': Vec<BridgedBlockHash>;
     'Vec<BufferedSessionChange>': Vec<BufferedSessionChange>;
     'Vec<Bytes>': Vec<Bytes>;
     'Vec<Call>': Vec<Call>;
@@ -1075,6 +1085,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<EcdsaMessage>': Vec<EcdsaMessage>;
     'Vec<EcdsaSignature>': Vec<EcdsaSignature>;
     'Vec<Ed25519Signature>': Vec<Ed25519Signature>;
+    'Vec<ElectionCompute>': Vec<ElectionCompute>;
     'Vec<ElectionResultT>': Vec<ElectionResultT>;
     'Vec<EncodedFinalityProofs>': Vec<EncodedFinalityProofs>;
     'Vec<EpochAuthorship>': Vec<EpochAuthorship>;
@@ -1253,6 +1264,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<KeyValueOption>': Vec<KeyValueOption>;
     'Vec<Kind>': Vec<Kind>;
     'Vec<KtonBalance>': Vec<KtonBalance>;
+    'Vec<LaneId>': Vec<LaneId>;
     'Vec<LastContribution>': Vec<LastContribution>;
     'Vec<LastRuntimeUpgradeInfo>': Vec<LastRuntimeUpgradeInfo>;
     'Vec<LeasePeriod>': Vec<LeasePeriod>;
@@ -1277,7 +1289,11 @@ declare module '@polkadot/types/types/registry' {
     'Vec<MemberCount>': Vec<MemberCount>;
     'Vec<MembershipProof>': Vec<MembershipProof>;
     'Vec<MerkleMountainRangeRootLog>': Vec<MerkleMountainRangeRootLog>;
+    'Vec<MessageId>': Vec<MessageId>;
     'Vec<MessageIngestionType>': Vec<MessageIngestionType>;
+    'Vec<MessageKey>': Vec<MessageKey>;
+    'Vec<MessageNonce>': Vec<MessageNonce>;
+    'Vec<MessagePayload>': Vec<MessagePayload>;
     'Vec<MessageQueueChain>': Vec<MessageQueueChain>;
     'Vec<MessagingStateSnapshot>': Vec<MessagingStateSnapshot>;
     'Vec<MessagingStateSnapshotEgressEntry>': Vec<MessagingStateSnapshotEgressEntry>;
@@ -1342,6 +1358,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<OtherSignature>': Vec<OtherSignature>;
     'Vec<OutboundHrmpMessage>': Vec<OutboundHrmpMessage>;
     'Vec<Owner>': Vec<Owner>;
+    'Vec<PalletId>': Vec<PalletId>;
     'Vec<PalletsOrigin>': Vec<PalletsOrigin>;
     'Vec<PalletVersion>': Vec<PalletVersion>;
     'Vec<ParachainDispatchOrigin>': Vec<ParachainDispatchOrigin>;
@@ -1722,6 +1739,7 @@ declare module '@polkadot/types/types/registry' {
     BountyStatusActive: BountyStatusActive;
     BountyStatusCuratorProposed: BountyStatusCuratorProposed;
     BountyStatusPendingPayout: BountyStatusPendingPayout;
+    BridgedBlockHash: BridgedBlockHash;
     BufferedSessionChange: BufferedSessionChange;
     Bytes: Bytes;
     Call: Call;
@@ -1823,6 +1841,7 @@ declare module '@polkadot/types/types/registry' {
     EcdsaMessage: EcdsaMessage;
     EcdsaSignature: EcdsaSignature;
     Ed25519Signature: Ed25519Signature;
+    ElectionCompute: ElectionCompute;
     ElectionResultT: ElectionResultT;
     EncodedFinalityProofs: EncodedFinalityProofs;
     EpochAuthorship: EpochAuthorship;
@@ -2001,6 +2020,7 @@ declare module '@polkadot/types/types/registry' {
     KeyValueOption: KeyValueOption;
     Kind: Kind;
     KtonBalance: KtonBalance;
+    LaneId: LaneId;
     LastContribution: LastContribution;
     LastRuntimeUpgradeInfo: LastRuntimeUpgradeInfo;
     LeasePeriod: LeasePeriod;
@@ -2025,7 +2045,11 @@ declare module '@polkadot/types/types/registry' {
     MemberCount: MemberCount;
     MembershipProof: MembershipProof;
     MerkleMountainRangeRootLog: MerkleMountainRangeRootLog;
+    MessageId: MessageId;
     MessageIngestionType: MessageIngestionType;
+    MessageKey: MessageKey;
+    MessageNonce: MessageNonce;
+    MessagePayload: MessagePayload;
     MessageQueueChain: MessageQueueChain;
     MessagingStateSnapshot: MessagingStateSnapshot;
     MessagingStateSnapshotEgressEntry: MessagingStateSnapshotEgressEntry;
@@ -2090,6 +2114,7 @@ declare module '@polkadot/types/types/registry' {
     OtherSignature: OtherSignature;
     OutboundHrmpMessage: OutboundHrmpMessage;
     Owner: Owner;
+    PalletId: PalletId;
     PalletsOrigin: PalletsOrigin;
     PalletVersion: PalletVersion;
     ParachainDispatchOrigin: ParachainDispatchOrigin;

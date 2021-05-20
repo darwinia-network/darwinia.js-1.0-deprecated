@@ -5,7 +5,7 @@ import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u
 import type { ITuple } from '@polkadot/types/types';
 import type { AccountId, Balance, BlockNumber, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
 import type { RefCount } from '@polkadot/types/interfaces/system';
-import { ElectionCompute, EraIndex }  from '@polkadot/types/interfaces/staking';
+import { EraIndex }  from '@polkadot/types/interfaces/staking';
 
 /** @name AccountData */
 export interface AccountData extends Struct {
@@ -41,6 +41,9 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
+/** @name BridgedBlockHash */
+export interface BridgedBlockHash extends H256 {}
+
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
@@ -64,6 +67,13 @@ export interface EcdsaMessage extends H256 {}
 
 /** @name EcdsaSignature */
 export interface EcdsaSignature extends U8aFixed {}
+
+/** @name ElectionCompute */
+export interface ElectionCompute extends Enum {
+  readonly isOnChain: boolean;
+  readonly isSigned: boolean;
+  readonly isAuthority: boolean;
+}
 
 /** @name ElectionResultT */
 export interface ElectionResultT extends Struct {
@@ -130,13 +140,13 @@ export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, Ether
 /** @name EthereumRelayHeaderParcel */
 export interface EthereumRelayHeaderParcel extends Struct {
   readonly header: EthereumHeader;
-  readonly mmrRoot: H256;
+  readonly parentMmrRoot: H256;
 }
 
 /** @name EthereumRelayProofs */
 export interface EthereumRelayProofs extends Struct {
   readonly ethashProof: Vec<EthashProof>;
-  readonly parentMmrProof: Vec<H256>;
+  readonly mmrProof: Vec<H256>;
 }
 
 /** @name EthereumTransactionIndex */
@@ -168,6 +178,9 @@ export interface IndividualExposure extends Struct {
 /** @name KtonBalance */
 export interface KtonBalance extends Balance {}
 
+/** @name LaneId */
+export interface LaneId extends U8aFixed {}
+
 /** @name LockFor */
 export interface LockFor extends Enum {
   readonly isCommon: boolean;
@@ -190,6 +203,21 @@ export interface MerkleMountainRangeRootLog extends Struct {
   readonly prefix: U8aFixed;
   readonly ParentMmrRoot: Hash;
 }
+
+/** @name MessageId */
+export interface MessageId extends ITuple<[LaneId, MessageNonce]> {}
+
+/** @name MessageKey */
+export interface MessageKey extends Struct {
+  readonly laneId: LaneId;
+  readonly nonce: MessageNonce;
+}
+
+/** @name MessageNonce */
+export interface MessageNonce extends u64 {}
+
+/** @name MessagePayload */
+export interface MessagePayload extends Bytes {}
 
 /** @name MMRProof */
 export interface MMRProof extends Struct {
@@ -219,6 +247,9 @@ export interface OtherSignature extends Enum {
   readonly isTron: boolean;
   readonly asTron: EcdsaSignature;
 }
+
+/** @name PalletId */
+export interface PalletId extends LockIdentifier {}
 
 /** @name Power */
 export interface Power extends u32 {}

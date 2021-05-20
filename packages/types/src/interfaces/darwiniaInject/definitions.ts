@@ -235,7 +235,16 @@ export default {
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
-    PalletId: 'LockIdentifier'
+    PalletId: 'LockIdentifier',
+    LaneId: '[u8; 4]',
+    MessageNonce: 'u64',
+    MessageId: '(LaneId, MessageNonce)',
+    MessagePayload: 'Vec<u8>',
+    MessageKey: {
+      laneId: 'LaneId',
+      nonce: 'MessageNonce'
+    },
+    BridgedBlockHash: 'H256'
   },
   rpc: {
 
