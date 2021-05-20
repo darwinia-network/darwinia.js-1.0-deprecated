@@ -244,7 +244,7 @@ export default {
       laneId: 'LaneId',
       nonce: 'MessageNonce'
     },
-    BridgedBlockHash: 'H256'
+    BridgedBlockHash: 'H512'
   },
   rpc: {
 

@@ -42,7 +42,7 @@ export interface BalanceLock extends Struct {
 export interface Bloom extends U8aFixed {}
 
 /** @name BridgedBlockHash */
-export interface BridgedBlockHash extends H256 {}
+export interface BridgedBlockHash extends H512 {}
 
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
