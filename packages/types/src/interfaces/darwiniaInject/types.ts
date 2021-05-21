@@ -41,9 +41,6 @@ export interface BalanceLock extends Struct {
 /** @name Bloom */
 export interface Bloom extends U8aFixed {}
 
-/** @name BridgedBlockHash */
-export interface BridgedBlockHash extends H512 {}
-
 /** @name ChainProperties */
 export interface ChainProperties extends Struct {
   readonly ss58Format: Option<u8>;
@@ -178,9 +175,6 @@ export interface IndividualExposure extends Struct {
 /** @name KtonBalance */
 export interface KtonBalance extends Balance {}
 
-/** @name LaneId */
-export interface LaneId extends U8aFixed {}
-
 /** @name LockFor */
 export interface LockFor extends Enum {
   readonly isCommon: boolean;
@@ -203,21 +197,6 @@ export interface MerkleMountainRangeRootLog extends Struct {
   readonly prefix: U8aFixed;
   readonly ParentMmrRoot: Hash;
 }
-
-/** @name MessageId */
-export interface MessageId extends ITuple<[LaneId, MessageNonce]> {}
-
-/** @name MessageKey */
-export interface MessageKey extends Struct {
-  readonly laneId: LaneId;
-  readonly nonce: MessageNonce;
-}
-
-/** @name MessageNonce */
-export interface MessageNonce extends u64 {}
-
-/** @name MessagePayload */
-export interface MessagePayload extends Bytes {}
 
 /** @name MMRProof */
 export interface MMRProof extends Struct {
