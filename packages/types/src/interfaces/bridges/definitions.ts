@@ -5,6 +5,7 @@
 /* eslint-disable sort-keys */
 
 export default {
+  rpc: { },
   types: {
     MillauBalance: 'u64',
     MillauBlockHash: 'H512',
