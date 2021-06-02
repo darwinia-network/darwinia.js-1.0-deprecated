@@ -9,7 +9,9 @@ const sharedTypes = {
   Address: 'MultiAddress',
   LookupSource: 'MultiAddress',
   MultiAddress: 'GenericMultiAddress',
-  ValidatorPrefs: 'ValidatorPrefsWithBlocked'
+  ValidatorPrefs: 'ValidatorPrefsWithBlocked',
+  RawSolution: 'RawSolutionWith16',
+  CompactAssignments: 'CompactAssignmentsWith16'
 };
 
 const versioned: OverrideVersionedType[] = [
@@ -33,7 +35,7 @@ const versioned: OverrideVersionedType[] = [
     }
   },
   {
-    minmax: [24, undefined],
+    minmax: [25, undefined],
     types: {
       ...sharedTypes,
       AccountInfo: 'AccountInfoWithTripleRefCount',

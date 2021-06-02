@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/types",
-  "version": "1.1.0-alpha.19",
+  "version": "1.1.0-alpha.20",
   "description": "Implementation of the Parity codec",
   "main": "index.js",
   "keywords": [

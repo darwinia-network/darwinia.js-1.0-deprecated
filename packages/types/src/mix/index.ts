@@ -12,6 +12,7 @@ import headerMMR from '../interfaces/headerMMR/definitions';
 import proxy from '../interfaces/proxy/definitions';
 import relayerGame from '../interfaces/relayerGame/definitions';
 import staking from '../interfaces/staking/definitions';
+import bridges from '../interfaces/bridges/definitions';
 import { typesFromDefinitions, jsonrpcFromDefinitions } from './utils';
 
 const polkadotCompatibleTypes = {
@@ -25,6 +26,7 @@ const polkadotCompatibleTypes = {
 
 const definitions = {
   balances,
+  bridges,
   darwiniaInject,
   headerMMR,
   proxy,
