@@ -9,7 +9,9 @@ const sharedTypes = {
   Address: 'MultiAddress',
   LookupSource: 'MultiAddress',
   MultiAddress: 'GenericMultiAddress',
-  ValidatorPrefs: 'ValidatorPrefsWithBlocked'
+  ValidatorPrefs: 'ValidatorPrefsWithBlocked',
+  RawSolution: 'RawSolutionWith16',
+  CompactAssignments: 'CompactAssignmentsWith16'
 };
 
 const versioned: OverrideVersionedType[] = [
