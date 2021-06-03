@@ -22,7 +22,7 @@ const versioned: OverrideVersionedType[] = [
     }
   },
   {
-    minmax: [23, 24],
+    minmax: [23, 23],
     types: {
       ...sharedTypes,
       AccountInfo: 'AccountInfoWithTripleRefCount',
@@ -35,7 +35,7 @@ const versioned: OverrideVersionedType[] = [
     }
   },
   {
-    minmax: [25, undefined],
+    minmax: [24, undefined],
     types: {
       ...sharedTypes,
       AccountInfo: 'AccountInfoWithTripleRefCount',
