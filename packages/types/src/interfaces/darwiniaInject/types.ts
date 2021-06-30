@@ -208,6 +208,12 @@ export interface MMRProof extends Struct {
 /** @name MMRRoot */
 export interface MMRRoot extends Hash {}
 
+/** @name MmrRootToSign */
+export interface MmrRootToSign extends Struct {
+  readonly mmrRoot: Hash;
+  readonly signatures: Vec<ITuple<[EthereumAddress, EcdsaSignature]>>;
+}
+
 /** @name OpCode */
 export interface OpCode extends U8aFixed {}
 
@@ -258,7 +264,7 @@ export interface RelayAuthoritySigner extends EcdsaAddress {}
 /** @name RelayAuthorityT */
 export interface RelayAuthorityT extends Struct {
   readonly accountId: AccountId;
-  readonly signer: Signer;
+  readonly signer: EthereumAddress;
   readonly stake: Balance;
   readonly term: BlockNumber;
 }

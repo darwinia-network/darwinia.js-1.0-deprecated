@@ -4,8 +4,9 @@
 import type { BitVec, Bool, Bytes, Compact, Data, DoNotConstruct, I128, I16, I256, I32, I64, I8, Json, Null, Option, Raw, StorageKey, Text, Type, U128, U16, U256, U32, U64, U8, USize, Vec, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types';
 import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { AccountSigner, AncestryProof, AuthoritySet, BridgedBlockHash, BridgedBlockNumber, BridgedHeader, BridgedOpaqueCall, CallOrigin, ChainId, Commit, Fee, GrandpaJustification, Id, ImportedHeader, InboundLaneData, InboundRelayer, LaneId, MessageData, MessageFeeData, MessageId, MessageKey, MessageNonce, MessagePayload, MessagesDeliveryProofOf, MessagesProofOf, MillauBalance, MillauBlockHash, MillauBlockNumber, MillauDigest, MillauDigestItem, MillauHeader, MultiSigner, OutboundLaneData, OutboundMessageFee, OutboundPayload, Parameter, Precommit, RelayerId, SignedPrecommit, SourceAccountId, SpecVersion, StorageProofItem, UnrewardedRelayersState } from '@darwinia/types/interfaces/bridges';
-import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
-import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
+import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
+import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
+import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, ProxyAnnouncement, ProxyDefinition, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import type { PowerOf } from '@darwinia/types/interfaces/staking';
@@ -98,6 +99,7 @@ declare module '@polkadot/types/types/registry' {
     'Compact<MillauBalance>': Compact<MillauBalance>;
     'Compact<MillauBlockNumber>': Compact<MillauBlockNumber>;
     'Compact<Moment>': Compact<Moment>;
+    'Compact<NodeIndex>': Compact<NodeIndex>;
     'Compact<OutboundMessageFee>': Compact<OutboundMessageFee>;
     'Compact<ParaId>': Compact<ParaId>;
     'Compact<ParaValidatorIndex>': Compact<ParaValidatorIndex>;
@@ -241,6 +243,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<BridgedBlockNumber>': Option<BridgedBlockNumber>;
     'Option<BridgedHeader>': Option<BridgedHeader>;
     'Option<BridgedOpaqueCall>': Option<BridgedOpaqueCall>;
+    'Option<BSCHeader>': Option<BSCHeader>;
     'Option<BufferedSessionChange>': Option<BufferedSessionChange>;
     'Option<Bytes>': Option<Bytes>;
     'Option<Call>': Option<Call>;
@@ -579,9 +582,11 @@ declare module '@polkadot/types/types/registry' {
     'Option<MillauDigest>': Option<MillauDigest>;
     'Option<MillauDigestItem>': Option<MillauDigestItem>;
     'Option<MillauHeader>': Option<MillauHeader>;
+    'Option<MmrNodesPruningConfiguration>': Option<MmrNodesPruningConfiguration>;
     'Option<MMRProof>': Option<MMRProof>;
     'Option<MMRProofResult>': Option<MMRProofResult>;
     'Option<MMRRoot>': Option<MMRRoot>;
+    'Option<MmrRootToSign>': Option<MmrRootToSign>;
     'Option<ModuleConstantMetadataLatest>': Option<ModuleConstantMetadataLatest>;
     'Option<ModuleConstantMetadataV10>': Option<ModuleConstantMetadataV10>;
     'Option<ModuleConstantMetadataV11>': Option<ModuleConstantMetadataV11>;
@@ -612,6 +617,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<NextAuthority>': Option<NextAuthority>;
     'Option<NextConfigDescriptor>': Option<NextConfigDescriptor>;
     'Option<NextConfigDescriptorV1>': Option<NextConfigDescriptorV1>;
+    'Option<NodeIndex>': Option<NodeIndex>;
     'Option<NodeRole>': Option<NodeRole>;
     'Option<NotConnectedPeer>': Option<NotConnectedPeer>;
     'Option<Null>': Option<Null>;
@@ -1034,6 +1040,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<BridgedBlockNumber>': Vec<BridgedBlockNumber>;
     'Vec<BridgedHeader>': Vec<BridgedHeader>;
     'Vec<BridgedOpaqueCall>': Vec<BridgedOpaqueCall>;
+    'Vec<BSCHeader>': Vec<BSCHeader>;
     'Vec<BufferedSessionChange>': Vec<BufferedSessionChange>;
     'Vec<Bytes>': Vec<Bytes>;
     'Vec<Call>': Vec<Call>;
@@ -1372,9 +1379,11 @@ declare module '@polkadot/types/types/registry' {
     'Vec<MillauDigest>': Vec<MillauDigest>;
     'Vec<MillauDigestItem>': Vec<MillauDigestItem>;
     'Vec<MillauHeader>': Vec<MillauHeader>;
+    'Vec<MmrNodesPruningConfiguration>': Vec<MmrNodesPruningConfiguration>;
     'Vec<MMRProof>': Vec<MMRProof>;
     'Vec<MMRProofResult>': Vec<MMRProofResult>;
     'Vec<MMRRoot>': Vec<MMRRoot>;
+    'Vec<MmrRootToSign>': Vec<MmrRootToSign>;
     'Vec<ModuleConstantMetadataLatest>': Vec<ModuleConstantMetadataLatest>;
     'Vec<ModuleConstantMetadataV10>': Vec<ModuleConstantMetadataV10>;
     'Vec<ModuleConstantMetadataV11>': Vec<ModuleConstantMetadataV11>;
@@ -1405,6 +1414,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<NextAuthority>': Vec<NextAuthority>;
     'Vec<NextConfigDescriptor>': Vec<NextConfigDescriptor>;
     'Vec<NextConfigDescriptorV1>': Vec<NextConfigDescriptorV1>;
+    'Vec<NodeIndex>': Vec<NodeIndex>;
     'Vec<NodeRole>': Vec<NodeRole>;
     'Vec<NotConnectedPeer>': Vec<NotConnectedPeer>;
     'Vec<Null>': Vec<Null>;
@@ -1827,6 +1837,7 @@ declare module '@polkadot/types/types/registry' {
     BridgedBlockNumber: BridgedBlockNumber;
     BridgedHeader: BridgedHeader;
     BridgedOpaqueCall: BridgedOpaqueCall;
+    BSCHeader: BSCHeader;
     BufferedSessionChange: BufferedSessionChange;
     Bytes: Bytes;
     Call: Call;
@@ -2165,9 +2176,11 @@ declare module '@polkadot/types/types/registry' {
     MillauDigest: MillauDigest;
     MillauDigestItem: MillauDigestItem;
     MillauHeader: MillauHeader;
+    MmrNodesPruningConfiguration: MmrNodesPruningConfiguration;
     MMRProof: MMRProof;
     MMRProofResult: MMRProofResult;
     MMRRoot: MMRRoot;
+    MmrRootToSign: MmrRootToSign;
     ModuleConstantMetadataLatest: ModuleConstantMetadataLatest;
     ModuleConstantMetadataV10: ModuleConstantMetadataV10;
     ModuleConstantMetadataV11: ModuleConstantMetadataV11;
@@ -2198,6 +2211,7 @@ declare module '@polkadot/types/types/registry' {
     NextAuthority: NextAuthority;
     NextConfigDescriptor: NextConfigDescriptor;
     NextConfigDescriptorV1: NextConfigDescriptorV1;
+    NodeIndex: NodeIndex;
     NodeRole: NodeRole;
     NotConnectedPeer: NotConnectedPeer;
     Null: Null;

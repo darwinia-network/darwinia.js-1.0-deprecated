@@ -2,12 +2,10 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "command": {
-    "publish": {
-      "allowBranch": "master"
-    }
+    "publish": {}
   },
   "packages": [
     "packages/*"
   ],
-  "version": "1.1.0-alpha.21"
+  "version": "1.1.0-alpha.22"
 }

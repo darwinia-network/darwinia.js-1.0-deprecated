@@ -27,6 +27,12 @@ export default {
     MMRProofResult: {
       mmrSize: 'u64',
       proof: 'Text'
+    },
+    NodeIndex: 'u64',
+    MmrNodesPruningConfiguration: {
+      step: 'NodeIndex',
+      progress: 'NodeIndex',
+      lastPosition: 'NodeIndex'
     }
   }
 };
