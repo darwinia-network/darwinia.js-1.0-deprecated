@@ -6,7 +6,7 @@ import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances'
 import type { AccountSigner, AncestryProof, AuthoritySet, BridgedBlockHash, BridgedBlockNumber, BridgedHeader, BridgedOpaqueCall, CallOrigin, ChainId, Commit, Fee, GrandpaJustification, Id, ImportedHeader, InboundLaneData, InboundRelayer, LaneId, MessageData, MessageFeeData, MessageId, MessageKey, MessageNonce, MessagePayload, MessagesDeliveryProofOf, MessagesProofOf, MillauBalance, MillauBlockHash, MillauBlockNumber, MillauDigest, MillauDigestItem, MillauHeader, MultiSigner, OutboundLaneData, OutboundMessageFee, OutboundPayload, Parameter, Precommit, RelayerId, SignedPrecommit, SourceAccountId, SpecVersion, StorageProofItem, UnrewardedRelayersState } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
 import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
-import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
+import type { BlockNumberFor, MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, ProxyAnnouncement, ProxyDefinition, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import type { PowerOf } from '@darwinia/types/interfaces/staking';
@@ -74,6 +74,7 @@ declare module '@polkadot/types/types/registry' {
     'Compact<Balance>': Compact<Balance>;
     'Compact<BalanceOf>': Compact<BalanceOf>;
     'Compact<BlockNumber>': Compact<BlockNumber>;
+    'Compact<BlockNumberFor>': Compact<BlockNumberFor>;
     'Compact<BountyIndex>': Compact<BountyIndex>;
     'Compact<BridgedBlockNumber>': Compact<BridgedBlockNumber>;
     'Compact<ConsensusEngineId>': Compact<ConsensusEngineId>;
@@ -229,6 +230,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<BlockHash>': Option<BlockHash>;
     'Option<BlockLength>': Option<BlockLength>;
     'Option<BlockNumber>': Option<BlockNumber>;
+    'Option<BlockNumberFor>': Option<BlockNumberFor>;
     'Option<BlockWeights>': Option<BlockWeights>;
     'Option<Bloom>': Option<Bloom>;
     'Option<bool>': Option<bool>;
@@ -1026,6 +1028,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<BlockHash>': Vec<BlockHash>;
     'Vec<BlockLength>': Vec<BlockLength>;
     'Vec<BlockNumber>': Vec<BlockNumber>;
+    'Vec<BlockNumberFor>': Vec<BlockNumberFor>;
     'Vec<BlockWeights>': Vec<BlockWeights>;
     'Vec<Bloom>': Vec<Bloom>;
     'Vec<bool>': Vec<bool>;
@@ -1823,6 +1826,7 @@ declare module '@polkadot/types/types/registry' {
     BlockHash: BlockHash;
     BlockLength: BlockLength;
     BlockNumber: BlockNumber;
+    BlockNumberFor: BlockNumberFor;
     BlockWeights: BlockWeights;
     Bloom: Bloom;
     bool: bool;
