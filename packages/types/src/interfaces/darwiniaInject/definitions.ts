@@ -216,7 +216,7 @@ export default {
     Signer: 'EthereumAddress',
     RelayAuthorityT: {
       accountId: 'AccountId',
-      signer: 'Signer',
+      signer: 'EthereumAddress',
       stake: 'Balance',
       term: 'BlockNumber'
     },
@@ -231,6 +231,10 @@ export default {
     ScheduledAuthoritiesChangeT: {
       nextAuthorities: 'Vec<RelayAuthorityT>',
       deadline: 'BlockNumber'
+    },
+    MmrRootToSign: {
+      mmrRoot: 'Hash',
+      signatures: 'Vec<(EthereumAddress, EcdsaSignature)>'
     },
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']

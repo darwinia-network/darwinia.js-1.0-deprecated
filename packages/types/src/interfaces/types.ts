@@ -8,3 +8,4 @@ export * from './staking/types';
 export * from './bridges/types';
 export * from './relayerGame/types';
 export * from './proxy/types';
+export * from './bsc/types';

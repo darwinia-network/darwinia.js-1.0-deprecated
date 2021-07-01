@@ -9,3 +9,4 @@ export { default as staking } from './staking/definitions';
 export { default as bridges } from './bridges/definitions';
 export { default as relayerGame } from './relayerGame/definitions';
 export { default as proxy } from './proxy/definitions';
+export { default as bsc } from './bsc/definitions';
