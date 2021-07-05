@@ -7,13 +7,14 @@
 
 import typesSpec from '@darwinia/types-known/spec';
 import balances from '../interfaces/balances/definitions';
+import bridges from '../interfaces/bridges/definitions';
+import bsc from '../interfaces/bsc/definitions';
 import darwiniaInject from '../interfaces/darwiniaInject/definitions';
 import headerMMR from '../interfaces/headerMMR/definitions';
 import proxy from '../interfaces/proxy/definitions';
 import relayerGame from '../interfaces/relayerGame/definitions';
 import staking from '../interfaces/staking/definitions';
-import bridges from '../interfaces/bridges/definitions';
-import { typesFromDefinitions, jsonrpcFromDefinitions } from './utils';
+import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
 
 const polkadotCompatibleTypes = {
   IndividualExposure: {
@@ -27,6 +28,7 @@ const polkadotCompatibleTypes = {
 const definitions = {
   balances,
   bridges,
+  bsc,
   darwiniaInject,
   headerMMR,
   proxy,
