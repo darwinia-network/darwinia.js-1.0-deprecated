@@ -5,6 +5,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable sort-keys */
 
+import { OverrideBundleType, OverrideBundleDefinition, OverrideVersionedType, RegistryTypes } from '@polkadot/types/types';
+
 import typesSpec from '@darwinia/types-known/spec';
 import balances from '../interfaces/balances/definitions';
 import bridges from '../interfaces/bridges/definitions';
@@ -16,7 +18,7 @@ import relayerGame from '../interfaces/relayerGame/definitions';
 import staking from '../interfaces/staking/definitions';
 import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
 
-const polkadotCompatibleTypes = {
+const polkadotCompatibleTypes: RegistryTypes = {
   IndividualExposure: {
     who: 'AccountId',
     value: 'Compact<Balance>',
@@ -36,34 +38,46 @@ const definitions = {
   staking
 };
 
-export const types = {
+export const types: RegistryTypes = {
   ...typesFromDefinitions(definitions)
 };
 
 export const jsonrpc = jsonrpcFromDefinitions(definitions);
 
 // NOTE: The mapping is done from specName in state.getRuntimeVersion
-function getBundleFromSpecName (specName: string, isPolkadotCompatible?: boolean) {
+function getBundleFromSpecName (specName: string, isPolkadotCompatible?: boolean): OverrideBundleDefinition {
   return {
     alias: {},
     rpc: jsonrpc,
-    types: [...typesSpec[specName]].map((version) => {
-      return {
-        minmax: version.minmax,
-        types: {
-          ...types,
-          ...version.types,
-          ...isPolkadotCompatible ? polkadotCompatibleTypes : []
-        }
-      };
-    })
+    types: [...typesSpec[specName]].map(
+      (version): OverrideVersionedType => {
+        return {
+          minmax: version.minmax,
+          // eslint-disable-next-line
+          // @ts-ignore
+          types: {
+            ...types,
+            ...version.types,
+            ...(isPolkadotCompatible ? polkadotCompatibleTypes : [])
+          }
+        };
+      }
+    )
   };
 }
 
-export const typesBundleForPolkadot = {
+export const typesBundleForPolkadotApps: OverrideBundleType = {
   spec: {
-    crab: getBundleFromSpecName('Crab', true),
-    darwinia: getBundleFromSpecName('Darwinia', true),
-    pangolin: getBundleFromSpecName('Pangolin', true)
+    Crab: getBundleFromSpecName('Crab', true),
+    Darwinia: getBundleFromSpecName('Darwinia', true),
+    Pangolin: getBundleFromSpecName('Pangolin', true)
+  }
+};
+
+export const typesBundle: OverrideBundleType = {
+  spec: {
+    Crab: getBundleFromSpecName('Crab', false),
+    Darwinia: getBundleFromSpecName('Darwinia', false),
+    Pangolin: getBundleFromSpecName('Pangolin', false)
   }
 };
