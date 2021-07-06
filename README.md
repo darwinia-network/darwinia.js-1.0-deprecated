@@ -4,33 +4,35 @@ Javascript API and Types
 ### Installtion
 
 ```bash
-yarn add @darwinia/api
+yarn add @darwinia/api-options
 ```
  How to instantiate a Darwinia API object and use it to connect to a node using ApiPromise.
 
 ### Examples
 ```javascript
-const { ApiPromise, WsProvider } = require('@darwinia/api');
+import darwiniaApiOptions from "@darwinia/api-options";
+import { ApiPromise, WsProvider } from "@polkadot/api";
 
 async function main () {
-  // Initialise the provider to connect to the local node
-  const provider = new WsProvider('wss://crab.darwinia.network');
+  const wsProvider = new WsProvider("wss://crab-rpc.darwinia.network");
 
-  // Create the API and wait until ready
-  const api = new ApiPromise({ provider });
-  await api.isReady;
-
-  // Retrieve the chain & node information information via rpc calls
-  const [chain, nodeName, nodeVersion] = await Promise.all([
-    api.rpc.system.chain(),
-    api.rpc.system.name(),
-    api.rpc.system.version()
-  ]);
-
-  console.log(`You are connected to chain ${chain} using ${nodeName} v${nodeVersion}`);
+  ApiPromise.create(darwiniaApiOptions({provider: wsProvider}))
+    .then((api) => {
+      api.query.system
+        .account("5EYCAe5gKAhKhPeR7nUZzpcX2f9eYoAhqtEHqnG433EfnCpQ")
+        .then(({ nonce, data }) => {
+          console.log(`balance of ${data.free} and a nonce of ${nonce}`);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
-main().catch(console.error).finally(() => process.exit());
+main();
 ```
 
 
