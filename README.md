@@ -36,4 +36,36 @@ main();
 ```
 
 
+```javascript
+import { typesBundleForPolkadotApps } from "@darwinia/types/mix";
+import { ApiPromise, WsProvider } from "@polkadot/api";
+
+export const darwiniaTypesBundle = {
+  spec: {
+    Crab: typesBundleForPolkadotApps.spec.Crab,
+    Darwinia: typesBundleForPolkadotApps.spec.Darwinia,
+    Pangolin: typesBundleForPolkadotApps.spec.Pangolin,
+  },
+};
+
+const wsProvider = new WsProvider("wss://pangolin-rpc.darwinia.network");
+
+ApiPromise.create({ provider: wsProvider, typesBundle: darwiniaTypesBundle })
+  .then((api) => {
+    api.query.system
+      .account("5EYCAe5gKAhKhPeR7nUZzpcX2f9eYoAhqtEHqnG433EfnCpQ")
+      .then(({ nonce, data }) => {
+        console.log(`balance of ${data.free} and a nonce of ${nonce}`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+```
+
+
 

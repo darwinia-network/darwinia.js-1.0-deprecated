@@ -2,7 +2,7 @@
 
 function copy_folder () {
   SRC="packages/$1/build"
-  DST="../apps/node_modules/@darwinia/$1"
+  DST="../darwinia-apps/node_modules/@darwinia/$1"
 
   echo "** Copying $SRC to $DST"
 
@@ -12,6 +12,6 @@ function copy_folder () {
 
 yarn polkadot-dev-build-ts
 
-copy_folder "api"
-copy_folder "api-option"
+copy_folder "api-options"
 copy_folder "types"
+copy_folder "types-known"
