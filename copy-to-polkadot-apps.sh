@@ -12,6 +12,6 @@ function copy_folder () {
 
 yarn polkadot-dev-build-ts
 
-copy_folder "api-options"
+# copy_folder "api-options"
 copy_folder "types"
-copy_folder "types-known"
+# copy_folder "types-known"
