@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable sort-keys */
 
-import { OverrideBundleType, OverrideBundleDefinition, OverrideVersionedType, RegistryTypes } from '@polkadot/types/types';
+import { OverrideBundleDefinition, OverrideVersionedType, RegistryTypes } from '@polkadot/types/types';
 
 import typesSpec from '@darwinia/types-known/spec';
 import balances from '../interfaces/balances/definitions';
@@ -17,6 +17,14 @@ import proxy from '../interfaces/proxy/definitions';
 import relayerGame from '../interfaces/relayerGame/definitions';
 import staking from '../interfaces/staking/definitions';
 import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
+
+interface SpecOverrideBundleDefinition {
+  spec: {
+    Darwinia: OverrideBundleDefinition;
+    Crab: OverrideBundleDefinition;
+    Pangolin: OverrideBundleDefinition;
+  };
+}
 
 const polkadotCompatibleTypes: RegistryTypes = {
   IndividualExposure: {
@@ -66,7 +74,7 @@ function getBundleFromSpecName (specName: string, isPolkadotCompatible?: boolean
   };
 }
 
-export const typesBundleForPolkadotApps: OverrideBundleType = {
+export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
@@ -75,9 +83,9 @@ export const typesBundleForPolkadotApps: OverrideBundleType = {
 };
 
 // Compatible with the old version
-export const typesBundleForPolkadot = typesBundleForPolkadotApps;
+export const typesBundleForPolkadot: SpecOverrideBundleDefinition = typesBundleForPolkadotApps;
 
-export const typesBundle: OverrideBundleType = {
+export const typesBundle: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
