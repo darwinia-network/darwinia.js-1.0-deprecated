@@ -74,6 +74,9 @@ export const typesBundleForPolkadotApps: OverrideBundleType = {
   }
 };
 
+// Compatible with the old version
+export const typesBundleForPolkadot = typesBundleForPolkadotApps;
+
 export const typesBundle: OverrideBundleType = {
   spec: {
     Crab: getBundleFromSpecName('Crab', false),
