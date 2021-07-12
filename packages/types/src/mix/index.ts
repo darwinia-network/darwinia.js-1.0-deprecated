@@ -20,8 +20,11 @@ import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
 
 interface SpecOverrideBundleDefinition {
   spec: {
-    Darwinia: OverrideBundleDefinition;
+    crab?: OverrideBundleDefinition;
+    darwinia?: OverrideBundleDefinition;
+    pangolin?: OverrideBundleDefinition;
     Crab: OverrideBundleDefinition;
+    Darwinia: OverrideBundleDefinition;
     Pangolin: OverrideBundleDefinition;
   };
 }
@@ -83,7 +86,16 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
 };
 
 // Compatible with the old version
-export const typesBundleForPolkadot: SpecOverrideBundleDefinition = typesBundleForPolkadotApps;
+export const typesBundleForPolkadot: SpecOverrideBundleDefinition = {
+  spec: {
+    crab: getBundleFromSpecName('Crab', true),
+    darwinia: getBundleFromSpecName('Darwinia', true),
+    pangolin: getBundleFromSpecName('Pangolin', true),
+    Crab: getBundleFromSpecName('Crab', true),
+    Darwinia: getBundleFromSpecName('Darwinia', true),
+    Pangolin: getBundleFromSpecName('Pangolin', true)
+  }
+};
 
 export const typesBundle: SpecOverrideBundleDefinition = {
   spec: {
