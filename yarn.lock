@@ -1784,12 +1784,12 @@ __metadata:
   resolution: "@darwinia/api-options@workspace:packages/api-options"
   dependencies:
     "@babel/runtime": ^7.11.2
-    "@darwinia/types": ^1.1.4
+    "@darwinia/types": ^1.1.5
     "@polkadot/api": 4.0.4-5
   languageName: unknown
   linkType: soft
 
-"@darwinia/types-known@^1.1.4, @darwinia/types-known@workspace:packages/types-known":
+"@darwinia/types-known@^1.1.5, @darwinia/types-known@workspace:packages/types-known":
   version: 0.0.0-use.local
   resolution: "@darwinia/types-known@workspace:packages/types-known"
   dependencies:
@@ -1801,11 +1801,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types@^1.1.4, @darwinia/types@workspace:packages/types":
+"@darwinia/types@^1.1.5, @darwinia/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@darwinia/types@workspace:packages/types"
   dependencies:
-    "@darwinia/types-known": ^1.1.4
+    "@darwinia/types-known": ^1.1.5
   languageName: unknown
   linkType: soft
 
