@@ -107,11 +107,12 @@ export interface EthereumHeader extends Struct {
   readonly gasLimit: U256;
   readonly difficulty: U256;
   readonly seal: Vec<Bytes>;
+  readonly baseFeePerGas: Option<U256>;
   readonly blockHash: Option<H256>;
 }
 
-/** @name EthereumNetworkType */
-export interface EthereumNetworkType extends Enum {
+/** @name EthereumNetwork */
+export interface EthereumNetwork extends Enum {
   readonly isMainnet: boolean;
   readonly isRopsten: boolean;
 }

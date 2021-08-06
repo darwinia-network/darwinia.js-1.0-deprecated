@@ -130,6 +130,7 @@ export default {
       gasLimit: 'U256',
       difficulty: 'U256',
       seal: 'Vec<Bytes>',
+      baseFeePerGas: 'Option<U256>',
       blockHash: 'Option<H256>'
     },
     EthereumAddress: 'H160',
@@ -149,7 +150,7 @@ export default {
     LogEntry: {},
     TransactionOutcome: {},
 
-    EthereumNetworkType: {
+    EthereumNetwork: {
       _enum: {
         Mainnet: null,
         Ropsten: null
