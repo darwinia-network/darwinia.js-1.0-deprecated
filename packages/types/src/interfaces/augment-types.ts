@@ -5,7 +5,7 @@ import type { BitVec, Bool, Bytes, Compact, Data, DoNotConstruct, I128, I16, I25
 import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { AccountSigner, AncestryProof, AuthoritySet, BridgedBlockHash, BridgedBlockNumber, BridgedHeader, BridgedOpaqueCall, CallOrigin, ChainId, Commit, Fee, GrandpaJustification, Id, ImportedHeader, InboundLaneData, InboundRelayer, LaneId, MessageData, MessageFeeData, MessageId, MessageKey, MessageNonce, MessagePayload, MessagesDeliveryProofOf, MessagesProofOf, MillauBalance, MillauBlockHash, MillauBlockNumber, MillauDigest, MillauDigestItem, MillauHeader, MultiSigner, OutboundLaneData, OutboundMessageFee, OutboundPayload, Parameter, Precommit, RelayerId, SignedPrecommit, SourceAccountId, SpecVersion, StorageProofItem, UnrewardedRelayersState } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
-import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetworkType, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
+import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetwork, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, PalletId, Power, RKT, Reasons, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding } from '@darwinia/types/interfaces/darwiniaInject';
 import type { BlockNumberFor, MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, ProxyAnnouncement, ProxyDefinition, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
@@ -369,7 +369,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<EthereumBlockNumber>': Option<EthereumBlockNumber>;
     'Option<EthereumHeader>': Option<EthereumHeader>;
     'Option<EthereumLookupSource>': Option<EthereumLookupSource>;
-    'Option<EthereumNetworkType>': Option<EthereumNetworkType>;
+    'Option<EthereumNetwork>': Option<EthereumNetwork>;
     'Option<EthereumReceipt>': Option<EthereumReceipt>;
     'Option<EthereumReceiptProof>': Option<EthereumReceiptProof>;
     'Option<EthereumReceiptProofThing>': Option<EthereumReceiptProofThing>;
@@ -1167,7 +1167,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<EthereumBlockNumber>': Vec<EthereumBlockNumber>;
     'Vec<EthereumHeader>': Vec<EthereumHeader>;
     'Vec<EthereumLookupSource>': Vec<EthereumLookupSource>;
-    'Vec<EthereumNetworkType>': Vec<EthereumNetworkType>;
+    'Vec<EthereumNetwork>': Vec<EthereumNetwork>;
     'Vec<EthereumReceipt>': Vec<EthereumReceipt>;
     'Vec<EthereumReceiptProof>': Vec<EthereumReceiptProof>;
     'Vec<EthereumReceiptProofThing>': Vec<EthereumReceiptProofThing>;
@@ -1965,7 +1965,7 @@ declare module '@polkadot/types/types/registry' {
     EthereumBlockNumber: EthereumBlockNumber;
     EthereumHeader: EthereumHeader;
     EthereumLookupSource: EthereumLookupSource;
-    EthereumNetworkType: EthereumNetworkType;
+    EthereumNetwork: EthereumNetwork;
     EthereumReceipt: EthereumReceipt;
     EthereumReceiptProof: EthereumReceiptProof;
     EthereumReceiptProofThing: EthereumReceiptProofThing;
