@@ -119,10 +119,9 @@ export interface EthereumNetwork extends Enum {
 
 /** @name EthereumReceipt */
 export interface EthereumReceipt extends Struct {
-  readonly gasUsed: U256;
-  readonly logBloom: Bloom;
-  readonly logs: Vec<LogEntry>;
-  readonly outcome: TransactionOutcome;
+  readonly Legacy: LegacyReceipt;
+  readonly AccessList: LegacyReceipt;
+  readonly EIP1559Transaction: LegacyReceipt;
 }
 
 /** @name EthereumReceiptProof */
@@ -175,6 +174,14 @@ export interface IndividualExposure extends Struct {
 
 /** @name KtonBalance */
 export interface KtonBalance extends Balance {}
+
+/** @name LegacyReceipt */
+export interface LegacyReceipt extends Struct {
+  readonly gasUsed: U256;
+  readonly logBloom: Bloom;
+  readonly logs: Vec<LogEntry>;
+  readonly outcome: TransactionOutcome;
+}
 
 /** @name LockFor */
 export interface LockFor extends Enum {
@@ -332,16 +339,6 @@ export interface TimeDepositItem extends Struct {
 
 /** @name TransactionOutcome */
 export interface TransactionOutcome extends Struct {}
-
-/** @name TreasuryProposal */
-export interface TreasuryProposal extends Struct {
-  readonly proposer: AccountId;
-  readonly beneficiary: AccountId;
-  readonly ringValue: Balance;
-  readonly ktonValue: Balance;
-  readonly ringBond: Balance;
-  readonly ktonBond: Balance;
-}
 
 /** @name TronAddress */
 export interface TronAddress extends EthereumAddress {}
