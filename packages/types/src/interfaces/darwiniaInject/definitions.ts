@@ -102,15 +102,6 @@ export default {
       payout: 'RKT'
     },
 
-    TreasuryProposal: {
-      proposer: 'AccountId',
-      beneficiary: 'AccountId',
-      ringValue: 'Balance',
-      ktonValue: 'Balance',
-      ringBond: 'Balance',
-      ktonBond: 'Balance'
-    },
-
     MappedRing: 'u128',
 
     EthereumTransactionIndex: '(H256, u64)',
@@ -141,12 +132,16 @@ export default {
       proof: 'Vec<H128>'
     },
     EthereumReceipt: {
+      Legacy: 'LegacyReceipt',
+      AccessList: 'LegacyReceipt',
+      EIP1559Transaction: 'LegacyReceipt'
+    },
+    LegacyReceipt: {
       gasUsed: 'U256',
       logBloom: 'Bloom',
       logs: 'Vec<LogEntry>',
       outcome: 'TransactionOutcome'
     },
-
     LogEntry: {},
     TransactionOutcome: {},
 
