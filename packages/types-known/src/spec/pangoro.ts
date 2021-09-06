@@ -11,10 +11,10 @@ const sharedTypes = {
   PangoroBlockHash: 'Hash',
   PangoroBlockNumber: 'BlockNumber',
   PangoroHeader: {
-    parent_Hash: 'PangoroBlockHash',
+    parentHash: 'PangoroBlockHash',
     number: 'Compact<PangoroBlockNumber>',
-    state_root: 'PangoroBlockHash',
-    extrinsics_root: 'PangoroBlockHash',
+    stateRoot: 'PangoroBlockHash',
+    extrinsicsRoot: 'PangoroBlockHash',
     digest: 'PangoroDigest'
   },
   PangoroDigest: {
@@ -36,10 +36,10 @@ const sharedTypes = {
   RialtoBlockHash: 'H256',
   RialtoBlockNumber: 'u32',
   RialtoHeader: {
-    parent_Hash: 'RialtoBlockHash',
+    parentHash: 'RialtoBlockHash',
     number: 'Compact<RialtoBlockNumber>',
-    state_root: 'RialtoBlockHash',
-    extrinsics_root: 'RialtoBlockHash',
+    stateRoot: 'RialtoBlockHash',
+    extrinsicsRoot: 'RialtoBlockHash',
     digest: 'RialtoDigest'
   },
   RialtoDigest: {
