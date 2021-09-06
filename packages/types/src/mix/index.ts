@@ -23,6 +23,7 @@ interface SpecOverrideBundleDefinition {
     Crab: OverrideBundleDefinition;
     Darwinia: OverrideBundleDefinition;
     Pangolin: OverrideBundleDefinition;
+    Pangoro: OverrideBundleDefinition;
   };
 }
 
@@ -31,6 +32,7 @@ interface CompatibleSpecOverrideBundleDefinition {
     crab: OverrideBundleDefinition;
     darwinia: OverrideBundleDefinition;
     pangolin: OverrideBundleDefinition;
+    pangoro: OverrideBundleDefinition;
   }
 }
 
@@ -86,7 +88,8 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
-    Pangolin: getBundleFromSpecName('Pangolin', true)
+    Pangolin: getBundleFromSpecName('Pangolin', true),
+    Pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -95,7 +98,8 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
   spec: {
     crab: getBundleFromSpecName('Crab', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
-    pangolin: getBundleFromSpecName('Pangolin', true)
+    pangolin: getBundleFromSpecName('Pangolin', true),
+    pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -103,6 +107,7 @@ export const typesBundle: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
-    Pangolin: getBundleFromSpecName('Pangolin', false)
+    Pangolin: getBundleFromSpecName('Pangolin', false),
+    Pangoro: getBundleFromSpecName('Pangoro', false)
   }
 };
