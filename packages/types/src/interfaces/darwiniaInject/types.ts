@@ -5,7 +5,7 @@ import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u
 import type { ITuple } from '@polkadot/types/types';
 import type { AccountId, Balance, BlockNumber, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
 import type { RefCount } from '@polkadot/types/interfaces/system';
-import { EraIndex }  from '@polkadot/types/interfaces/staking';
+import { EraIndex, UnlockChunk }  from '@polkadot/types/interfaces/staking';
 
 /** @name AccountData */
 export interface AccountData extends Struct {
@@ -312,13 +312,15 @@ export interface StakingBalanceT extends Enum {
 /** @name StakingLedgerT */
 export interface StakingLedgerT extends Struct {
   readonly stash: AccountId;
-  readonly activeRing: Compact<Balance>;
+  readonly active: Compact<Balance>;
   readonly activeDepositRing: Compact<Balance>;
   readonly activeKton: Compact<Balance>;
   readonly depositItems: Vec<TimeDepositItem>;
   readonly ringStakingLock: StakingLock;
   readonly ktonStakingLock: StakingLock;
   readonly claimedRewards: Vec<EraIndex>;
+  readonly total: Compact<Balance>;
+  readonly unlocking: Vec<UnlockChunk>;
 }
 
 /** @name StakingLock */

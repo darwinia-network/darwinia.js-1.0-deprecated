@@ -33,7 +33,7 @@ export default {
     },
     Unbonding: {
       amount: 'Balance',
-      moment: 'BlockNumber'
+      until: 'BlockNumber'
     },
     AccountData: {
       free: 'Balance',
@@ -54,13 +54,15 @@ export default {
     },
     StakingLedgerT: {
       stash: 'AccountId',
-      activeRing: 'Compact<Balance>',
+      active: 'Compact<Balance>',
       activeDepositRing: 'Compact<Balance>',
       activeKton: 'Compact<Balance>',
       depositItems: 'Vec<TimeDepositItem>',
       ringStakingLock: 'StakingLock',
       ktonStakingLock: 'StakingLock',
-      claimedRewards: 'Vec<EraIndex>'
+      claimedRewards: 'Vec<EraIndex>',
+      total: 'Compact<Balance>',
+      unlocking: 'Vec<UnlockChunk>'
     },
     TimeDepositItem: {
       value: 'Compact<Balance>',
