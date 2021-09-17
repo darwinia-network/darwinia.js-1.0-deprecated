@@ -5,80 +5,18 @@
 
 const execSync = require('./execSync');
 const cpx = require('cpx');
-const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const rimraf = require('rimraf');
-const argv = require('yargs')
-  .options({
-    'skip-beta': {
-      description: 'Do not increment as beta',
-      type: 'boolean'
-    }
-  })
-  .strict()
-  .argv;
 
-const repo = `https://${process.env.GH_PAT}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
 const hasLerna = fs.existsSync('lerna.json');
 
 console.log('$ polkadot-ci-ghact-build', process.argv.slice(2).join(' '));
-
-function runClean () {
-  execSync('yarn polkadot-dev-clean-build');
-}
-
-function runCheck () {
-  execSync('yarn lint');
-}
-
-function runTest () {
-  execSync('yarn test');
-
-  // if [ -f "coverage/lcov.info" ] && [ -n "$COVERALLS_REPO_TOKEN" ]; then
-  //   console.log('*** Submitting to coveralls.io');
-
-  //   (cat coverage/lcov.info | yarn run coveralls) || true
-  // fi
-}
-
-function runBuild () {
-  execSync('yarn build');
-}
 
 function lernaGetVersion () {
   return JSON.parse(
     fs.readFileSync(path.resolve(process.cwd(), 'lerna.json'), 'utf8')
   ).version;
-}
-
-function lernaBump () {
-  const currentVersion = lernaGetVersion();
-  const [version, tag] = currentVersion.split('-');
-  const [,, patch] = version.split('.');
-  const isBeta = !!tag && tag.includes('beta.');
-
-  if (isBeta) {
-    // if we have a beta version, just continue the stream of betas
-    execSync('yarn run polkadot-dev-version --type prerelease');
-  } else if (argv['skip-beta']) {
-    // don't allow beta versions
-    execSync('yarn polkadot-dev-version --type patch');
-  } else if (patch === '0') {
-    // patch is .0, so publish this as an actual release (surely we did out job on beta)
-    execSync('yarn polkadot-dev-version --type patch');
-  } else if (patch === '1') {
-    // continue with first new minor as beta
-    execSync('yarn polkadot-dev-version --type preminor');
-  } else {
-    // manual setting of version, make some changes so we can commit
-    fs.appendFileSync(path.join(process.cwd(), '.123trigger'), lernaGetVersion());
-  }
-}
-
-function npmBump () {
-  execSync('npm --no-git-tag-version --force version patch');
-  execSync('yarn install');
 }
 
 function npmGetVersion (noLerna) {
@@ -89,12 +27,6 @@ function npmGetVersion (noLerna) {
   return JSON.parse(
     fs.readFileSync(path.resolve(process.cwd(), 'package.json'), 'utf8')
   ).version;
-}
-
-function npmSetup () {
-  const registry = 'registry.npmjs.org';
-
-  fs.writeFileSync(path.join(os.homedir(), '.npmrc'), `//${registry}/:_authToken=${process.env.NPM_TOKEN}`);
 }
 
 function npmPublish () {
@@ -113,7 +45,6 @@ function npmPublish () {
   while (true) {
     try {
       execSync(`npm publish --access public ${tag}`);
-
       break;
     } catch (error) {
       if (count < 5) {
@@ -130,61 +61,6 @@ function npmPublish () {
   }
 
   process.chdir('..');
-}
-
-function gitSetup () {
-  execSync('git config push.default simple');
-  execSync('git config merge.ours.driver true');
-  execSync('git config user.name "Github Actions"');
-  execSync('git config user.email "action@github.com"');
-  execSync('git checkout master');
-}
-
-function gitBump () {
-  if (hasLerna) {
-    lernaBump();
-  } else {
-    npmBump();
-  }
-
-  execSync('git add --all .');
-}
-
-function gitPush () {
-  const version = npmGetVersion();
-  let doGHRelease = false;
-
-  if (process.env.GH_RELEASE_GITHUB_API_TOKEN) {
-    const changes = fs.readFileSync('CHANGELOG.md', 'utf8');
-
-    if (changes.includes(`## ${version}`)) {
-      doGHRelease = true;
-    } else if (!version.includes('-beta.') && version.endsWith('.1')) {
-      throw new Error(`Unable to release, no CHANGELOG entry for ${version}`);
-    }
-  }
-
-  execSync('git add --all .');
-
-  if (fs.existsSync('docs/README.md')) {
-    execSync('git add --all -f docs');
-  }
-
-  // add the skip checks for GitHub ...
-  execSync(`git commit --no-status --quiet -m "[CI Skip] release/${version.includes('-beta.') ? 'beta' : 'stable'} ${version}
-
-
-skip-checks: true"`);
-
-  execSync(`git push ${repo} HEAD:${process.env.GITHUB_REF}`, true);
-
-  if (doGHRelease) {
-    const files = process.env.GH_RELEASE_FILES
-      ? `--assets ${process.env.GH_RELEASE_FILES}`
-      : '';
-
-    execSync(`yarn polkadot-exec-ghrelease --draft ${files} --yes`);
-  }
 }
 
 function loopFunc (fn) {
@@ -208,14 +84,4 @@ function loopFunc (fn) {
   }
 }
 
-// gitSetup();
-// gitBump();
-// npmSetup();
-
-// runClean();
-// runCheck();
-// runTest();
-// runBuild();
-
-// gitPush();
 loopFunc(npmPublish);
