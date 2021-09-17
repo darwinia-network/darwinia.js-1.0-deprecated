@@ -319,8 +319,6 @@ export interface StakingLedgerT extends Struct {
   readonly ringStakingLock: StakingLock;
   readonly ktonStakingLock: StakingLock;
   readonly claimedRewards: Vec<EraIndex>;
-  readonly total: Compact<Balance>;
-  readonly unlocking: Vec<UnlockChunk>;
 }
 
 /** @name StakingLock */
@@ -360,7 +358,7 @@ export interface UnappliedSlash extends Struct {
 /** @name Unbonding */
 export interface Unbonding extends Struct {
   readonly amount: Balance;
-  readonly moment: BlockNumber;
+  readonly until: BlockNumber;
 }
 
 export type PHANTOM_DARWINIAINJECT = 'darwiniaInject';

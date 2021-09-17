@@ -60,9 +60,7 @@ export default {
       depositItems: 'Vec<TimeDepositItem>',
       ringStakingLock: 'StakingLock',
       ktonStakingLock: 'StakingLock',
-      claimedRewards: 'Vec<EraIndex>',
-      total: 'Compact<Balance>',
-      unlocking: 'Vec<UnlockChunk>'
+      claimedRewards: 'Vec<EraIndex>'
     },
     TimeDepositItem: {
       value: 'Compact<Balance>',
