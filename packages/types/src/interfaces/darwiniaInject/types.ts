@@ -5,7 +5,7 @@ import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u
 import type { ITuple } from '@polkadot/types/types';
 import type { AccountId, Balance, BlockNumber, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
 import type { RefCount } from '@polkadot/types/interfaces/system';
-import { EraIndex, UnlockChunk }  from '@polkadot/types/interfaces/staking';
+import { EraIndex }  from '@polkadot/types/interfaces/staking';
 
 /** @name AccountData */
 export interface AccountData extends Struct {
