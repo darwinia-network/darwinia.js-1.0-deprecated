@@ -6,9 +6,6 @@
 
 export default {
   types: {
-    Address: 'AccountId',
-    LookupSource: 'AccountId',
-
     BalanceInfo: {},
     BalanceLock: {
       id: 'LockIdentifier',
@@ -27,9 +24,6 @@ export default {
     StakingLock: {
       stakingAmount: 'Balance',
       unbondings: 'Vec<Unbonding>'
-    },
-    Reasons: {
-      _enum: ['Fee', 'Misc', 'All']
     },
     Unbonding: {
       amount: 'Balance',
@@ -124,9 +118,7 @@ export default {
       baseFeePerGas: 'Option<U256>',
       blockHash: 'Option<H256>'
     },
-    EthereumAddress: 'H160',
     Bloom: '[u8; 256; Bloom]',
-    H128: '[u8; 16; H128]',
     EthashProof: {
       dagNodes: '(H512, H512)',
       proof: 'Vec<H128>'
@@ -144,7 +136,6 @@ export default {
     },
     LogEntry: {},
     TransactionOutcome: {},
-
     EthereumNetwork: {
       _enum: {
         Mainnet: null,
@@ -235,7 +226,7 @@ export default {
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
-    PalletId: 'LockIdentifier'
+    ValidatorPrefs: 'ValidatorPrefsWithBlocked'
   },
   rpc: {
 

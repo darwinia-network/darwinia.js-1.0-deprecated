@@ -5,12 +5,7 @@
 
 import { OverrideVersionedType } from '@polkadot/types/types';
 
-const sharedTypes = {
-  Address: 'MultiAddress',
-  LookupSource: 'MultiAddress',
-  MultiAddress: 'GenericMultiAddress',
-  ValidatorPrefs: 'ValidatorPrefsWithBlocked'
-};
+const sharedTypes = { };
 
 const versioned: OverrideVersionedType[] = [
   {

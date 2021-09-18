@@ -6,9 +6,6 @@
 import { OverrideVersionedType } from '@polkadot/types/types';
 
 const sharedTypes = {
-  Address: 'MultiAddress',
-  LookupSource: 'MultiAddress',
-  MultiAddress: 'GenericMultiAddress',
   AccountInfo: 'AccountInfoWithTripleRefCount',
   AccountInfoWithTripleRefCount: {
     nonce: 'Index',
@@ -16,8 +13,7 @@ const sharedTypes = {
     providers: 'RefCount',
     sufficients: 'RefCount',
     data: 'AccountData'
-  },
-  ValidatorPrefs: 'ValidatorPrefsWithBlocked'
+  }
 };
 
 const versioned: OverrideVersionedType[] = [
