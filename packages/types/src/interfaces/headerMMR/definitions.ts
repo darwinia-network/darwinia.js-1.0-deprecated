@@ -28,7 +28,6 @@ export default {
       mmrSize: 'u64',
       proof: 'Text'
     },
-    BlockNumberFor: 'BlockNumber',
     NodeIndex: 'u64',
     MmrNodesPruningConfiguration: {
       step: 'NodeIndex',

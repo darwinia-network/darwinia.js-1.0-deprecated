@@ -7,11 +7,6 @@
 
 export default {
   types: {
-    ProxyDefinition: {
-      delegate: 'AccountId',
-      proxyType: 'ProxyType',
-      delay: 'BlockNumber'
-    },
     ProxyType: {
       _enum: {
         Any: null,
@@ -21,11 +16,6 @@ export default {
         IdentityJudgement: null,
         EthereumBridge: null
       }
-    },
-    ProxyAnnouncement: {
-      real: 'AccountId',
-      callHash: 'Hash',
-      height: 'BlockNumber'
     },
     Announcement: 'ProxyAnnouncement'
   },
