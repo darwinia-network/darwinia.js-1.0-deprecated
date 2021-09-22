@@ -6,5 +6,8 @@
 
 export default {
   rpc: {},
-  types: {}
+  types: {
+    MessageId: '(LaneId, MessageNonce)',
+    SpecVersion: 'u32'
+  }
 };
