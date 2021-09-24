@@ -37,11 +37,38 @@ interface CompatibleSpecOverrideBundleDefinition {
 }
 
 const polkadotCompatibleTypes: RegistryTypes = {
+  AccountData: {
+    free: 'Balance',
+    reserved: 'Balance',
+    freeKton: 'Balance',
+    reservedKton: 'Balance',
+    miscFrozen: 'Balance',
+    feeFrozen: 'Balance'
+  },
+  BalanceLock: {
+    id: 'LockIdentifier',
+    lockFor: 'LockFor',
+    lockReasons: 'LockReasons',
+    amount: 'Balance',
+    reasons: 'Reasons'
+  },
   IndividualExposure: {
     who: 'AccountId',
-    value: 'Compact<Balance>',
+    ringBalance: 'Compact<Balance>',
     ktonBalance: 'Compact<Balance>',
-    power: 'Power'
+    power: 'Power',
+    value: 'Compact<Balance>'
+  },
+  RelayAuthoritySigner: 'EthereumAddress',
+  StakingLedgerT: {
+    stash: 'AccountId',
+    active: 'Compact<Balance>',
+    activeDepositRing: 'Compact<Balance>',
+    activeKton: 'Compact<Balance>',
+    depositItems: 'Vec<TimeDepositItem>',
+    ringStakingLock: 'StakingLock',
+    ktonStakingLock: 'StakingLock',
+    claimedRewards: 'Vec<EraIndex>'
   }
 };
 
@@ -89,7 +116,7 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
     Pangolin: getBundleFromSpecName('Pangolin', true),
-    Pangoro: getBundleFromSpecName('Pangoro', true)
+    Pangoro: getBundleFromSpecName('Pangolin', true)
   }
 };
 
@@ -99,7 +126,7 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
     crab: getBundleFromSpecName('Crab', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
     pangolin: getBundleFromSpecName('Pangolin', true),
-    pangoro: getBundleFromSpecName('Pangoro', true)
+    pangoro: getBundleFromSpecName('Pangolin', true)
   }
 };
 
@@ -108,6 +135,6 @@ export const typesBundle: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
     Pangolin: getBundleFromSpecName('Pangolin', false),
-    Pangoro: getBundleFromSpecName('Pangoro', false)
+    Pangoro: getBundleFromSpecName('Pangolin', false)
   }
 };

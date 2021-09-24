@@ -7,7 +7,13 @@
 export default {
   rpc: {},
   types: {
+    BridgeMessageId: '[u8; 16; BridgeMessageId]',
     MessageId: '(LaneId, MessageNonce)',
+    OutboundLaneData: {
+      oldestUnprunedNonce: 'MessageNonce',
+      latestGeneratedNonce: 'MessageNonce',
+      latestReceivedNonce: 'MessageNonce'
+    },
     SpecVersion: 'u32'
   }
 };
