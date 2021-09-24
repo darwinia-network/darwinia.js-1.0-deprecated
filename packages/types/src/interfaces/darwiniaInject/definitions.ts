@@ -226,7 +226,24 @@ export default {
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
-    ValidatorPrefs: 'ValidatorPrefsWithBlocked'
+    ValidatorPrefs: 'ValidatorPrefsWithBlocked',
+    TokenOption: {
+      name: '[u8; 32]',
+      symbol: '[u8; 32]',
+      decimal: 'u8'
+    },
+    TokenInfo: {
+      address: 'H160',
+      value: 'Option<U256>',
+      option: 'Option<TokenOption>'
+    },
+    Token: {
+      _enum: {
+        InvalidToken: 'u8',
+        Native: 'TokenInfo',
+        Erc20: 'TokenInfo'
+      }
+    }
   },
   rpc: {
 
