@@ -41,23 +41,25 @@ const polkadotCompatibleTypes: RegistryTypes = {
     free: 'Balance',
     reserved: 'Balance',
     freeKton: 'Balance',
-    reservedKton: 'Balance',
-    miscFrozen: 'Balance',
-    feeFrozen: 'Balance'
+    reservedKton: 'Balance'
   },
   BalanceLock: {
     id: 'LockIdentifier',
     lockFor: 'LockFor',
-    lockReasons: 'LockReasons',
-    amount: 'Balance',
-    reasons: 'Reasons'
+    lockReasons: 'LockReasons'
   },
   IndividualExposure: {
     who: 'AccountId',
     ringBalance: 'Compact<Balance>',
     ktonBalance: 'Compact<Balance>',
-    power: 'Power',
-    value: 'Compact<Balance>'
+    power: 'Power'
+  },
+  LockReasons: {
+    _enum: {
+      Fee: null,
+      Misc: null,
+      All: null
+    }
   },
   RelayAuthoritySigner: 'EthereumAddress',
   StakingLedgerT: {
