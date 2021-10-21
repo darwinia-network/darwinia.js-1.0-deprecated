@@ -243,6 +243,33 @@ export default {
         Native: 'TokenInfo',
         Erc20: 'TokenInfo'
       }
+    },
+    Relayer: {
+      id: 'AccountId',
+      collateral: 'Balance',
+      fee: 'Balance'
+    },
+    Fee: 'Balance',
+    Order: {
+      lane: 'LaneId',
+      message: 'MessageNonce',
+      sent_time: 'BlockNumber',
+      confirm_time: 'BlockNumber',
+      assigned_relayers: 'Vec<PriorRelayer>'
+    },
+    PriorRelayer: {
+      id: 'AccountId',
+      priority: 'Priority',
+      fee: 'Balance',
+      valid_range: 'BlockNumber'
+    },
+    Priority: {
+      _enum: {
+        NoPriority: null,
+        P1: null,
+        P2: null,
+        P3: null
+      }
     }
   },
   rpc: {
