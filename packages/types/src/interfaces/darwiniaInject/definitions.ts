@@ -228,8 +228,8 @@ export default {
     },
     ValidatorPrefs: 'ValidatorPrefsWithBlocked',
     TokenOption: {
-      name: '[u8; 32]',
-      symbol: '[u8; 32]',
+      name: 'Vec<u8>',
+      symbol: 'Vec<u8>',
       decimal: 'u8'
     },
     TokenInfo: {
@@ -239,7 +239,7 @@ export default {
     },
     Token: {
       _enum: {
-        InvalidToken: 'u8',
+        InvalidToken: null,
         Native: 'TokenInfo',
         Erc20: 'TokenInfo'
       }
@@ -259,17 +259,8 @@ export default {
     },
     PriorRelayer: {
       id: 'AccountId',
-      priority: 'Priority',
       fee: 'Balance',
       valid_range: 'BlockNumber'
-    },
-    Priority: {
-      _enum: {
-        NoPriority: null,
-        P1: null,
-        P2: null,
-        P3: null
-      }
     }
   },
   rpc: {
