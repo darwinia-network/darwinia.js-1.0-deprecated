@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/types",
-  "version": "2.6.8",
+  "version": "2.6.8-2",
   "description": "Implementation of the Parity codec",
   "main": "index.js",
   "keywords": [
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
   "dependencies": {
-    "@darwinia/types-known": "^2.6.8"
+    "@darwinia/types-known": "^2.6.8-2"
   }
 }

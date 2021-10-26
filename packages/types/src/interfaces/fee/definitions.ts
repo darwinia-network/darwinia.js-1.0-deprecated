@@ -15,6 +15,8 @@ export default {
     }
   },
   types: {
-    Fee: 'Balance'
+    Fee: {
+      amount: 'Balance'
+    }
   }
 };

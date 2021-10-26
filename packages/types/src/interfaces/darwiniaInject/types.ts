@@ -3,9 +3,11 @@
 
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u128, u32, u64, u8 } from '@polkadot/types';
 import type { ITuple } from '@polkadot/types/types';
-import type { AccountId, Balance, BlockNumber, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
+import type { EthereumAddress } from '@polkadot/types/interfaces/claims';
+import type { AccountId, Balance, BlockNumber, H128, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
 import type { RefCount } from '@polkadot/types/interfaces/system';
 import { EraIndex }  from '@polkadot/types/interfaces/staking';
+export * from '../fee/types';
 
 /** @name AccountData */
 export interface AccountData extends Struct {
@@ -22,14 +24,17 @@ export interface AccountInfo extends Struct {
   readonly data: AccountData;
 }
 
-/** @name Address */
-export interface Address extends AccountId {}
-
 /** @name AddressT */
 export interface AddressT extends U8aFixed {}
 
 /** @name BalanceInfo */
 export interface BalanceInfo extends Struct {}
+
+export interface Reasons extends Enum {
+  readonly Fee: string;
+  readonly Misc: string;
+  readonly All: string;
+}
 
 /** @name BalanceLock */
 export interface BalanceLock extends Struct {
@@ -84,9 +89,6 @@ export interface EthashProof extends Struct {
   readonly dagNodes: ITuple<[H512, H512]>;
   readonly proof: Vec<H128>;
 }
-
-/** @name EthereumAddress */
-export interface EthereumAddress extends H160 {}
 
 /** @name EthereumBlockNumber */
 export interface EthereumBlockNumber extends u64 {}
@@ -161,9 +163,6 @@ export interface ExposureT extends Struct {
   readonly others: Vec<IndividualExposure>;
 }
 
-/** @name H128 */
-export interface H128 extends U8aFixed {}
-
 /** @name IndividualExposure */
 export interface IndividualExposure extends Struct {
   readonly who: AccountId;
@@ -194,9 +193,6 @@ export interface LockFor extends Enum {
 /** @name LogEntry */
 export interface LogEntry extends Struct {}
 
-/** @name LookupSource */
-export interface LookupSource extends AccountId {}
-
 /** @name MappedRing */
 export interface MappedRing extends u128 {}
 
@@ -225,6 +221,19 @@ export interface MmrRootToSign extends Struct {
 /** @name OpCode */
 export interface OpCode extends U8aFixed {}
 
+export interface LaneId extends U8aFixed { }
+
+export interface MessageNonce extends u64 { }
+
+/** @name Order */
+export interface Order extends Struct {
+  readonly lane: LaneId;
+  readonly message: MessageNonce;
+  readonly sent_time: BlockNumber;
+  readonly confirm_time: BlockNumber;
+  readonly assigned_relayers: Vec<PriorRelayer>;
+}
+
 /** @name OtherAddress */
 export interface OtherAddress extends Enum {
   readonly isEth: boolean;
@@ -241,17 +250,14 @@ export interface OtherSignature extends Enum {
   readonly asTron: EcdsaSignature;
 }
 
-/** @name PalletId */
-export interface PalletId extends LockIdentifier {}
-
 /** @name Power */
 export interface Power extends u32 {}
 
-/** @name Reasons */
-export interface Reasons extends Enum {
-  readonly isFee: boolean;
-  readonly isMisc: boolean;
-  readonly isAll: boolean;
+/** @name PriorRelayer */
+export interface PriorRelayer extends Struct {
+  readonly id: AccountId;
+  readonly fee: Balance;
+  readonly valid_range: BlockNumber;
 }
 
 /** @name RedeemFor */
@@ -275,6 +281,13 @@ export interface RelayAuthorityT extends Struct {
   readonly signer: EthereumAddress;
   readonly stake: Balance;
   readonly term: BlockNumber;
+}
+
+/** @name Relayer */
+export interface Relayer extends Struct {
+  readonly id: AccountId;
+  readonly collateral: Balance;
+  readonly fee: Balance;
 }
 
 /** @name RingBalance */
@@ -337,6 +350,29 @@ export interface TimeDepositItem extends Struct {
   readonly expireTime: Compact<TsInMs>;
 }
 
+/** @name Token */
+export interface Token extends Enum {
+  readonly isInvalidToken: boolean;
+  readonly isNative: boolean;
+  readonly asNative: TokenInfo;
+  readonly isErc20: boolean;
+  readonly asErc20: TokenInfo;
+}
+
+/** @name TokenInfo */
+export interface TokenInfo extends Struct {
+  readonly address: H160;
+  readonly value: Option<U256>;
+  readonly option: Option<TokenOption>;
+}
+
+/** @name TokenOption */
+export interface TokenOption extends Struct {
+  readonly name: Bytes;
+  readonly symbol: Bytes;
+  readonly decimal: u8;
+}
+
 /** @name TransactionOutcome */
 export interface TransactionOutcome extends Struct {}
 
@@ -360,5 +396,10 @@ export interface Unbonding extends Struct {
   readonly amount: Balance;
   readonly until: BlockNumber;
 }
+
+export interface ValidatorPrefsWithBlocked extends Struct { }
+
+/** @name ValidatorPrefs */
+export interface ValidatorPrefs extends ValidatorPrefsWithBlocked {}
 
 export type PHANTOM_DARWINIAINJECT = 'darwiniaInject';

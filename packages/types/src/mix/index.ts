@@ -12,6 +12,7 @@ import balances from '../interfaces/balances/definitions';
 import bridges from '../interfaces/bridges/definitions';
 import bsc from '../interfaces/bsc/definitions';
 import darwiniaInject from '../interfaces/darwiniaInject/definitions';
+import fee from '../interfaces/fee/definitions';
 import headerMMR from '../interfaces/headerMMR/definitions';
 import proxy from '../interfaces/proxy/definitions';
 import relayerGame from '../interfaces/relayerGame/definitions';
@@ -79,6 +80,7 @@ const definitions = {
   bridges,
   bsc,
   darwiniaInject,
+  fee,
   headerMMR,
   proxy,
   relayerGame,

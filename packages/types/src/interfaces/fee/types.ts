@@ -4,6 +4,6 @@
 import type { Balance } from '@polkadot/types/interfaces/runtime';
 
 /** @name Fee */
-export type FeeMarketFee = Balance
+export interface Fee extends Balance {}
 
 export type PHANTOM_FEE = 'fee';
