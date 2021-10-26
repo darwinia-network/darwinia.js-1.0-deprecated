@@ -5,7 +5,7 @@ import type { Metadata } from '@polkadot/metadata';
 import type { Bytes, HashMap, Json, Null, Option, StorageKey, Text, U256, U64, Vec, bool, u32, u64, u8 } from '@polkadot/types';
 import type { AnyNumber, Codec, IExtrinsic, Observable } from '@polkadot/types/types';
 import type { UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { Fee } from '@darwinia/types/interfaces/darwiniaInject';
+import type { Fee } from '@darwinia/types/interfaces/fee';
 import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
 import type { PowerOf } from '@darwinia/types/interfaces/staking';
 import type { ExtrinsicOrHash, ExtrinsicStatus } from '@polkadot/types/interfaces/author';

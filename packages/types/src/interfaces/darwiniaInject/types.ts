@@ -1,13 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u128, u32, u64, u8 } from '@polkadot/types';
-import type { ITuple } from '@polkadot/types/types';
+import type { Bytes, Compact, Enum, Option, Struct, Text, u128, U256, u32, u64, u8, U8aFixed, Vec } from '@polkadot/types';
+import type { Reasons, EraIndex } from '@polkadot/types/interfaces';
 import type { EthereumAddress } from '@polkadot/types/interfaces/claims';
 import type { AccountId, Balance, BlockNumber, H128, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
+import type { ValidatorPrefsWithBlocked } from '@polkadot/types/interfaces/staking';
 import type { RefCount } from '@polkadot/types/interfaces/system';
-import { EraIndex }  from '@polkadot/types/interfaces/staking';
-export * from '../fee/types';
+import type { ITuple } from '@polkadot/types/types';
 
 /** @name AccountData */
 export interface AccountData extends Struct {
@@ -29,12 +29,6 @@ export interface AddressT extends U8aFixed {}
 
 /** @name BalanceInfo */
 export interface BalanceInfo extends Struct {}
-
-export interface Reasons extends Enum {
-  readonly Fee: string;
-  readonly Misc: string;
-  readonly All: string;
-}
 
 /** @name BalanceLock */
 export interface BalanceLock extends Struct {
@@ -221,9 +215,9 @@ export interface MmrRootToSign extends Struct {
 /** @name OpCode */
 export interface OpCode extends U8aFixed {}
 
-export interface LaneId extends U8aFixed { }
+export interface LaneId extends U8aFixed {}
 
-export interface MessageNonce extends u64 { }
+export interface MessageNonce extends u64 {}
 
 /** @name Order */
 export interface Order extends Struct {
@@ -396,8 +390,6 @@ export interface Unbonding extends Struct {
   readonly amount: Balance;
   readonly until: BlockNumber;
 }
-
-export interface ValidatorPrefsWithBlocked extends Struct { }
 
 /** @name ValidatorPrefs */
 export interface ValidatorPrefs extends ValidatorPrefsWithBlocked {}
