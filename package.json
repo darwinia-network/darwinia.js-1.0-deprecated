@@ -1,7 +1,7 @@
 {
+  "name": "darwinia.js",
   "repository": "https://github.com/darwinia-network/darwinia.js",
   "license": "Apache-2",
-  "private": true,
   "workspaces": [
     "packages/*"
   ],
@@ -45,5 +45,5 @@
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
-  "version": "1.1.8"
+  "version": "2.6.8"
 }

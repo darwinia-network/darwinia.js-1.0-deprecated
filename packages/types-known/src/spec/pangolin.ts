@@ -14,11 +14,6 @@ const sharedTypes = {
     sufficients: 'RefCount',
     data: 'AccountData'
   },
-  TokenOption: {
-    name: 'Vec<u32>',
-    symbol: 'Vec<u32>',
-    decimal: 'u8'
-  },
   TokenMessageId: '[u8; 16; TokenMessageId]'
 };
 
