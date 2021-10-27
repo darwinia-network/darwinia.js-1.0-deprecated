@@ -249,7 +249,9 @@ export default {
       collateral: 'Balance',
       fee: 'Balance'
     },
-    Fee: 'Balance',
+    Fee: {
+      amount: 'Balance'
+    },
     Order: {
       lane: 'LaneId',
       message: 'MessageNonce',

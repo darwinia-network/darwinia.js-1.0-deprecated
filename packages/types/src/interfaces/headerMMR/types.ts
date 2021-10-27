@@ -2,10 +2,6 @@
 /* eslint-disable */
 
 import type { Struct, Text, u64 } from '@polkadot/types';
-import type { BlockNumber } from '@polkadot/types/interfaces/runtime';
-
-/** @name BlockNumberFor */
-export interface BlockNumberFor extends BlockNumber {}
 
 /** @name MmrNodesPruningConfiguration */
 export interface MmrNodesPruningConfiguration extends Struct {

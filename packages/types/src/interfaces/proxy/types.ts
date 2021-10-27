@@ -1,25 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Struct } from '@polkadot/types';
-import type { AccountId, BlockNumber, Hash } from '@polkadot/types/interfaces/runtime';
+import type { Enum } from '@polkadot/types';
+import type { ProxyAnnouncement } from '@polkadot/types/interfaces/proxy';
 
 /** @name Announcement */
 export interface Announcement extends ProxyAnnouncement {}
-
-/** @name ProxyAnnouncement */
-export interface ProxyAnnouncement extends Struct {
-  readonly real: AccountId;
-  readonly callHash: Hash;
-  readonly height: BlockNumber;
-}
-
-/** @name ProxyDefinition */
-export interface ProxyDefinition extends Struct {
-  readonly delegate: AccountId;
-  readonly proxyType: ProxyType;
-  readonly delay: BlockNumber;
-}
 
 /** @name ProxyType */
 export interface ProxyType extends Enum {
