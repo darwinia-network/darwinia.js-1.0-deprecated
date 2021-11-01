@@ -209,7 +209,7 @@ export interface MMRRoot extends Hash {}
 /** @name MmrRootToSign */
 export interface MmrRootToSign extends Struct {
   readonly mmrRoot: Hash;
-  readonly signatures: Vec<ITuple<[EthereumAddress, EcdsaSignature]>>;
+  readonly signatures: Vec<ITuple<[AccountId, EcdsaSignature]>>;
 }
 
 /** @name OpCode */

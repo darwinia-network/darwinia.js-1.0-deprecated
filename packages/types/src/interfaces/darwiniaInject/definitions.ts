@@ -221,7 +221,7 @@ export default {
     },
     MmrRootToSign: {
       mmrRoot: 'Hash',
-      signatures: 'Vec<(EthereumAddress, EcdsaSignature)>'
+      signatures: 'Vec<(AccountId, EcdsaSignature)>'
     },
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
