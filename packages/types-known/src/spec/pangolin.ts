@@ -14,7 +14,14 @@ const sharedTypes = {
     sufficients: 'RefCount',
     data: 'AccountData'
   },
-  TokenMessageId: '[u8; 16; TokenMessageId]'
+  TokenMessageId: '[u8; 16; TokenMessageId]',
+  TokenMetadata: {
+    tokenType: 'u32',
+    address: 'H160',
+    name: 'Vec<u8>',
+    symbol: 'Vec<u8>',
+    decimal: 'u8'
+  }
 };
 
 const versioned: OverrideVersionedType[] = [

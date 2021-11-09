@@ -5,7 +5,7 @@ import type { BitVec, Bool, Bytes, Compact, Data, DoNotConstruct, I128, I16, I25
 import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { BridgeMessageId, MessageId, OutboundLaneData, SpecVersion } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
-import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetwork, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, Power, PriorRelayer, RKT, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, Relayer, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, Token, TokenInfo, TokenOption, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs } from '@darwinia/types/interfaces/darwiniaInject';
+import type { AccountData, AddressT, BalanceInfo, BalanceLock, Bloom, Common, DepositId, EcdsaAddress, EcdsaMessage, ElectionCompute, ElectionResultT, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetwork, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, OtherAddress, OtherSignature, Power, PriorRelayer, RKT, RedeemFor, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, Relayer, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, Token, TokenInfo, TokenMetadata, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs } from '@darwinia/types/interfaces/darwiniaInject';
 import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
@@ -835,7 +835,7 @@ declare module '@polkadot/types/types/registry' {
     'Option<Timepoint>': Option<Timepoint>;
     'Option<Token>': Option<Token>;
     'Option<TokenInfo>': Option<TokenInfo>;
-    'Option<TokenOption>': Option<TokenOption>;
+    'Option<TokenMetadata>': Option<TokenMetadata>;
     'Option<TombstoneContractInfo>': Option<TombstoneContractInfo>;
     'Option<Transact>': Option<Transact>;
     'Option<TransactionOutcome>': Option<TransactionOutcome>;
@@ -1597,7 +1597,7 @@ declare module '@polkadot/types/types/registry' {
     'Vec<Timepoint>': Vec<Timepoint>;
     'Vec<Token>': Vec<Token>;
     'Vec<TokenInfo>': Vec<TokenInfo>;
-    'Vec<TokenOption>': Vec<TokenOption>;
+    'Vec<TokenMetadata>': Vec<TokenMetadata>;
     'Vec<TombstoneContractInfo>': Vec<TombstoneContractInfo>;
     'Vec<Transact>': Vec<Transact>;
     'Vec<TransactionOutcome>': Vec<TransactionOutcome>;
@@ -2359,7 +2359,7 @@ declare module '@polkadot/types/types/registry' {
     Timepoint: Timepoint;
     Token: Token;
     TokenInfo: TokenInfo;
-    TokenOption: TokenOption;
+    TokenMetadata: TokenMetadata;
     TombstoneContractInfo: TombstoneContractInfo;
     Transact: Transact;
     TransactionOutcome: TransactionOutcome;

@@ -227,23 +227,6 @@ export default {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
     ValidatorPrefs: 'ValidatorPrefsWithBlocked',
-    TokenOption: {
-      name: 'Vec<u8>',
-      symbol: 'Vec<u8>',
-      decimal: 'u8'
-    },
-    TokenInfo: {
-      address: 'H160',
-      value: 'Option<U256>',
-      option: 'Option<TokenOption>'
-    },
-    Token: {
-      _enum: {
-        InvalidToken: null,
-        Native: 'TokenInfo',
-        Erc20: 'TokenInfo'
-      }
-    },
     Relayer: {
       id: 'AccountId',
       collateral: 'Balance',

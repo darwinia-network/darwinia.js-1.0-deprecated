@@ -357,11 +357,13 @@ export interface Token extends Enum {
 export interface TokenInfo extends Struct {
   readonly address: H160;
   readonly value: Option<U256>;
-  readonly option: Option<TokenOption>;
+  readonly option: Option<TokenMetadata>;
 }
 
-/** @name TokenOption */
-export interface TokenOption extends Struct {
+/** @name TokenMetadata */
+export interface TokenMetadata extends Struct {
+  readonly tokenType: u32;
+  readonly address: H160;
   readonly name: Bytes;
   readonly symbol: Bytes;
   readonly decimal: u8;
