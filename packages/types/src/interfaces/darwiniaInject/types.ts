@@ -223,9 +223,10 @@ export interface MessageNonce extends u64 {}
 export interface Order extends Struct {
   readonly lane: LaneId;
   readonly message: MessageNonce;
-  readonly sent_time: BlockNumber;
-  readonly confirm_time: BlockNumber;
-  readonly assigned_relayers: Vec<PriorRelayer>;
+  readonly sentTime: BlockNumber;
+  readonly confirmTime: BlockNumber;
+  readonly lockedCollateral: Balance;
+  readonly assignedRelayers: Vec<PriorRelayer>;
 }
 
 /** @name OtherAddress */

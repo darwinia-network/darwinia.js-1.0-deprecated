@@ -12,11 +12,20 @@ export default {
       description: 'fee_marketFee',
       params: [],
       type: 'Fee'
+    },
+    inProcessOrdersFee: {
+      alias: ['fee_inProcessOrders'],
+      description: 'fee_inProcessOrders',
+      params: [],
+      type: 'InProcessOrders'
     }
   },
   types: {
     Fee: {
       amount: 'Balance'
+    },
+    InProcessOrders: {
+      orders: 'Vec<LaneId, MessageNonce>'
     }
   }
 };

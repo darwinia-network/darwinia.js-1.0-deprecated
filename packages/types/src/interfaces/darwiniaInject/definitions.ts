@@ -238,14 +238,14 @@ export default {
     Order: {
       lane: 'LaneId',
       message: 'MessageNonce',
-      sent_time: 'BlockNumber',
-      confirm_time: 'BlockNumber',
-      assigned_relayers: 'Vec<PriorRelayer>'
+      sentTime: 'BlockNumber',
+      confirmTime: 'BlockNumber',
+      assignedRelayers: 'Vec<PriorRelayer>'
     },
     PriorRelayer: {
       id: 'AccountId',
       fee: 'Balance',
-      valid_range: 'BlockNumber'
+      validRange: 'BlockNumber'
     }
   },
   rpc: {
