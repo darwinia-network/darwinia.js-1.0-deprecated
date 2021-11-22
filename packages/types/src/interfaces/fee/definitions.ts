@@ -13,7 +13,7 @@ export default {
       params: [],
       type: 'Fee'
     },
-    inProcessOrdersFee: {
+    inProcessOrders: {
       alias: ['fee_inProcessOrders'],
       description: 'fee_inProcessOrders',
       params: [],
