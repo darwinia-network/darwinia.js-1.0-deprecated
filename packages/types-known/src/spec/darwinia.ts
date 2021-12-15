@@ -91,6 +91,12 @@ const versioned: OverrideVersionedType[] = [
         moment: 'BlockNumber'
       }
     }
+  },
+  {
+    minmax: [1160, undefined],
+    types: {
+      ...sharedTypes
+    }
   }
 ];
 
