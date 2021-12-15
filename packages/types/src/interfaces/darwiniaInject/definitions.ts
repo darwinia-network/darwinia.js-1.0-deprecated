@@ -232,9 +232,6 @@ export default {
       collateral: 'Balance',
       fee: 'Balance'
     },
-    Fee: {
-      amount: 'Balance'
-    },
     PriorRelayer: {
       id: 'AccountId',
       fee: 'Balance',

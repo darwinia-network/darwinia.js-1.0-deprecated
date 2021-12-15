@@ -57,7 +57,6 @@ import type { Bounty, BountyIndex, BountyStatus, BountyStatusActive, BountyStatu
 import type { Multiplier } from '@polkadot/types/interfaces/txpayment';
 import type { Multisig, Timepoint } from '@polkadot/types/interfaces/utility';
 import type { VestingInfo } from '@polkadot/types/interfaces/vesting';
-import type { Fee } from '@darwinia/types/interfaces/fee';
 
 declare module '@polkadot/types/types/registry' {
   export interface InterfaceTypes {
@@ -419,7 +418,6 @@ declare module '@polkadot/types/types/registry' {
     'Option<ExtrinsicsWeight>': Option<ExtrinsicsWeight>;
     'Option<ExtrinsicUnknown>': Option<ExtrinsicUnknown>;
     'Option<ExtrinsicV4>': Option<ExtrinsicV4>;
-    'Option<Fee>': Option<Fee>;
     'Option<FeeDetails>': Option<FeeDetails>;
     'Option<Fixed128>': Option<Fixed128>;
     'Option<Fixed64>': Option<Fixed64>;
@@ -1181,7 +1179,6 @@ declare module '@polkadot/types/types/registry' {
     'Vec<ExtrinsicsWeight>': Vec<ExtrinsicsWeight>;
     'Vec<ExtrinsicUnknown>': Vec<ExtrinsicUnknown>;
     'Vec<ExtrinsicV4>': Vec<ExtrinsicV4>;
-    'Vec<Fee>': Vec<Fee>;
     'Vec<FeeDetails>': Vec<FeeDetails>;
     'Vec<Fixed128>': Vec<Fixed128>;
     'Vec<Fixed64>': Vec<Fixed64>;
@@ -1943,7 +1940,6 @@ declare module '@polkadot/types/types/registry' {
     ExtrinsicsWeight: ExtrinsicsWeight;
     ExtrinsicUnknown: ExtrinsicUnknown;
     ExtrinsicV4: ExtrinsicV4;
-    Fee: Fee;
     FeeDetails: FeeDetails;
     Fixed128: Fixed128;
     Fixed64: Fixed64;
