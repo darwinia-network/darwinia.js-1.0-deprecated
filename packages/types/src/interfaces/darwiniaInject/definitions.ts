@@ -235,17 +235,26 @@ export default {
     Fee: {
       amount: 'Balance'
     },
+    PriorRelayer: {
+      id: 'AccountId',
+      fee: 'Balance',
+      validRange: 'BlockNumber'
+    },
+    TokenMessageId: '[u8; 16; TokenMessageId]',
+    TokenMetadata: {
+      tokenType: 'u32',
+      address: 'H160',
+      name: 'Vec<u8>',
+      symbol: 'Vec<u8>',
+      decimal: 'u8'
+    },
     Order: {
       lane: 'LaneId',
       message: 'MessageNonce',
       sentTime: 'BlockNumber',
       confirmTime: 'BlockNumber',
+      lockedCollateral: 'Balance',
       assignedRelayers: 'Vec<PriorRelayer>'
-    },
-    PriorRelayer: {
-      id: 'AccountId',
-      fee: 'Balance',
-      validRange: 'BlockNumber'
     }
   },
   rpc: {
