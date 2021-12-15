@@ -95,7 +95,15 @@ const versioned: OverrideVersionedType[] = [
   {
     minmax: [1160, undefined],
     types: {
-      ...sharedTypes
+      ...sharedTypes,
+      AccountInfo: 'AccountInfoWithTripleRefCount',
+      AccountInfoWithTripleRefCount: {
+        nonce: 'Index',
+        consumers: 'RefCount',
+        providers: 'RefCount',
+        sufficients: 'RefCount',
+        data: 'AccountData'
+      }
     }
   }
 ];
