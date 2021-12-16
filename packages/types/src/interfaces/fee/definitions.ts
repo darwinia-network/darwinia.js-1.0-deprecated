@@ -11,7 +11,7 @@ export default {
       alias: ['fee_marketFee'],
       description: 'fee_marketFee',
       params: [],
-      type: 'Balance'
+      type: 'Fee'
     },
     inProcessOrders: {
       alias: ['fee_inProcessOrders'],
@@ -21,6 +21,9 @@ export default {
     }
   },
   types: {
+    Fee: {
+      amount: 'Balance'
+    },
     InProcessOrders: {
       orders: 'Vec<LaneId, MessageNonce>'
     }
