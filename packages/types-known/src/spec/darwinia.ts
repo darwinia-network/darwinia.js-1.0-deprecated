@@ -31,14 +31,6 @@ const versioned: OverrideVersionedType[] = [
     minmax: [25, 1150],
     types: {
       ...sharedTypes,
-      AccountInfo: 'AccountInfoWithTripleRefCount',
-      AccountInfoWithTripleRefCount: {
-        nonce: 'Index',
-        consumers: 'RefCount',
-        providers: 'RefCount',
-        sufficients: 'RefCount',
-        data: 'AccountData'
-      },
       Address: 'MultiAddress',
       LookupSource: 'MultiAddress',
       MultiAddress: 'GenericMultiAddress',
