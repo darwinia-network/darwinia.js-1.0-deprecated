@@ -6,14 +6,6 @@
 import { OverrideVersionedType } from '@polkadot/types/types';
 
 const sharedTypes = {
-  AccountInfo: 'AccountInfoWithTripleRefCount',
-  AccountInfoWithTripleRefCount: {
-    nonce: 'Index',
-    consumers: 'RefCount',
-    providers: 'RefCount',
-    sufficients: 'RefCount',
-    data: 'AccountData'
-  },
   InProcessOrders: {
     orders: 'Vec<LaneId, MessageNonce>'
   }
