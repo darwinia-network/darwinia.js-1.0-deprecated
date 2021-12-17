@@ -5,7 +5,7 @@ import type { Metadata } from '@polkadot/metadata';
 import type { Bytes, HashMap, Json, Null, Option, StorageKey, Text, U256, U64, Vec, bool, u32, u64, u8 } from '@polkadot/types';
 import type { AnyNumber, Codec, IExtrinsic, Observable } from '@polkadot/types/types';
 import type { UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { InProcessOrders } from '@darwinia/types/interfaces/fee';
+import type { Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
 import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
 import type { PowerOf } from '@darwinia/types/interfaces/staking';
 import type { ExtrinsicOrHash, ExtrinsicStatus } from '@polkadot/types/interfaces/author';
@@ -24,7 +24,6 @@ import type { RpcMethods } from '@polkadot/types/interfaces/rpc';
 import type { AccountId, BlockNumber, H160, H256, H64, Hash, Header, Index, Justification, KeyValue, SignedBlock, StorageData } from '@polkadot/types/interfaces/runtime';
 import type { ReadProof, RuntimeVersion } from '@polkadot/types/interfaces/state';
 import type { ApplyExtrinsicResult, ChainProperties, ChainType, Health, NetworkState, NodeRole, PeerInfo, SyncState } from '@polkadot/types/interfaces/system';
-import type { Balance } from '@polkadot/types/interfaces/runtime';
 
 declare module '@polkadot/rpc-core/types.jsonrpc' {
   export interface RpcInterface {
@@ -314,13 +313,13 @@ declare module '@polkadot/rpc-core/types.jsonrpc' {
     };
     fee: {
       /**
+       * fee_inProcessOrders
+       **/
+      inProcessOrders: AugmentedRpc<() => Observable<InProcessOrders>>;
+      /**
        * fee_marketFee
        **/
-      marketFee: AugmentedRpc<() => Observable<Balance>>;
-      /**
-       * fee_inProcessOrders
-       */
-      inProcessOrders: AugmentedRpc<() => Observable<InProcessOrders>>;
+      marketFee: AugmentedRpc<() => Observable<Fee>>;
     };
     grandpa: {
       /**
