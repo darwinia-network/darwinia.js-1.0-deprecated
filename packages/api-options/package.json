@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/api-options",
-  "version": "2.6.100-2",
+  "version": "2.7.2",
   "description": "Promise and RxJS wrappers around the Darwinia JS RPC",
   "main": "index.js",
   "keywords": [
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
   "dependencies": {
     "@babel/runtime": "^7.11.2",
-    "@darwinia/types": "^2.6.100-2",
+    "@darwinia/types": "^2.7.2",
     "@polkadot/api": "4.0.4-5"
   }
 }

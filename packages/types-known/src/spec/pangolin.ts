@@ -6,14 +6,6 @@
 import { OverrideVersionedType } from '@polkadot/types/types';
 
 const sharedTypes = {
-  AccountInfo: 'AccountInfoWithTripleRefCount',
-  AccountInfoWithTripleRefCount: {
-    nonce: 'Index',
-    consumers: 'RefCount',
-    providers: 'RefCount',
-    sufficients: 'RefCount',
-    data: 'AccountData'
-  },
   InProcessOrders: {
     orders: 'Vec<LaneId, MessageNonce>'
   }
@@ -21,13 +13,7 @@ const sharedTypes = {
 
 const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, 13],
-    types: {
-      ...sharedTypes
-    }
-  },
-  {
-    minmax: [14, undefined],
+    minmax: [0, undefined],
     types: {
       ...sharedTypes
     }

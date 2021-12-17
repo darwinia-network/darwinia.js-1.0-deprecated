@@ -252,7 +252,7 @@ export interface Power extends u32 {}
 export interface PriorRelayer extends Struct {
   readonly id: AccountId;
   readonly fee: Balance;
-  readonly valid_range: BlockNumber;
+  readonly validRange: BlockNumber;
 }
 
 /** @name RedeemFor */
@@ -345,21 +345,8 @@ export interface TimeDepositItem extends Struct {
   readonly expireTime: Compact<TsInMs>;
 }
 
-/** @name Token */
-export interface Token extends Enum {
-  readonly isInvalidToken: boolean;
-  readonly isNative: boolean;
-  readonly asNative: TokenInfo;
-  readonly isErc20: boolean;
-  readonly asErc20: TokenInfo;
-}
-
-/** @name TokenInfo */
-export interface TokenInfo extends Struct {
-  readonly address: H160;
-  readonly value: Option<U256>;
-  readonly option: Option<TokenMetadata>;
-}
+/** @name TokenMessageId */
+export interface TokenMessageId extends U8aFixed {}
 
 /** @name TokenMetadata */
 export interface TokenMetadata extends Struct {

@@ -313,13 +313,13 @@ declare module '@polkadot/rpc-core/types.jsonrpc' {
     };
     fee: {
       /**
+       * fee_inProcessOrders
+       **/
+      inProcessOrders: AugmentedRpc<() => Observable<InProcessOrders>>;
+      /**
        * fee_marketFee
        **/
       marketFee: AugmentedRpc<() => Observable<Fee>>;
-      /**
-       * fee_inProcessOrders
-       */
-      inProcessOrders: AugmentedRpc<() => Observable<InProcessOrders>>;
     };
     grandpa: {
       /**
