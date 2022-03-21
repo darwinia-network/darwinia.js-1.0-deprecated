@@ -4,7 +4,7 @@
 const { ApiPromise, WsProvider } = require('@polkadot/api');
 const { Keyring } = require('@polkadot/keyring');
 const { cryptoWaitReady } = require('@polkadot/util-crypto');
-const { typesBundleForPolkadotApps } =  require("../packages/types/src/mix");
+const { typesBundleForPolkadotApps } =  require("@darwinia/types/mix");
 
 const darwiniaTypesBundle = {
   spec: {

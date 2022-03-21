@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 const { ApiPromise, WsProvider } = require('@polkadot/api');
-const { typesBundleForPolkadotApps } = require('../packages/types/src/mix');
+const { typesBundleForPolkadotApps } = require("@darwinia/types/mix");
 
 
 function filterEvents (index, events = []) {
