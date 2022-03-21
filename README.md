@@ -101,6 +101,7 @@ async function main () {
 main();
 ```
 
+You could find more usecases at example directory of root project.
 
 
 ### Generating
