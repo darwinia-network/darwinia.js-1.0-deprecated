@@ -6,13 +6,7 @@ const { Keyring } = require('@polkadot/keyring');
 const { cryptoWaitReady } = require('@polkadot/util-crypto');
 const { typesBundleForPolkadotApps } =  require("@darwinia/types/mix");
 
-const darwiniaTypesBundle = {
-  spec: {
-    Crab: typesBundleForPolkadotApps.spec.Crab,
-    Darwinia: typesBundleForPolkadotApps.spec.Darwinia,
-    Pangolin: typesBundleForPolkadotApps.spec.Pangolin,
-  },
-};
+const darwiniaTypesBundle = typesBundleForPolkadotApps;
 
 const wsProvider = new WsProvider("wss://rpc.darwinia.network");
 

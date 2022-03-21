@@ -9,13 +9,7 @@ function filterEvents (index, events = []) {
   return events.filter(({ phase }) => phase.isApplyExtrinsic && phase.asApplyExtrinsic.eq(index));
 }
 
-const darwiniaTypesBundle = {
-  spec: {
-    Crab: typesBundleForPolkadotApps.spec.Crab,
-    Darwinia: typesBundleForPolkadotApps.spec.Darwinia,
-    Pangolin: typesBundleForPolkadotApps.spec.Pangolin
-  }
-};
+const darwiniaTypesBundle = typesBundleForPolkadotApps;
 
 const wsProvider = new WsProvider('wss://rpc.darwinia.network');
 

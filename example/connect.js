@@ -4,13 +4,7 @@
 const { typesBundleForPolkadotApps } = require("@darwinia/types/mix");
 const { ApiPromise, WsProvider } = require("@polkadot/api");
 
-const darwiniaTypesBundle = {
-  spec: {
-    Crab: typesBundleForPolkadotApps.spec.Crab,
-    Darwinia: typesBundleForPolkadotApps.spec.Darwinia,
-    Pangolin: typesBundleForPolkadotApps.spec.Pangolin,
-  },
-};
+const darwiniaTypesBundle = typesBundleForPolkadotApps;
 
 const wsProvider = new WsProvider("wss://rpc.darwinia.network");
 

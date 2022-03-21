@@ -1,7 +1,7 @@
 // external imports
 /* eslint-disable */
 
-var cryptoUtil = require('@polkadot/util-crypto');
+const cryptoUtil = require('@polkadot/util-crypto');
 
 /**
  * check address
