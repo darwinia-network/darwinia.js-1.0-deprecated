@@ -1,0 +1,28 @@
+{
+    "name": "@darwinia/api-derive",
+    "version": "2.7.3",
+    "description": "Implementation of the derived results ",
+    "main": "index.js",
+    "keywords": [
+        "Polkadot",
+        "JsonRPC"
+    ],
+    "contributors": [],
+    "license": "Apache-2.0",
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/darwinia-network/darwinia.js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/darwinia-network/darwinia.js/issues"
+    },
+    "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
+    "dependencies": {
+        "lodash": "^4.17.21",
+        "rxjs": "^7.5.2"
+    }
+}

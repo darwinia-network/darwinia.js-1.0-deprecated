@@ -28,6 +28,9 @@
     "lernaversion": "lerna version --skip-git",
     "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
   },
+  "dependencies": {
+    "@polkadot/api": "^7.4.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/node": "^7.13.10",

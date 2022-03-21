@@ -20,7 +20,8 @@
       "@darwinia/api-options": ["packages/api-options/src"],
       "@darwinia/api-options/*": ["packages/api-options/src/*"],
       "@polkadot/api/augment": ["packages/types/src/interfaces/augment-api.ts"],
-      "@polkadot/types/augment": ["packages/types/src/interfaces/augment-types.ts"]
+      "@polkadot/types/augment": ["packages/types/src/interfaces/augment-types.ts"],
+      "@polkadot/types/lookup": ["node_modules/@polkadot/types-augment/lookup/index.d.ts"]
     },
     "skipLibCheck": true,
     "typeRoots": [

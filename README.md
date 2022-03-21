@@ -8,6 +8,8 @@ This Library contains Typescript bindings for custom darwinia-node modules.
 
 The repo is split up into a number of internal packages 
 
+* @darwinia/api-derive Derived api for darwinia.
+
 * @darwinia/api-option Provider user to inject derived, rpc method and additional types used by runtime modules.
   
 * @darwinia/types Definition of customize types for Darwinia's chains(Darwinia, Crab, Crab parachain, Pangolin/Pangoro etc).
