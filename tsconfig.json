@@ -4,7 +4,8 @@
     "build/**/*",
     "**/build/**/*",
     "docs/examples/promise/90_typegen/*",
-    "node_modules/@polkadot/api/types/consts.d.ts"
+    "node_modules/@polkadot/api/types/consts.d.ts",
+    "example/**"
   ],
   "compilerOptions": {
     "module": "commonjs",
