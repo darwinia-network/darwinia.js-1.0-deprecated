@@ -4,7 +4,8 @@
     "**/build/**/*",
     "docs/examples/promise/90_typegen/*",
     "dist/**/*",
-    "node_modules"
+    "node_modules",
+    "example/**"
   ],
   "compilerOptions": {
     "target": "esnext",
