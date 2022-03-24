@@ -80,6 +80,8 @@ function retrieveController (
   const controllerId = controllerIdOpt.unwrapOr(null);
   // const nominators = nominatorsOpt.unwrapOr(null);
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   return controllerId
     ? api.query.staking.ledger(controllerId).pipe(
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -110,6 +112,8 @@ export function queryWithQueued (
     (accountId: Uint8Array | string, queuedKeys: Vec<ITuple<[AccountId, Keys]>>): Observable<DeriveStakingQuery> => {
       const stashId: AccountId = api.registry.createType('AccountId', accountId);
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       return (api.query.staking.erasStakers ? retrieveCurr(api, stashId) : retrievePrev(api, stashId)).pipe(
         // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         switchMap((result): Observable<DeriveStakingQuery> => retrieveController(api, stashId, queuedKeys, result))

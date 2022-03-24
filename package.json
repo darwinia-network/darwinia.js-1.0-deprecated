@@ -23,13 +23,14 @@
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
     "test:one": "polkadot-dev-run-test",
     "test:watch": "polkadot-dev-run-test --watch",
-    "generate:defs": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-defs.cjs --package @darwinia/types/interfaces --input ./packages/types/src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/@polkadot/typegen/scripts/polkadot-types-from-chain.cjs --package @darwinia/types/interfaces --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
+    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./packages/types/src/interfaces",
+    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
     "lernaversion": "lerna version --skip-git",
     "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
   },
   "dependencies": {
-    "@polkadot/api": "^7.4.1"
+    "@polkadot/api": "7.13.1",
+    "@polkadot/metadata": "^4.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -38,7 +39,7 @@
     "@babel/runtime": "^7.11.2",
     "@polkadot/dev": "^0.55.46",
     "@polkadot/ts": "^0.3.42",
-    "@polkadot/typegen": "4.0.4-5",
+    "@polkadot/typegen": "^7.13.1",
     "@types/jest": "^26.0.13",
     "@vuepress/plugin-search": "^1.5.4",
     "copyfiles": "^2.3.0",

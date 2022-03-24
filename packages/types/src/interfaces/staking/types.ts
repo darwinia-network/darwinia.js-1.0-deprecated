@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Struct } from '@polkadot/types';
-import type { Power } from '@darwinia/types/interfaces/darwiniaInject';
+import type { Power } from '../darwiniaInject';
+import type { Struct } from '@polkadot/types-codec';
 
 /** @name PowerOf */
 export interface PowerOf extends Struct {

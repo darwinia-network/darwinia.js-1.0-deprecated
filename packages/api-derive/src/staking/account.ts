@@ -34,7 +34,7 @@ function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undef
 
   return api.registry.createType(
     'Balance',
-    stakingLedger.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
+    stakingLedger!.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
       return until.gte(best) ? total.add(amount) : total;
     }, new BN(0)) ?? new BN(0)
   );
@@ -97,7 +97,7 @@ export function accounts (instanceId: string, api: DeriveApi) {
     const keysObs = api.derive.staking.keysMulti(accountIds);
     const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS);
     const bestObs = api.derive.chain.bestNumber();
-    const timestampObs = api.query.timestamp.now() as Observable<Moment>;
+    const timestampObs = api.query.timestamp.now();
 
     return combineLatest([keysObs, queryObs, bestObs, timestampObs]).pipe(
       map(([keys, queries, best, timestamp]) =>

@@ -31,7 +31,7 @@ export function electedInfo(instanceId: string, api: ApiInterfaceRx): () => Obse
           const infoObs = api.derive.staking
             .queryMulti(combineAccounts(nextElected, validators), flags)
             .pipe(map((info): Pick<IDeriveStakingElected, 'info'> => ({ info })));
-          const commissionsObs = (api.query.staking.currentEra() as Observable<Option<EraIndex>>).pipe(
+          const commissionsObs = (api.query.staking.currentEra()).pipe(
             switchMap((currentEra) =>
               combineLatest(
                 nextElected.map((accountId) =>

@@ -1,7 +1,7 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { ITuple } from '@polkadot/types/types';
+import type { ITuple } from '@polkadot/types-codec/types';
 import { LaneId, MessageNonce } from '../darwiniaInject';
 
 /** @name MessageId */

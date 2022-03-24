@@ -1,8 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Option, Struct, Vec, bool, u32 } from '@polkadot/types';
-import type { EthereumBlockNumber, EthereumRelayHeaderParcel, EthereumRelayProofs } from '@darwinia/types/interfaces/darwiniaInject';
+import type { EthereumBlockNumber, EthereumRelayHeaderParcel, EthereumRelayProofs } from '../darwiniaInject';
+import type { Option, Struct, Vec, bool, u32 } from '@polkadot/types-codec';
 import type { AccountId, Balance } from '@polkadot/types/interfaces/runtime';
 
 /** @name RelayAffirmationId */
