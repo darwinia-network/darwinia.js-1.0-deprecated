@@ -1,40 +1,53 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Option, U256, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types';
-import type { AnyNumber } from '@polkadot/types/types';
-import type { EthereumBlockNumber, EthereumHeader, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, KtonBalance, MMRProof, OtherAddress, OtherSignature, RedeemFor, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, StakingBalanceT, TsInMs } from '@darwinia/types/interfaces/darwiniaInject';
-import type { RelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
-import type { BabeEquivocationProof } from '@polkadot/types/interfaces/babe';
-import type { EthereumAddress } from '@polkadot/types/interfaces/claims';
+import type { EthereumBlockNumber, EthereumHeader, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, KtonBalance, MMRProof, RedeemFor, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, StakingBalanceT, TsInMs } from './darwiniaInject';
+import type { RelayAffirmationId } from './relayerGame';
+import type { ApiTypes } from '@polkadot/api-base/types';
+import type { Data } from '@polkadot/types';
+import type { Bytes, Compact, Option, U256, U8aFixed, Vec, bool, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
+import type { BabeEquivocationProof, NextConfigDescriptor } from '@polkadot/types/interfaces/babe';
+import type { BridgedHeader, InboundRelayer, InitializationData, LaneId, MessageNonce, MessagesDeliveryProofOf, MessagesProofOf, OperatingMode, OutboundMessageFee, OutboundPayload, Parameter, UnrewardedRelayersState } from '@polkadot/types/interfaces/bridges';
 import type { MemberCount, ProposalIndex } from '@polkadot/types/interfaces/collective';
 import type { AccountVote, Conviction, PropIndex, Proposal, ReferendumIndex } from '@polkadot/types/interfaces/democracy';
 import type { Renouncing } from '@polkadot/types/interfaces/elections';
-import type { EthTransaction } from '@polkadot/types/interfaces/eth';
-import type { Extrinsic, Signature } from '@polkadot/types/interfaces/extrinsics';
-import type { GrandpaEquivocationProof, KeyOwnerProof } from '@polkadot/types/interfaces/grandpa';
+import type { EthereumAddress } from '@polkadot/types/interfaces/eth';
+import type { Signature } from '@polkadot/types/interfaces/extrinsics';
+import type { GrandpaEquivocationProof, GrandpaJustification, KeyOwnerProof } from '@polkadot/types/interfaces/grandpa';
+import type { IdentityFields, IdentityInfo, IdentityJudgement, RegistrarIndex } from '@polkadot/types/interfaces/identity';
 import type { Heartbeat } from '@polkadot/types/interfaces/imOnline';
 import type { ProxyType } from '@polkadot/types/interfaces/proxy';
-import type { AccountId, Balance, BalanceOf, BlockNumber, Call, CallHashOf, ChangesTrieConfiguration, H160, H256, Hash, Header, KeyValue, LookupSource, Moment, Perbill, Percent, Weight } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, Balance, BalanceOf, BlockNumber, BlockNumberFor, Call, CallHashOf, ChangesTrieConfiguration, H160, Hash, Header, KeyValue, LookupSource, Moment, OpaqueCall, Perbill, Percent, Weight } from '@polkadot/types/interfaces/runtime';
 import type { Period, Priority } from '@polkadot/types/interfaces/scheduler';
 import type { Keys } from '@polkadot/types/interfaces/session';
-import type { CompactAssignments, ElectionScore, ElectionSize, EraIndex, RewardDestination, ValidatorIndex, ValidatorPrefs } from '@polkadot/types/interfaces/staking';
+import type { SocietyJudgement } from '@polkadot/types/interfaces/society';
+import type { ElectionScore, EraIndex, RawSolution, RewardDestination, SolutionOrSnapshotSize, Supports, ValidatorPrefs } from '@polkadot/types/interfaces/staking';
 import type { Key } from '@polkadot/types/interfaces/system';
 import type { BountyIndex } from '@polkadot/types/interfaces/treasury';
+import type { Timepoint } from '@polkadot/types/interfaces/utility';
 import type { VestingInfo } from '@polkadot/types/interfaces/vesting';
-import type { ApiTypes, SubmittableExtrinsic } from '@polkadot/api/types';
 
-declare module '@polkadot/api/types/submittable' {
-  export interface AugmentedSubmittables<ApiType> {
+declare module '@polkadot/api-base/types/submittable' {
+  export interface AugmentedSubmittables<ApiType extends ApiTypes> {
     authorship: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Provide a set of uncles.
        **/
       setUncles: AugmentedSubmittable<(newUncles: Vec<Header> | (Header | { parentHash?: any; number?: any; stateRoot?: any; extrinsicsRoot?: any; digest?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Header>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     babe: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+      /**
+       * Plan an epoch config change. The epoch config change is recorded and will be enacted on
+       * the next call to `enact_epoch_change`. The config will be activated one epoch after.
+       * Multiple calls to this method will replace any existing planned config change that had
+       * not been enacted yet.
+       **/
+      planConfigChange: AugmentedSubmittable<(config: NextConfigDescriptor | { V0: any } | { V1: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [NextConfigDescriptor]>;
       /**
        * Report authority equivocation/misbehavior. This method will verify
        * the equivocation proof and validate the given key ownership proof
@@ -53,9 +66,12 @@ declare module '@polkadot/api/types/submittable' {
        * reporter.
        **/
       reportEquivocationUnsigned: AugmentedSubmittable<(equivocationProof: BabeEquivocationProof | { offender?: any; slotNumber?: any; firstHeader?: any; secondHeader?: any } | string | Uint8Array, keyOwnerProof: KeyOwnerProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [BabeEquivocationProof, KeyOwnerProof]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     balances: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Exactly as `transfer`, except the origin must be root and the source account may be
        * specified.
@@ -109,88 +125,253 @@ declare module '@polkadot/api/types/submittable' {
        **/
       transfer: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<Balance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Compact<Balance>]>;
       /**
+       * Transfer the entire transferable balance from the caller account.
+       * 
+       * NOTE: This function only attempts to transfer _transferable_ balances. This means that
+       * any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
+       * transferred by this function. To ensure that this function results in a killed account,
+       * you might need to prepare the account by removing any reference counters, storage
+       * deposits, etc...
+       * 
+       * The dispatch origin of this call must be Signed.
+       * 
+       * - `dest`: The recipient of the transfer.
+       * - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
+       * of the funds the account has, causing the sender account to be killed (false), or
+       * transfer everything except at least the existential deposit, which will guarantee to
+       * keep the sender account alive (true).
+       * # <weight>
+       * - O(1). Just like transfer, but reading the user's transferable balance first.
+       * #</weight>
+       **/
+      transferAll: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, keepAlive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
+      /**
        * Same as the [`transfer`] call, but with a check that the transfer will not kill the
        * origin account.
        * 
        * 99% of the time you want [`transfer`] instead.
        * 
-       * [`transfer`]: struct.Module.html#method.transfer
+       * [`transfer`]: struct.Pallet.html#method.transfer
        **/
       transferKeepAlive: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<Balance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Compact<Balance>]>;
-    };
-    claims: {
+      /**
+       * Generic tx
+       **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    bounties: {
       /**
-       * Make a claim to collect your DOTs.
+       * Accept the curator role for a bounty.
+       * A deposit will be reserved from curator and refund upon successful payout.
        * 
-       * The dispatch origin for this call must be _None_.
+       * May only be called from the curator.
        * 
-       * Unsigned Validation:
-       * A call to claim is deemed valid if the signature provided matches
-       * the expected signed message of:
-       * 
-       * > Ethereum Signed Message:
-       * > (configured prefix string)(address)
-       * 
-       * and `address` matches the `dest` account.
-       * 
-       * Parameters:
-       * - `dest`: The destination account to payout the claim.
-       * - `ethereum_signature`: The signature of an ethereum signed message
-       * matching the format described above.
-       * 
-       * <weight>
-       * The weight of this call is invariant over the input parameters.
-       * - One `eth_recover` operation which involves a keccak hash and a
-       * ecdsa recover.
-       * - Three storage reads to check if a claim exists for the user, to
-       * get the current pot size, to see if there exists a vesting schedule.
-       * - Up to one storage write for adding a new vesting schedule.
-       * - One `deposit_creating` Currency call.
-       * - One storage write to update the total.
-       * - Two storage removals for vesting and claims information.
-       * - One deposit event.
-       * 
-       * Total Complexity: O(1)
-       * ----------------------------
-       * Base Weight: 269.7 µs
-       * DB Weight:
-       * - Read: Claims
-       * - Write: Account, Claims
-       * Validate Unsigned: +188.7 µs
-       * </weight>
+       * # <weight>
+       * - O(1).
+       * # </weight>
        **/
-      claim: AugmentedSubmittable<(dest: AccountId | string | Uint8Array, signature: OtherSignature | { Eth: any } | { Tron: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, OtherSignature]>;
+      acceptCurator: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
       /**
-       * Mint a new claim to collect DOTs.
+       * Approve a bounty proposal. At a later time, the bounty will be funded and become active
+       * and the original deposit will be returned.
        * 
-       * The dispatch origin for this call must be _Root_.
+       * May only be called from `T::ApproveOrigin`.
        * 
-       * Parameters:
-       * - `who`: The Ethereum address allowed to collect this claim.
-       * - `value`: The number of DOTs that will be claimed.
-       * - `vesting_schedule`: An optional vesting schedule for these DOTs.
-       * 
-       * <weight>
-       * The weight of this call is invariant over the input parameters.
-       * - One storage mutate to increase the total claims available.
-       * - One storage write to add a new claim.
-       * - Up to one storage write to add a new vesting schedule.
-       * 
-       * Total Complexity: O(1)
-       * ---------------------
-       * Base Weight: 10.46 µs
-       * DB Weight:
-       * - Reads:
-       * - Writes: Account, Claims
-       * - Maybe Write: Vesting, Statement
-       * </weight>
+       * # <weight>
+       * - O(1).
+       * # </weight>
        **/
-      mintClaim: AugmentedSubmittable<(who: OtherAddress | { Eth: any } | { Tron: any } | string | Uint8Array, value: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [OtherAddress, RingBalance]>;
-      moveClaim: AugmentedSubmittable<(old: OtherAddress | { Eth: any } | { Tron: any } | string | Uint8Array, updated: OtherAddress | { Eth: any } | { Tron: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [OtherAddress, OtherAddress]>;
+      approveBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
+      /**
+       * Award bounty to a beneficiary account. The beneficiary will be able to claim the funds after a delay.
+       * 
+       * The dispatch origin for this call must be the curator of this bounty.
+       * 
+       * - `bounty_id`: Bounty ID to award.
+       * - `beneficiary`: The beneficiary account whom will receive the payout.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      awardBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array, beneficiary: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>, LookupSource]>;
+      /**
+       * Claim the payout from an awarded bounty after payout delay.
+       * 
+       * The dispatch origin for this call must be the beneficiary of this bounty.
+       * 
+       * - `bounty_id`: Bounty ID to claim.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      claimBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
+      /**
+       * Cancel a proposed or active bounty. All the funds will be sent to treasury and
+       * the curator deposit will be unreserved if possible.
+       * 
+       * Only `T::RejectOrigin` is able to cancel a bounty.
+       * 
+       * - `bounty_id`: Bounty ID to cancel.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      closeBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
+      /**
+       * Extend the expiry time of an active bounty.
+       * 
+       * The dispatch origin for this call must be the curator of this bounty.
+       * 
+       * - `bounty_id`: Bounty ID to extend.
+       * - `remark`: additional information.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      extendBountyExpiry: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array, remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>, Bytes]>;
+      /**
+       * Propose a new bounty.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Payment: `TipReportDepositBase` will be reserved from the origin account, as well as
+       * `DataDepositPerByte` for each byte in `reason`. It will be unreserved upon approval,
+       * or slashed when rejected.
+       * 
+       * - `curator`: The curator account whom will manage this bounty.
+       * - `fee`: The curator fee.
+       * - `value`: The total payment amount of this bounty, curator fee included.
+       * - `description`: The description of this bounty.
+       **/
+      proposeBounty: AugmentedSubmittable<(value: Compact<BalanceOf> | AnyNumber | Uint8Array, description: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BalanceOf>, Bytes]>;
+      /**
+       * Assign a curator to a funded bounty.
+       * 
+       * May only be called from `T::ApproveOrigin`.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      proposeCurator: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array, curator: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, fee: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>, LookupSource, Compact<BalanceOf>]>;
+      /**
+       * Unassign curator from a bounty.
+       * 
+       * This function can only be called by the `RejectOrigin` a signed origin.
+       * 
+       * If this function is called by the `RejectOrigin`, we assume that the curator is malicious
+       * or inactive. As a result, we will slash the curator when possible.
+       * 
+       * If the origin is the curator, we take this as a sign they are unable to do their job and
+       * they willingly give up. We could slash them, but for now we allow them to recover their
+       * deposit and exit without issue. (We may want to change this if it is abused.)
+       * 
+       * Finally, the origin can be anyone if and only if the curator is "inactive". This allows
+       * anyone in the community to call out that a curator is not doing their due diligence, and
+       * we should pick a new curator. In this case the curator should also be slashed.
+       * 
+       * # <weight>
+       * - O(1).
+       * # </weight>
+       **/
+      unassignCurator: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    bridgeCrabGrandpa: {
+      /**
+       * Bootstrap the bridge pallet with an initial header and authority set from which to sync.
+       * 
+       * The initial configuration provided does not need to be the genesis header of the bridged
+       * chain, it can be any arbitrary header. You can also provide the next scheduled set
+       * change if it is already know.
+       * 
+       * This function is only allowed to be called from a trusted origin and writes to storage
+       * with practically no checks in terms of the validity of the data. It is important that
+       * you ensure that valid data is being passed in.
+       **/
+      initialize: AugmentedSubmittable<(initData: InitializationData | { header?: any; authorityList?: any; setId?: any; isHalted?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [InitializationData]>;
+      /**
+       * Halt or resume all pallet operations.
+       * 
+       * May only be called either by root, or by `PalletOwner`.
+       **/
+      setOperational: AugmentedSubmittable<(operational: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [bool]>;
+      /**
+       * Change `PalletOwner`.
+       * 
+       * May only be called either by root, or by `PalletOwner`.
+       **/
+      setOwner: AugmentedSubmittable<(newOwner: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Option<AccountId>]>;
+      /**
+       * Verify a target header is finalized according to the given finality proof.
+       * 
+       * It will use the underlying storage pallet to fetch information about the current
+       * authorities and best finalized header in order to verify that the header is finalized.
+       * 
+       * If successful in verification, it will write the target header to the underlying storage
+       * pallet.
+       **/
+      submitFinalityProof: AugmentedSubmittable<(finalityTarget: BridgedHeader | { parentHash?: any; number?: any; stateRoot?: any; extrinsicsRoot?: any; digest?: any } | string | Uint8Array, justification: GrandpaJustification | { round?: any; commit?: any; votesAncestries?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [BridgedHeader, GrandpaJustification]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    bridgeCrabMessages: {
+      /**
+       * Pay additional fee for the message.
+       **/
+      increaseMessageFee: AugmentedSubmittable<(laneId: LaneId | string | Uint8Array, nonce: MessageNonce | AnyNumber | Uint8Array, additionalFee: OutboundMessageFee | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LaneId, MessageNonce, OutboundMessageFee]>;
+      /**
+       * Receive messages delivery proof from bridged chain.
+       **/
+      receiveMessagesDeliveryProof: AugmentedSubmittable<(proof: MessagesDeliveryProofOf | { bridgedHeaderHash?: any; storageProof?: any; lane?: any } | string | Uint8Array, relayersState: UnrewardedRelayersState | { unrewardedRelayer_Entries?: any; messagesInOldestEntry?: any; totalMessages?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [MessagesDeliveryProofOf, UnrewardedRelayersState]>;
+      /**
+       * Receive messages proof from bridged chain.
+       * 
+       * The weight of the call assumes that the transaction always brings outbound lane
+       * state update. Because of that, the submitter (relayer) has no benefit of not including
+       * this data in the transaction, so reward confirmations lags should be minimal.
+       **/
+      receiveMessagesProof: AugmentedSubmittable<(relayerIdAtBridgedChain: InboundRelayer | string | Uint8Array, proof: MessagesProofOf | { bridgedHeaderHash?: any; storageProof?: any; lane?: any; noncesStart?: any; noncesEnd?: any } | string | Uint8Array, messagesCount: u32 | AnyNumber | Uint8Array, dispatchWeight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [InboundRelayer, MessagesProofOf, u32, Weight]>;
+      /**
+       * Send message over lane.
+       **/
+      sendMessage: AugmentedSubmittable<(laneId: LaneId | string | Uint8Array, payload: OutboundPayload | { specVersion?: any; weight?: any; origin?: any; dispatchFeePayment?: any; call?: any } | string | Uint8Array, deliveryAndDispatchFee: OutboundMessageFee | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LaneId, OutboundPayload, OutboundMessageFee]>;
+      /**
+       * Halt or resume all/some pallet operations.
+       * 
+       * May only be called either by root, or by `PalletOwner`.
+       **/
+      setOperatingMode: AugmentedSubmittable<(operatingMode: OperatingMode | 'Normal' | 'RejectingOutboundMessages' | 'Halted' | number | Uint8Array) => SubmittableExtrinsic<ApiType>, [OperatingMode]>;
+      /**
+       * Change `PalletOwner`.
+       * 
+       * May only be called either by root, or by `PalletOwner`.
+       **/
+      setOwner: AugmentedSubmittable<(newOwner: Option<AccountId> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Option<AccountId>]>;
+      /**
+       * Update pallet parameter.
+       * 
+       * May only be called either by root, or by `PalletOwner`.
+       * 
+       * The weight is: single read for permissions check + 2 writes for parameter value and
+       * event.
+       **/
+      updatePalletParameter: AugmentedSubmittable<(parameter: Parameter | null) => SubmittableExtrinsic<ApiType>, [Parameter]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     council: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Close a vote that is either approved, disapproved or whose voting period has ended.
        * 
@@ -327,9 +508,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       vote: AugmentedSubmittable<(proposal: Hash | string | Uint8Array, index: Compact<ProposalIndex> | AnyNumber | Uint8Array, approve: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash, Compact<ProposalIndex>, bool]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     democracy: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Permanently place a proposal into the blacklist. This prevents it from ever being
        * proposed again.
@@ -660,121 +844,70 @@ declare module '@polkadot/api/types/submittable' {
        * Weight: `O(R)` where R is the number of referendums the voter has voted on.
        **/
       vote: AugmentedSubmittable<(refIndex: Compact<ReferendumIndex> | AnyNumber | Uint8Array, vote: AccountVote | { Standard: any } | { Split: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ReferendumIndex>, AccountVote]>;
-    };
-    electionsPhragmen: {
+      /**
+       * Generic tx
+       **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
-      /**
-       * Clean all voters who are defunct (i.e. they do not serve any purpose at all). The
-       * deposit of the removed voters are returned.
-       * 
-       * This is an root function to be used only for cleaning the state.
-       * 
-       * The dispatch origin of this call must be root.
-       * 
-       * # <weight>
-       * The total number of voters and those that are defunct must be provided as witness data.
-       * # </weight>
-       **/
-      cleanDefunctVoters: AugmentedSubmittable<(numVoters: u32 | AnyNumber | Uint8Array, numDefunct: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u32]>;
-      /**
-       * Remove a particular member from the set. This is effective immediately and the bond of
-       * the outgoing member is slashed.
-       * 
-       * If a runner-up is available, then the best runner-up will be removed and replaces the
-       * outgoing member. Otherwise, a new phragmen election is started.
-       * 
-       * The dispatch origin of this call must be root.
-       * 
-       * Note that this does not affect the designated block number of the next election.
-       * 
-       * # <weight>
-       * If we have a replacement, we use a small weight. Else, since this is a root call and
-       * will go into phragmen, we assume full block for now.
-       * # </weight>
-       **/
-      removeMember: AugmentedSubmittable<(who: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, hasReplacement: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
-      /**
-       * Remove `origin` as a voter.
-       * 
-       * This removes the lock and returns the deposit.
-       * 
-       * The dispatch origin of this call must be signed and be a voter.
-       **/
-      removeVoter: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
-      /**
-       * Renounce one's intention to be a candidate for the next election round. 3 potential
-       * outcomes exist:
-       * 
-       * - `origin` is a candidate and not elected in any set. In this case, the deposit is
-       * unreserved, returned and origin is removed as a candidate.
-       * - `origin` is a current runner-up. In this case, the deposit is unreserved, returned and
-       * origin is removed as a runner-up.
-       * - `origin` is a current member. In this case, the deposit is unreserved and origin is
-       * removed as a member, consequently not being a candidate for the next round anymore.
-       * Similar to [`remove_members`], if replacement runners exists, they are immediately used.
-       * If the prime is renouncing, then no prime will exist until the next round.
-       * 
-       * The dispatch origin of this call must be signed, and have one of the above roles.
-       * 
-       * # <weight>
-       * The type of renouncing must be provided as witness data.
-       * # </weight>
-       **/
-      renounceCandidacy: AugmentedSubmittable<(renouncing: Renouncing | { Member: any } | { RunnerUp: any } | { Candidate: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Renouncing]>;
-      /**
-       * Submit oneself for candidacy. A fixed amount of deposit is recorded.
-       * 
-       * All candidates are wiped at the end of the term. They either become a member/runner-up,
-       * or leave the system while their deposit is slashed.
-       * 
-       * The dispatch origin of this call must be signed.
-       * 
-       * ### Warning
-       * 
-       * Even if a candidate ends up being a member, they must call [`Call::renounce_candidacy`]
-       * to get their deposit back. Losing the spot in an election will always lead to a slash.
-       * 
-       * # <weight>
-       * The number of current candidates must be provided as witness data.
-       * # </weight>
-       **/
-      submitCandidacy: AugmentedSubmittable<(candidateCount: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
-      /**
-       * Vote for a set of candidates for the upcoming round of election. This can be called to
-       * set the initial votes, or update already existing votes.
-       * 
-       * Upon initial voting, `value` units of `who`'s balance is locked and a deposit amount is
-       * reserved. The deposit is based on the number of votes and can be updated over time.
-       * 
-       * The `votes` should:
-       * - not be empty.
-       * - be less than the number of possible candidates. Note that all current members and
-       * runners-up are also automatically candidates for the next round.
-       * 
-       * If `value` is more than `who`'s total balance, then the maximum of the two is used.
-       * 
-       * The dispatch origin of this call must be signed.
-       * 
-       * ### Warning
-       * 
-       * It is the responsibility of the caller to **NOT** place all of their balance into the
-       * lock and keep some for further operations.
-       * 
-       * # <weight>
-       * We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_less.
-       * # </weight>
-       **/
-      vote: AugmentedSubmittable<(votes: Vec<AccountId> | (AccountId | string | Uint8Array)[], value: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<AccountId>, Compact<BalanceOf>]>;
     };
-    ethereum: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    electionProviderMultiPhase: {
       /**
-       * Transact an Ethereum transaction.
+       * Set a solution in the queue, to be handed out to the client of this pallet in the next
+       * call to `ElectionProvider::elect`.
+       * 
+       * This can only be set by `T::ForceOrigin`, and only when the phase is `Emergency`.
+       * 
+       * The solution is not checked for any feasibility and is assumed to be trustworthy, as any
+       * feasibility check itself can in principle cause the election process to fail (due to
+       * memory/weight constrains).
        **/
-      transact: AugmentedSubmittable<(transaction: EthTransaction | { nonce?: any; gasPrice?: any; gasLimit?: any; action?: any; value?: any; input?: any; v?: any; r?: any; s?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthTransaction]>;
+      setEmergencyElectionResult: AugmentedSubmittable<(supports: Supports) => SubmittableExtrinsic<ApiType>, [Supports]>;
+      /**
+       * Set a new value for `MinimumUntrustedScore`.
+       * 
+       * Dispatch origin must be aligned with `T::ForceOrigin`.
+       * 
+       * This check can be turned off by setting the value to `None`.
+       **/
+      setMinimumUntrustedScore: AugmentedSubmittable<(maybeNextScore: Option<ElectionScore> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Option<ElectionScore>]>;
+      /**
+       * Submit a solution for the signed phase.
+       * 
+       * The dispatch origin fo this call must be __signed__.
+       * 
+       * The solution is potentially queued, based on the claimed score and processed at the end
+       * of the signed phase.
+       * 
+       * A deposit is reserved and recorded for the solution. Based on the outcome, the solution
+       * might be rewarded, slashed, or get all or a part of the deposit back.
+       * 
+       * # <weight>
+       * Queue size must be provided as witness data.
+       * # </weight>
+       **/
+      submit: AugmentedSubmittable<(rawSolution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, numSignedSubmissions: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, u32]>;
+      /**
+       * Submit a solution for the unsigned phase.
+       * 
+       * The dispatch origin fo this call must be __none__.
+       * 
+       * This submission is checked on the fly. Moreover, this unsigned solution is only
+       * validated when submitted to the pool from the **local** node. Effectively, this means
+       * that only active validators can submit this transaction when authoring a block (similar
+       * to an inherent).
+       * 
+       * To prevent any incorrect solution (and thus wasted time/weight), this transaction will
+       * panic if the solution submitted by the validator is invalid in any way, effectively
+       * putting their authoring reward at risk.
+       * 
+       * No deposit or reward is associated with this submission.
+       **/
+      submitUnsigned: AugmentedSubmittable<(rawSolution: RawSolution | { compact?: any; score?: any; round?: any } | string | Uint8Array, witness: SolutionOrSnapshotSize | { voters?: any; targets?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RawSolution, SolutionOrSnapshotSize]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     ethereumBacking: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Lock some balances into the module account
        * which very similar to lock some assets into the contract on ethereum side
@@ -802,7 +935,10 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setDepositRedeemAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumAddress]>;
+      setKtonTokenAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumAddress]>;
       setRedeemStatus: AugmentedSubmittable<(status: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [bool]>;
+      setRingTokenAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumAddress]>;
+      setSetAuthoritiesAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumAddress]>;
       /**
        * Set a new ring redeem address.
        * 
@@ -816,9 +952,12 @@ declare module '@polkadot/api/types/submittable' {
        **/
       setTokenRedeemAddress: AugmentedSubmittable<(updated: EthereumAddress | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumAddress]>;
       syncAuthoritiesChange: AugmentedSubmittable<(proof: EthereumReceiptProofThing) => SubmittableExtrinsic<ApiType>, [EthereumReceiptProofThing]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     ethereumRelay: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       affirm: AugmentedSubmittable<(ethereumRelayHeaderParcel: EthereumRelayHeaderParcel | { header?: any; parentMmrRoot?: any } | string | Uint8Array, optionalEthereumRelayProofs: Option<EthereumRelayProofs> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumRelayHeaderParcel, Option<EthereumRelayProofs>]>;
       /**
        * Check and verify the receipt
@@ -873,9 +1012,12 @@ declare module '@polkadot/api/types/submittable' {
        **/
       setReceiptVerifyFee: AugmentedSubmittable<(updated: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RingBalance>]>;
       votePendingRelayHeaderParcel: AugmentedSubmittable<(ethereumBlockNumber: EthereumBlockNumber | AnyNumber | Uint8Array, aye: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [EthereumBlockNumber, bool]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     ethereumRelayAuthorities: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Require add origin
        * 
@@ -945,26 +1087,39 @@ declare module '@polkadot/api/types/submittable' {
        * - the relay requirement is valid
        * - the signature is signed by the submitter
        **/
-      submitSignedMmrRoot: AugmentedSubmittable<(blockNumber: BlockNumber | AnyNumber | Uint8Array, signature: RelayAuthoritySignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [BlockNumber, RelayAuthoritySignature]>;
-    };
-    evm: {
+      submitSignedMmrRoot: AugmentedSubmittable<(blockNumber: BlockNumberFor | AnyNumber | Uint8Array, signature: RelayAuthoritySignature | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [BlockNumberFor, RelayAuthoritySignature]>;
+      /**
+       * Generic tx
+       **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    feeMarket: {
       /**
-       * Issue an EVM call operation. This is similar to a message call transaction in Ethereum.
+       * Cancel enrolled relayer(Update market needed)
        **/
-      call: AugmentedSubmittable<(source: H160 | string | Uint8Array, target: H160 | string | Uint8Array, input: Bytes | string | Uint8Array, value: U256 | AnyNumber | Uint8Array, gasLimit: u64 | AnyNumber | Uint8Array, gasPrice: U256 | AnyNumber | Uint8Array, nonce: Option<U256> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, H160, Bytes, U256, u64, U256, Option<U256>]>;
+      cancelEnrollment: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
       /**
-       * Issue an EVM create operation. This is similar to a contract creation transaction in
-       * Ethereum.
+       * Any accounts can enroll to be a relayer by lock collateral. The relay fee is optional,
+       * the default value is MinimumRelayFee in runtime. (Update market needed)
+       * Note: One account can enroll only once.
        **/
-      create: AugmentedSubmittable<(source: H160 | string | Uint8Array, init: Bytes | string | Uint8Array, value: U256 | AnyNumber | Uint8Array, gasLimit: u64 | AnyNumber | Uint8Array, gasPrice: U256 | AnyNumber | Uint8Array, nonce: Option<U256> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, Bytes, U256, u64, U256, Option<U256>]>;
+      enrollAndLockCollateral: AugmentedSubmittable<(lockCollateral: RingBalance | AnyNumber | Uint8Array, relayFee: Option<RingBalance> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance, Option<RingBalance>]>;
+      setAssignedRelayersNumber: AugmentedSubmittable<(number: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      setSlashProtect: AugmentedSubmittable<(slashProtect: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance]>;
       /**
-       * Issue an EVM create2 operation.
+       * Update locked collateral for enrolled relayer, only supporting lock more. (Update market needed)
        **/
-      create2: AugmentedSubmittable<(source: H160 | string | Uint8Array, init: Bytes | string | Uint8Array, salt: H256 | string | Uint8Array, value: U256 | AnyNumber | Uint8Array, gasLimit: u64 | AnyNumber | Uint8Array, gasPrice: U256 | AnyNumber | Uint8Array, nonce: Option<U256> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, Bytes, H256, U256, u64, U256, Option<U256>]>;
+      updateLockedCollateral: AugmentedSubmittable<(newCollateral: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance]>;
+      /**
+       * Update relay fee for enrolled relayer. (Update market needed)
+       **/
+      updateRelayFee: AugmentedSubmittable<(newFee: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     grandpa: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Note that the current authority set of the GRANDPA finality gadget has
        * stalled. This will trigger a forced authority set change at the beginning
@@ -994,9 +1149,279 @@ declare module '@polkadot/api/types/submittable' {
        * reporter.
        **/
       reportEquivocationUnsigned: AugmentedSubmittable<(equivocationProof: GrandpaEquivocationProof | { setId?: any; equivocation?: any } | string | Uint8Array, keyOwnerProof: KeyOwnerProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [GrandpaEquivocationProof, KeyOwnerProof]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    identity: {
+      /**
+       * Add a registrar to the system.
+       * 
+       * The dispatch origin for this call must be `T::RegistrarOrigin`.
+       * 
+       * - `account`: the account of the registrar.
+       * 
+       * Emits `RegistrarAdded` if successful.
+       * 
+       * # <weight>
+       * - `O(R)` where `R` registrar-count (governance-bounded and code-bounded).
+       * - One storage mutation (codec `O(R)`).
+       * - One event.
+       * # </weight>
+       **/
+      addRegistrar: AugmentedSubmittable<(account: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      /**
+       * Add the given account to the sender's subs.
+       * 
+       * Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
+       * to the sender.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * sub identity of `sub`.
+       **/
+      addSub: AugmentedSubmittable<(sub: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, data: Data | { None: any } | { Raw: any } | { BlakeTwo256: any } | { Sha256: any } | { Keccak256: any } | { ShaThree256: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Data]>;
+      /**
+       * Cancel a previous request.
+       * 
+       * Payment: A previously reserved deposit is returned on success.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a
+       * registered identity.
+       * 
+       * - `reg_index`: The index of the registrar whose judgement is no longer requested.
+       * 
+       * Emits `JudgementUnrequested` if successful.
+       * 
+       * # <weight>
+       * - `O(R + X)`.
+       * - One balance-reserve operation.
+       * - One storage mutation `O(R + X)`.
+       * - One event
+       * # </weight>
+       **/
+      cancelRequest: AugmentedSubmittable<(regIndex: RegistrarIndex | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RegistrarIndex]>;
+      /**
+       * Clear an account's identity info and all sub-accounts and return all deposits.
+       * 
+       * Payment: All reserved balances on the account are returned.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * identity.
+       * 
+       * Emits `IdentityCleared` if successful.
+       * 
+       * # <weight>
+       * - `O(R + S + X)`
+       * - where `R` registrar-count (governance-bounded).
+       * - where `S` subs-count (hard- and deposit-bounded).
+       * - where `X` additional-field-count (deposit-bounded and code-bounded).
+       * - One balance-unreserve operation.
+       * - `2` storage reads and `S + 2` storage deletions.
+       * - One event.
+       * # </weight>
+       **/
+      clearIdentity: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Remove an account's identity and sub-account information and slash the deposits.
+       * 
+       * Payment: Reserved balances from `set_subs` and `set_identity` are slashed and handled by
+       * `Slash`. Verification request deposits are not returned; they should be cancelled
+       * manually using `cancel_request`.
+       * 
+       * The dispatch origin for this call must match `T::ForceOrigin`.
+       * 
+       * - `target`: the account whose identity the judgement is upon. This must be an account
+       * with a registered identity.
+       * 
+       * Emits `IdentityKilled` if successful.
+       * 
+       * # <weight>
+       * - `O(R + S + X)`.
+       * - One balance-reserve operation.
+       * - `S + 2` storage mutations.
+       * - One event.
+       * # </weight>
+       **/
+      killIdentity: AugmentedSubmittable<(target: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource]>;
+      /**
+       * Provide a judgement for an account's identity.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must be the account
+       * of the registrar whose index is `reg_index`.
+       * 
+       * - `reg_index`: the index of the registrar whose judgement is being made.
+       * - `target`: the account whose identity the judgement is upon. This must be an account
+       * with a registered identity.
+       * - `judgement`: the judgement of the registrar of index `reg_index` about `target`.
+       * 
+       * Emits `JudgementGiven` if successful.
+       * 
+       * # <weight>
+       * - `O(R + X)`.
+       * - One balance-transfer operation.
+       * - Up to one account-lookup operation.
+       * - Storage: 1 read `O(R)`, 1 mutate `O(R + X)`.
+       * - One event.
+       * # </weight>
+       **/
+      provideJudgement: AugmentedSubmittable<(regIndex: Compact<RegistrarIndex> | AnyNumber | Uint8Array, target: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, judgement: IdentityJudgement | { Unknown: any } | { FeePaid: any } | { Reasonable: any } | { KnownGood: any } | { OutOfDate: any } | { LowQuality: any } | { Erroneous: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RegistrarIndex>, LookupSource, IdentityJudgement]>;
+      /**
+       * Remove the sender as a sub-account.
+       * 
+       * Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
+       * to the sender (*not* the original depositor).
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * super-identity.
+       * 
+       * NOTE: This should not normally be used, but is provided in the case that the non-
+       * controller of an account is maliciously registered as a sub-account.
+       **/
+      quitSub: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Remove the given account from the sender's subs.
+       * 
+       * Payment: Balance reserved by a previous `set_subs` call for one sub will be repatriated
+       * to the sender.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * sub identity of `sub`.
+       **/
+      removeSub: AugmentedSubmittable<(sub: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource]>;
+      /**
+       * Alter the associated name of the given sub-account.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * sub identity of `sub`.
+       **/
+      renameSub: AugmentedSubmittable<(sub: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, data: Data | { None: any } | { Raw: any } | { BlakeTwo256: any } | { Sha256: any } | { Keccak256: any } | { ShaThree256: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Data]>;
+      /**
+       * Request a judgement from a registrar.
+       * 
+       * Payment: At most `max_fee` will be reserved for payment to the registrar if judgement
+       * given.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a
+       * registered identity.
+       * 
+       * - `reg_index`: The index of the registrar whose judgement is requested.
+       * - `max_fee`: The maximum fee that may be paid. This should just be auto-populated as:
+       * 
+       * ```nocompile
+       * Self::registrars().get(reg_index).unwrap().fee
+       * ```
+       * 
+       * Emits `JudgementRequested` if successful.
+       * 
+       * # <weight>
+       * - `O(R + X)`.
+       * - One balance-reserve operation.
+       * - Storage: 1 read `O(R)`, 1 mutate `O(X + R)`.
+       * - One event.
+       * # </weight>
+       **/
+      requestJudgement: AugmentedSubmittable<(regIndex: Compact<RegistrarIndex> | AnyNumber | Uint8Array, maxFee: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RegistrarIndex>, Compact<BalanceOf>]>;
+      /**
+       * Change the account associated with a registrar.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must be the account
+       * of the registrar whose index is `index`.
+       * 
+       * - `index`: the index of the registrar whose fee is to be set.
+       * - `new`: the new account ID.
+       * 
+       * # <weight>
+       * - `O(R)`.
+       * - One storage mutation `O(R)`.
+       * - Benchmark: 8.823 + R * 0.32 µs (min squares analysis)
+       * # </weight>
+       **/
+      setAccountId: AugmentedSubmittable<(index: Compact<RegistrarIndex> | AnyNumber | Uint8Array, updated: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RegistrarIndex>, AccountId]>;
+      /**
+       * Set the fee required for a judgement to be requested from a registrar.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must be the account
+       * of the registrar whose index is `index`.
+       * 
+       * - `index`: the index of the registrar whose fee is to be set.
+       * - `fee`: the new fee.
+       * 
+       * # <weight>
+       * - `O(R)`.
+       * - One storage mutation `O(R)`.
+       * - Benchmark: 7.315 + R * 0.329 µs (min squares analysis)
+       * # </weight>
+       **/
+      setFee: AugmentedSubmittable<(index: Compact<RegistrarIndex> | AnyNumber | Uint8Array, fee: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RegistrarIndex>, Compact<BalanceOf>]>;
+      /**
+       * Set the field information for a registrar.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must be the account
+       * of the registrar whose index is `index`.
+       * 
+       * - `index`: the index of the registrar whose fee is to be set.
+       * - `fields`: the fields that the registrar concerns themselves with.
+       * 
+       * # <weight>
+       * - `O(R)`.
+       * - One storage mutation `O(R)`.
+       * - Benchmark: 7.464 + R * 0.325 µs (min squares analysis)
+       * # </weight>
+       **/
+      setFields: AugmentedSubmittable<(index: Compact<RegistrarIndex> | AnyNumber | Uint8Array, fields: IdentityFields) => SubmittableExtrinsic<ApiType>, [Compact<RegistrarIndex>, IdentityFields]>;
+      /**
+       * Set an account's identity information and reserve the appropriate deposit.
+       * 
+       * If the account already has identity information, the deposit is taken as part payment
+       * for the new deposit.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `info`: The identity information.
+       * 
+       * Emits `IdentitySet` if successful.
+       * 
+       * # <weight>
+       * - `O(X + X' + R)`
+       * - where `X` additional-field-count (deposit-bounded and code-bounded)
+       * - where `R` judgements-count (registrar-count-bounded)
+       * - One balance reserve operation.
+       * - One storage mutation (codec-read `O(X' + R)`, codec-write `O(X + R)`).
+       * - One event.
+       * # </weight>
+       **/
+      setIdentity: AugmentedSubmittable<(info: IdentityInfo | { additional?: any; display?: any; legal?: any; web?: any; riot?: any; email?: any; pgpFingerprint?: any; image?: any; twitter?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [IdentityInfo]>;
+      /**
+       * Set the sub-accounts of the sender.
+       * 
+       * Payment: Any aggregate balance reserved by previous `set_subs` calls will be returned
+       * and an amount `SubAccountDeposit` will be reserved for each item in `subs`.
+       * 
+       * The dispatch origin for this call must be _Signed_ and the sender must have a registered
+       * identity.
+       * 
+       * - `subs`: The identity's (new) sub-accounts.
+       * 
+       * # <weight>
+       * - `O(P + S)`
+       * - where `P` old-subs-count (hard- and deposit-bounded).
+       * - where `S` subs-count (hard- and deposit-bounded).
+       * - At most one balance operations.
+       * - DB:
+       * - `P + S` storage mutations (codec complexity `O(1)`)
+       * - One storage read (codec complexity `O(P)`).
+       * - One storage write (codec complexity `O(S)`).
+       * - One storage-exists (`IdentityOf::contains_key`).
+       * # </weight>
+       **/
+      setSubs: AugmentedSubmittable<(subs: Vec<ITuple<[AccountId, Data]>> | ([AccountId | string | Uint8Array, Data | { None: any } | { Raw: any } | { BlakeTwo256: any } | { Sha256: any } | { Keccak256: any } | { ShaThree256: any } | string | Uint8Array])[]) => SubmittableExtrinsic<ApiType>, [Vec<ITuple<[AccountId, Data]>>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     imOnline: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * # <weight>
        * - Complexity: `O(K + E)` where K is length of `Keys` (heartbeat.validators_len)
@@ -1009,9 +1434,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       heartbeat: AugmentedSubmittable<(heartbeat: Heartbeat | { blockNumber?: any; networkState?: any; sessionIndex?: any; authorityIndex?: any; validatorsLen?: any } | string | Uint8Array, signature: Signature | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Heartbeat, Signature]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     kton: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Exactly as `transfer`, except the origin must be root and the source account may be
        * specified.
@@ -1065,17 +1493,335 @@ declare module '@polkadot/api/types/submittable' {
        **/
       transfer: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<Balance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Compact<Balance>]>;
       /**
+       * Transfer the entire transferable balance from the caller account.
+       * 
+       * NOTE: This function only attempts to transfer _transferable_ balances. This means that
+       * any locked, reserved, or existential deposits (when `keep_alive` is `true`), will not be
+       * transferred by this function. To ensure that this function results in a killed account,
+       * you might need to prepare the account by removing any reference counters, storage
+       * deposits, etc...
+       * 
+       * The dispatch origin of this call must be Signed.
+       * 
+       * - `dest`: The recipient of the transfer.
+       * - `keep_alive`: A boolean to determine if the `transfer_all` operation should send all
+       * of the funds the account has, causing the sender account to be killed (false), or
+       * transfer everything except at least the existential deposit, which will guarantee to
+       * keep the sender account alive (true).
+       * # <weight>
+       * - O(1). Just like transfer, but reading the user's transferable balance first.
+       * #</weight>
+       **/
+      transferAll: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, keepAlive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
+      /**
        * Same as the [`transfer`] call, but with a check that the transfer will not kill the
        * origin account.
        * 
        * 99% of the time you want [`transfer`] instead.
        * 
-       * [`transfer`]: struct.Module.html#method.transfer
+       * [`transfer`]: struct.Pallet.html#method.transfer
        **/
       transferKeepAlive: AugmentedSubmittable<(dest: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: Compact<Balance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, Compact<Balance>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    ktonTreasury: {
+      /**
+       * Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
+       * and the original deposit will be returned.
+       * 
+       * May only be called from `T::ApproveOrigin`.
+       * 
+       * # <weight>
+       * - Complexity: O(1).
+       * - DbReads: `Proposals`, `Approvals`
+       * - DbWrite: `Approvals`
+       * # </weight>
+       **/
+      approveProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
+      /**
+       * Put forward a suggestion for spending. A deposit proportional to the value
+       * is reserved and slashed if the proposal is rejected. It is returned once the
+       * proposal is awarded.
+       * 
+       * # <weight>
+       * - Complexity: O(1)
+       * - DbReads: `ProposalCount`, `origin account`
+       * - DbWrites: `ProposalCount`, `Proposals`, `origin account`
+       * # </weight>
+       **/
+      proposeSpend: AugmentedSubmittable<(value: Compact<BalanceOf> | AnyNumber | Uint8Array, beneficiary: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BalanceOf>, LookupSource]>;
+      /**
+       * Reject a proposed spend. The original deposit will be slashed.
+       * 
+       * May only be called from `T::RejectOrigin`.
+       * 
+       * # <weight>
+       * - Complexity: O(1)
+       * - DbReads: `Proposals`, `rejected proposer account`
+       * - DbWrites: `Proposals`, `rejected proposer account`
+       * # </weight>
+       **/
+      rejectProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    multisig: {
+      /**
+       * Register approval for a dispatch to be made from a deterministic composite account if
+       * approved by a total of `threshold - 1` of `other_signatories`.
+       * 
+       * Payment: `DepositBase` will be reserved if this is the first approval, plus
+       * `threshold` times `DepositFactor`. It is returned once this dispatch happens or
+       * is cancelled.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `threshold`: The total number of approvals for this dispatch before it is executed.
+       * - `other_signatories`: The accounts (other than the sender) who can approve this
+       * dispatch. May not be empty.
+       * - `maybe_timepoint`: If this is the first approval, then this must be `None`. If it is
+       * not the first approval, then it must be `Some`, with the timepoint (block number and
+       * transaction index) of the first approval transaction.
+       * - `call_hash`: The hash of the call to be executed.
+       * 
+       * NOTE: If this is the final approval, you will want to use `as_multi` instead.
+       * 
+       * # <weight>
+       * - `O(S)`.
+       * - Up to one balance-reserve or unreserve operation.
+       * - One passthrough operation, one insert, both `O(S)` where `S` is the number of
+       * signatories. `S` is capped by `MaxSignatories`, with weight being proportional.
+       * - One encode & hash, both of complexity `O(S)`.
+       * - Up to one binary search and insert (`O(logS + S)`).
+       * - I/O: 1 read `O(S)`, up to 1 mutate `O(S)`. Up to one remove.
+       * - One event.
+       * - Storage: inserts one item, value size bounded by `MaxSignatories`, with a
+       * deposit taken for its lifetime of
+       * `DepositBase + threshold * DepositFactor`.
+       * ----------------------------------
+       * - DB Weight:
+       * - Read: Multisig Storage, [Caller Account]
+       * - Write: Multisig Storage, [Caller Account]
+       * # </weight>
+       **/
+      approveAsMulti: AugmentedSubmittable<(threshold: u16 | AnyNumber | Uint8Array, otherSignatories: Vec<AccountId> | (AccountId | string | Uint8Array)[], maybeTimepoint: Option<Timepoint> | null | object | string | Uint8Array, callHash: U8aFixed | string | Uint8Array, maxWeight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u16, Vec<AccountId>, Option<Timepoint>, U8aFixed, Weight]>;
+      /**
+       * Register approval for a dispatch to be made from a deterministic composite account if
+       * approved by a total of `threshold - 1` of `other_signatories`.
+       * 
+       * If there are enough, then dispatch the call.
+       * 
+       * Payment: `DepositBase` will be reserved if this is the first approval, plus
+       * `threshold` times `DepositFactor`. It is returned once this dispatch happens or
+       * is cancelled.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `threshold`: The total number of approvals for this dispatch before it is executed.
+       * - `other_signatories`: The accounts (other than the sender) who can approve this
+       * dispatch. May not be empty.
+       * - `maybe_timepoint`: If this is the first approval, then this must be `None`. If it is
+       * not the first approval, then it must be `Some`, with the timepoint (block number and
+       * transaction index) of the first approval transaction.
+       * - `call`: The call to be executed.
+       * 
+       * NOTE: Unless this is the final approval, you will generally want to use
+       * `approve_as_multi` instead, since it only requires a hash of the call.
+       * 
+       * Result is equivalent to the dispatched result if `threshold` is exactly `1`. Otherwise
+       * on success, result is `Ok` and the result from the interior call, if it was executed,
+       * may be found in the deposited `MultisigExecuted` event.
+       * 
+       * # <weight>
+       * - `O(S + Z + Call)`.
+       * - Up to one balance-reserve or unreserve operation.
+       * - One passthrough operation, one insert, both `O(S)` where `S` is the number of
+       * signatories. `S` is capped by `MaxSignatories`, with weight being proportional.
+       * - One call encode & hash, both of complexity `O(Z)` where `Z` is tx-len.
+       * - One encode & hash, both of complexity `O(S)`.
+       * - Up to one binary search and insert (`O(logS + S)`).
+       * - I/O: 1 read `O(S)`, up to 1 mutate `O(S)`. Up to one remove.
+       * - One event.
+       * - The weight of the `call`.
+       * - Storage: inserts one item, value size bounded by `MaxSignatories`, with a
+       * deposit taken for its lifetime of
+       * `DepositBase + threshold * DepositFactor`.
+       * -------------------------------
+       * - DB Weight:
+       * - Reads: Multisig Storage, [Caller Account], Calls (if `store_call`)
+       * - Writes: Multisig Storage, [Caller Account], Calls (if `store_call`)
+       * - Plus Call Weight
+       * # </weight>
+       **/
+      asMulti: AugmentedSubmittable<(threshold: u16 | AnyNumber | Uint8Array, otherSignatories: Vec<AccountId> | (AccountId | string | Uint8Array)[], maybeTimepoint: Option<Timepoint> | null | object | string | Uint8Array, call: OpaqueCall | string | Uint8Array, storeCall: bool | boolean | Uint8Array, maxWeight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u16, Vec<AccountId>, Option<Timepoint>, OpaqueCall, bool, Weight]>;
+      /**
+       * Immediately dispatch a multi-signature call using a single approval from the caller.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `other_signatories`: The accounts (other than the sender) who are part of the
+       * multi-signature, but do not participate in the approval process.
+       * - `call`: The call to be executed.
+       * 
+       * Result is equivalent to the dispatched result.
+       * 
+       * # <weight>
+       * O(Z + C) where Z is the length of the call and C its execution weight.
+       * -------------------------------
+       * - DB Weight: None
+       * - Plus Call Weight
+       * # </weight>
+       **/
+      asMultiThreshold1: AugmentedSubmittable<(otherSignatories: Vec<AccountId> | (AccountId | string | Uint8Array)[], call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<AccountId>, Call]>;
+      /**
+       * Cancel a pre-existing, on-going multisig transaction. Any deposit reserved previously
+       * for this operation will be unreserved on success.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `threshold`: The total number of approvals for this dispatch before it is executed.
+       * - `other_signatories`: The accounts (other than the sender) who can approve this
+       * dispatch. May not be empty.
+       * - `timepoint`: The timepoint (block number and transaction index) of the first approval
+       * transaction for this dispatch.
+       * - `call_hash`: The hash of the call to be executed.
+       * 
+       * # <weight>
+       * - `O(S)`.
+       * - Up to one balance-reserve or unreserve operation.
+       * - One passthrough operation, one insert, both `O(S)` where `S` is the number of
+       * signatories. `S` is capped by `MaxSignatories`, with weight being proportional.
+       * - One encode & hash, both of complexity `O(S)`.
+       * - One event.
+       * - I/O: 1 read `O(S)`, one remove.
+       * - Storage: removes one item.
+       * ----------------------------------
+       * - DB Weight:
+       * - Read: Multisig Storage, [Caller Account], Refund Account, Calls
+       * - Write: Multisig Storage, [Caller Account], Refund Account, Calls
+       * # </weight>
+       **/
+      cancelAsMulti: AugmentedSubmittable<(threshold: u16 | AnyNumber | Uint8Array, otherSignatories: Vec<AccountId> | (AccountId | string | Uint8Array)[], timepoint: Timepoint | { height?: any; index?: any } | string | Uint8Array, callHash: U8aFixed | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u16, Vec<AccountId>, Timepoint, U8aFixed]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    phragmenElection: {
+      /**
+       * Clean all voters who are defunct (i.e. they do not serve any purpose at all). The
+       * deposit of the removed voters are returned.
+       * 
+       * This is an root function to be used only for cleaning the state.
+       * 
+       * The dispatch origin of this call must be root.
+       * 
+       * # <weight>
+       * The total number of voters and those that are defunct must be provided as witness data.
+       * # </weight>
+       **/
+      cleanDefunctVoters: AugmentedSubmittable<(numVoters: u32 | AnyNumber | Uint8Array, numDefunct: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u32]>;
+      /**
+       * Remove a particular member from the set. This is effective immediately and the bond of
+       * the outgoing member is slashed.
+       * 
+       * If a runner-up is available, then the best runner-up will be removed and replaces the
+       * outgoing member. Otherwise, a new phragmen election is started.
+       * 
+       * The dispatch origin of this call must be root.
+       * 
+       * Note that this does not affect the designated block number of the next election.
+       * 
+       * # <weight>
+       * If we have a replacement, we use a small weight. Else, since this is a root call and
+       * will go into phragmen, we assume full block for now.
+       * # </weight>
+       **/
+      removeMember: AugmentedSubmittable<(who: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, hasReplacement: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
+      /**
+       * Remove `origin` as a voter.
+       * 
+       * This removes the lock and returns the deposit.
+       * 
+       * The dispatch origin of this call must be signed and be a voter.
+       **/
+      removeVoter: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Renounce one's intention to be a candidate for the next election round. 3 potential
+       * outcomes exist:
+       * 
+       * - `origin` is a candidate and not elected in any set. In this case, the deposit is
+       * unreserved, returned and origin is removed as a candidate.
+       * - `origin` is a current runner-up. In this case, the deposit is unreserved, returned and
+       * origin is removed as a runner-up.
+       * - `origin` is a current member. In this case, the deposit is unreserved and origin is
+       * removed as a member, consequently not being a candidate for the next round anymore.
+       * Similar to [`remove_member`](Self::remove_member), if replacement runners exists,
+       * they are immediately used. If the prime is renouncing, then no prime will exist until
+       * the next round.
+       * 
+       * The dispatch origin of this call must be signed, and have one of the above roles.
+       * 
+       * # <weight>
+       * The type of renouncing must be provided as witness data.
+       * # </weight>
+       **/
+      renounceCandidacy: AugmentedSubmittable<(renouncing: Renouncing | { Member: any } | { RunnerUp: any } | { Candidate: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Renouncing]>;
+      /**
+       * Submit oneself for candidacy. A fixed amount of deposit is recorded.
+       * 
+       * All candidates are wiped at the end of the term. They either become a member/runner-up,
+       * or leave the system while their deposit is slashed.
+       * 
+       * The dispatch origin of this call must be signed.
+       * 
+       * ### Warning
+       * 
+       * Even if a candidate ends up being a member, they must call [`Call::renounce_candidacy`]
+       * to get their deposit back. Losing the spot in an election will always lead to a slash.
+       * 
+       * # <weight>
+       * The number of current candidates must be provided as witness data.
+       * # </weight>
+       **/
+      submitCandidacy: AugmentedSubmittable<(candidateCount: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
+      /**
+       * Vote for a set of candidates for the upcoming round of election. This can be called to
+       * set the initial votes, or update already existing votes.
+       * 
+       * Upon initial voting, `value` units of `who`'s balance is locked and a deposit amount is
+       * reserved. The deposit is based on the number of votes and can be updated over time.
+       * 
+       * The `votes` should:
+       * - not be empty.
+       * - be less than the number of possible candidates. Note that all current members and
+       * runners-up are also automatically candidates for the next round.
+       * 
+       * If `value` is more than `who`'s total balance, then the maximum of the two is used.
+       * 
+       * The dispatch origin of this call must be signed.
+       * 
+       * ### Warning
+       * 
+       * It is the responsibility of the caller to **NOT** place all of their balance into the
+       * lock and keep some for further operations.
+       * 
+       * # <weight>
+       * We assume the maximum weight among all 3 cases: vote_equal, vote_more and vote_less.
+       * # </weight>
+       **/
+      vote: AugmentedSubmittable<(votes: Vec<AccountId> | (AccountId | string | Uint8Array)[], value: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<AccountId>, Compact<BalanceOf>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     proxy: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Register a proxy account for the sender that is able to make calls on its behalf.
        * 
@@ -1184,7 +1930,7 @@ declare module '@polkadot/api/types/submittable' {
        **/
       proxy: AugmentedSubmittable<(real: AccountId | string | Uint8Array, forceProxyType: Option<ProxyType> | null | object | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Option<ProxyType>, Call]>;
       /**
-       * Dispatch the given `call` from an account that the sender is authorised for through
+       * Dispatch the given `call` from an account that the sender is authorized for through
        * `add_proxy`.
        * 
        * Removes any corresponding announcement(s).
@@ -1268,9 +2014,217 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       removeProxy: AugmentedSubmittable<(delegate: AccountId | string | Uint8Array, proxyType: ProxyType | 'Any' | 'NonTransfer' | 'Governance' | 'Staking' | 'IdentityJudgement' | 'EthereumBridge' | number | Uint8Array, delay: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, ProxyType, BlockNumber]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    recovery: {
+      /**
+       * Send a call through a recovered account.
+       * 
+       * The dispatch origin for this call must be _Signed_ and registered to
+       * be able to make calls on behalf of the recovered account.
+       * 
+       * Parameters:
+       * - `account`: The recovered account you want to make a call on-behalf-of.
+       * - `call`: The call you want to make with the recovered account.
+       * 
+       * # <weight>
+       * - The weight of the `call` + 10,000.
+       * - One storage lookup to check account is recovered by `who`. O(1)
+       * # </weight>
+       **/
+      asRecovered: AugmentedSubmittable<(account: AccountId | string | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, Call]>;
+      /**
+       * Cancel the ability to use `as_recovered` for `account`.
+       * 
+       * The dispatch origin for this call must be _Signed_ and registered to
+       * be able to make calls on behalf of the recovered account.
+       * 
+       * Parameters:
+       * - `account`: The recovered account you are able to call on-behalf-of.
+       * 
+       * # <weight>
+       * - One storage mutation to check account is recovered by `who`. O(1)
+       * # </weight>
+       **/
+      cancelRecovered: AugmentedSubmittable<(account: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      /**
+       * Allow a successful rescuer to claim their recovered account.
+       * 
+       * The dispatch origin for this call must be _Signed_ and must be a "rescuer"
+       * who has successfully completed the account recovery process: collected
+       * `threshold` or more vouches, waited `delay_period` blocks since initiation.
+       * 
+       * Parameters:
+       * - `account`: The lost account that you want to claim has been successfully
+       * recovered by you.
+       * 
+       * # <weight>
+       * Key: F (len of friends in config), V (len of vouching friends)
+       * - One storage read to get the recovery configuration. O(1), Codec O(F)
+       * - One storage read to get the active recovery process. O(1), Codec O(V)
+       * - One storage read to get the current block number. O(1)
+       * - One storage write. O(1), Codec O(V).
+       * - One event.
+       * 
+       * Total Complexity: O(F + V)
+       * # </weight>
+       **/
+      claimRecovery: AugmentedSubmittable<(account: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      /**
+       * As the controller of a recoverable account, close an active recovery
+       * process for your account.
+       * 
+       * Payment: By calling this function, the recoverable account will receive
+       * the recovery deposit `RecoveryDeposit` placed by the rescuer.
+       * 
+       * The dispatch origin for this call must be _Signed_ and must be a
+       * recoverable account with an active recovery process for it.
+       * 
+       * Parameters:
+       * - `rescuer`: The account trying to rescue this recoverable account.
+       * 
+       * # <weight>
+       * Key: V (len of vouching friends)
+       * - One storage read/remove to get the active recovery process. O(1), Codec O(V)
+       * - One balance call to repatriate reserved. O(X)
+       * - One event.
+       * 
+       * Total Complexity: O(V + X)
+       * # </weight>
+       **/
+      closeRecovery: AugmentedSubmittable<(rescuer: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      /**
+       * Create a recovery configuration for your account. This makes your account recoverable.
+       * 
+       * Payment: `ConfigDepositBase` + `FriendDepositFactor` * #_of_friends balance
+       * will be reserved for storing the recovery configuration. This deposit is returned
+       * in full when the user calls `remove_recovery`.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Parameters:
+       * - `friends`: A list of friends you trust to vouch for recovery attempts.
+       * Should be ordered and contain no duplicate values.
+       * - `threshold`: The number of friends that must vouch for a recovery attempt
+       * before the account can be recovered. Should be less than or equal to
+       * the length of the list of friends.
+       * - `delay_period`: The number of blocks after a recovery attempt is initialized
+       * that needs to pass before the account can be recovered.
+       * 
+       * # <weight>
+       * - Key: F (len of friends)
+       * - One storage read to check that account is not already recoverable. O(1).
+       * - A check that the friends list is sorted and unique. O(F)
+       * - One currency reserve operation. O(X)
+       * - One storage write. O(1). Codec O(F).
+       * - One event.
+       * 
+       * Total Complexity: O(F + X)
+       * # </weight>
+       **/
+      createRecovery: AugmentedSubmittable<(friends: Vec<AccountId> | (AccountId | string | Uint8Array)[], threshold: u16 | AnyNumber | Uint8Array, delayPeriod: BlockNumber | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<AccountId>, u16, BlockNumber]>;
+      /**
+       * Initiate the process for recovering a recoverable account.
+       * 
+       * Payment: `RecoveryDeposit` balance will be reserved for initiating the
+       * recovery process. This deposit will always be repatriated to the account
+       * trying to be recovered. See `close_recovery`.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Parameters:
+       * - `account`: The lost account that you want to recover. This account
+       * needs to be recoverable (i.e. have a recovery configuration).
+       * 
+       * # <weight>
+       * - One storage read to check that account is recoverable. O(F)
+       * - One storage read to check that this recovery process hasn't already started. O(1)
+       * - One currency reserve operation. O(X)
+       * - One storage read to get the current block number. O(1)
+       * - One storage write. O(1).
+       * - One event.
+       * 
+       * Total Complexity: O(F + X)
+       * # </weight>
+       **/
+      initiateRecovery: AugmentedSubmittable<(account: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      /**
+       * Remove the recovery process for your account. Recovered accounts are still accessible.
+       * 
+       * NOTE: The user must make sure to call `close_recovery` on all active
+       * recovery attempts before calling this function else it will fail.
+       * 
+       * Payment: By calling this function the recoverable account will unreserve
+       * their recovery configuration deposit.
+       * (`ConfigDepositBase` + `FriendDepositFactor` * #_of_friends)
+       * 
+       * The dispatch origin for this call must be _Signed_ and must be a
+       * recoverable account (i.e. has a recovery configuration).
+       * 
+       * # <weight>
+       * Key: F (len of friends)
+       * - One storage read to get the prefix iterator for active recoveries. O(1)
+       * - One storage read/remove to get the recovery configuration. O(1), Codec O(F)
+       * - One balance call to unreserved. O(X)
+       * - One event.
+       * 
+       * Total Complexity: O(F + X)
+       * # </weight>
+       **/
+      removeRecovery: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Allow ROOT to bypass the recovery process and set an a rescuer account
+       * for a lost account directly.
+       * 
+       * The dispatch origin for this call must be _ROOT_.
+       * 
+       * Parameters:
+       * - `lost`: The "lost account" to be recovered.
+       * - `rescuer`: The "rescuer account" which can call as the lost account.
+       * 
+       * # <weight>
+       * - One storage write O(1)
+       * - One event
+       * # </weight>
+       **/
+      setRecovered: AugmentedSubmittable<(lost: AccountId | string | Uint8Array, rescuer: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, AccountId]>;
+      /**
+       * Allow a "friend" of a recoverable account to vouch for an active recovery
+       * process for that account.
+       * 
+       * The dispatch origin for this call must be _Signed_ and must be a "friend"
+       * for the recoverable account.
+       * 
+       * Parameters:
+       * - `lost`: The lost account that you want to recover.
+       * - `rescuer`: The account trying to rescue the lost account that you
+       * want to vouch for.
+       * 
+       * The combination of these two parameters must point to an active recovery
+       * process.
+       * 
+       * # <weight>
+       * Key: F (len of friends in config), V (len of vouching friends)
+       * - One storage read to get the recovery configuration. O(1), Codec O(F)
+       * - One storage read to get the active recovery process. O(1), Codec O(V)
+       * - One binary search to confirm caller is a friend. O(logF)
+       * - One binary search to confirm caller has not already vouched. O(logV)
+       * - One storage write. O(1), Codec O(V).
+       * - One event.
+       * 
+       * Total Complexity: O(F + logF + V + logV)
+       * # </weight>
+       **/
+      vouchRecovery: AugmentedSubmittable<(lost: AccountId | string | Uint8Array, rescuer: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, AccountId]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     scheduler: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Cancel an anonymously scheduled task.
        * 
@@ -1335,13 +2289,16 @@ declare module '@polkadot/api/types/submittable' {
        * Schedule a named task after a delay.
        * 
        * # <weight>
-       * Same as [`schedule_named`].
+       * Same as [`schedule_named`](Self::schedule_named).
        * # </weight>
        **/
       scheduleNamedAfter: AugmentedSubmittable<(id: Bytes | string | Uint8Array, after: BlockNumber | AnyNumber | Uint8Array, maybePeriodic: Option<Period> | null | object | string | Uint8Array, priority: Priority | AnyNumber | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, BlockNumber, Option<Period>, Priority, Call]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     session: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Removes any session key(s) of the function caller.
        * This doesn't take effect until the next session.
@@ -1353,7 +2310,7 @@ declare module '@polkadot/api/types/submittable' {
        * Actual cost depends on the number of length of `T::Keys::key_ids()` which is fixed.
        * - DbReads: `T::ValidatorIdOf`, `NextKeys`, `origin account`
        * - DbWrites: `NextKeys`, `origin account`
-       * - DbWrites per key id: `KeyOwnder`
+       * - DbWrites per key id: `KeyOwner`
        * # </weight>
        **/
       purgeKeys: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
@@ -1373,10 +2330,336 @@ declare module '@polkadot/api/types/submittable' {
        * - DbWrites per key id: `KeyOwner`
        * # </weight>
        **/
-      setKeys: AugmentedSubmittable<(keys: Keys, proof: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Keys, Bytes]>;
+      setKeys: AugmentedSubmittable<(keys: Keys | string | Uint8Array, proof: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Keys, Bytes]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    society: {
+      /**
+       * A user outside of the society can make a bid for entry.
+       * 
+       * Payment: `CandidateDeposit` will be reserved for making a bid. It is returned
+       * when the bid becomes a member, or if the bid calls `unbid`.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * Parameters:
+       * - `value`: A one time payment the bid would like to receive when joining the society.
+       * 
+       * # <weight>
+       * Key: B (len of bids), C (len of candidates), M (len of members), X (balance reserve)
+       * - Storage Reads:
+       * - One storage read to check for suspended candidate. O(1)
+       * - One storage read to check for suspended member. O(1)
+       * - One storage read to retrieve all current bids. O(B)
+       * - One storage read to retrieve all current candidates. O(C)
+       * - One storage read to retrieve all members. O(M)
+       * - Storage Writes:
+       * - One storage mutate to add a new bid to the vector O(B) (TODO: possible optimization w/ read)
+       * - Up to one storage removal if bid.len() > MAX_BID_COUNT. O(1)
+       * - Notable Computation:
+       * - O(B + C + log M) search to check user is not already a part of society.
+       * - O(log B) search to insert the new bid sorted.
+       * - External Module Operations:
+       * - One balance reserve operation. O(X)
+       * - Up to one balance unreserve operation if bids.len() > MAX_BID_COUNT.
+       * - Events:
+       * - One event for new bid.
+       * - Up to one event for AutoUnbid if bid.len() > MAX_BID_COUNT.
+       * 
+       * Total Complexity: O(M + B + C + logM + logB + X)
+       * # </weight>
+       **/
+      bid: AugmentedSubmittable<(value: BalanceOf | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [BalanceOf]>;
+      /**
+       * As a member, vote on the defender.
+       * 
+       * The dispatch origin for this call must be _Signed_ and a member.
+       * 
+       * Parameters:
+       * - `approve`: A boolean which says if the candidate should be
+       * approved (`true`) or rejected (`false`).
+       * 
+       * # <weight>
+       * - Key: M (len of members)
+       * - One storage read O(M) and O(log M) search to check user is a member.
+       * - One storage write to add vote to votes. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(M + logM)
+       * # </weight>
+       **/
+      defenderVote: AugmentedSubmittable<(approve: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [bool]>;
+      /**
+       * Found the society.
+       * 
+       * This is done as a discrete action in order to allow for the
+       * module to be included into a running chain and can only be done once.
+       * 
+       * The dispatch origin for this call must be from the _FounderSetOrigin_.
+       * 
+       * Parameters:
+       * - `founder` - The first member and head of the newly founded society.
+       * - `max_members` - The initial max number of members for the society.
+       * - `rules` - The rules of this society concerning membership.
+       * 
+       * # <weight>
+       * - Two storage mutates to set `Head` and `Founder`. O(1)
+       * - One storage write to add the first member to society. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(1)
+       * # </weight>
+       **/
+      found: AugmentedSubmittable<(founder: AccountId | string | Uint8Array, maxMembers: u32 | AnyNumber | Uint8Array, rules: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, u32, Bytes]>;
+      /**
+       * Allow suspended judgement origin to make judgement on a suspended candidate.
+       * 
+       * If the judgement is `Approve`, we add them to society as a member with the appropriate
+       * payment for joining society.
+       * 
+       * If the judgement is `Reject`, we either slash the deposit of the bid, giving it back
+       * to the society treasury, or we ban the voucher from vouching again.
+       * 
+       * If the judgement is `Rebid`, we put the candidate back in the bid pool and let them go
+       * through the induction process again.
+       * 
+       * The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
+       * 
+       * Parameters:
+       * - `who` - The suspended candidate to be judged.
+       * - `judgement` - `Approve`, `Reject`, or `Rebid`.
+       * 
+       * # <weight>
+       * Key: B (len of bids), M (len of members), X (balance action)
+       * - One storage read to check `who` is a suspended candidate.
+       * - One storage removal of the suspended candidate.
+       * - Approve Logic
+       * - One storage read to get the available pot to pay users with. O(1)
+       * - One storage write to update the available pot. O(1)
+       * - One storage read to get the current block number. O(1)
+       * - One storage read to get all members. O(M)
+       * - Up to one unreserve currency action.
+       * - Up to two new storage writes to payouts.
+       * - Up to one storage write with O(log M) binary search to add a member to society.
+       * - Reject Logic
+       * - Up to one repatriate reserved currency action. O(X)
+       * - Up to one storage write to ban the vouching member from vouching again.
+       * - Rebid Logic
+       * - Storage mutate with O(log B) binary search to place the user back into bids.
+       * - Up to one additional event if unvouch takes place.
+       * - One storage removal.
+       * - One event for the judgement.
+       * 
+       * Total Complexity: O(M + logM + B + X)
+       * # </weight>
+       **/
+      judgeSuspendedCandidate: AugmentedSubmittable<(who: AccountId | string | Uint8Array, judgement: SocietyJudgement | 'Rebid' | 'Reject' | 'Approve' | number | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, SocietyJudgement]>;
+      /**
+       * Allow suspension judgement origin to make judgement on a suspended member.
+       * 
+       * If a suspended member is forgiven, we simply add them back as a member, not affecting
+       * any of the existing storage items for that member.
+       * 
+       * If a suspended member is rejected, remove all associated storage items, including
+       * their payouts, and remove any vouched bids they currently have.
+       * 
+       * The dispatch origin for this call must be from the _SuspensionJudgementOrigin_.
+       * 
+       * Parameters:
+       * - `who` - The suspended member to be judged.
+       * - `forgive` - A boolean representing whether the suspension judgement origin
+       * forgives (`true`) or rejects (`false`) a suspended member.
+       * 
+       * # <weight>
+       * Key: B (len of bids), M (len of members)
+       * - One storage read to check `who` is a suspended member. O(1)
+       * - Up to one storage write O(M) with O(log M) binary search to add a member back to society.
+       * - Up to 3 storage removals O(1) to clean up a removed member.
+       * - Up to one storage write O(B) with O(B) search to remove vouched bid from bids.
+       * - Up to one additional event if unvouch takes place.
+       * - One storage removal. O(1)
+       * - One event for the judgement.
+       * 
+       * Total Complexity: O(M + logM + B)
+       * # </weight>
+       **/
+      judgeSuspendedMember: AugmentedSubmittable<(who: AccountId | string | Uint8Array, forgive: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, bool]>;
+      /**
+       * Transfer the first matured payout for the sender and remove it from the records.
+       * 
+       * NOTE: This extrinsic needs to be called multiple times to claim multiple matured payouts.
+       * 
+       * Payment: The member will receive a payment equal to their first matured
+       * payout to their free balance.
+       * 
+       * The dispatch origin for this call must be _Signed_ and a member with
+       * payouts remaining.
+       * 
+       * # <weight>
+       * Key: M (len of members), P (number of payouts for a particular member)
+       * - One storage read O(M) and O(log M) search to check signer is a member.
+       * - One storage read O(P) to get all payouts for a member.
+       * - One storage read O(1) to get the current block number.
+       * - One currency transfer call. O(X)
+       * - One storage write or removal to update the member's payouts. O(P)
+       * 
+       * Total Complexity: O(M + logM + P + X)
+       * # </weight>
+       **/
+      payout: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Allows root origin to change the maximum number of members in society.
+       * Max membership count must be greater than 1.
+       * 
+       * The dispatch origin for this call must be from _ROOT_.
+       * 
+       * Parameters:
+       * - `max` - The maximum number of members for the society.
+       * 
+       * # <weight>
+       * - One storage write to update the max. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(1)
+       * # </weight>
+       **/
+      setMaxMembers: AugmentedSubmittable<(max: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * A bidder can remove their bid for entry into society.
+       * By doing so, they will have their candidate deposit returned or
+       * they will unvouch their voucher.
+       * 
+       * Payment: The bid deposit is unreserved if the user made a bid.
+       * 
+       * The dispatch origin for this call must be _Signed_ and a bidder.
+       * 
+       * Parameters:
+       * - `pos`: Position in the `Bids` vector of the bid who wants to unbid.
+       * 
+       * # <weight>
+       * Key: B (len of bids), X (balance unreserve)
+       * - One storage read and write to retrieve and update the bids. O(B)
+       * - Either one unreserve balance action O(X) or one vouching storage removal. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(B + X)
+       * # </weight>
+       **/
+      unbid: AugmentedSubmittable<(pos: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * Annul the founding of the society.
+       * 
+       * The dispatch origin for this call must be Signed, and the signing account must be both
+       * the `Founder` and the `Head`. This implies that it may only be done when there is one
+       * member.
+       * 
+       * # <weight>
+       * - Two storage reads O(1).
+       * - Four storage removals O(1).
+       * - One event.
+       * 
+       * Total Complexity: O(1)
+       * # </weight>
+       **/
+      unfound: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * As a vouching member, unvouch a bid. This only works while vouched user is
+       * only a bidder (and not a candidate).
+       * 
+       * The dispatch origin for this call must be _Signed_ and a vouching member.
+       * 
+       * Parameters:
+       * - `pos`: Position in the `Bids` vector of the bid who should be unvouched.
+       * 
+       * # <weight>
+       * Key: B (len of bids)
+       * - One storage read O(1) to check the signer is a vouching member.
+       * - One storage mutate to retrieve and update the bids. O(B)
+       * - One vouching storage removal. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(B)
+       * # </weight>
+       **/
+      unvouch: AugmentedSubmittable<(pos: u32 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32]>;
+      /**
+       * As a member, vote on a candidate.
+       * 
+       * The dispatch origin for this call must be _Signed_ and a member.
+       * 
+       * Parameters:
+       * - `candidate`: The candidate that the member would like to bid on.
+       * - `approve`: A boolean which says if the candidate should be
+       * approved (`true`) or rejected (`false`).
+       * 
+       * # <weight>
+       * Key: C (len of candidates), M (len of members)
+       * - One storage read O(M) and O(log M) search to check user is a member.
+       * - One account lookup.
+       * - One storage read O(C) and O(C) search to check that user is a candidate.
+       * - One storage write to add vote to votes. O(1)
+       * - One event.
+       * 
+       * Total Complexity: O(M + logM + C)
+       * # </weight>
+       **/
+      vote: AugmentedSubmittable<(candidate: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, approve: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, bool]>;
+      /**
+       * As a member, vouch for someone to join society by placing a bid on their behalf.
+       * 
+       * There is no deposit required to vouch for a new bid, but a member can only vouch for
+       * one bid at a time. If the bid becomes a suspended candidate and ultimately rejected by
+       * the suspension judgement origin, the member will be banned from vouching again.
+       * 
+       * As a vouching member, you can claim a tip if the candidate is accepted. This tip will
+       * be paid as a portion of the reward the member will receive for joining the society.
+       * 
+       * The dispatch origin for this call must be _Signed_ and a member.
+       * 
+       * Parameters:
+       * - `who`: The user who you would like to vouch for.
+       * - `value`: The total reward to be paid between you and the candidate if they become
+       * a member in the society.
+       * - `tip`: Your cut of the total `value` payout when the candidate is inducted into
+       * the society. Tips larger than `value` will be saturated upon payout.
+       * 
+       * # <weight>
+       * Key: B (len of bids), C (len of candidates), M (len of members)
+       * - Storage Reads:
+       * - One storage read to retrieve all members. O(M)
+       * - One storage read to check member is not already vouching. O(1)
+       * - One storage read to check for suspended candidate. O(1)
+       * - One storage read to check for suspended member. O(1)
+       * - One storage read to retrieve all current bids. O(B)
+       * - One storage read to retrieve all current candidates. O(C)
+       * - Storage Writes:
+       * - One storage write to insert vouching status to the member. O(1)
+       * - One storage mutate to add a new bid to the vector O(B) (TODO: possible optimization w/ read)
+       * - Up to one storage removal if bid.len() > MAX_BID_COUNT. O(1)
+       * - Notable Computation:
+       * - O(log M) search to check sender is a member.
+       * - O(B + C + log M) search to check user is not already a part of society.
+       * - O(log B) search to insert the new bid sorted.
+       * - External Module Operations:
+       * - One balance reserve operation. O(X)
+       * - Up to one balance unreserve operation if bids.len() > MAX_BID_COUNT.
+       * - Events:
+       * - One event for vouch.
+       * - Up to one event for AutoUnbid if bid.len() > MAX_BID_COUNT.
+       * 
+       * Total Complexity: O(M + B + C + logM + logB + X)
+       * # </weight>
+       **/
+      vouch: AugmentedSubmittable<(who: AccountId | string | Uint8Array, value: BalanceOf | AnyNumber | Uint8Array, tip: BalanceOf | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, BalanceOf, BalanceOf]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     staking: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Take the origin account as a stash and lock up `value` of its balance. `controller` will
        * be the account that controls it.
@@ -1385,6 +2668,7 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * The dispatch origin for this call must be _Signed_ by the stash account.
        * 
+       * Emits `Bonded`.
        * # <weight>
        * - Independent of the arguments. Moderate complexity.
        * - O(1).
@@ -1393,34 +2677,24 @@ declare module '@polkadot/api/types/submittable' {
        * NOTE: Two of the storage writes (`Self::bonded`, `Self::payee`) are _never_ cleaned
        * unless the `origin` falls below _existential deposit_ and gets removed as dust.
        * ------------------
-       * Weight: O(1)
-       * DB Weight:
-       * - Read: Bonded, Ledger, [Origin Account], Current Era, History Depth, Locks
-       * - Write: Bonded, Payee, [Origin Account], Locks, Ledger
        * # </weight>
        **/
-      bond: AugmentedSubmittable<(controller: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array, payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | string | Uint8Array, promiseMonth: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, StakingBalanceT, RewardDestination, u8]>;
+      bond: AugmentedSubmittable<(controller: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, value: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array, payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | { None: any } | string | Uint8Array, promiseMonth: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, StakingBalanceT, RewardDestination, u8]>;
       /**
        * Add some extra amount that have appeared in the stash `free_balance` into the balance up
        * for staking.
        * 
-       * Use this if there are additional funds in your stash account that you wish to bond.
-       * Unlike [`bond`] or [`unbond`] this function does not impose any limitation on the amount
-       * that can be added.
+       * The dispatch origin for this call must be _Signed_ by the stash, not the controller.
        * 
-       * The dispatch origin for this call must be _Signed_ by the stash, not the controller and
-       * it can be only called when [`EraElectionStatus`] is `Closed`.
+       * Use this if there are additional funds in your stash account that you wish to bond.
+       * Unlike [`bond`](Self::bond) or [`unbond`](Self::unbond) this function does not impose any limitation
+       * on the amount that can be added.
        * 
        * Emits `Bonded`.
        * 
        * # <weight>
        * - Independent of the arguments. Insignificant complexity.
        * - O(1).
-       * - One DB entry.
-       * ------------
-       * DB Weight:
-       * - Read: Era Election Status, Bonded, Ledger, [Origin Account], Locks
-       * - Write: [Origin Account], Locks, Ledger
        * # </weight>
        **/
       bondExtra: AugmentedSubmittable<(maxAdditional: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array, promiseMonth: u8 | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [StakingBalanceT, u8]>;
@@ -1446,20 +2720,39 @@ declare module '@polkadot/api/types/submittable' {
        * Effects will be felt at the beginning of the next era.
        * 
        * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-       * And, it can be only called when [`EraElectionStatus`] is `Closed`.
        * 
        * # <weight>
        * - Independent of the arguments. Insignificant complexity.
        * - Contains one read.
        * - Writes are limited to the `origin` account key.
-       * --------
-       * Weight: O(1)
-       * DB Weight:
-       * - Read: EraElectionStatus, Ledger
-       * - Write: Validators, Nominators
        * # </weight>
        **/
       chill: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
+      /**
+       * Declare a `controller` to stop participating as either a validator or nominator.
+       * 
+       * Effects will be felt at the beginning of the next era.
+       * 
+       * The dispatch origin for this call must be _Signed_, but can be called by anyone.
+       * 
+       * If the caller is the same as the controller being targeted, then no further checks are
+       * enforced, and this function behaves just like `chill`.
+       * 
+       * If the caller is different than the controller being targeted, the following conditions
+       * must be met:
+       * * A `ChillThreshold` must be set and checked which defines how close to the max
+       * nominators or validators we must reach before users can start chilling one-another.
+       * * A `MaxNominatorCount` and `MaxValidatorCount` must be set which is used to determine
+       * how close we are to the threshold.
+       * * A `MinNominatorBond` and `MinValidatorBond` must be set and checked, which determines
+       * if this is a person that should be chilled because they have not met the threshold
+       * bond required.
+       * 
+       * This can be helpful if bond requirements are updated, and we need to remove old users
+       * who do not satisfy these requirements.
+       * 
+       **/
+      chillOther: AugmentedSubmittable<(controller: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
       /**
        * Stash accounts can get their ring back after the depositing time exceeded,
        * and the ring getting back is still in staking status.
@@ -1500,6 +2793,12 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * The dispatch origin must be Root.
        * 
+       * # Warning
+       * 
+       * The election process starts multiple blocks before the end of the era.
+       * If this is called just before a new era is triggered, the election process may not
+       * have enough blocks to get a result.
+       * 
        * # <weight>
        * - No arguments.
        * - Weight: O(1)
@@ -1512,6 +2811,12 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * The dispatch origin must be Root.
        * 
+       * # Warning
+       * 
+       * The election process starts multiple blocks before the end of the era.
+       * If this is called just before a new era is triggered, the election process may not
+       * have enough blocks to get a result.
+       * 
        * # <weight>
        * - Weight: O(1)
        * - Write: ForceEra
@@ -1522,6 +2827,12 @@ declare module '@polkadot/api/types/submittable' {
        * Force there to be no new eras indefinitely.
        * 
        * The dispatch origin must be Root.
+       * 
+       * # Warning
+       * 
+       * The election process starts multiple blocks before the end of the era.
+       * Thus the election process may be ongoing when this is called. In this case the
+       * election will continue until the next era is triggered.
        * 
        * # <weight>
        * - No arguments.
@@ -1549,7 +2860,7 @@ declare module '@polkadot/api/types/submittable' {
        * The dispatch origin must be Root.
        * 
        * # <weight>
-       * Same as [`set_validator_count`].
+       * Same as [`Self::set_validator_count`].
        * # </weight>
        **/
       increaseValidatorCount: AugmentedSubmittable<(additional: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
@@ -1559,8 +2870,6 @@ declare module '@polkadot/api/types/submittable' {
        * Effects will be felt at the beginning of the next era.
        * 
        * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-       * And, it can be only called when [`EraElectionStatus`] is `Closed`. The controller
-       * account should represent a validator.
        * 
        * - `who`: A list of nominator stash accounts who are nominating this validator which
        * should no longer be nominating this validator.
@@ -1572,23 +2881,14 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Declare the desire to nominate `targets` for the origin controller.
        * 
-       * Effects will be felt at the beginning of the next era. This can only be called when
-       * [`EraElectionStatus`] is `Closed`.
+       * Effects will be felt at the beginning of the next era.
        * 
        * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-       * And, it can be only called when [`EraElectionStatus`] is `Closed`.
        * 
        * # <weight>
        * - The transaction's complexity is proportional to the size of `targets` (N)
        * which is capped at CompactAssignments::LIMIT (MAX_NOMINATIONS).
        * - Both the reads and writes follow a similar pattern.
-       * ---------
-       * Weight: O(N)
-       * where N is the number of targets
-       * DB Weight:
-       * - Reads: Era Election Status, Ledger, Current Era
-       * - Writes: Validators, Nominators
-       * # </weight>
        **/
       nominate: AugmentedSubmittable<(targets: Vec<LookupSource> | (LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<LookupSource>]>;
       /**
@@ -1601,8 +2901,6 @@ declare module '@polkadot/api/types/submittable' {
        * The origin of this call must be _Signed_. Any account can call this function, even if
        * it is not one of the stakers.
        * 
-       * This can only be called when [`EraElectionStatus`] is `Closed`.
-       * 
        * # <weight>
        * - Time complexity: at most O(MaxNominatorRewardedPerValidator).
        * - Contains a limited number of reads and writes.
@@ -1611,11 +2909,6 @@ declare module '@polkadot/api/types/submittable' {
        * Weight:
        * - Reward Destination Staked: O(N)
        * - Reward Destination Controller (Creating): O(N)
-       * DB Weight:
-       * - Read: EraElectionStatus, CurrentEra, HistoryDepth, ErasValidatorReward,
-       * ErasStakersClipped, ErasRewardPoints, ErasValidatorPrefs (8 items)
-       * - Read Each: Bonded, Ledger, Payee, Locks, System Account (5 items)
-       * - Write Each: System Account, Locks, Ledger (3 items)
        * 
        * NOTE: weights are assuming that payouts are made to alive stash account (Staked).
        * Paying even a dead controller is cheaper weight-wise. We don't do any refunds here.
@@ -1643,17 +2936,12 @@ declare module '@polkadot/api/types/submittable' {
       /**
        * Rebond a portion of the stash scheduled to be unlocked.
        * 
-       * The dispatch origin must be signed by the controller, and it can be only called when
-       * [`EraElectionStatus`] is `Closed`.
+       * The dispatch origin must be signed by the controller.
        * 
        * # <weight>
        * - Time complexity: O(L), where L is unlocking chunks
        * - Bounded by `MAX_UNLOCKING_CHUNKS`.
        * - Storage changes: Can't increase storage, only decrease it.
-       * ---------------
-       * - DB Weight:
-       * - Reads: EraElectionStatus, Ledger, Locks, [Origin Account]
-       * - Writes: [Origin Account], Locks, Ledger
        * # </weight>
        **/
       rebond: AugmentedSubmittable<(planToRebondRing: Compact<RingBalance> | AnyNumber | Uint8Array, planToRebondKton: Compact<KtonBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RingBalance>, Compact<KtonBalance>]>;
@@ -1663,7 +2951,7 @@ declare module '@polkadot/api/types/submittable' {
        * The dispatch origin must be Root.
        * 
        * # <weight>
-       * Same as [`set_validator_count`].
+       * Same as [`Self::set_validator_count`].
        * # </weight>
        **/
       scaleValidatorCount: AugmentedSubmittable<(factor: Percent | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Percent]>;
@@ -1739,7 +3027,23 @@ declare module '@polkadot/api/types/submittable' {
        * - Write: Payee
        * # </weight>
        **/
-      setPayee: AugmentedSubmittable<(payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RewardDestination]>;
+      setPayee: AugmentedSubmittable<(payee: RewardDestination | { Staked: any } | { Stash: any } | { Controller: any } | { Account: any } | { None: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RewardDestination]>;
+      /**
+       * Update the various staking limits this pallet.
+       * 
+       * * `min_nominator_bond`: The minimum active bond needed to be a nominator.
+       * * `min_validator_bond`: The minimum active bond needed to be a validator.
+       * * `max_nominator_count`: The max number of users who can be a nominator at once.
+       * When set to `None`, no limit is enforced.
+       * * `max_validator_count`: The max number of users who can be a validator at once.
+       * When set to `None`, no limit is enforced.
+       * 
+       * Origin must be Root to call this function.
+       * 
+       * NOTE: Existing nominators and validators will not be affected by this update.
+       * to kick people under the new limits, `chill_other` should be called.
+       **/
+      setStakingLimits: AugmentedSubmittable<(minNominatorBond: RingBalance | AnyNumber | Uint8Array, minValidatorBond: RingBalance | AnyNumber | Uint8Array, maxNominatorCount: Option<u32> | null | object | string | Uint8Array, maxValidatorCount: Option<u32> | null | object | string | Uint8Array, threshold: Option<Percent> | null | object | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance, RingBalance, Option<u32>, Option<u32>, Option<Percent>]>;
       /**
        * Sets the ideal number of validators.
        * 
@@ -1751,70 +3055,6 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setValidatorCount: AugmentedSubmittable<(updated: Compact<u32> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<u32>]>;
-      /**
-       * Submit an election result to the chain. If the solution:
-       * 
-       * 1. is valid.
-       * 2. has a better score than a potentially existing solution on chain.
-       * 
-       * then, it will be _put_ on chain.
-       * 
-       * A solution consists of two pieces of data:
-       * 
-       * 1. `winners`: a flat vector of all the winners of the round.
-       * 2. `assignments`: the compact version of an assignment vector that encodes the edge
-       * weights.
-       * 
-       * Both of which may be computed using _phragmen_, or any other algorithm.
-       * 
-       * Additionally, the submitter must provide:
-       * 
-       * - The `score` that they claim their solution has.
-       * 
-       * Both validators and nominators will be represented by indices in the solution. The
-       * indices should respect the corresponding types ([`ValidatorIndex`] and
-       * [`NominatorIndex`]). Moreover, they should be valid when used to index into
-       * [`SnapshotValidators`] and [`SnapshotNominators`]. Any invalid index will cause the
-       * solution to be rejected. These two storage items are set during the election window and
-       * may be used to determine the indices.
-       * 
-       * A solution is valid if:
-       * 
-       * 0. It is submitted when [`EraElectionStatus`] is `Open`.
-       * 1. Its claimed score is equal to the score computed on-chain.
-       * 2. Presents the correct number of winners.
-       * 3. All indexes must be value according to the snapshot vectors. All edge values must
-       * also be correct and should not overflow the granularity of the ratio type (i.e. 256
-       * or billion).
-       * 4. For each edge, all targets are actually nominated by the voter.
-       * 5. Has correct self-votes.
-       * 
-       * A solutions score is consisted of 3 parameters:
-       * 
-       * 1. `min { support.total }` for each support of a winner. This value should be maximized.
-       * 2. `sum { support.total }` for each support of a winner. This value should be minimized.
-       * 3. `sum { support.total^2 }` for each support of a winner. This value should be
-       * minimized (to ensure less variance)
-       * 
-       * # <weight>
-       * The transaction is assumed to be the longest path, a better solution.
-       * - Initial solution is almost the same.
-       * - Worse solution is retraced in pre-dispatch-checks which sets its own weight.
-       * # </weight>
-       **/
-      submitElectionSolution: AugmentedSubmittable<(winners: Vec<ValidatorIndex> | (ValidatorIndex | AnyNumber | Uint8Array)[], compact: CompactAssignments | { votes1?: any; votes2?: any; votes3?: any; votes4?: any; votes5?: any; votes6?: any; votes7?: any; votes8?: any; votes9?: any; votes10?: any; votes11?: any; votes12?: any; votes13?: any; votes14?: any; votes15?: any; votes16?: any } | string | Uint8Array, score: ElectionScore, era: EraIndex | AnyNumber | Uint8Array, size: ElectionSize | { validators?: any; nominators?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<ValidatorIndex>, CompactAssignments, ElectionScore, EraIndex, ElectionSize]>;
-      /**
-       * Unsigned version of `submit_election_solution`.
-       * 
-       * Note that this must pass the [`ValidateUnsigned`] check which only allows transactions
-       * from the local node to be included. In other words, only the block author can include a
-       * transaction in the block.
-       * 
-       * # <weight>
-       * See [`submit_election_solution`].
-       * # </weight>
-       **/
-      submitElectionSolutionUnsigned: AugmentedSubmittable<(winners: Vec<ValidatorIndex> | (ValidatorIndex | AnyNumber | Uint8Array)[], compact: CompactAssignments | { votes1?: any; votes2?: any; votes3?: any; votes4?: any; votes5?: any; votes6?: any; votes7?: any; votes8?: any; votes9?: any; votes10?: any; votes11?: any; votes12?: any; votes13?: any; votes14?: any; votes15?: any; votes16?: any } | string | Uint8Array, score: ElectionScore, era: EraIndex | AnyNumber | Uint8Array, size: ElectionSize | { validators?: any; nominators?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Vec<ValidatorIndex>, CompactAssignments, ElectionScore, EraIndex, ElectionSize]>;
       /**
        * Claim deposits while the depositing time has not been exceeded, the ring
        * will not be slashed, but the account is required to pay KTON as punish.
@@ -1840,32 +3080,21 @@ declare module '@polkadot/api/types/submittable' {
        * period ends. If this leaves an amount actively bonded less than
        * T::Currency::minimum_balance(), then it is increased to the full amount.
        * 
+       * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
+       * 
        * Once the unlock period is done, the funds will be withdrew automatically and ready for transfer.
        * 
        * No more than a limited number of unlocking chunks (see `MAX_UNLOCKING_CHUNKS`)
        * can co-exists at the same time. In that case,  [`StakingLock::shrink`] need
        * to be called first to remove some of the chunks (if possible).
        * 
-       * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-       * And, it can be only called when [`EraElectionStatus`] is `Closed`.
+       * If a user encounters the `InsufficientBond` error when calling this extrinsic,
+       * they should call `chill` first in order to free up their bonded funds.
        * 
        * After all pledged Ring and Kton are unbonded, the bonded accounts, namely stash and
        * controller, will also be unbonded.  Once user want to bond again, the `bond` method
        * should be called. If there are still pledged Ring or Kton and user want to bond more
        * values, the `bond_extra` method should be called.
-       * 
-       * # <weight>
-       * - Independent of the arguments. Limited but potentially exploitable complexity.
-       * - Contains a limited number of reads.
-       * - Each call (requires the remainder of the bonded balance to be above `minimum_balance`)
-       * will cause a new entry to be inserted into a vector (`StakingLock.unbondings`) kept in storage.
-       * - One DB entry.
-       * ----------
-       * Weight: O(1)
-       * DB Weight:
-       * - Read: EraElectionStatus, Ledger, CurrentEra, Locks, BalanceOf Stash,
-       * - Write: Locks, Ledger, BalanceOf Stash,
-       * </weight>
        **/
       unbond: AugmentedSubmittable<(value: StakingBalanceT | { RingBalance: any } | { KtonBalance: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [StakingBalanceT]>;
       /**
@@ -1874,23 +3103,14 @@ declare module '@polkadot/api/types/submittable' {
        * Effects will be felt at the beginning of the next era.
        * 
        * The dispatch origin for this call must be _Signed_ by the controller, not the stash.
-       * And, it can be only called when [`EraElectionStatus`] is `Closed`.
-       * 
-       * # <weight>
-       * - Independent of the arguments. Insignificant complexity.
-       * - Contains a limited number of reads.
-       * - Writes are limited to the `origin` account key.
-       * -----------
-       * Weight: O(1)
-       * DB Weight:
-       * - Read: Era Election Status, Ledger
-       * - Write: Nominators, Validators
-       * # </weight>
        **/
       validate: AugmentedSubmittable<(prefs: ValidatorPrefs | { commission?: any; blocked?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [ValidatorPrefs]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     sudo: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Authenticates the current sudo key and sets the given AccountId (`new`) as the new sudo key.
        * 
@@ -1943,9 +3163,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       sudoUncheckedWeight: AugmentedSubmittable<(call: Call | { callIndex?: any; args?: any } | string | Uint8Array, weight: Weight | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Call, Weight]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     system: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * A dispatch that will fill the block weight up to the given ratio.
        **/
@@ -1980,11 +3203,18 @@ declare module '@polkadot/api/types/submittable' {
        * 
        * # <weight>
        * - `O(1)`
-       * - Base Weight: 0.665 µs, independent of remark length.
-       * - No DB operations.
        * # </weight>
        **/
       remark: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
+      /**
+       * Make some on-chain remark and emit event.
+       * 
+       * # <weight>
+       * - `O(b)` where b is the length of the remark.
+       * - 1 event.
+       * # </weight>
+       **/
+      remarkWithEvent: AugmentedSubmittable<(remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes]>;
       /**
        * Set the new changes trie configuration.
        * 
@@ -2044,9 +3274,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       setStorage: AugmentedSubmittable<(items: Vec<KeyValue> | (KeyValue)[]) => SubmittableExtrinsic<ApiType>, [Vec<KeyValue>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     technicalCommittee: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Close a vote that is either approved, disapproved or whose voting period has ended.
        * 
@@ -2183,9 +3416,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       vote: AugmentedSubmittable<(proposal: Hash | string | Uint8Array, index: Compact<ProposalIndex> | AnyNumber | Uint8Array, approve: bool | boolean | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash, Compact<ProposalIndex>, bool]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     technicalMembership: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Add a member `who` to the set.
        * 
@@ -2233,9 +3469,12 @@ declare module '@polkadot/api/types/submittable' {
        * Prime membership is *not* passed from `remove` to `add`, if extant.
        **/
       swapMember: AugmentedSubmittable<(remove: AccountId | string | Uint8Array, add: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId, AccountId]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     timestamp: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Set the current time.
        * 
@@ -2254,74 +3493,12 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       set: AugmentedSubmittable<(now: Compact<Moment> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<Moment>]>;
-    };
-    treasury: {
+      /**
+       * Generic tx
+       **/
       [key: string]: SubmittableExtrinsicFunction<ApiType>;
-      /**
-       * Accept the curator role for a bounty.
-       * A deposit will be reserved from curator and refund upon successful payout.
-       * 
-       * May only be called from the curator.
-       * 
-       * # <weight>
-       * - O(1).
-       * - Limited storage reads.
-       * - One DB change.
-       * # </weight>
-       **/
-      acceptCurator: AugmentedSubmittable<(bountyId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
-      /**
-       * Approve a bounty proposal. At a later time, the bounty will be funded and become active
-       * and the original deposit will be returned.
-       * 
-       * May only be called from `T::ApproveOrigin`.
-       * 
-       * # <weight>
-       * - O(1).
-       * - Limited storage reads.
-       * - One DB change.
-       * # </weight>
-       **/
-      approveBounty: AugmentedSubmittable<(bountyId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
-      /**
-       * Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
-       * and the original deposit will be returned.
-       * 
-       * May only be called from `T::RejectOrigin`.
-       * 
-       * # <weight>
-       * - Complexity: O(1).
-       * - DbReads: `Proposals`, `Approvals`
-       * - DbWrite: `Approvals`
-       * # </weight>
-       **/
-      approveProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
-      /**
-       * Award bounty to a beneficiary account. The beneficiary will be able to claim the funds after a delay.
-       * 
-       * The dispatch origin for this call must be the curator of this bounty.
-       * 
-       * - `bounty_id`: Bounty ID to award.
-       * - `beneficiary`: The beneficiary account whom will receive the payout.
-       **/
-      awardBounty: AugmentedSubmittable<(bountyId: Compact<ProposalIndex> | AnyNumber | Uint8Array, beneficiary: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>, LookupSource]>;
-      /**
-       * Claim the payout from an awarded bounty after payout delay.
-       * 
-       * The dispatch origin for this call must be the beneficiary of this bounty.
-       * 
-       * - `bounty_id`: Bounty ID to claim.
-       **/
-      claimBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
-      /**
-       * Cancel a proposed or active bounty. All the funds will be sent to treasury and
-       * the curator deposit will be unreserved if possible.
-       * 
-       * Only `T::RejectOrigin` is able to cancel a bounty.
-       * 
-       * - `bounty_id`: Bounty ID to cancel.
-       **/
-      closeBounty: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>]>;
+    };
+    tips: {
       /**
        * Close and payout a tip.
        * 
@@ -2342,66 +3519,6 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       closeTip: AugmentedSubmittable<(hash: Hash | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash]>;
-      /**
-       * Extend the expiry time of an active bounty.
-       * 
-       * The dispatch origin for this call must be the curator of this bounty.
-       * 
-       * - `bounty_id`: Bounty ID to extend.
-       * - `remark`: additional information.
-       **/
-      extendBountyExpiry: AugmentedSubmittable<(bountyId: Compact<BountyIndex> | AnyNumber | Uint8Array, remark: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BountyIndex>, Bytes]>;
-      /**
-       * Propose a new bounty.
-       * 
-       * The dispatch origin for this call must be _Signed_.
-       * 
-       * Payment: `TipReportDepositBase` will be reserved from the origin account, as well as
-       * `DataDepositPerByte` for each byte in `reason`. It will be unreserved upon approval,
-       * or slashed when rejected.
-       * 
-       * - `curator`: The curator account whom will manage this bounty.
-       * - `fee`: The curator fee.
-       * - `value`: The total payment amount of this bounty, curator fee included.
-       * - `description`: The description of this bounty.
-       **/
-      proposeBounty: AugmentedSubmittable<(value: Compact<RingBalance> | AnyNumber | Uint8Array, description: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RingBalance>, Bytes]>;
-      /**
-       * Assign a curator to a funded bounty.
-       * 
-       * May only be called from `T::ApproveOrigin`.
-       * 
-       * # <weight>
-       * - O(1).
-       * - Limited storage reads.
-       * - One DB change.
-       * # </weight>
-       **/
-      proposeCurator: AugmentedSubmittable<(bountyId: Compact<ProposalIndex> | AnyNumber | Uint8Array, curator: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, fee: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>, LookupSource, Compact<RingBalance>]>;
-      /**
-       * Put forward a suggestion for spending. A deposit proportional to the value
-       * is reserved and slashed if the proposal is rejected. It is returned once the
-       * proposal is awarded.
-       * 
-       * # <weight>
-       * - Complexity: O(1)
-       * - DbReads: `ProposalCount`, `origin account`
-       * - DbWrites: `ProposalCount`, `Proposals`, `origin account`
-       * # </weight>
-       **/
-      proposeSpend: AugmentedSubmittable<(ringValue: Compact<RingBalance> | AnyNumber | Uint8Array, ktonValue: Compact<KtonBalance> | AnyNumber | Uint8Array, beneficiary: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<RingBalance>, Compact<KtonBalance>, LookupSource]>;
-      /**
-       * Reject a proposed spend. The original deposit will be slashed.
-       * 
-       * May only be called from `T::RejectOrigin`.
-       * 
-       * # <weight>
-       * - Complexity: O(1)
-       * - DbReads: `Proposals`, `rejected proposer account`
-       * - DbWrites: `Proposals`, `rejected proposer account`
-       * # </weight>
-       **/
-      rejectProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
       /**
        * Report something `reason` that deserves a tip and claim any eventual the finder's fee.
        * 
@@ -2447,6 +3564,21 @@ declare module '@polkadot/api/types/submittable' {
        **/
       retractTip: AugmentedSubmittable<(hash: Hash | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash]>;
       /**
+       * Remove and slash an already-open tip.
+       * 
+       * May only be called from `T::RejectOrigin`.
+       * 
+       * As a result, the finder is slashed and the deposits are lost.
+       * 
+       * Emits `TipSlashed` if successful.
+       * 
+       * # <weight>
+       * `T` is charged as upper bound given by `ContainsLengthBound`.
+       * The actual cost depends on the implementation of `T::Tippers`.
+       * # </weight>
+       **/
+      slashTip: AugmentedSubmittable<(hash: Hash | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash]>;
+      /**
        * Declare a tip value for an already-open tip.
        * 
        * The dispatch origin for this call must be _Signed_ and the signing account must be a
@@ -2473,7 +3605,7 @@ declare module '@polkadot/api/types/submittable' {
        * - DbWrites: `Tips`
        * # </weight>
        **/
-      tip: AugmentedSubmittable<(hash: Hash | string | Uint8Array, tipValue: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash, Compact<RingBalance>]>;
+      tip: AugmentedSubmittable<(hash: Hash | string | Uint8Array, tipValue: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Hash, Compact<BalanceOf>]>;
       /**
        * Give a tip for something new; no finder's fee will be taken.
        * 
@@ -2498,33 +3630,137 @@ declare module '@polkadot/api/types/submittable' {
        * - DbWrites: `Reasons`, `Tips`
        * # </weight>
        **/
-      tipNew: AugmentedSubmittable<(reason: Bytes | string | Uint8Array, who: AccountId | string | Uint8Array, tipValue: Compact<RingBalance> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, AccountId, Compact<RingBalance>]>;
+      tipNew: AugmentedSubmittable<(reason: Bytes | string | Uint8Array, who: AccountId | string | Uint8Array, tipValue: Compact<BalanceOf> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Bytes, AccountId, Compact<BalanceOf>]>;
       /**
-       * Unassign curator from a bounty.
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    toCrabBacking: {
+      /**
+       * Lock token in this chain and cross transfer to the target chain
        * 
-       * This function can only be called by the `RejectOrigin` a signed origin.
+       * Target is the id of the target chain defined in s2s_chain pallet
+       **/
+      lockAndRemoteIssue: AugmentedSubmittable<(specVersion: u32 | AnyNumber | Uint8Array, weight: u64 | AnyNumber | Uint8Array, value: Compact<RingBalance> | AnyNumber | Uint8Array, fee: Compact<RingBalance> | AnyNumber | Uint8Array, recipient: H160 | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u64, Compact<RingBalance>, Compact<RingBalance>, H160]>;
+      registerAndRemoteCreate: AugmentedSubmittable<(specVersion: u32 | AnyNumber | Uint8Array, weight: u64 | AnyNumber | Uint8Array, fee: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [u32, u64, RingBalance]>;
+      setRemoteMappingTokenFactoryAccount: AugmentedSubmittable<(account: AccountId | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [AccountId]>;
+      setSecureLimitedPeriod: AugmentedSubmittable<(period: BlockNumberFor | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [BlockNumberFor]>;
+      setSecurityLimitationRingAmount: AugmentedSubmittable<(limitation: RingBalance | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [RingBalance]>;
+      /**
+       * Receive target chain locked message and unlock token in this chain.
+       **/
+      unlockFromRemote: AugmentedSubmittable<(tokenAddress: H160 | string | Uint8Array, amount: U256 | AnyNumber | Uint8Array, recipient: Bytes | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [H160, U256, Bytes]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    treasury: {
+      /**
+       * Approve a proposal. At a later time, the proposal will be allocated to the beneficiary
+       * and the original deposit will be returned.
        * 
-       * If this function is called by the `RejectOrigin`, we assume that the curator is malicious
-       * or inactive. As a result, we will slash the curator when possible.
-       * 
-       * If the origin is the curator, we take this as a sign they are unable to do their job and
-       * they willingly give up. We could slash them, but for now we allow them to recover their
-       * deposit and exit without issue. (We may want to change this if it is abused.)
-       * 
-       * Finally, the origin can be anyone if and only if the curator is "inactive". This allows
-       * anyone in the community to call out that a curator is not doing their due diligence, and
-       * we should pick a new curator. In this case the curator should also be slashed.
+       * May only be called from `T::ApproveOrigin`.
        * 
        * # <weight>
-       * - O(1).
-       * - Limited storage reads.
-       * - One DB change.
+       * - Complexity: O(1).
+       * - DbReads: `Proposals`, `Approvals`
+       * - DbWrite: `Approvals`
        * # </weight>
        **/
-      unassignCurator: AugmentedSubmittable<(bountyId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
+      approveProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
+      /**
+       * Put forward a suggestion for spending. A deposit proportional to the value
+       * is reserved and slashed if the proposal is rejected. It is returned once the
+       * proposal is awarded.
+       * 
+       * # <weight>
+       * - Complexity: O(1)
+       * - DbReads: `ProposalCount`, `origin account`
+       * - DbWrites: `ProposalCount`, `Proposals`, `origin account`
+       * # </weight>
+       **/
+      proposeSpend: AugmentedSubmittable<(value: Compact<BalanceOf> | AnyNumber | Uint8Array, beneficiary: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<BalanceOf>, LookupSource]>;
+      /**
+       * Reject a proposed spend. The original deposit will be slashed.
+       * 
+       * May only be called from `T::RejectOrigin`.
+       * 
+       * # <weight>
+       * - Complexity: O(1)
+       * - DbReads: `Proposals`, `rejected proposer account`
+       * - DbWrites: `Proposals`, `rejected proposer account`
+       * # </weight>
+       **/
+      rejectProposal: AugmentedSubmittable<(proposalId: Compact<ProposalIndex> | AnyNumber | Uint8Array) => SubmittableExtrinsic<ApiType>, [Compact<ProposalIndex>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
+    };
+    utility: {
+      /**
+       * Send a call through an indexed pseudonym of the sender.
+       * 
+       * Filter from origin are passed along. The call will be dispatched with an origin which
+       * use the same filter as the origin of this call.
+       * 
+       * NOTE: If you need to ensure that any account-based filtering is not honored (i.e.
+       * because you expect `proxy` to have been used prior in the call stack and you do not want
+       * the call restrictions to apply to any sub-accounts), then use `as_multi_threshold_1`
+       * in the Multisig pallet instead.
+       * 
+       * NOTE: Prior to version *12, this was called `as_limited_sub`.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       **/
+      asDerivative: AugmentedSubmittable<(index: u16 | AnyNumber | Uint8Array, call: Call | { callIndex?: any; args?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [u16, Call]>;
+      /**
+       * Send a batch of dispatch calls.
+       * 
+       * May be called from any origin.
+       * 
+       * - `calls`: The calls to be dispatched from the same origin. The number of call must not
+       * exceed the constant: `batched_calls_limit` (available in constant metadata).
+       * 
+       * If origin is root then call are dispatch without checking origin filter. (This includes
+       * bypassing `frame_system::Config::BaseCallFilter`).
+       * 
+       * # <weight>
+       * - Complexity: O(C) where C is the number of calls to be batched.
+       * # </weight>
+       * 
+       * This will return `Ok` in all circumstances. To determine the success of the batch, an
+       * event is deposited. If a call failed and the batch was interrupted, then the
+       * `BatchInterrupted` event is deposited, along with the number of successful calls made
+       * and the error of the failed call. If all were successful, then the `BatchCompleted`
+       * event is deposited.
+       **/
+      batch: AugmentedSubmittable<(calls: Vec<Call> | (Call | { callIndex?: any; args?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Call>]>;
+      /**
+       * Send a batch of dispatch calls and atomically execute them.
+       * The whole transaction will rollback and fail if any of the calls failed.
+       * 
+       * May be called from any origin.
+       * 
+       * - `calls`: The calls to be dispatched from the same origin. The number of call must not
+       * exceed the constant: `batched_calls_limit` (available in constant metadata).
+       * 
+       * If origin is root then call are dispatch without checking origin filter. (This includes
+       * bypassing `frame_system::Config::BaseCallFilter`).
+       * 
+       * # <weight>
+       * - Complexity: O(C) where C is the number of calls to be batched.
+       * # </weight>
+       **/
+      batchAll: AugmentedSubmittable<(calls: Vec<Call> | (Call | { callIndex?: any; args?: any } | string | Uint8Array)[]) => SubmittableExtrinsic<ApiType>, [Vec<Call>]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
     vesting: {
-      [key: string]: SubmittableExtrinsicFunction<ApiType>;
       /**
        * Force a vested transfer.
        * 
@@ -2549,7 +3785,7 @@ declare module '@polkadot/api/types/submittable' {
        * Unlock any vested funds of the sender account.
        * 
        * The dispatch origin for this call must be _Signed_ and the sender must have funds still
-       * locked under this module.
+       * locked under this pallet.
        * 
        * Emits either `VestingCompleted` or `VestingUpdated`.
        * 
@@ -2561,24 +3797,6 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       vest: AugmentedSubmittable<() => SubmittableExtrinsic<ApiType>, []>;
-      /**
-       * Unlock any vested funds of a `target` account.
-       * 
-       * The dispatch origin for this call must be _Signed_.
-       * 
-       * - `target`: The account whose vested funds should be unlocked. Must have funds still
-       * locked under this module.
-       * 
-       * Emits either `VestingCompleted` or `VestingUpdated`.
-       * 
-       * # <weight>
-       * - `O(1)`.
-       * - DbWeight: 3 Reads, 3 Writes
-       * - Reads: Vesting Storage, Balances Locks, Target Account
-       * - Writes: Vesting Storage, Balances Locks, Target Account
-       * # </weight>
-       **/
-      vestOther: AugmentedSubmittable<(target: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource]>;
       /**
        * Create a vested transfer.
        * 
@@ -2598,11 +3816,28 @@ declare module '@polkadot/api/types/submittable' {
        * # </weight>
        **/
       vestedTransfer: AugmentedSubmittable<(target: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array, schedule: VestingInfo | { locked?: any; perBlock?: any; startingBlock?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource, VestingInfo]>;
+      /**
+       * Unlock any vested funds of a `target` account.
+       * 
+       * The dispatch origin for this call must be _Signed_.
+       * 
+       * - `target`: The account whose vested funds should be unlocked. Must have funds still
+       * locked under this pallet.
+       * 
+       * Emits either `VestingCompleted` or `VestingUpdated`.
+       * 
+       * # <weight>
+       * - `O(1)`.
+       * - DbWeight: 3 Reads, 3 Writes
+       * - Reads: Vesting Storage, Balances Locks, Target Account
+       * - Writes: Vesting Storage, Balances Locks, Target Account
+       * # </weight>
+       **/
+      vestOther: AugmentedSubmittable<(target: LookupSource | { Id: any } | { Index: any } | { Raw: any } | { Address32: any } | { Address20: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [LookupSource]>;
+      /**
+       * Generic tx
+       **/
+      [key: string]: SubmittableExtrinsicFunction<ApiType>;
     };
-  }
-
-  export interface SubmittableExtrinsics<ApiType extends ApiTypes> extends AugmentedSubmittables<ApiType> {
-    (extrinsic: Call | Extrinsic | Uint8Array | string): SubmittableExtrinsic<ApiType>;
-    [key: string]: SubmittableModuleExtrinsics<ApiType>;
-  }
-}
+  } // AugmentedSubmittables
+} // declare module

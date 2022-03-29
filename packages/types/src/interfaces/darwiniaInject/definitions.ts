@@ -48,22 +48,22 @@ export default {
     },
     StakingLedgerT: {
       stash: 'AccountId',
-      active: 'Compact<Balance>',
-      activeDepositRing: 'Compact<Balance>',
-      activeKton: 'Compact<Balance>',
+      active: 'Balance',
+      activeDepositRing: 'Balance',
+      activeKton: 'Balance',
       depositItems: 'Vec<TimeDepositItem>',
       ringStakingLock: 'StakingLock',
       ktonStakingLock: 'StakingLock',
       claimedRewards: 'Vec<EraIndex>'
     },
     TimeDepositItem: {
-      value: 'Compact<Balance>',
-      startTime: 'Compact<TsInMs>',
-      expireTime: 'Compact<TsInMs>'
+      value: 'Balance',
+      startTime: 'TsInMs',
+      expireTime: 'TsInMs'
     },
     ExposureT: {
-      ownRingBalance: 'Compact<Balance>',
-      ownKtonBalance: 'Compact<Balance>',
+      ownRingBalance: 'Balance',
+      ownKtonBalance: 'Balance',
       ownPower: 'Power',
       totalPower: 'Power',
       others: 'Vec<IndividualExposure>'
@@ -71,8 +71,8 @@ export default {
     Exposure: 'ExposureT',
     IndividualExposure: {
       who: 'AccountId',
-      ringBalance: 'Compact<Balance>',
-      ktonBalance: 'Compact<Balance>',
+      ringBalance: 'Balance',
+      ktonBalance: 'Balance',
       power: 'Power'
     },
     ElectionResultT: {

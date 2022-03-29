@@ -1,15 +1,29 @@
 {
-  "extends": "./node_modules/@polkadot/dev/config/tsconfig",
   "exclude": [
     "build/**/*",
     "**/build/**/*",
     "docs/examples/promise/90_typegen/*",
-    "node_modules/@polkadot/api/types/consts.d.ts",
+    "dist/**/*",
+    "node_modules",
     "example/**"
   ],
   "compilerOptions": {
+    "target": "esnext",
     "module": "commonjs",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
     "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "declaration": true,
+    "jsx": "preserve",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noImplicitReturns": true,
+    "noUnusedParameters":false,
+  
     "paths":
     {
       // "@darwinia/api": ["packages/api/src"],
@@ -20,10 +34,12 @@
       "@darwinia/types-known/*": ["packages/types-known/src/*"],
       "@darwinia/api-options": ["packages/api-options/src"],
       "@darwinia/api-options/*": ["packages/api-options/src/*"],
-      "@polkadot/api/augment": ["packages/types/src/interfaces/augment-api.ts"],
-      "@polkadot/types/augment": ["packages/types/src/interfaces/augment-types.ts"]
+      "@polkadot/api-augment": ["packages/types/src/interfaces/augment-api.ts"],
+      "@polkadot/types-augment": ["packages/types/src/interfaces/augment-types.ts"],
+      "@polkadot/types/lookup": ["node_modules/@polkadot/types-augment/lookup/index.d.ts"]
     },
     "skipLibCheck": true,
+    
     "typeRoots": [
       "./node_modules/@polkadot/ts",
       "./node_modules/@types"

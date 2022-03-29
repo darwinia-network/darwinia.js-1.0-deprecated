@@ -16,5 +16,6 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 'off',
     // this seems very broken atm, false positives
     '@typescript-eslint/unbound-method': 'off'
+     
   }
 };
