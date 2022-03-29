@@ -25,7 +25,7 @@ export default {
       amount: 'Balance'
     },
     InProcessOrders: {
-      orders: 'Vec<LaneId, MessageNonce>'
+      orders: 'Vec<(LaneId, MessageNonce)>'
     }
   }
 };

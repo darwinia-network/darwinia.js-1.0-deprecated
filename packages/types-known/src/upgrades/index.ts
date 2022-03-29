@@ -4,8 +4,7 @@
 
 import { ChainUpgradesRaw, ChainUpgrades } from './types';
 
-import BN from 'bn.js';
-import { hexToU8a } from '@polkadot/util';
+import { BN, hexToU8a } from '@polkadot/util';
 
 import darwiniaCrab from './darwinia-crab';
 

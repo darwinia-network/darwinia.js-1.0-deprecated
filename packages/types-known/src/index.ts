@@ -2,13 +2,12 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import type BN from 'bn.js';
 import { Hash } from '@polkadot/types/interfaces';
 import { DefinitionRpc, DefinitionRpcSub, Registry, RegistryTypes, OverrideModuleType, OverrideVersionedType } from '@polkadot/types/types';
 import { ChainUpgradeVersion } from './upgrades/types';
 
 import { Text } from '@polkadot/types';
-import { bnToBn, isUndefined } from '@polkadot/util';
+import { BN, bnToBn, isUndefined } from '@polkadot/util';
 
 import typesChain from './chain';
 import typesMeta from './metadata';
