@@ -7,7 +7,7 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "^4.0.2"
+    "typescript": "4.3.3"
   },
   "scripts": {
     "build": "node polkadot-dev-build-ts.js",

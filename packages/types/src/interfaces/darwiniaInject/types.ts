@@ -1,14 +1,15 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u128, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Bytes, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { EthereumAddress } from '@polkadot/types/interfaces/eth';
 import type { AccountId, Balance, BlockNumber, H128, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
 import type { RefCount } from '@polkadot/types/interfaces/system';
-import type { Reasons } from '@polkadot/types/interfaces/balances';
-import type { EraIndex } from '@polkadot/types/interfaces';
 import type { ValidatorPrefsWithBlocked } from '@polkadot/types/interfaces/staking';
+import type { EraIndex } from '@polkadot/types/interfaces';
+import type { Reasons } from '@polkadot/types/interfaces/balances';
+
 
 /** @name AccountData */
 export interface AccountData extends Struct {
