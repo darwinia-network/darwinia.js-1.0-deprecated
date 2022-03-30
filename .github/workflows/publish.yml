@@ -1,4 +1,9 @@
-name: Check lint and tests
+name: Publish
+
+# on:
+#   push:
+#     tags:
+#       - "v*"
 
 on:
   push:
@@ -8,8 +13,8 @@ on:
 
 
 jobs:
-  check-code:
-    name: Check code
+  publish-npm:
+    name: Publish npm
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,12 +38,21 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Lint script
-        run: yarn lint
+      - name: Run lernaversion
+        run: yarn lernaversion
 
-      - name: Run tests
-        run: yarn test
-
-      - name: Try build
+      - name: Run build
         run: yarn build
+
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        id: publish-step
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          dry-run: true
+
+      - name: Publish echo
+        if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish-step.outputs.old-version }} => ${{ steps.publish-step.outputs.version }}"
 
