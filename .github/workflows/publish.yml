@@ -38,8 +38,18 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Read version
+        id: read-version
+        run: |
+          VERSION=$(cat lerna.json |  jq --raw-output '.version?')
+          if [ -z "${VERSION}" ]; then
+            echo 'No version found in lerna.json file';
+            exit 1
+          fi
+          echo "::set-output name=VERSION::$VERSION"
+
       - name: Run lernaversion
-        run: yarn lernaversion
+        run: yarn lernaversion -- --yes ${{ steps.read-version.outputs.VERSION }}
 
       - name: Run build
         run: yarn build
