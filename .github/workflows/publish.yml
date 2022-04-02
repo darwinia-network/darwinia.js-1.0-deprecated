@@ -1,15 +1,9 @@
 name: Publish
 
-# on:
-#   push:
-#     tags:
-#       - "v*"
-
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    tags:
+      - "v*"
 
 
 jobs:
@@ -59,7 +53,7 @@ jobs:
         id: publish-step
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          dry-run: true
+          dry-run: false
 
       - name: Publish echo
         if: steps.publish.outputs.type != 'none'
