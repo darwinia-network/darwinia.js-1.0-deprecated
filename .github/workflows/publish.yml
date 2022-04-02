@@ -49,7 +49,7 @@ jobs:
           echo "::set-output name=VERSION::$VERSION"
 
       - name: Run lernaversion
-        run: yarn lernaversion -- --yes ${{ steps.read-version.outputs.VERSION }}
+        run: yarn lernaversion --yes ${{ steps.read-version.outputs.VERSION }}
 
       - name: Run build
         run: yarn build
