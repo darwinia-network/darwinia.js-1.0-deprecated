@@ -89,6 +89,7 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 /**
  * @description From a list of stashes, fill in all the relevant staking details
  */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function accounts (instanceId: string, api: DeriveApi) {
   return memo(instanceId, (accountIds: (Uint8Array | string)[]) => {
     const keysObs = api.derive.staking.keysMulti(accountIds);
