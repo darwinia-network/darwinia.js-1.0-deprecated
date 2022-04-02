@@ -130,7 +130,7 @@ export function queryMulti (
         ? api.query.session.queuedKeys().pipe(
           switchMap((queuedKeys) =>
             combineLatest(
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-call
               accountIds.map((acc) => (api.derive.staking as unknown as any).queryWithQueued(acc, queuedKeys))
             )
           )

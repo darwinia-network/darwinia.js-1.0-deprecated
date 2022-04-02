@@ -5,8 +5,7 @@
 import { DeriveStakingElected, StakingQueryFlags } from '@polkadot/api-derive/types';
 import { memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
-import { Option } from '@polkadot/types';
-import { AccountId, EraIndex, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
 import { arrayFlatten } from '@polkadot/util';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';

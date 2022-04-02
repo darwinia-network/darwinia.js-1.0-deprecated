@@ -10,7 +10,7 @@ import type { Balance, BlockNumber } from '@polkadot/types/interfaces';
 import { Moment } from '@polkadot/types/interfaces';
 import { BN } from '@polkadot/util';
 import { isUndefined } from 'lodash';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map } from 'rxjs';
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
 
 const QUERY_OPTS = {
@@ -23,6 +23,7 @@ const QUERY_OPTS = {
 
 // eslint-disable-next-line space-before-function-paren
 function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undefined, best: BlockNumber): Balance {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   if (isUndefined(stakingLedger)) {
     return api.registry.createType('Balance');
   }
@@ -44,6 +45,7 @@ function calculateUnlocking(
 ): [DeriveUnlocking[] | undefined, Balance] {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   if (isUndefined(stakingLedger) || !stakingLedger[`${currencyType}StakingLock`]) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
@@ -74,13 +76,13 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 
   return {
     ...query,
-    redeemable: redeemableSum(api, stakingLedger, best),
-    activeDepositItems: depositItems,
     activeDepositAmount,
+    activeDepositItems: depositItems,
+    redeemable: redeemableSum(api, stakingLedger, best),
     unlocking: calcUnlocking[0],
-    unlockingTotalValue: calcUnlocking[1],
     unlockingKton: calcUnlockingKton[0],
-    unlockingKtonTotalValue: calcUnlockingKton[1]
+    unlockingKtonTotalValue: calcUnlockingKton[1],
+    unlockingTotalValue: calcUnlocking[1]
   };
 }
 

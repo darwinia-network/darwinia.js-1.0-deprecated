@@ -15,7 +15,9 @@ module.exports = {
     // these should be removed, there are 8 of them as errors
     '@typescript-eslint/no-non-null-assertion': 'off',
     // this seems very broken atm, false positives
-    '@typescript-eslint/unbound-method': 'off'
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off'
      
   }
 };
