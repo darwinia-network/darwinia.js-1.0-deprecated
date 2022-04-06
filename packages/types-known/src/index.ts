@@ -21,8 +21,8 @@ import warnings from './warnings';
 function filterVersions (versions: OverrideVersionedType[] = [], specVersion: number): RegistryTypes {
   return versions
     .filter(({ minmax: [min, max] }) =>
-      (isUndefined(min) || specVersion >= min!) &&
-      (isUndefined(max) || specVersion <= max!)
+      (isUndefined(min) || min === null || specVersion >= min) &&
+      (isUndefined(max) || max === null || specVersion <= max)
     )
     .reduce((result: RegistryTypes, { types }): RegistryTypes => ({
       ...result,

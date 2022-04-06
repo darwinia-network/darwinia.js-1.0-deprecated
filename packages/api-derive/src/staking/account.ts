@@ -3,13 +3,13 @@
 // of the Apache-2.0 license. See the LICENSE file for details.
 
 import { StakingLedgerT as StakingLedger } from '../../../types/src';
-import { DeriveApi, DeriveUnlocking } from '@polkadot/api-derive/types';
+import { DeriveApi, DeriveUnlocking, DeriveStakingKeys } from '@polkadot/api-derive/types';
 import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
 import type { Balance, BlockNumber } from '@polkadot/types/interfaces';
 import { Moment } from '@polkadot/types/interfaces';
-import { BN } from '@polkadot/util';
-import { isUndefined } from 'lodash';
+import { BN, isUndefined } from '@polkadot/util';
+import { Memoized } from '@polkadot/util/types';
 import { combineLatest, map, Observable } from 'rxjs';
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
 
@@ -29,7 +29,7 @@ function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undef
 
   return api.registry.createType(
     'Balance',
-    stakingLedger!.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
+    stakingLedger.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
       return until.gte(best) ? total.add(amount) : total;
     }, new BN(0)) ?? new BN(0)
   );
@@ -42,14 +42,10 @@ function calculateUnlocking(
   best: BlockNumber,
   currencyType: 'ring' | 'kton'
 ): [DeriveUnlocking[] | undefined, Balance] {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   if (isUndefined(stakingLedger) || !stakingLedger[`${currencyType}StakingLock`]) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const stakingLock = stakingLedger[`${currencyType}StakingLock`] as StakingLock;
   const unlockingChunks = stakingLock?.unbondings.filter(({ until }) => {
     return until.gt(best);
@@ -74,20 +70,20 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 
   return {
     ...query,
-    redeemable: redeemableSum(api, stakingLedger, best),
-    activeDepositItems: depositItems,
     activeDepositAmount,
+    activeDepositItems: depositItems,
+    redeemable: redeemableSum(api, stakingLedger, best),
     unlocking: calcUnlocking[0],
-    unlockingTotalValue: calcUnlocking[1],
     unlockingKton: calcUnlockingKton[0],
-    unlockingKtonTotalValue: calcUnlockingKton[1]
+    unlockingKtonTotalValue: calcUnlockingKton[1],
+    unlockingTotalValue: calcUnlocking[1]
   };
 }
 
 /**
  * @description From a list of stashes, fill in all the relevant staking details
  */
-export function accounts (instanceId: string, api: DeriveApi) {
+export function accounts (instanceId: string, api: DeriveApi) : Memoized<(accountIds:(Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
   return memo(instanceId, (accountIds: (Uint8Array | string)[]) => {
     const keysObs = api.derive.staking.keysMulti(accountIds);
     const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS);

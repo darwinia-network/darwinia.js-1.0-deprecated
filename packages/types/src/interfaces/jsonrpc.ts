@@ -16,7 +16,7 @@ const jsonrpc: Record<string, Record<string, DefinitionRpcExt>> = { ...polkadotJ
 
 Object
   .keys(definitions)
-  .filter((key) => Object.keys((definitions as any)[key as 'babe'].rpc || {}).length !== 0)
+  .filter((key) => Object.keys((definitions as unknown)[key as 'babe'].rpc || {}).length !== 0)
   .forEach((section): void => {
     if (!jsonrpc[section]) {
       jsonrpc[section] = {};

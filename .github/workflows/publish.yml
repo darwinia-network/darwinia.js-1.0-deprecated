@@ -1,0 +1,62 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+
+jobs:
+  publish-npm:
+    name: Publish npm
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Read version
+        id: read-version
+        run: |
+          VERSION=$(cat lerna.json |  jq --raw-output '.version?')
+          if [ -z "${VERSION}" ]; then
+            echo 'No version found in lerna.json file';
+            exit 1
+          fi
+          echo "::set-output name=VERSION::$VERSION"
+
+      - name: Run lernaversion
+        run: yarn lernaversion --yes ${{ steps.read-version.outputs.VERSION }}
+
+      - name: Run build
+        run: yarn build
+
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        id: publish-step
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          dry-run: false
+
+      - name: Publish echo
+        if: steps.publish.outputs.type != 'none'
+        run: |
+          echo "Version changed: ${{ steps.publish-step.outputs.old-version }} => ${{ steps.publish-step.outputs.version }}"
+
