@@ -8,8 +8,7 @@ import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
 import type { Balance, BlockNumber } from '@polkadot/types/interfaces';
 import { Moment } from '@polkadot/types/interfaces';
-import { BN } from '@polkadot/util';
-import { isUndefined } from 'lodash';
+import { BN, isUndefined } from '@polkadot/util';
 import { Memoized } from '@polkadot/util/types';
 import { combineLatest, map, Observable } from 'rxjs';
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
@@ -24,14 +23,13 @@ const QUERY_OPTS = {
 
 // eslint-disable-next-line space-before-function-paren
 function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undefined, best: BlockNumber): Balance {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   if (isUndefined(stakingLedger)) {
     return api.registry.createType('Balance');
   }
 
   return api.registry.createType(
     'Balance',
-    stakingLedger!.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
+    stakingLedger.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
       return until.gte(best) ? total.add(amount) : total;
     }, new BN(0)) ?? new BN(0)
   );
@@ -44,15 +42,10 @@ function calculateUnlocking(
   best: BlockNumber,
   currencyType: 'ring' | 'kton'
 ): [DeriveUnlocking[] | undefined, Balance] {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   if (isUndefined(stakingLedger) || !stakingLedger[`${currencyType}StakingLock`]) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const stakingLock = stakingLedger[`${currencyType}StakingLock`] as StakingLock;
   const unlockingChunks = stakingLock?.unbondings.filter(({ until }) => {
     return until.gt(best);
