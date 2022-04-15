@@ -7,13 +7,3 @@ import type { Balance } from '@polkadot/types/interfaces/runtime';
 export interface DeriveMarketFee{
   amount: Balance
 }
-
-export interface DeriveInProcessOrders{
-  demo: string
-}
-
-// export interface DeriveRelayer {
-//   id: AccountId;
-//   collateral: Balance;
-//   fee: Balance;
-// }

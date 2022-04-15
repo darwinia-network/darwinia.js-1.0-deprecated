@@ -30,6 +30,14 @@ function lastmarkerFee (api: ApiInterfaceRx) : Observable<DeriveMarketFee | unde
 /**
  * @name marketFee
  * @description market fee
+ * @example
+ * <BR>
+ *
+ * ```javascript
+ * api.derive.feeMarket.marketFee((fee) => {
+ *   console.log(`the current market fee is ${fee}`);
+ * });
+ * ```
  */
 
 export function marketFee (instanceId: string, api: ApiInterfaceRx) : () => Observable<DeriveMarketFee | undefined> {
