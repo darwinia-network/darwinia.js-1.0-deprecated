@@ -24,7 +24,7 @@
   "scripts": {
     "build": "node polkadot-dev-build-ts.js",
     "build:interfaces": "polkadot-types-internal-interfaces",
-    "build:publish": "node polkadot-ci-ghact-build.js",
+    "publish": "node polkadot-ci-ghact-build.js",
     "build:ts": "node polkadot-dev-build-ts.js",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
     "docs:release": "polkadot-ci-ghact-docs",
