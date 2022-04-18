@@ -5,11 +5,7 @@
 
 import { OverrideVersionedType } from '@polkadot/types/types';
 
-const sharedTypes = {
-  InProcessOrders: {
-    orders: 'Vec<LaneId, MessageNonce>'
-  }
-};
+const sharedTypes = {};
 
 const versioned: OverrideVersionedType[] = [
   {
