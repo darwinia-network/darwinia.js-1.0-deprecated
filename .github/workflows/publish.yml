@@ -49,11 +49,11 @@ jobs:
         run: yarn build
 
       - name: NPM Publish
-        run: yarn publish
-        id: publish-step
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          dry-run: false
+        run: |
+          yarn publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+         
 
       - name: Publish echo
         if: steps.publish.outputs.type != 'none'
