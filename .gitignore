@@ -11,7 +11,6 @@ tmp/
 .env.development.local
 .env.test.local
 .env.production.local
-.npmrc
 .rpt2_cache
 .yarn/*
 !.yarn/releases

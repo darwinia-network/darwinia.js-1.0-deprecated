@@ -35,7 +35,7 @@ function npmPublish () {
   }
 
   rimraf.sync('build/package.json');
-  ['LICENSE', 'README.md', 'package.json'].forEach((file) => cpx.copySync(file, 'build'));
+  ['LICENSE', 'README.md', 'package.json', '.npmrc'].forEach((file) => cpx.copySync(file, 'build'));
 
   process.chdir('build');
 
