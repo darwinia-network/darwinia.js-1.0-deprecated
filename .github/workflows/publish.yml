@@ -48,15 +48,7 @@ jobs:
       - name: Run build
         run: yarn build
 
-      - name: NPM Publish
-        run: |
-          yarn publish
+      - name: Publish to npm
+        run: yarn publish
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-         
-
-      - name: Publish echo
-        if: steps.publish.outputs.type != 'none'
-        run: |
-          echo "Version changed: ${{ steps.publish-step.outputs.old-version }} => ${{ steps.publish-step.outputs.version }}"
-
