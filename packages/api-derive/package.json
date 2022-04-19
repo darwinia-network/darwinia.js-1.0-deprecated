@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/api-derive",
-    "version": "2.7.4",
+    "version": "2.7.5",
     "description": "Implementation of the derived results ",
     "main": "index.js",
     "keywords": [
