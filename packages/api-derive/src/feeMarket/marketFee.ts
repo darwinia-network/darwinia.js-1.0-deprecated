@@ -12,7 +12,7 @@ import type { DeriveMarketFee } from './types';
 import type { Relayer } from '@darwinia/types';
 import type { Option, Vec } from '@polkadot/types-codec';
 
-function lastmarkerFee (api: ApiInterfaceRx) : Observable<DeriveMarketFee | undefined> {
+function lastAssignedRelayerFee (api: ApiInterfaceRx) : Observable<DeriveMarketFee | undefined> {
   return api.query.feeMarket.assignedRelayers<Option<Vec<Relayer>>>().pipe(
     map((relayers): DeriveMarketFee | undefined => {
       const datas = relayers.unwrapOr([]);
@@ -42,6 +42,6 @@ function lastmarkerFee (api: ApiInterfaceRx) : Observable<DeriveMarketFee | unde
 
 export function marketFee (instanceId: string, api: ApiInterfaceRx) : () => Observable<DeriveMarketFee | undefined> {
   return memo(instanceId, (): Observable<DeriveMarketFee | undefined> => {
-    return lastmarkerFee(api);
+    return lastAssignedRelayerFee(api);
   });
 }

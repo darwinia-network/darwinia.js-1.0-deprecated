@@ -4,6 +4,6 @@
 
 import type { Balance } from '@polkadot/types/interfaces/runtime';
 
-export interface DeriveMarketFee{
+export interface DeriveMarketFee {
   amount: Balance
 }
