@@ -1,7 +1,7 @@
 {
-    "name": "@darwinia/types-augment",
+    "name": "@darwinia/api-augment",
     "version": "2.7.6",
-    "description": "Types generated augmentation",
+    "description": "API generated augmentation",
     "keywords": [
         "darwinia",
         "Polkadot",
@@ -10,7 +10,7 @@
     "contributors": [],
     "license": "Apache-2.0",
     "repository": {
-        "directory": "packages/types-augment",
+        "directory": "packages/api-augment",
         "type": "git",
         "url": "https://github.com/darwinia-network/darwinia.js.git"
     },
@@ -18,8 +18,14 @@
     "main": "index.js",
     "dependencies": {
         "@babel/runtime": "^7.17.9",
+        "@polkadot/api-base": "8.1.2-1",
+        "@polkadot/rpc-augment": "8.1.2-1",
         "@polkadot/types": "8.1.2-1",
+        "@polkadot/types-augment": "8.1.2-1",
         "@polkadot/types-codec": "8.1.2-1",
         "@polkadot/util": "^9.0.1"
+    },
+    "devDependencies": {
+        "@polkadot/types-support": "8.1.2-1"
     }
 }

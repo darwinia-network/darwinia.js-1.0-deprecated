@@ -3,16 +3,16 @@
     "version": "2.7.6",
     "description": "RPC generated augmentation",
     "keywords": [
-      "darwinia", 
-      "Polkadot",
-      "JsonRPC"
+        "darwinia",
+        "Polkadot",
+        "JsonRPC"
     ],
     "contributors": [],
     "license": "Apache-2.0",
     "repository": {
-      "directory": "packages/rpc-augment",
-      "type": "git",
-      "url": "https://github.com/darwinia-network/darwinia.js.git"
+        "directory": "packages/rpc-augment",
+        "type": "git",
+        "url": "https://github.com/darwinia-network/darwinia.js.git"
     },
     "type": "module",
     "main": "index.js",
@@ -23,5 +23,4 @@
         "@polkadot/types-codec": "8.1.2-1",
         "@polkadot/util": "^9.0.1"
     }
-  }
-  
+}

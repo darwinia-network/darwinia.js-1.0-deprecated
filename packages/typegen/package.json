@@ -1,0 +1,40 @@
+{
+    "name": "@darwinia/typegen",
+    "version": "2.7.6",
+    "description": "Type generation scripts",
+    "keywords": [
+        "darwinia",
+        "Polkadot",
+        "JsonRPC"
+    ],
+    "contributors": [],
+    "license": "Apache-2.0",
+    "repository": {
+        "directory": "packages/typegen",
+        "type": "git",
+        "url": "https://github.com/darwinia-network/darwinia.js.git"
+    },
+    "type": "module",
+    "main": "index.js",
+    "bin": {
+        "darwinia-types-internal-interfaces": "./scripts/darwinia-types-internal-interfaces.cjs"
+    },
+    "dependencies": {
+        "@babel/core": "^7.16.0",
+        "@babel/register": "^7.16.0",
+        "@babel/runtime": "^7.16.0",
+        "@polkadot/api": "8.1.2-1",
+        "@polkadot/rpc-provider": "8.1.2-1",
+        "@polkadot/typegen": "8.1.2-1",
+        "@polkadot/types": "8.1.2-1",
+        "@polkadot/types-support": "8.1.2-1",
+        "@polkadot/util": "^9.0.1",
+        "handlebars": "^4.7.7",
+        "websocket": "^1.0.34",
+        "yargs": "^17.2.1"
+    },
+    "devDependencies": {
+        "@types/websocket": "^1.0.4",
+        "@types/yargs": "^17.0.5"
+    }
+}
