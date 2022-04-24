@@ -19,10 +19,10 @@
   ],
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",
-    "typescript": "4.3.3"
+    "typescript": "^4.6.3"
   },
   "scripts": {
-    "build": "node polkadot-dev-build-ts.js",
+    "build": "yarn build:interfaces && polkadot-dev-build-ts",
     "build:interfaces": "polkadot-types-internal-interfaces",
     "publish": "node polkadot-ci-ghact-build.js",
     "build:ts": "node polkadot-dev-build-ts.js",
@@ -33,10 +33,8 @@
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
-    "test:one": "polkadot-dev-run-test",
+    "test:one": "polkadot-dev-run-test --detectOpenHandles --forceExit",
     "test:watch": "polkadot-dev-run-test --watch",
-    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./packages/types/src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
     "lernaversion": "lerna version --skip-git",
     "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
   },
@@ -60,5 +58,5 @@
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
-  "version": "2.6.9"
+  "version": "2.7.6"
 }
