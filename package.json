@@ -11,6 +11,7 @@
       "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
     ]
   },
+  "private": true,
   "repository": "https://github.com/darwinia-network/darwinia.js",
   "license": "Apache-2",
   "workspaces": [
@@ -21,10 +22,10 @@
     "typescript": "4.3.3"
   },
   "scripts": {
-    "build": "yarn build:interfaces && polkadot-dev-build-ts",
-    "build:interfaces": "polkadot-types-internal-interfaces",
-    "publish": "node polkadot-ci-ghact-build.js",
-    "build:ts": "node polkadot-dev-build-ts.js",
+    "build": "yarn build:interfaces && yarn build:ts",
+    "build:interfaces": "darwinia-types-internal-interfaces",
+    "publish": "darwinia-ci-ghact-build",
+    "build:ts": "darwinia-dev-build-ts",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
     "docs:release": "polkadot-ci-ghact-docs",
     "chain:info": "polkadot-types-chain-info",
@@ -42,6 +43,7 @@
     "@babel/node": "^7.13.10",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
+    "@darwinia/typegen": "workspace:packages/typegen",
     "@polkadot/api": "8.1.2-1",
     "@polkadot/dev": "^0.55.46",
     "@polkadot/ts": "^0.3.42",
@@ -49,6 +51,7 @@
     "@types/jest": "^26.0.13",
     "@vuepress/plugin-search": "^1.5.4",
     "copyfiles": "^2.3.0",
+    "cpx": "^1.5.0",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
     "typedoc": "^0.19.1",

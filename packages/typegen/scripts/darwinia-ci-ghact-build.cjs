@@ -2,7 +2,7 @@
 // Copyright 2017-2022 @darwinia/typegen authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-const execSync = require('./execSync');
+const execSync = require('./execSync.cjs');
 const cpx = require('cpx');
 const path = require('path');
 const fs = require('fs');

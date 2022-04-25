@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 const babel = require('@babel/cli/lib/babel/dir').default;
-const execSync = require('./execSync');
+const execSync = require('./execSync.cjs');
 const cpx = require('cpx');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
