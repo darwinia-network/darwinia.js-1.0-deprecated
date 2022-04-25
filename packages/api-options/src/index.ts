@@ -1,6 +1,6 @@
-// Copyright 2017-2020 @darwinia/api authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/api-option authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import jsonrpc from '@darwinia/types/interfaces/jsonrpc';
 // import { derive as darwiniaDerive } from '@darwinia/api-derive';

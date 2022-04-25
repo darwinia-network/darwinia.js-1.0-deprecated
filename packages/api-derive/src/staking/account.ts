@@ -1,6 +1,5 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
 import { StakingLedgerT as StakingLedger } from '../../../types/src';
 import { DeriveApi, DeriveUnlocking, DeriveStakingKeys } from '@polkadot/api-derive/types';
@@ -42,11 +41,11 @@ function calculateUnlocking(
   best: BlockNumber,
   currencyType: 'ring' | 'kton'
 ): [DeriveUnlocking[] | undefined, Balance] {
-  if (isUndefined(stakingLedger) || !stakingLedger[`${currencyType}StakingLock`]) {
+  if (isUndefined(stakingLedger) || !stakingLedger.get(`${currencyType}StakingLock`)) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
 
-  const stakingLock = stakingLedger[`${currencyType}StakingLock`] as StakingLock;
+  const stakingLock = stakingLedger.get(`${currencyType}StakingLock`) as unknown as StakingLock;
   const unlockingChunks = stakingLock?.unbondings.filter(({ until }) => {
     return until.gt(best);
   });

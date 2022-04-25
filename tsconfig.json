@@ -1,19 +1,24 @@
 {
   "extends": "@polkadot/dev/config/tsconfig.json",
   "exclude": [
+    "**/node_modules/**/*",
     "build/**/*",
     "**/build/**/*",
     "docs/examples/promise/90_typegen/*",
     "dist/**/*",
-    "node_modules",
-    "example/**"
+    "**/node_modules/**/*",
+    "example/**",
+    "**/test/*",
+    "**/checkTypes.manual.ts",
+     
   ],
   "compilerOptions": {
     "outDir": "./dist",
     "baseUrl": ".",
-    "resolveJsonModule": true,
-    "declaration": true,
-    "noUnusedParameters":false,
+    // "resolveJsonModule": true,
+    // "declaration": true,
+    // "noUnusedParameters":false,
+
   
     "paths":
     {
@@ -27,7 +32,7 @@
       // "@darwinia/api-options/*": ["packages/api-options/src/*"],
       // "@polkadot/api-augment": ["packages/types/src/interfaces/augment-api.ts"],
       // "@polkadot/types-augment": ["packages/types/src/interfaces/augment-types.ts"],
-      // "@polkadot/types/lookup": ["node_modules/@polkadot/types-augment/lookup/index.d.ts"]
+      "@polkadot/types/lookup": ["node_modules/@polkadot/types-augment/lookup/index.d.ts"],
       "@darwinia/api-augment": ["packages/api-augment/src"],
       "@darwinia/api-augment/*": ["packages/api-augment/src/*"],
       "@darwinia/api-derive": ["packages/api-derive/src"],
@@ -39,7 +44,7 @@
       "@darwinia/types-augment": ["packages/types-augment/src"],
       "@darwinia/types-augment/*": ["packages/types-augment/src/*"],
       "@darwinia/types-known": ["packages/types-known/src"],
-      "@darwinia/types-known/*": ["packages/types-knonw/src/*"],
+      "@darwinia/types-known/*": ["packages/types-known/src/*"],
       "@darwinia/types-support": ["packages/types-support/src"],
       "@darwinia/types-support/*": ["packages/types-support/src/*"],
 

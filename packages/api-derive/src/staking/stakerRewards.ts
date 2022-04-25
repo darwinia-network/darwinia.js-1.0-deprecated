@@ -1,6 +1,8 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import { DeriveEraPoints,
   DeriveEraPrefs,
@@ -11,6 +13,7 @@ import { DeriveEraPoints,
 import { DeriveApi } from '@polkadot/api-derive/types';
 import { memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
+import { u32 } from '@polkadot/types';
 import { AccountId, EraIndex } from '@polkadot/types/interfaces';
 import { PalletStakingStakingLedger } from '@polkadot/types/lookup';
 import { BN, BN_ZERO, BN_BILLION } from '@polkadot/util';
@@ -119,7 +122,7 @@ function removeClaimed (validators: string[], queryValidators: DeriveStakingQuer
     if (index !== -1) {
       const valLedger = queryValidators[index].stakingLedger;
 
-      if (valLedger?.claimedRewards.some((e) => reward.era.eq(e))) {
+      if (valLedger?.claimedRewards.some((e:u32) => reward.era.eq(e))) {
         rm.push(validatorId);
       }
     }
@@ -135,7 +138,8 @@ function filterRewards (
   valInfo: [string, DeriveStakingQuery][],
   { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: PalletStakingStakingLedger }
 ): DeriveStakerReward[] {
-  const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s) => s.eq(e)));
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s:u32) => s.eq(e)));
   const validators = valInfo.map(([v]) => v);
   const queryValidators = valInfo.map(([, q]) => q);
 

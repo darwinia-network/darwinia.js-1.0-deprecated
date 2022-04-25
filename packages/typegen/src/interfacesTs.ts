@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/typegen authors & contributors
+// Copyright 2017-2022 @darwinia/typegen authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -12,7 +12,7 @@ import pangoro from '../../types-support/src/metadata/static-pangoro';
 
 import * as chainDefs from '../../types/src/interfaces/definitions';
 
-import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultInterface, generateDefaultLookup, generateDefaultQuery, generateDefaultRpc, generateDefaultTsDef, generateDefaultTx } from '@polkadot/typegen/generate';
+import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
 
 import { generateInterfaceTypes } from '@polkadot/typegen/generate/interfaceRegistry';
 import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
@@ -57,7 +57,7 @@ export function main (): void {
     console.log();
     console.log(`*** Generating for ${name}`);
 
-    generateDefaultRpc(`${BASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interface': chainDefs });
+    generateDefaultRpc(`${RPCBASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interface': chainDefs });
     generateDefaultConsts(`${BASE}/${name}/consts.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
     generateDefaultErrors(`${BASE}/${name}/errors.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
     generateDefaultEvents(`${BASE}/${name}/events.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
