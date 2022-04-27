@@ -4,6 +4,8 @@
 // order important in structs... :)
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   types: {
     ProxyType: {
@@ -16,8 +18,13 @@ export default {
         EthereumBridge: null
       }
     },
-    Announcement: 'ProxyAnnouncement'
+    Announcement: 'ProxyAnnouncement',
+    ProxyAnnouncement: {
+      real: 'AccountId',
+      callHash: 'Hash',
+      height: 'BlockNumber'
+    }
   },
   rpc: {
   }
-};
+} as Definitions;

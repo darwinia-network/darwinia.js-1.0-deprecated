@@ -4,6 +4,8 @@
 // order important in structs... :)
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   rpc: {
     marketFee: {
@@ -27,4 +29,4 @@ export default {
       orders: 'Vec<(LaneId, MessageNonce)>'
     }
   }
-};
+} as Definitions;

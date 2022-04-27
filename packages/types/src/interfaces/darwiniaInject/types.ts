@@ -1,14 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Bytes, Enum, Option, Struct, Text, U256, U8aFixed, Vec, u128, u32, u64, u8 } from '@polkadot/types-codec';
+import type { LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
+import type { GenericEthereumAccountId } from '@polkadot/types';
+import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { EthereumAddress } from '@polkadot/types/interfaces/eth';
-import type { AccountId, Balance, BlockNumber, H128, H160, H256, H512, Hash, Index, LockIdentifier } from '@polkadot/types/interfaces/runtime';
-import type { RefCount } from '@polkadot/types/interfaces/system';
-import type { ValidatorPrefsWithBlocked } from '@polkadot/types/interfaces/staking';
-import type { EraIndex } from '@polkadot/types/interfaces';
-import type { Reasons } from '@polkadot/types/interfaces/balances';
+
+import type { Balance, Perbill, Index,LockIdentifier,AccountId, H128,H160, H512, H256, Hash, BlockNumber } from '@polkadot/types/interfaces/runtime';
 
 
 /** @name AccountData */
@@ -81,11 +79,17 @@ export interface ElectionResultT extends Struct {
   readonly compute: ElectionCompute;
 }
 
+/** @name EraIndex */
+export interface EraIndex extends u32 {}
+
 /** @name EthashProof */
 export interface EthashProof extends Struct {
   readonly dagNodes: ITuple<[H512, H512]>;
   readonly proof: Vec<H128>;
 }
+
+/** @name EthereumAddress */
+export interface EthereumAddress extends GenericEthereumAccountId {}
 
 /** @name EthereumBlockNumber */
 export interface EthereumBlockNumber extends u64 {}
@@ -258,12 +262,23 @@ export interface PriorRelayer extends Struct {
   readonly validRange: BlockNumber;
 }
 
+/** @name Reasons */
+export interface Reasons extends Enum {
+  readonly isFee: boolean;
+  readonly isMisc: boolean;
+  readonly isAll: boolean;
+  readonly type: 'Fee' | 'Misc' | 'All';
+}
+
 /** @name RedeemFor */
 export interface RedeemFor extends Enum {
   readonly isToken: boolean;
   readonly isDeposit: boolean;
   readonly type: 'Token' | 'Deposit';
 }
+
+/** @name RefCount */
+export interface RefCount extends u32 {}
 
 /** @name RelayAuthorityMessage */
 export interface RelayAuthorityMessage extends EcdsaMessage {}
@@ -389,8 +404,10 @@ export interface Unbonding extends Struct {
 /** @name ValidatorPrefs */
 export interface ValidatorPrefs extends ValidatorPrefsWithBlocked {}
 
+/** @name ValidatorPrefsWithBlocked */
+export interface ValidatorPrefsWithBlocked extends Struct {
+  readonly commission: Compact<Perbill>;
+  readonly blocked: bool;
+}
+
 export type PHANTOM_DARWINIAINJECT = 'darwiniaInject';
-
-export interface LaneId extends U8aFixed {};
-
-export interface MessageNonce extends u64 {};

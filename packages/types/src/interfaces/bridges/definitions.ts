@@ -3,9 +3,13 @@
 
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   rpc: {},
   types: {
-    MessageId: '(LaneId, MessageNonce)'
+    MessageId: '(LaneId, MessageNonce)',
+    LaneId: '[u8; 4]',
+    MessageNonce: 'u64'
   }
-};
+} as Definitions;

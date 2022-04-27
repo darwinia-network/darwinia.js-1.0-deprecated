@@ -3,6 +3,8 @@
 
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   types: {
     BalanceInfo: {},
@@ -251,9 +253,19 @@ export default {
       confirmTime: 'BlockNumber',
       lockedCollateral: 'Balance',
       assignedRelayers: 'Vec<PriorRelayer>'
-    }
+    },
+    EraIndex: 'u32',
+    RefCount: 'u32',
+    Reasons: {
+      _enum: ['Fee', 'Misc', 'All']
+    },
+    ValidatorPrefsWithBlocked: {
+      commission: 'Compact<Perbill>',
+      blocked: 'bool'
+    },
+    EthereumAddress: 'GenericEthereumAccountId'
   },
   rpc: {
 
   }
-};
+} as Definitions;

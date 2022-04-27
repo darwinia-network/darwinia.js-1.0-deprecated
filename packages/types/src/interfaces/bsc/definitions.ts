@@ -4,6 +4,8 @@
 // order important in structs... :)
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   rpc: {
 
@@ -25,6 +27,7 @@ export default {
       extraData: 'Bytes',
       mixDigest: 'H256',
       nonce: 'Bytes'
-    }
+    },
+    EthereumAddress: 'GenericEthereumAccountId'
   }
-};
+} as Definitions;
