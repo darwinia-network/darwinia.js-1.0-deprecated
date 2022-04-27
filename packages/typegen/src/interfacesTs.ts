@@ -5,12 +5,12 @@ import type { HexString } from '@polkadot/util/types';
 
 import * as substrateDefs from '@polkadot/types/interfaces/definitions';
 
-import darwinia from '../../types-support/src/metadata/static-darwinia';
-import crab from '../../types-support/src/metadata/static-crab';
-import pangolin from '../../types-support/src/metadata/static-pangolin';
-import pangoro from '../../types-support/src/metadata/static-pangoro';
+import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
+import crab from '@darwinia/types-support/src/metadata/static-crab';
+import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
+import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 
-import * as chainDefs from '../../types/src/interfaces/definitions';
+import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
 
 import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
 
@@ -57,11 +57,11 @@ export function main (): void {
     console.log();
     console.log(`*** Generating for ${name}`);
 
-    generateDefaultRpc(`${RPCBASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interface': chainDefs });
-    generateDefaultConsts(`${BASE}/${name}/consts.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
-    generateDefaultErrors(`${BASE}/${name}/errors.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
-    generateDefaultEvents(`${BASE}/${name}/events.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
+    generateDefaultRpc(`${RPCBASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interfaces': chainDefs });
+    generateDefaultConsts(`${BASE}/${name}/consts.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
+    generateDefaultErrors(`${BASE}/${name}/errors.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
+    generateDefaultEvents(`${BASE}/${name}/events.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
     generateDefaultQuery(`${BASE}/${name}/query.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
-    generateDefaultTx(`${BASE}/${name}/tx.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
+    generateDefaultTx(`${BASE}/${name}/tx.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
   }
 }

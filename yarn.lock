@@ -1525,6 +1525,7 @@ __metadata:
   resolution: "@darwinia/api-augment@workspace:packages/api-augment"
   dependencies:
     "@babel/runtime": ^7.17.9
+    "@darwinia/types": ^2.7.5
     "@polkadot/api-base": 8.1.2-1
     "@polkadot/rpc-augment": 8.1.2-1
     "@polkadot/types": 8.1.2-1
@@ -1559,6 +1560,7 @@ __metadata:
   resolution: "@darwinia/rpc-augment@workspace:packages/rpc-augment"
   dependencies:
     "@babel/runtime": ^7.17.9
+    "@darwinia/types": ^2.7.5
     "@polkadot/rpc-core": 8.1.2-1
     "@polkadot/types": 8.1.2-1
     "@polkadot/types-codec": 8.1.2-1
@@ -1573,6 +1575,8 @@ __metadata:
     "@babel/core": ^7.16.0
     "@babel/register": ^7.16.0
     "@babel/runtime": ^7.16.0
+    "@darwinia/types": ^2.7.5
+    "@darwinia/types-support": ^2.7.5
     "@polkadot/api": 8.1.2-1
     "@polkadot/rpc-provider": 8.1.2-1
     "@polkadot/typegen": 8.1.2-1
@@ -1610,7 +1614,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types-support@workspace:packages/types-support":
+"@darwinia/types-support@^2.7.5, @darwinia/types-support@workspace:packages/types-support":
   version: 0.0.0-use.local
   resolution: "@darwinia/types-support@workspace:packages/types-support"
   dependencies:

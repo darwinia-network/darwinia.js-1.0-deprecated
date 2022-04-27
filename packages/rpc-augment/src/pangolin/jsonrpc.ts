@@ -1,10 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { UsableBalance } from '@darwinia/types/interface/balances';
-import type { Fee, InProcessOrders } from '@darwinia/types/interface/fee';
-import type { MMRProofResult } from '@darwinia/types/interface/headerMMR';
-import type { PowerOf } from '@darwinia/types/interface/staking';
+import type { UsableBalance } from '@darwinia/types/interfaces/balances';
+import type { Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
+import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
+import type { PowerOf } from '@darwinia/types/interfaces/staking';
 import type { AugmentedRpc } from '@polkadot/rpc-core/types';
 import type { Metadata, StorageKey } from '@polkadot/types';
 import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, u32, u64, u8 } from '@polkadot/types-codec';

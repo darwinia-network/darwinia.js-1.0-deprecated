@@ -18,6 +18,7 @@
     "main": "index.js",
     "dependencies": {
         "@babel/runtime": "^7.17.9",
+        "@darwinia/types": "^2.7.5",
         "@polkadot/api-base": "8.1.2-1",
         "@polkadot/rpc-augment": "8.1.2-1",
         "@polkadot/types": "8.1.2-1",
