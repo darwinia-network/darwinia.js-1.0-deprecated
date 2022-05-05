@@ -1,6 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
+import type { DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter } from '@darwinia/types/interfaces/bridges';
+import type { EthereumPrimitivesHeader } from '@darwinia/types/interfaces/darwiniaInject';
+import type { DarwiniaRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
+import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { Bytes, Compact, Option, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';

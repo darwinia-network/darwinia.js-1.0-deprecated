@@ -23,6 +23,15 @@ export default {
   types: {
     PowerOf: {
       power: 'Power'
+    },
+    DarwiniaStakingStructsExposure: {
+      total: 'Compact<u128>',
+      own: 'Compact<u128>',
+      others: 'Vec<PalletStakingIndividualExposure>'
+    },
+    PalletStakingIndividualExposure: {
+      who: 'AccountId32',
+      value: 'Compact<u128>'
     }
   }
 } as Definitions;

@@ -1,7 +1,8 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { EthereumReceipt } from '@darwinia/types/interfaces/darwiniaInject';
+import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
+import type { DarwiniaStakingStructsExposure } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { BTreeMap, Bytes, Option, U256, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';

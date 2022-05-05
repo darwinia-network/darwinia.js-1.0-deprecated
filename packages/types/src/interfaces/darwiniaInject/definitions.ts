@@ -101,7 +101,7 @@ export default {
 
     EthereumTransactionIndex: '(H256, u64)',
     EthereumBlockNumber: 'u64',
-    EthereumHeader: {
+    EthereumPrimitivesHeader: {
       parentHash: 'H256',
       timestamp: 'u64',
       number: 'EthereumBlockNumber',
@@ -124,19 +124,29 @@ export default {
       dagNodes: '(H512, H512)',
       proof: 'Vec<H128>'
     },
-    EthereumReceipt: {
+    EthereumPrimitivesReceiptTypedReceipt: {
       Legacy: 'LegacyReceipt',
       AccessList: 'LegacyReceipt',
       EIP1559Transaction: 'LegacyReceipt'
     },
     LegacyReceipt: {
-      gasUsed: 'U256',
-      logBloom: 'Bloom',
+      gas_used: 'U256',
+      log_bloom: 'Bloom',
       logs: 'Vec<LogEntry>',
       outcome: 'TransactionOutcome'
     },
-    LogEntry: {},
-    TransactionOutcome: {},
+    LogEntry: {
+      address: 'Address',
+      topics: 'Vec<H256>',
+      data: 'Bytes'
+    },
+    TransactionOutcome: {
+      _enum: {
+        Unknown: 'Null',
+        StateRoot: 'H256',
+        StatusCode: 'u8'
+      }
+    },
     EthereumNetwork: {
       _enum: {
         Mainnet: null,
@@ -184,7 +194,7 @@ export default {
       }
     },
     AddressT: '[u8; 20; AddressT]',
-
+    Address: '[u8; 20; Address]',
     MerkleMountainRangeRootLog: {
       prefix: '[u8; 4; Prefix]',
       ParentMmrRoot: 'Hash'
@@ -239,8 +249,8 @@ export default {
       validRange: 'BlockNumber'
     },
     TokenMessageId: '[u8; 16; TokenMessageId]',
-    TokenMetadata: {
-      tokenType: 'u32',
+    DpAssetTokenMetadata: {
+      token_type: 'u32',
       address: 'H160',
       name: 'Vec<u8>',
       symbol: 'Vec<u8>',
@@ -263,7 +273,13 @@ export default {
       commission: 'Compact<Perbill>',
       blocked: 'bool'
     },
-    EthereumAddress: 'GenericEthereumAccountId'
+    EthereumAddress: 'GenericEthereumAccountId',
+    EthereumLog: {
+      address: 'H160',
+      topics: 'Vec<H256>',
+      data: 'Vec<u8>'
+
+    }
   },
   rpc: {
 

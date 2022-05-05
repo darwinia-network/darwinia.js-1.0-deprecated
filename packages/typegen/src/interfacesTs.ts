@@ -61,7 +61,7 @@ export function main (): void {
     generateDefaultConsts(`${BASE}/${name}/consts.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
     generateDefaultErrors(`${BASE}/${name}/errors.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
     generateDefaultEvents(`${BASE}/${name}/events.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
-    generateDefaultQuery(`${BASE}/${name}/query.ts`, staticMeta, { '@darwinia/types/interface': chainDefs });
+    generateDefaultQuery(`${BASE}/${name}/query.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
     generateDefaultTx(`${BASE}/${name}/tx.ts`, staticMeta, { '@darwinia/types/interfaces': chainDefs });
   }
 }

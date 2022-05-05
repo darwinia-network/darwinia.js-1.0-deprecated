@@ -23,6 +23,15 @@ export default {
       real: 'AccountId',
       callHash: 'Hash',
       height: 'BlockNumber'
+    },
+    CrabRuntimePalletsProxyProxyType: {
+      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'IdentityJudgement', 'EthereumBridge']
+    },
+    DarwiniaRuntimePalletsProxyProxyType: {
+      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'IdentityJudgement', 'EthereumBridge']
+    },
+    PangolinRuntimePalletsProxyProxyType: {
+      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'EthereumBridge']
     }
   },
   rpc: {

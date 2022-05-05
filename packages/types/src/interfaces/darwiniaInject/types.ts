@@ -6,9 +6,6 @@ import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 
-import type { Balance, Perbill, Index,LockIdentifier,AccountId, H128,H160, H512, H256, Hash, BlockNumber } from '@polkadot/types/interfaces/runtime';
-
-
 /** @name AccountData */
 export interface AccountData extends Struct {
   readonly free: Balance;
@@ -23,6 +20,9 @@ export interface AccountInfo extends Struct {
   readonly refcount: RefCount;
   readonly data: AccountData;
 }
+
+/** @name Address */
+export interface Address extends U8aFixed {}
 
 /** @name AddressT */
 export interface AddressT extends U8aFixed {}
@@ -54,6 +54,15 @@ export interface Common extends Struct {
 
 /** @name DepositId */
 export interface DepositId extends U256 {}
+
+/** @name DpAssetTokenMetadata */
+export interface DpAssetTokenMetadata extends Struct {
+  readonly token_type: u32;
+  readonly address: H160;
+  readonly name: Bytes;
+  readonly symbol: Bytes;
+  readonly decimal: u8;
+}
 
 /** @name EcdsaAddress */
 export interface EcdsaAddress extends EthereumAddress {}
@@ -94,8 +103,22 @@ export interface EthereumAddress extends GenericEthereumAccountId {}
 /** @name EthereumBlockNumber */
 export interface EthereumBlockNumber extends u64 {}
 
-/** @name EthereumHeader */
-export interface EthereumHeader extends Struct {
+/** @name EthereumLog */
+export interface EthereumLog extends Struct {
+  readonly address: H160;
+  readonly topics: Vec<H256>;
+  readonly data: Bytes;
+}
+
+/** @name EthereumNetwork */
+export interface EthereumNetwork extends Enum {
+  readonly isMainnet: boolean;
+  readonly isRopsten: boolean;
+  readonly type: 'Mainnet' | 'Ropsten';
+}
+
+/** @name EthereumPrimitivesHeader */
+export interface EthereumPrimitivesHeader extends Struct {
   readonly parentHash: H256;
   readonly timestamp: u64;
   readonly number: EthereumBlockNumber;
@@ -114,15 +137,8 @@ export interface EthereumHeader extends Struct {
   readonly blockHash: Option<H256>;
 }
 
-/** @name EthereumNetwork */
-export interface EthereumNetwork extends Enum {
-  readonly isMainnet: boolean;
-  readonly isRopsten: boolean;
-  readonly type: 'Mainnet' | 'Ropsten';
-}
-
-/** @name EthereumReceipt */
-export interface EthereumReceipt extends Struct {
+/** @name EthereumPrimitivesReceiptTypedReceipt */
+export interface EthereumPrimitivesReceiptTypedReceipt extends Struct {
   readonly Legacy: LegacyReceipt;
   readonly AccessList: LegacyReceipt;
   readonly EIP1559Transaction: LegacyReceipt;
@@ -178,8 +194,8 @@ export interface KtonBalance extends Balance {}
 
 /** @name LegacyReceipt */
 export interface LegacyReceipt extends Struct {
-  readonly gasUsed: U256;
-  readonly logBloom: Bloom;
+  readonly gas_used: U256;
+  readonly log_bloom: Bloom;
   readonly logs: Vec<LogEntry>;
   readonly outcome: TransactionOutcome;
 }
@@ -194,7 +210,11 @@ export interface LockFor extends Enum {
 }
 
 /** @name LogEntry */
-export interface LogEntry extends Struct {}
+export interface LogEntry extends Struct {
+  readonly address: Address;
+  readonly topics: Vec<H256>;
+  readonly data: Bytes;
+}
 
 /** @name MappedRing */
 export interface MappedRing extends u128 {}
@@ -368,17 +388,15 @@ export interface TimeDepositItem extends Struct {
 /** @name TokenMessageId */
 export interface TokenMessageId extends U8aFixed {}
 
-/** @name TokenMetadata */
-export interface TokenMetadata extends Struct {
-  readonly tokenType: u32;
-  readonly address: H160;
-  readonly name: Bytes;
-  readonly symbol: Bytes;
-  readonly decimal: u8;
-}
-
 /** @name TransactionOutcome */
-export interface TransactionOutcome extends Struct {}
+export interface TransactionOutcome extends Enum {
+  readonly isUnknown: boolean;
+  readonly isStateRoot: boolean;
+  readonly asStateRoot: H256;
+  readonly isStatusCode: boolean;
+  readonly asStatusCode: u8;
+  readonly type: 'Unknown' | 'StateRoot' | 'StatusCode';
+}
 
 /** @name TronAddress */
 export interface TronAddress extends EthereumAddress {}

@@ -2,14 +2,16 @@
 /* eslint-disable */
 
 import type { Status, UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { LaneId, MessageId, MessageNonce } from '@darwinia/types/interfaces/bridges';
+import type { BpMessagesDeliveredMessages, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter, FixedU128, LaneId, MessageId, MessageNonce, PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter, PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter, PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader, EthereumAddress } from '@darwinia/types/interfaces/bsc';
-import type { AccountData, AccountInfo, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumBlockNumber, EthereumHeader, EthereumNetwork, EthereumReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, Order, OtherAddress, OtherSignature, Power, PriorRelayer, RKT, Reasons, RedeemFor, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, Relayer, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TokenMessageId, TokenMetadata, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
-import type { Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
+import type { AccountData, AccountInfo, Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, DpAssetTokenMetadata, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumBlockNumber, EthereumLog, EthereumNetwork, EthereumPrimitivesHeader, EthereumPrimitivesReceiptTypedReceipt, EthereumReceiptProof, EthereumReceiptProofThing, EthereumRelayHeaderParcel, EthereumRelayProofs, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, MmrRootToSign, OpCode, Order, OtherAddress, OtherSignature, Power, PriorRelayer, RKT, Reasons, RedeemFor, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RelayAuthorityT, Relayer, RingBalance, ScheduledAuthoritiesChangeT, Signer, SpanRecord, StakingBalanceT, StakingLedgerT, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
+import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
+import type { EvmCoreErrorExitReason, ExitError, ExitFatal, ExitRevert, ExitSucceed } from '@darwinia/types/interfaces/evm';
+import type { DarwiniaFeeMarketSlashReport, DpFeeSlashReport, Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
 import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
-import type { Announcement, ProxyAnnouncement, ProxyType } from '@darwinia/types/interfaces/proxy';
-import type { RelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
-import type { PowerOf } from '@darwinia/types/interfaces/staking';
+import type { Announcement, CrabRuntimePalletsProxyProxyType, DarwiniaRuntimePalletsProxyProxyType, PangolinRuntimePalletsProxyProxyType, ProxyAnnouncement, ProxyType } from '@darwinia/types/interfaces/proxy';
+import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId, RelayAffirmationT, RelayHeaderId, RelayHeaderParcel, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
+import type { DarwiniaStakingStructsExposure, PalletStakingIndividualExposure, PowerOf } from '@darwinia/types/interfaces/staking';
 import type { Data, StorageKey } from '@polkadot/types';
 import type { BitVec, Bool, Bytes, I128, I16, I256, I32, I64, I8, Json, Null, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
 
@@ -17,6 +19,7 @@ declare module '@polkadot/types/types/registry' {
   export interface InterfaceTypes {
     AccountData: AccountData;
     AccountInfo: AccountInfo;
+    Address: Address;
     AddressT: AddressT;
     Announcement: Announcement;
     BalanceInfo: BalanceInfo;
@@ -25,12 +28,23 @@ declare module '@polkadot/types/types/registry' {
     Bloom: Bloom;
     bool: bool;
     Bool: Bool;
+    BpMessagesDeliveredMessages: BpMessagesDeliveredMessages;
     BSCHeader: BSCHeader;
     Bytes: Bytes;
     ChainProperties: ChainProperties;
     Common: Common;
+    CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter: CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter;
+    CrabRuntimePalletsProxyProxyType: CrabRuntimePalletsProxyProxyType;
+    DarwiniaDemocracyVoteThreshold: DarwiniaDemocracyVoteThreshold;
+    DarwiniaFeeMarketSlashReport: DarwiniaFeeMarketSlashReport;
+    DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId: DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId;
+    DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter;
+    DarwiniaRuntimePalletsProxyProxyType: DarwiniaRuntimePalletsProxyProxyType;
+    DarwiniaStakingStructsExposure: DarwiniaStakingStructsExposure;
     Data: Data;
     DepositId: DepositId;
+    DpAssetTokenMetadata: DpAssetTokenMetadata;
+    DpFeeSlashReport: DpFeeSlashReport;
     EcdsaAddress: EcdsaAddress;
     EcdsaMessage: EcdsaMessage;
     EcdsaSignature: EcdsaSignature;
@@ -40,17 +54,24 @@ declare module '@polkadot/types/types/registry' {
     EthashProof: EthashProof;
     EthereumAddress: EthereumAddress;
     EthereumBlockNumber: EthereumBlockNumber;
-    EthereumHeader: EthereumHeader;
+    EthereumLog: EthereumLog;
     EthereumNetwork: EthereumNetwork;
-    EthereumReceipt: EthereumReceipt;
+    EthereumPrimitivesHeader: EthereumPrimitivesHeader;
+    EthereumPrimitivesReceiptTypedReceipt: EthereumPrimitivesReceiptTypedReceipt;
     EthereumReceiptProof: EthereumReceiptProof;
     EthereumReceiptProofThing: EthereumReceiptProofThing;
     EthereumRelayHeaderParcel: EthereumRelayHeaderParcel;
     EthereumRelayProofs: EthereumRelayProofs;
     EthereumTransactionIndex: EthereumTransactionIndex;
+    EvmCoreErrorExitReason: EvmCoreErrorExitReason;
+    ExitError: ExitError;
+    ExitFatal: ExitFatal;
+    ExitRevert: ExitRevert;
+    ExitSucceed: ExitSucceed;
     Exposure: Exposure;
     ExposureT: ExposureT;
     Fee: Fee;
+    FixedU128: FixedU128;
     i128: i128;
     I128: I128;
     i16: i16;
@@ -86,6 +107,11 @@ declare module '@polkadot/types/types/registry' {
     Order: Order;
     OtherAddress: OtherAddress;
     OtherSignature: OtherSignature;
+    PalletStakingIndividualExposure: PalletStakingIndividualExposure;
+    PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter: PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter;
+    PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter;
+    PangolinRuntimePalletsProxyProxyType: PangolinRuntimePalletsProxyProxyType;
+    PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter: PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
     Power: Power;
     PowerOf: PowerOf;
     PriorRelayer: PriorRelayer;
@@ -95,7 +121,6 @@ declare module '@polkadot/types/types/registry' {
     Reasons: Reasons;
     RedeemFor: RedeemFor;
     RefCount: RefCount;
-    RelayAffirmationId: RelayAffirmationId;
     RelayAffirmationT: RelayAffirmationT;
     RelayAuthorityMessage: RelayAuthorityMessage;
     RelayAuthoritySignature: RelayAuthoritySignature;
@@ -120,7 +145,6 @@ declare module '@polkadot/types/types/registry' {
     Text: Text;
     TimeDepositItem: TimeDepositItem;
     TokenMessageId: TokenMessageId;
-    TokenMetadata: TokenMetadata;
     TransactionOutcome: TransactionOutcome;
     TronAddress: TronAddress;
     TsInMs: TsInMs;

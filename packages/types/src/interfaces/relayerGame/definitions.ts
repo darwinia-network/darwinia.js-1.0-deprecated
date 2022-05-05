@@ -14,8 +14,8 @@ export default {
     RelayHeaderId: 'EthereumBlockNumber',
     RelayHeaderParcel: 'EthereumRelayHeaderParcel',
     RelayProofs: 'EthereumRelayProofs',
-    RelayAffirmationId: {
-      relayHeaderId: 'EthereumBlockNumber',
+    DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId: {
+      game_id: 'RelayHeaderId',
       round: 'u32',
       index: 'u32'
     },

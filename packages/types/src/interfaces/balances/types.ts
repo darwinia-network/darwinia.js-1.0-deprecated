@@ -2,7 +2,6 @@
 /* eslint-disable */
 
 import type { Enum, Struct } from '@polkadot/types-codec';
-import type { Balance } from '@polkadot/types/interfaces/runtime';
 
 /** @name Status */
 export interface Status extends Enum {

@@ -4,7 +4,6 @@
 import type { Bloom } from '@darwinia/types/interfaces/darwiniaInject';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Struct, U256, u64 } from '@polkadot/types-codec';
-import type { H256 } from '@polkadot/types/interfaces/runtime';
 
 /** @name BSCHeader */
 export interface BSCHeader extends Struct {

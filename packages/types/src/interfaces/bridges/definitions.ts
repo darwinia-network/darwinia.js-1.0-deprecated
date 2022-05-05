@@ -10,6 +10,38 @@ export default {
   types: {
     MessageId: '(LaneId, MessageNonce)',
     LaneId: '[u8; 4]',
-    MessageNonce: 'u64'
+    MessageNonce: 'u64',
+    BpMessagesDeliveredMessages: {
+      begin: 'MessageNonce',
+      end: 'MessageNonce',
+      // pub type DispatchResultsBitVec = BitVec<Msb0, u8>;
+      dispatchResults: 'BitVec'
+    },
+    CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter: {
+      _enum: {
+        DarwiniaToCrabConversionRate: 'FixedU128'
+      }
+    },
+    FixedU128: 'UInt<128, FixedU128>',
+    DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: {
+      _enum: {
+        CrabToDarwiniaConversionRate: 'FixedU128'
+      }
+    },
+    PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter: {
+      _enum: {
+        PangolinParachainToPangolinConversionRate: 'FixedU128'
+      }
+    },
+    PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter: {
+      _enum: {
+        PangoroToPangolinConversionRate: 'FixedU128'
+      }
+    },
+    PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter: {
+      _enum: {
+        PangolinToPangoroConversionRate: 'FixedU128'
+      }
+    }
   }
 } as Definitions;

@@ -27,6 +27,26 @@ export default {
     },
     InProcessOrders: {
       orders: 'Vec<(LaneId, MessageNonce)>'
+    },
+    DpFeeSlashReport: {
+      lane: 'LaneId',
+      message: 'MessageNonce',
+      sent_time: 'BlockNumber',
+      confirm_time: 'Option<BlockNumber>',
+      delay_time: 'Option<BlockNumber>',
+      account_id: 'AccountId',
+      amount: 'Balance'
+
+    },
+    DarwiniaFeeMarketSlashReport: {
+      lane: 'LaneId',
+      message: 'MessageNonce',
+      sent_time: 'BlockNumber',
+      confirm_time: 'Option<BlockNumber>',
+      delay_time: 'Option<BlockNumber>',
+      account_id: 'AccountId',
+      amount: 'Balance'
     }
+
   }
 } as Definitions;
