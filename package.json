@@ -1,13 +1,12 @@
 {
   "name": "darwinia.js",
-  "jest":{
+  "jest": {
     "testEnvironment": "node",
     "moduleFileExtensions": [
       "js",
       "ts",
       "json"
     ],
-    
     "transformIgnorePatterns": [
       "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
     ]

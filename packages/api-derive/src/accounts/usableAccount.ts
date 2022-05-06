@@ -2,38 +2,70 @@
 // This software may be modified and distributed under the terms
 // of the Apache-2.0 license. See the LICENSE file for details.
 
-import { Observable, map } from 'rxjs';
-import { AccountId } from '@polkadot/types/interfaces';
+import { Observable, map, of, concatMap, switchMap } from 'rxjs';
+import { AccountId, Balance } from '@polkadot/types/interfaces';
 import { memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
 
-import type { u8 } from '@polkadot/types-codec';
+import { BN, bnMax } from '@polkadot/util';
+
+import { BalanceLock, AccountInfo } from '@darwinia/types';
+
+import type { u8, Vec } from '@polkadot/types-codec';
 import type { AnyNumber } from '@polkadot/types-codec/types';
 
-import { DeriveUsableAccount, DeriveDarwiniaBalancesAccountData } from './types';
+import { DeriveUsableAccount } from './types';
+ 
 
 function systemAccount (api: ApiInterfaceRx, tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) : Observable<DeriveUsableAccount> {
-  // substrate store the balance of an account in the `System` pallet
-  return api.query.system.account(accountId).pipe(
-    map(({ data }): DeriveUsableAccount => {
-      // warning: data type definited in polkadot is diffent from darwinia runtime type.
-      const { free, freeKton } = data as unknown as DeriveDarwiniaBalancesAccountData;
+  if (tokenType !== 0 && tokenType !== 1) {
+    return of({ usableBalance: api.registry.createType('Balance', 0) });
+  }
 
-      // ring Token
-      if (tokenType === 0) {
-        return { usableBalance: free };
-      }
+    return api.queryMulti<[AccountInfo, Vec<BalanceLock>, Vec<BalanceLock>]>([
+      [api.query.system.account, accountId],
+      [api.query.balances.locks, accountId],
+      [api.query.kton.locks, accountId],
+    ]).pipe(
+      map(([balanceInfo, locks, ktonLocks]): DeriveUsableAccount => {
+        const { free, freeKton } = balanceInfo.data;
 
-      // kton Token
-      if (tokenType === 1) {
-        return { usableBalance: freeKton };
-      }
+        let maxlock = new BN(0);
+        let balanceFree = api.registry.createType('Balance');
 
-      return { usableBalance: api.registry.createType('Balance', 0) };
-    })
-  );
-}
+        if (tokenType === 0){
+          balanceFree = free;
+          locks.forEach((item) => {
+            if (item.lockFor.isCommon) {
+              maxlock = bnMax(item.lockFor.asCommon.amount, maxlock);
+            }
+  
+            if (item.lockFor.isStaking) {
+              maxlock = bnMax(item.lockFor.asStaking.stakingAmount, maxlock);
+            }
+          });
+       
+          
+        }else{
+          
+          balanceFree = freeKton;
+          ktonLocks.forEach((item) => {
+            if (item.lockFor.isCommon) {
+              maxlock = bnMax(item.lockFor.asCommon.amount, maxlock);
+            }
+  
+            if (item.lockFor.isStaking) {
+              maxlock = bnMax(item.lockFor.asStaking.stakingAmount, maxlock);
+            }
+          });
+        }
 
+        return { usableBalance: api.registry.createType('Balance', balanceFree.sub(maxlock)) };
+       
+       
+        
+      })
+    );
 /**
  * @name usableAccount
  * @description reserve balance for ring or kton coin

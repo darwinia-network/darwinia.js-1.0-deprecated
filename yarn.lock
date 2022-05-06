@@ -1793,6 +1793,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@darwinia/api-derive@workspace:packages/api-derive"
   dependencies:
+    "@types/lodash": ^4.14.181
     lodash: ^4.17.21
     rxjs: ^7.5.2
   languageName: unknown
@@ -3893,6 +3894,13 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: 3aaf557d5b82e733d5a17b7f55af5d6be953363c3a594f006d64265790fe87c301c6e1400c0b6b1cf72add50a0ceddc25afb8231ab8302a2e5b6ebfbfac30e5d
+  languageName: node
+  linkType: hard
+
+"@types/lodash@npm:^4.14.181":
+  version: 4.14.182
+  resolution: "@types/lodash@npm:4.14.182"
+  checksum: e84c3e6bb03a241f648c8c8c8e0b3c26e00b932104d8d52599ff068adcc88d818a41aef9c3243b02d2e97273a9a605656d8ab3b64fb3c1afcbaa54a3ecf62f81
   languageName: node
   linkType: hard
 
