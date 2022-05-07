@@ -7,24 +7,6 @@
 export default {
   types: {
     BalanceInfo: {},
-    BalanceLock: {
-      id: 'LockIdentifier',
-      lockFor: 'LockFor',
-      reasons: 'Reasons'
-    },
-    LockFor: {
-      _enum: {
-        Common: 'Common',
-        Staking: 'StakingLock'
-      }
-    },
-    Common: {
-      amount: 'Balance'
-    },
-    StakingLock: {
-      stakingAmount: 'Balance',
-      unbondings: 'Vec<Unbonding>'
-    },
     Unbonding: {
       amount: 'Balance',
       until: 'BlockNumber'

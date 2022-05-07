@@ -1,16 +1,5 @@
 {
   "name": "darwinia.js",
-  "jest": {
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
-    ]
-  },
   "repository": "https://github.com/darwinia-network/darwinia.js",
   "license": "Apache-2",
   "workspaces": [
@@ -31,7 +20,7 @@
     "lint": "polkadot-dev-run-lint",
     "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
+    "test": "polkadot-dev-run-test --coverage --forceExit --runInBand --testPathIgnorePatterns e2e",
     "test:one": "polkadot-dev-run-test",
     "test:watch": "polkadot-dev-run-test --watch",
     "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./packages/types/src/interfaces",
@@ -40,7 +29,8 @@
     "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
   },
   "dependencies": {
-    "@polkadot/api": "7.13.1"
+    "@polkadot/api": "7.13.1",
+    "@polkadot/dev": "^0.66.5"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",

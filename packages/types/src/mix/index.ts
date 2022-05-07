@@ -38,41 +38,41 @@ interface CompatibleSpecOverrideBundleDefinition {
 }
 
 const polkadotCompatibleTypes: RegistryTypes = {
-  AccountData: {
-    free: 'Balance',
-    reserved: 'Balance',
-    freeKton: 'Balance',
-    reservedKton: 'Balance'
-  },
-  BalanceLock: {
-    id: 'LockIdentifier',
-    lockFor: 'LockFor',
-    lockReasons: 'LockReasons'
-  },
-  IndividualExposure: {
-    who: 'AccountId',
-    ringBalance: 'Compact<Balance>',
-    ktonBalance: 'Compact<Balance>',
-    power: 'Power'
-  },
-  LockReasons: {
-    _enum: {
-      Fee: null,
-      Misc: null,
-      All: null
-    }
-  },
-  RelayAuthoritySigner: 'EthereumAddress',
-  StakingLedgerT: {
-    stash: 'AccountId',
-    active: 'Compact<Balance>',
-    activeDepositRing: 'Compact<Balance>',
-    activeKton: 'Compact<Balance>',
-    depositItems: 'Vec<TimeDepositItem>',
-    ringStakingLock: 'StakingLock',
-    ktonStakingLock: 'StakingLock',
-    claimedRewards: 'Vec<EraIndex>'
-  }
+  // AccountData: {
+  //   free: 'Balance',
+  //   reserved: 'Balance',
+  //   freeKton: 'Balance',
+  //   reservedKton: 'Balance'
+  // },
+  // BalanceLock: {
+  //   id: 'LockIdentifier',
+  //   lockFor: 'LockFor',
+  //   lockReasons: 'LockReasons'
+  // },
+  // IndividualExposure: {
+  //   who: 'AccountId',
+  //   ringBalance: 'Compact<Balance>',
+  //   ktonBalance: 'Compact<Balance>',
+  //   power: 'Power'
+  // },
+  // LockReasons: {
+  //   _enum: {
+  //     Fee: null,
+  //     Misc: null,
+  //     All: null
+  //   }
+  // },
+  // RelayAuthoritySigner: 'EthereumAddress',
+  // StakingLedgerT: {
+  //   stash: 'AccountId',
+  //   active: 'Compact<Balance>',
+  //   activeDepositRing: 'Compact<Balance>',
+  //   activeKton: 'Compact<Balance>',
+  //   depositItems: 'Vec<TimeDepositItem>',
+  //   ringStakingLock: 'StakingLock',
+  //   ktonStakingLock: 'StakingLock',
+  //   claimedRewards: 'Vec<EraIndex>'
+  // }
 };
 
 const definitions = {
