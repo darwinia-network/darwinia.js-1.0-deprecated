@@ -3,6 +3,8 @@
 
 import type { Enum, Struct } from '@polkadot/types-codec';
 
+import type { AccountId, Hash, BlockNumber } from '@polkadot/types/interfaces/runtime';
+
 /** @name Announcement */
 export interface Announcement extends ProxyAnnouncement {}
 

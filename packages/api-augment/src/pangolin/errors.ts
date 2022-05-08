@@ -1654,8 +1654,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       PayoutIns: AugmentedError<ApiType>;
       /**
-       * There are too many nominators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many nominators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyNominators: AugmentedError<ApiType>;
       /**
@@ -1663,8 +1663,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooManyTargets: AugmentedError<ApiType>;
       /**
-       * There are too many validators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many validators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyValidators: AugmentedError<ApiType>;
       /**

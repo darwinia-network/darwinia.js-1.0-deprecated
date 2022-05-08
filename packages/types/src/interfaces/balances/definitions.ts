@@ -33,6 +33,21 @@ export default {
         Free: null,
         Reserved: null
       }
-    }
+    },
+
+    DarwiniaBalancesReserveData: {
+      id: 'ReserveIdentifier',
+      amount: 'Balance'
+    },
+    ReserveIdentifier: '[u8; 8]',
+    DarwiniaBalancesReleases: {
+      _enum: ['V1_0_0', 'V2_0_0']
+    },
+    DarwiniaSupportStructsBalanceLock: {
+      id: 'LockIdentifier',
+      amount: 'Balance',
+      reasons: 'Reasons'
+    },
+    LockIdentifier: '[u8; 8]'
   }
 } as Definitions;

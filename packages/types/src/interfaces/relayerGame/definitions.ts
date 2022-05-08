@@ -19,7 +19,7 @@ export default {
       round: 'u32',
       index: 'u32'
     },
-    RelayAffirmationT: {
+    DarwiniaRelayPrimitivesRelayerGameRelayAffirmation: {
       relayer: 'AccountId',
       relayHeaderParcels: 'EthereumRelayHeaderParcel',
       bond: 'Balance',
@@ -29,6 +29,15 @@ export default {
     RelayVotingState: {
       ayes: 'Vec<AccountId>',
       nays: 'Vec<AccountId>'
+    },
+    RelayAffirmationId: {
+      relayHeaderId: 'RelayHeaderId',
+      round: 'u32',
+      index: 'u32'
+    },
+    EthereumRelayProofs: {
+      ethashProof: 'Vec<EthashProof>',
+      mmrProof: 'Vec<H256>'
     }
   }
 } as Definitions;

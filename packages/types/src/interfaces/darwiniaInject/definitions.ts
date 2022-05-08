@@ -30,7 +30,7 @@ export default {
       amount: 'Balance',
       until: 'BlockNumber'
     },
-    AccountData: {
+    DrmlCommonRuntimeImplsAccountData: {
       free: 'Balance',
       reserved: 'Balance',
       freeKton: 'Balance',
@@ -41,17 +41,11 @@ export default {
     TsInMs: 'u64',
     Power: 'u32',
     DepositId: 'U256',
-    StakingBalanceT: {
-      _enum: {
-        RingBalance: 'Balance',
-        KtonBalance: 'Balance'
-      }
-    },
-    StakingLedgerT: {
+    DarwiniaStakingStructsStakingLedger: {
       stash: 'AccountId',
-      active: 'Balance',
-      activeDepositRing: 'Balance',
-      activeKton: 'Balance',
+      active: 'RingBalance',
+      activeDepositRing: 'RingBalance',
+      activeKton: 'KtonBalance',
       depositItems: 'Vec<TimeDepositItem>',
       ringStakingLock: 'StakingLock',
       ktonStakingLock: 'StakingLock',
@@ -84,6 +78,10 @@ export default {
     RKT: {
       r: 'Balance',
       k: 'Balance'
+    },
+    DarwiniaStakingSlashingRk: {
+      r: 'RingBalance',
+      k: 'KtonBalance'
     },
     SpanRecord: {
       slashed: 'RKT',
@@ -121,7 +119,7 @@ export default {
     },
     Bloom: '[u8; 256; Bloom]',
     EthashProof: {
-      dagNodes: '(H512, H512)',
+      dagNodes: '[H512; 2]',
       proof: 'Vec<H128>'
     },
     EthereumPrimitivesReceiptTypedReceipt: {
@@ -153,18 +151,11 @@ export default {
         Ropsten: null
       }
     },
-    RedeemFor: {
-      _enum: {
-        Token: null,
-        Deposit: null
-      }
-    },
     EthereumReceiptProof: {
       index: 'u64',
       proof: 'Bytes',
       headerHash: 'H256'
     },
-    EthereumReceiptProofThing: '(EthereumHeader, EthereumReceiptProof, MMRProof)',
     MMRProof: {
       memberLeafIndex: 'u64',
       lastLeafIndex: 'u64',
@@ -174,25 +165,9 @@ export default {
       header: 'EthereumHeader',
       parentMmrRoot: 'H256'
     },
-    EthereumRelayProofs: {
-      ethashProof: 'Vec<EthashProof>',
-      mmrProof: 'Vec<H256>'
-    },
-
-    OtherSignature: {
-      _enum: {
-        Eth: 'EcdsaSignature',
-        Tron: 'EcdsaSignature'
-      }
-    },
     EcdsaSignature: '[u8; 65; EcdsaSignature]',
+    Signature: '[u8;65]',
     TronAddress: 'EthereumAddress',
-    OtherAddress: {
-      _enum: {
-        Eth: 'EthereumAddress',
-        Tron: 'TronAddress'
-      }
-    },
     AddressT: '[u8; 20; AddressT]',
     Address: '[u8; 20; Address]',
     MerkleMountainRangeRootLog: {
@@ -209,10 +184,10 @@ export default {
     AccountInfo: {
       nonce: 'Index',
       refcount: 'RefCount',
-      data: 'AccountData'
+      data: 'DrmlCommonRuntimeImplsAccountData'
     },
     Signer: 'EthereumAddress',
-    RelayAuthorityT: {
+    DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority: {
       accountId: 'AccountId',
       signer: 'EthereumAddress',
       stake: 'Balance',
@@ -226,19 +201,19 @@ export default {
     RelayAuthoritySignature: 'EcdsaSignature',
     Term: 'BlockNumber',
     OpCode: '[u8; 4; OpCode]',
-    ScheduledAuthoritiesChangeT: {
-      nextAuthorities: 'Vec<RelayAuthorityT>',
+    DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange: {
+      nextAuthorities: 'Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>',
       deadline: 'BlockNumber'
     },
-    MmrRootToSign: {
+    DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign: {
       mmrRoot: 'Hash',
-      signatures: 'Vec<(AccountId, EcdsaSignature)>'
+      signatures: 'Vec<(AccountId, Signature)>'
     },
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
     ValidatorPrefs: 'ValidatorPrefsWithBlocked',
-    Relayer: {
+    PalletFeeMarketRelayer: {
       id: 'AccountId',
       collateral: 'Balance',
       fee: 'Balance'
@@ -256,7 +231,7 @@ export default {
       symbol: 'Vec<u8>',
       decimal: 'u8'
     },
-    Order: {
+    PalletFeeMarketOrder: {
       lane: 'LaneId',
       message: 'MessageNonce',
       sentTime: 'BlockNumber',
@@ -279,6 +254,10 @@ export default {
       topics: 'Vec<H256>',
       data: 'Vec<u8>'
 
+    },
+    SpCoreChangesTrieChangesTrieConfiguration: {
+      digestInterval: 'u32',
+      digestLevels: 'u32'
     }
   },
   rpc: {

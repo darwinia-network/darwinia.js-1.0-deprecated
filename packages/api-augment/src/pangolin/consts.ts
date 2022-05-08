@@ -212,9 +212,9 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       fastTrackVotingPeriod: u32 & AugmentedConst<ApiType>;
       /**
-       * Indicator for whether an emergency origin is even allowed to happen. Some chains may want
-       * to set this permanently to `false`, others may want to condition it on things such as
-       * an upgrade having happened recently.
+       * Indicator for whether an emergency origin is even allowed to happen. Some chains may
+       * want to set this permanently to `false`, others may want to condition it on things such
+       * as an upgrade having happened recently.
        **/
       instantAllowed: bool & AugmentedConst<ApiType>;
       /**
@@ -782,8 +782,8 @@ declare module '@polkadot/api-base/types/consts' {
       /**
        * The maximum number of nominators rewarded for each validator.
        * 
-       * For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can claim
-       * their reward. This used to limit the i/o cost for the nominator payout.
+       * For each validator only the `$MaxNominatorRewardedPerValidator` biggest stakers can
+       * claim their reward. This used to limit the i/o cost for the nominator payout.
        **/
       maxNominatorRewardedPerValidator: u32 & AugmentedConst<ApiType>;
       /**

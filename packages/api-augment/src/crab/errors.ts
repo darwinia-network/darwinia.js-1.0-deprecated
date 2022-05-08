@@ -518,6 +518,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       BalanceLow: AugmentedError<ApiType>;
       /**
+       * Calculating total fee overflowed
+       **/
+      FeeOverflow: AugmentedError<ApiType>;
+      /**
        * Gas price is too low.
        **/
       GasPriceTooLow: AugmentedError<ApiType>;
@@ -525,6 +529,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Nonce is invalid
        **/
       InvalidNonce: AugmentedError<ApiType>;
+      /**
+       * Calculating total payment overflowed
+       **/
+      PaymentOverflow: AugmentedError<ApiType>;
       /**
        * Withdraw fee failed
        **/
@@ -539,10 +547,6 @@ declare module '@polkadot/api-base/types/errors' {
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
-      /**
-       * Extend lock failed.
-       **/
-      ExtendLockFailed: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/

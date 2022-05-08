@@ -27,7 +27,6 @@ export default {
       extraData: 'Bytes',
       mixDigest: 'H256',
       nonce: 'Bytes'
-    },
-    EthereumAddress: 'GenericEthereumAccountId'
+    }
   }
 } as Definitions;

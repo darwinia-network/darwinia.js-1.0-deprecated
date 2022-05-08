@@ -3,9 +3,8 @@
 
 import type { BpMessagesDeliveredMessages, PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter, PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter } from '@darwinia/types/interfaces/bridges';
 import type { EthereumLog, EthereumPrimitivesHeader, EthereumPrimitivesReceiptTypedReceipt } from '@darwinia/types/interfaces/darwiniaInject';
-import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { EvmCoreErrorExitReason } from '@darwinia/types/interfaces/evm';
-import type { DarwiniaFeeMarketSlashReport } from '@darwinia/types/interfaces/fee';
+import type { PalletFeeMarketSlashReport } from '@darwinia/types/interfaces/fee';
 import type { PangolinRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
 import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
 import type { DarwiniaStakingStructsExposure } from '@darwinia/types/interfaces/staking';
@@ -13,7 +12,7 @@ import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -339,9 +338,10 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * A referendum has begun. \[ref_index, threshold\]
        **/
-      Started: AugmentedEvent<ApiType, [u32, DarwiniaDemocracyVoteThreshold]>;
+      Started: AugmentedEvent<ApiType, [u32, PalletDemocracyVoteThreshold]>;
       /**
-       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit, depositors\]
+       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit,
+       * depositors\]
        **/
       Tabled: AugmentedEvent<ApiType, [u32, u128, Vec<AccountId32>]>;
       /**
@@ -399,7 +399,8 @@ declare module '@polkadot/api-base/types/events' {
        **/
       DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
       /**
-       * An ethereum transaction was successfully executed. \[from, to/contract_address, transaction_hash, exit_reason\]
+       * An ethereum transaction was successfully executed. \[from, to/contract_address,
+       * transaction_hash, exit_reason\]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
       /**
@@ -459,7 +460,8 @@ declare module '@polkadot/api-base/types/events' {
       RedeemErc20: AugmentedEvent<ApiType, [H160, ITuple<[H256, u64]>]>;
       /**
        * token registered event
-       * type: u8 = 0, backing_address, original_token(origin erc20), mapping_token(mapped erc20)
+       * type: u8 = 0, backing_address, original_token(origin erc20), mapping_token(mapped
+       * erc20)
        **/
       TokenRegisterFinished: AugmentedEvent<ApiType, [u8, H160, H160, H160]>;
       /**
@@ -569,7 +571,8 @@ declare module '@polkadot/api-base/types/events' {
        **/
       Executed: AugmentedEvent<ApiType, [H160]>;
       /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees applied.
+       * A \[contract\] has been executed with errors. States are reverted with only gas fees
+       * applied.
        **/
       ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
       /**
@@ -788,7 +791,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Slash report
        **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [DarwiniaFeeMarketSlashReport]>;
+      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
       /**
        * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
        **/
@@ -822,7 +825,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Slash report
        **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [DarwiniaFeeMarketSlashReport]>;
+      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
       /**
        * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
        **/

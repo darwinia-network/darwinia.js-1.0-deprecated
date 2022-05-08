@@ -1,10 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter } from '@darwinia/types/interfaces/bridges';
-import type { EthereumPrimitivesHeader } from '@darwinia/types/interfaces/darwiniaInject';
+import type { BpMessageDispatchMessagePayload, BpMessagesOperatingMode, BpMessagesUnrewardedRelayersState, BridgeRuntimeCommonMessagesSourceFromBridgedChainMessagesDeliveryProof, BridgeRuntimeCommonMessagesTargetFromBridgedChainMessagesProof, DarwiniaBridgeEthereumEthereumRelayHeaderParcel, DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter } from '@darwinia/types/interfaces/bridges';
+import type { EthereumPrimitivesHeader, SpCoreChangesTrieChangesTrieConfiguration } from '@darwinia/types/interfaces/darwiniaInject';
+import type { DarwiniaBridgeEthereumEthereumRelayProofs, DarwiniaBridgeEthereumMmrProof, EthereumPrimitivesReceiptReceiptProof, ToEthereumBackingRedeemFor } from '@darwinia/types/interfaces/eth';
+import type { BpHeaderChainInitializationData, BpHeaderChainJustificationGrandpaJustification } from '@darwinia/types/interfaces/grandpa';
 import type { DarwiniaRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
 import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
+import type { DarwiniaStakingStructsRewardDestination, DarwiniaStakingStructsStakingBalance, DarwiniaStakingStructsValidatorPrefs } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { Bytes, Compact, Option, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';

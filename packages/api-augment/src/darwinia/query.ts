@@ -1,8 +1,14 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
+import type { DarwiniaBalancesReleases, DarwiniaBalancesReserveData, DarwiniaSupportStructsBalanceLock } from '@darwinia/types/interfaces/balances';
+import type { BpMessagesInboundLaneData, BpMessagesMessageData, BpMessagesMessageKey, BpMessagesOperatingMode, BpMessagesOutboundLaneData, DarwiniaBridgeEthereumEthereumRelayHeaderParcel, DarwiniaRelayPrimitivesRelayerGameRelayVotingState } from '@darwinia/types/interfaces/bridges';
+import type { DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign, DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority, DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange, DarwiniaStakingSlashingRk, DarwiniaStakingStructsStakingLedger } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
-import type { DarwiniaStakingStructsExposure } from '@darwinia/types/interfaces/staking';
+import type { BpHeaderChainAuthoritySet } from '@darwinia/types/interfaces/grandpa';
+import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmation } from '@darwinia/types/interfaces/relayerGame';
+import type { PalletSchedulerReleases, PalletSchedulerScheduledV2 } from '@darwinia/types/interfaces/scheduler';
+import type { DarwiniaStakingSlashingSlashingSpans, DarwiniaStakingSlashingSpanRecord, DarwiniaStakingStructsActiveEraInfo, DarwiniaStakingStructsEraRewardPoints, DarwiniaStakingStructsExposure, DarwiniaStakingStructsForcing, DarwiniaStakingStructsNominations, DarwiniaStakingStructsReleases, DarwiniaStakingStructsRewardDestination, DarwiniaStakingStructsUnappliedSlash, DarwiniaStakingStructsValidatorPrefs } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { BTreeMap, Bytes, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';

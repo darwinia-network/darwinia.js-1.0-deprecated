@@ -1,17 +1,17 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { BpMessagesDeliveredMessages, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter } from '@darwinia/types/interfaces/bridges';
+import type { BpMessagesDeliveredMessages, CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter } from '@darwinia/types/interfaces/bridges';
 import type { EthereumLog } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { EvmCoreErrorExitReason } from '@darwinia/types/interfaces/evm';
-import type { DpFeeSlashReport } from '@darwinia/types/interfaces/fee';
+import type { DarwiniaFeeMarketSlashReport } from '@darwinia/types/interfaces/fee';
 import type { CrabRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
 import type { DarwiniaStakingStructsExposure } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, H160, H256 } from '@polkadot/types/interfaces/runtime';
+import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
 import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
@@ -52,6 +52,16 @@ declare module '@polkadot/api-base/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    baseFee: {
+      BaseFeeOverflow: AugmentedEvent<ApiType, []>;
+      IsActive: AugmentedEvent<ApiType, [bool]>;
+      NewBaseFeePerGas: AugmentedEvent<ApiType, [U256]>;
+      NewElasticity: AugmentedEvent<ApiType, [Permill]>;
       /**
        * Generic event
        **/
@@ -147,7 +157,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Pallet parameter has been updated.
        **/
-      ParameterUpdated: AugmentedEvent<ApiType, [CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter]>;
+      ParameterUpdated: AugmentedEvent<ApiType, [CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter]>;
       /**
        * Generic event
        **/
@@ -322,9 +332,17 @@ declare module '@polkadot/api-base/types/events' {
     };
     ethereum: {
       /**
-       * An ethereum transaction was successfully executed. [from, to/contract_address, transaction_hash, exit_reason]
+       * DVM transfer. \[from, to, value\]
+       **/
+      DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
+      /**
+       * An ethereum transaction was successfully executed. \[from, to/contract_address, transaction_hash, exit_reason\]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
+      /**
+       * Kton transfer \[from, to, value\]
+       **/
+      KtonDVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
       /**
        * Generic event
        **/
@@ -376,7 +394,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Slash report
        **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [DpFeeSlashReport]>;
+      FeeMarketSlash: AugmentedEvent<ApiType, [DarwiniaFeeMarketSlashReport]>;
       /**
        * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
        **/

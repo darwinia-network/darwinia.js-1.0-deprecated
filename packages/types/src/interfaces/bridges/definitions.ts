@@ -22,6 +22,12 @@ export default {
         DarwiniaToCrabConversionRate: 'FixedU128'
       }
     },
+
+    CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter: {
+      _enum: {
+        DarwiniaToCrabConversionRate: 'FixedU128'
+      }
+    },
     FixedU128: 'UInt<128, FixedU128>',
     DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: {
       _enum: {
@@ -42,6 +48,69 @@ export default {
       _enum: {
         PangolinToPangoroConversionRate: 'FixedU128'
       }
-    }
+    },
+    RelayerId: 'AccountId',
+    BpMessagesInboundLaneData: {
+      relayers: 'Vec<UnrewardedRelayer>',
+      lastConfirmedNonce: 'MessageNonce'
+    },
+    UnrewardedRelayer: {
+      relayer: 'RelayerId',
+      messages: 'DeliveredMessages'
+    },
+    DeliveredMessages: {
+      begin: 'MessageNonce',
+      end: 'MessageNonce',
+      dispatchResults: 'BitVec'
+    },
+
+    BpMessagesOutboundLaneData: {
+      oldestUnprunedNonce: 'MessageNonce',
+      latestReceivedNonce: 'MessageNonce',
+      latestGeneratedNonce: 'MessageNonce'
+    },
+    BpMessagesMessageKey: {
+      laneId: 'LaneId',
+      nonce: 'MessageNonce'
+    },
+    BpMessagesMessageData: {
+      payload: 'MessagePayload',
+      fee: 'Fee'
+    },
+    MessagePayload: 'Vec<u8>',
+    BpMessagesOperatingMode: {
+      _enum: ['Normal', 'RejectingOutboundMessages', 'Halted']
+    },
+    PalletBridgeParachainsBestParaHead: 'H256',
+    DarwiniaBridgeEthereumEthereumRelayHeaderParcel: {
+      header: 'EthereumHeader',
+      parent_mmr_root: 'H256'
+    },
+    DarwiniaRelayPrimitivesRelayerGameRelayVotingState: {
+      ayes: 'Vec<TechnicalMember>',
+      nays: 'Vec<TechnicalMember>'
+    },
+    TechnicalMember: 'AccountId',
+    BridgeRuntimeCommonMessagesSourceFromBridgedChainMessagesDeliveryProof: {
+      bridgedHeaderHash: 'BridgedHeaderHash',
+      storageProof: 'RawStorageProof',
+      lane: 'LaneId'
+    },
+    BridgedHeaderHash: 'Hash',
+    BpMessagesUnrewardedRelayersState: {
+      unrewardedRelayerEntries: 'MessageNonce',
+      messagesInOldestEntry: 'MessageNonce',
+      totalMessages: 'MessageNonce'
+    },
+    BridgeRuntimeCommonMessagesTargetFromBridgedChainMessagesProof: {
+      bridgedHeaderHash: 'BridgedBlockHash',
+      storageProof: 'RawStorageProof',
+      lane: 'LaneId',
+      noncesStart: 'MessageNonce',
+      noncesEnd: 'MessageNonce'
+    },
+    BridgedBlockHash: 'Hash',
+    RawStorageProof: 'Vec<Bytes>',
+    BpMessageDispatchMessagePayload: 'Bytes'
   }
 } as Definitions;

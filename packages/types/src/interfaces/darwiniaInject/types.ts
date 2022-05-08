@@ -1,18 +1,15 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
+import type { LockIdentifier } from '@darwinia/types/interfaces/balances';
+import type { EthereumHeader, LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 
-/** @name AccountData */
-export interface AccountData extends Struct {
-  readonly free: Balance;
-  readonly reserved: Balance;
-  readonly freeKton: Balance;
-  readonly reservedKton: Balance;
-}
+import type { Index, AccountId, Balance, Hash, BlockNumber, H256, H160, H512, H128, Perbill } from '@polkadot/types/interfaces/runtime';
+
+
 
 /** @name AccountInfo */
 export interface AccountInfo extends Struct {
@@ -52,6 +49,44 @@ export interface Common extends Struct {
   readonly amount: Balance;
 }
 
+/** @name DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign */
+export interface DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign extends Struct {
+  readonly mmrRoot: Hash;
+  readonly signatures: Vec<ITuple<[AccountId, Signature]>>;
+}
+
+/** @name DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority */
+export interface DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority extends Struct {
+  readonly accountId: AccountId;
+  readonly signer: EthereumAddress;
+  readonly stake: Balance;
+  readonly term: BlockNumber;
+}
+
+/** @name DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange */
+export interface DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange extends Struct {
+  readonly nextAuthorities: Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>;
+  readonly deadline: BlockNumber;
+}
+
+/** @name DarwiniaStakingSlashingRk */
+export interface DarwiniaStakingSlashingRk extends Struct {
+  readonly r: RingBalance;
+  readonly k: KtonBalance;
+}
+
+/** @name DarwiniaStakingStructsStakingLedger */
+export interface DarwiniaStakingStructsStakingLedger extends Struct {
+  readonly stash: AccountId;
+  readonly active: RingBalance;
+  readonly activeDepositRing: RingBalance;
+  readonly activeKton: KtonBalance;
+  readonly depositItems: Vec<TimeDepositItem>;
+  readonly ringStakingLock: StakingLock;
+  readonly ktonStakingLock: StakingLock;
+  readonly claimedRewards: Vec<EraIndex>;
+}
+
 /** @name DepositId */
 export interface DepositId extends U256 {}
 
@@ -62,6 +97,14 @@ export interface DpAssetTokenMetadata extends Struct {
   readonly name: Bytes;
   readonly symbol: Bytes;
   readonly decimal: u8;
+}
+
+/** @name DrmlCommonRuntimeImplsAccountData */
+export interface DrmlCommonRuntimeImplsAccountData extends Struct {
+  readonly free: Balance;
+  readonly reserved: Balance;
+  readonly freeKton: Balance;
+  readonly reservedKton: Balance;
 }
 
 /** @name EcdsaAddress */
@@ -93,7 +136,7 @@ export interface EraIndex extends u32 {}
 
 /** @name EthashProof */
 export interface EthashProof extends Struct {
-  readonly dagNodes: ITuple<[H512, H512]>;
+  readonly dagNodes: Vec<H512>;
   readonly proof: Vec<H128>;
 }
 
@@ -158,12 +201,6 @@ export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, Ether
 export interface EthereumRelayHeaderParcel extends Struct {
   readonly header: EthereumHeader;
   readonly parentMmrRoot: H256;
-}
-
-/** @name EthereumRelayProofs */
-export interface EthereumRelayProofs extends Struct {
-  readonly ethashProof: Vec<EthashProof>;
-  readonly mmrProof: Vec<H256>;
 }
 
 /** @name EthereumTransactionIndex */
@@ -235,17 +272,11 @@ export interface MMRProof extends Struct {
 /** @name MMRRoot */
 export interface MMRRoot extends Hash {}
 
-/** @name MmrRootToSign */
-export interface MmrRootToSign extends Struct {
-  readonly mmrRoot: Hash;
-  readonly signatures: Vec<ITuple<[AccountId, EcdsaSignature]>>;
-}
-
 /** @name OpCode */
 export interface OpCode extends U8aFixed {}
 
-/** @name Order */
-export interface Order extends Struct {
+/** @name PalletFeeMarketOrder */
+export interface PalletFeeMarketOrder extends Struct {
   readonly lane: LaneId;
   readonly message: MessageNonce;
   readonly sentTime: BlockNumber;
@@ -254,22 +285,11 @@ export interface Order extends Struct {
   readonly assignedRelayers: Vec<PriorRelayer>;
 }
 
-/** @name OtherAddress */
-export interface OtherAddress extends Enum {
-  readonly isEth: boolean;
-  readonly asEth: EthereumAddress;
-  readonly isTron: boolean;
-  readonly asTron: TronAddress;
-  readonly type: 'Eth' | 'Tron';
-}
-
-/** @name OtherSignature */
-export interface OtherSignature extends Enum {
-  readonly isEth: boolean;
-  readonly asEth: EcdsaSignature;
-  readonly isTron: boolean;
-  readonly asTron: EcdsaSignature;
-  readonly type: 'Eth' | 'Tron';
+/** @name PalletFeeMarketRelayer */
+export interface PalletFeeMarketRelayer extends Struct {
+  readonly id: AccountId;
+  readonly collateral: Balance;
+  readonly fee: Balance;
 }
 
 /** @name Power */
@@ -290,13 +310,6 @@ export interface Reasons extends Enum {
   readonly type: 'Fee' | 'Misc' | 'All';
 }
 
-/** @name RedeemFor */
-export interface RedeemFor extends Enum {
-  readonly isToken: boolean;
-  readonly isDeposit: boolean;
-  readonly type: 'Token' | 'Deposit';
-}
-
 /** @name RefCount */
 export interface RefCount extends u32 {}
 
@@ -309,21 +322,6 @@ export interface RelayAuthoritySignature extends EcdsaSignature {}
 /** @name RelayAuthoritySigner */
 export interface RelayAuthoritySigner extends EcdsaAddress {}
 
-/** @name RelayAuthorityT */
-export interface RelayAuthorityT extends Struct {
-  readonly accountId: AccountId;
-  readonly signer: EthereumAddress;
-  readonly stake: Balance;
-  readonly term: BlockNumber;
-}
-
-/** @name Relayer */
-export interface Relayer extends Struct {
-  readonly id: AccountId;
-  readonly collateral: Balance;
-  readonly fee: Balance;
-}
-
 /** @name RingBalance */
 export interface RingBalance extends Balance {}
 
@@ -333,11 +331,8 @@ export interface RKT extends Struct {
   readonly k: Balance;
 }
 
-/** @name ScheduledAuthoritiesChangeT */
-export interface ScheduledAuthoritiesChangeT extends Struct {
-  readonly nextAuthorities: Vec<RelayAuthorityT>;
-  readonly deadline: BlockNumber;
-}
+/** @name Signature */
+export interface Signature extends U8aFixed {}
 
 /** @name Signer */
 export interface Signer extends EthereumAddress {}
@@ -348,25 +343,10 @@ export interface SpanRecord extends Struct {
   readonly paidOut: RKT;
 }
 
-/** @name StakingBalanceT */
-export interface StakingBalanceT extends Enum {
-  readonly isRingBalance: boolean;
-  readonly asRingBalance: Balance;
-  readonly isKtonBalance: boolean;
-  readonly asKtonBalance: Balance;
-  readonly type: 'RingBalance' | 'KtonBalance';
-}
-
-/** @name StakingLedgerT */
-export interface StakingLedgerT extends Struct {
-  readonly stash: AccountId;
-  readonly active: Balance;
-  readonly activeDepositRing: Balance;
-  readonly activeKton: Balance;
-  readonly depositItems: Vec<TimeDepositItem>;
-  readonly ringStakingLock: StakingLock;
-  readonly ktonStakingLock: StakingLock;
-  readonly claimedRewards: Vec<EraIndex>;
+/** @name SpCoreChangesTrieChangesTrieConfiguration */
+export interface SpCoreChangesTrieChangesTrieConfiguration extends Struct {
+  readonly digestInterval: u32;
+  readonly digestLevels: u32;
 }
 
 /** @name StakingLock */
