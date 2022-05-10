@@ -1,22 +1,19 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { EthereumBlockNumber, EthereumRelayHeaderParcel } from '@darwinia/types/interfaces/darwiniaInject';
-import type { Option, Struct, Vec, bool, u32 } from '@polkadot/types-codec';
-import type {  AccountId, Balance } from '@polkadot/types/interfaces/runtime';
+import type { EthashProof, EthereumBlockNumber } from '@darwinia/types/interfaces/darwiniaInject';
+import type { Struct, Vec, u32 } from '@polkadot/types-codec';
+import type { H256, AccountId} from '@polkadot/types/interfaces/runtime';
 
-/** @name DarwiniaRelayPrimitivesRelayerGameRelayAffirmation */
-export interface DarwiniaRelayPrimitivesRelayerGameRelayAffirmation extends Struct {
-  readonly relayer: AccountId;
-  readonly relayHeaderParcels: EthereumRelayHeaderParcel;
-  readonly bond: Balance;
-  readonly maybeExtendedRelayAffirmationId: Option<RelayAffirmationId>;
-  readonly verified: bool;
+/** @name EthereumRelayProofs */
+export interface EthereumRelayProofs extends Struct {
+  readonly ethashProof: Vec<EthashProof>;
+  readonly mmrProof: Vec<H256>;
 }
 
-/** @name DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId */
-export interface DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId extends Struct {
-  readonly game_id: RelayHeaderId;
+/** @name RelayAffirmationId */
+export interface RelayAffirmationId extends Struct {
+  readonly relayHeaderId: RelayHeaderId;
   readonly round: u32;
   readonly index: u32;
 }
@@ -24,8 +21,8 @@ export interface DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId extends St
 /** @name RelayHeaderId */
 export interface RelayHeaderId extends EthereumBlockNumber {}
 
-/** @name RelayHeaderParcel */
-export interface RelayHeaderParcel extends EthereumRelayHeaderParcel {}
+// /** @name RelayHeaderParcel */
+// export interface RelayHeaderParcel extends EthereumRelayHeaderParcel {}
 
 /** @name RelayProofs */
 export interface RelayProofs extends EthereumRelayProofs {}

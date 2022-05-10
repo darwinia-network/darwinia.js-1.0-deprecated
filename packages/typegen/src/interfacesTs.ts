@@ -5,21 +5,23 @@ import type { HexString } from '@polkadot/util/types';
 
 import * as substrateDefs from '@polkadot/types/interfaces/definitions';
 
-import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
-import crab from '@darwinia/types-support/src/metadata/static-crab';
+// import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
+// import crab from '@darwinia/types-support/src/metadata/static-crab';
 import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
-import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
+// import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
 
-import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
+import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx, generateDefaultLookup } from '@polkadot/typegen/generate';
 
 import { generateInterfaceTypes } from '@polkadot/typegen/generate/interfaceRegistry';
 import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
 
 const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
-const METAS = Object.entries({ crab, darwinia, pangolin, pangoro }) as [string, HexString][];
+const LOOKUP = 'packages/types-augment/src/lookup';
+// handle pangolin first TODO
+const METAS = Object.entries({ pangolin }) as [string, HexString][];
 
 export function main (): void {
   // generateDefaultLookup();
@@ -54,7 +56,9 @@ export function main (): void {
   generateInterfaceTypes(allDefs, 'packages/types-augment/src/registry/interfaces.ts');
 
   for (const [name, staticMeta] of METAS) {
-    console.log();
+    console.log(`** Generating lookup for ${name}`);
+    generateDefaultLookup(`${LOOKUP}/${name}`, staticMeta);
+
     console.log(`*** Generating for ${name}`);
 
     generateDefaultRpc(`${RPCBASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interfaces': chainDefs });

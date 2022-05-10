@@ -7,23 +7,7 @@
 import type { Definitions } from '@polkadot/types/types';
 
 export default {
-  rpc: {
-    genProof: {
-      alias: ['headerMMR_genProof'],
-      description: 'headerMMR_genProof',
-      params: [
-        {
-          name: 'blockNumberOfMemberleaf',
-          type: 'u64'
-        },
-        {
-          name: 'blockNumberOfLastLeaf',
-          type: 'u64'
-        }
-      ],
-      type: 'MMRProofResult'
-    }
-  },
+  rpc: {},
   types: {
     MMRProofResult: {
       mmrSize: 'u64',

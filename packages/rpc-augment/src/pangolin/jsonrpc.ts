@@ -1,13 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
-import type { MMRProofResult } from '@darwinia/types/interfaces/headerMMR';
-import type { PowerOf } from '@darwinia/types/interfaces/staking';
 import type { AugmentedRpc } from '@polkadot/rpc-core/types';
 import type { Metadata, StorageKey } from '@polkadot/types';
-import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Bytes, HashMap, Json, Null, Option, Text, U256, U64, Vec, bool, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, Codec } from '@polkadot/types-codec/types';
 import type { ExtrinsicOrHash, ExtrinsicStatus } from '@polkadot/types/interfaces/author';
 import type { EpochAuthorship } from '@polkadot/types/interfaces/babe';
@@ -71,12 +67,6 @@ declare module '@polkadot/rpc-core/types/jsonrpc' {
        * Returns data about which slots (primary or secondary) can be claimed in the current epoch with the keys in the keystore
        **/
       epochAuthorship: AugmentedRpc<() => Observable<HashMap<AuthorityId, EpochAuthorship>>>;
-    };
-    balances: {
-      /**
-       * balances_usableBalance
-       **/
-      usableBalance: AugmentedRpc<(tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) => Observable<UsableBalance>>;
     };
     beefy: {
       /**
@@ -348,16 +338,6 @@ declare module '@polkadot/rpc-core/types/jsonrpc' {
        **/
       uninstallFilter: AugmentedRpc<(index: U256 | AnyNumber | Uint8Array) => Observable<bool>>;
     };
-    fee: {
-      /**
-       * fee_inProcessOrders
-       **/
-      inProcessOrders: AugmentedRpc<() => Observable<InProcessOrders>>;
-      /**
-       * fee_marketFee
-       **/
-      marketFee: AugmentedRpc<() => Observable<Fee>>;
-    };
     grandpa: {
       /**
        * Prove finality for the given block number, returning the Justification for the last block in the set.
@@ -371,12 +351,6 @@ declare module '@polkadot/rpc-core/types/jsonrpc' {
        * Subscribes to grandpa justifications
        **/
       subscribeJustifications: AugmentedRpc<() => Observable<JustificationNotification>>;
-    };
-    headerMMR: {
-      /**
-       * headerMMR_genProof
-       **/
-      genProof: AugmentedRpc<(blockNumberOfMemberleaf: u64 | AnyNumber | Uint8Array, blockNumberOfLastLeaf: u64 | AnyNumber | Uint8Array) => Observable<MMRProofResult>>;
     };
     mmr: {
       /**
@@ -423,12 +397,6 @@ declare module '@polkadot/rpc-core/types/jsonrpc' {
        * Retrieves the list of RPC methods that are exposed by the node
        **/
       methods: AugmentedRpc<() => Observable<RpcMethods>>;
-    };
-    staking: {
-      /**
-       * staking_powerOf
-       **/
-      powerOf: AugmentedRpc<(accountId: AccountId | string | Uint8Array) => Observable<PowerOf>>;
     };
     state: {
       /**

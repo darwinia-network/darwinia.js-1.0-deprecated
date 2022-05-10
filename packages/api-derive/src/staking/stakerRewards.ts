@@ -15,7 +15,7 @@ import { memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
 import { u32 } from '@polkadot/types';
 import { AccountId, EraIndex } from '@polkadot/types/interfaces';
-import { PalletStakingStakingLedger } from '@polkadot/types/lookup';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { BN, BN_ZERO, BN_BILLION } from '@polkadot/util';
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -136,7 +136,7 @@ function removeClaimed (validators: string[], queryValidators: DeriveStakingQuer
 function filterRewards (
   eras: EraIndex[],
   valInfo: [string, DeriveStakingQuery][],
-  { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: PalletStakingStakingLedger }
+  { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: DarwiniaStakingStructsStakingLedger }
 ): DeriveStakerReward[] {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s:u32) => s.eq(e)));

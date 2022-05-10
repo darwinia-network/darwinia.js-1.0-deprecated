@@ -5,12 +5,9 @@ import type { Definitions } from '@polkadot/types/types';
 
 import { objectSpread } from '@polkadot/util';
 
-import darwinia from './darwinia';
-import crab from './crab';
-import pangolin from './pangolin';
-import pangoro from './pangoro';
+import pangolin from './pangolin/lookup';
 
 export default {
   rpc: {},
-  types: objectSpread({}, crab, darwinia, pangolin, pangoro)
+  types: objectSpread({}, pangolin)
 } as Definitions;

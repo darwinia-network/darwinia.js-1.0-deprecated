@@ -2,21 +2,19 @@
 /* eslint-disable */
 
 import type { LockIdentifier } from '@darwinia/types/interfaces/balances';
-import type { EthereumHeader, LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
+import type { Hash,BlockNumber,Perbill,Balance, H256, H128, H512, AccountId } from '@polkadot/types/interfaces/runtime';
+// import type { DrmlCommonRuntimeImplsAccountData,EthereumHeader } from '@polkadot/types/lookup'
 
-import type { Index, AccountId, Balance, Hash, BlockNumber, H256, H160, H512, H128, Perbill } from '@polkadot/types/interfaces/runtime';
 
-
-
-/** @name AccountInfo */
-export interface AccountInfo extends Struct {
-  readonly nonce: Index;
-  readonly refcount: RefCount;
-  readonly data: AccountData;
-}
+// /** @name AccountInfo */
+// export interface AccountInfo extends Struct {
+//   readonly nonce: Index;
+//   readonly refcount: RefCount;
+//   readonly data: DrmlCommonRuntimeImplsAccountData;
+// }
 
 /** @name Address */
 export interface Address extends U8aFixed {}
@@ -49,63 +47,8 @@ export interface Common extends Struct {
   readonly amount: Balance;
 }
 
-/** @name DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign */
-export interface DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign extends Struct {
-  readonly mmrRoot: Hash;
-  readonly signatures: Vec<ITuple<[AccountId, Signature]>>;
-}
-
-/** @name DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority */
-export interface DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority extends Struct {
-  readonly accountId: AccountId;
-  readonly signer: EthereumAddress;
-  readonly stake: Balance;
-  readonly term: BlockNumber;
-}
-
-/** @name DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange */
-export interface DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange extends Struct {
-  readonly nextAuthorities: Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>;
-  readonly deadline: BlockNumber;
-}
-
-/** @name DarwiniaStakingSlashingRk */
-export interface DarwiniaStakingSlashingRk extends Struct {
-  readonly r: RingBalance;
-  readonly k: KtonBalance;
-}
-
-/** @name DarwiniaStakingStructsStakingLedger */
-export interface DarwiniaStakingStructsStakingLedger extends Struct {
-  readonly stash: AccountId;
-  readonly active: RingBalance;
-  readonly activeDepositRing: RingBalance;
-  readonly activeKton: KtonBalance;
-  readonly depositItems: Vec<TimeDepositItem>;
-  readonly ringStakingLock: StakingLock;
-  readonly ktonStakingLock: StakingLock;
-  readonly claimedRewards: Vec<EraIndex>;
-}
-
 /** @name DepositId */
 export interface DepositId extends U256 {}
-
-/** @name DpAssetTokenMetadata */
-export interface DpAssetTokenMetadata extends Struct {
-  readonly token_type: u32;
-  readonly address: H160;
-  readonly name: Bytes;
-  readonly symbol: Bytes;
-  readonly decimal: u8;
-}
-
-/** @name DrmlCommonRuntimeImplsAccountData */
-export interface DrmlCommonRuntimeImplsAccountData extends Struct {
-  readonly free: Balance;
-  readonly reserved: Balance;
-  readonly freeKton: Balance;
-  readonly reservedKton: Balance;
-}
 
 /** @name EcdsaAddress */
 export interface EcdsaAddress extends EthereumAddress {}
@@ -146,45 +89,11 @@ export interface EthereumAddress extends GenericEthereumAccountId {}
 /** @name EthereumBlockNumber */
 export interface EthereumBlockNumber extends u64 {}
 
-/** @name EthereumLog */
-export interface EthereumLog extends Struct {
-  readonly address: H160;
-  readonly topics: Vec<H256>;
-  readonly data: Bytes;
-}
-
 /** @name EthereumNetwork */
 export interface EthereumNetwork extends Enum {
   readonly isMainnet: boolean;
   readonly isRopsten: boolean;
   readonly type: 'Mainnet' | 'Ropsten';
-}
-
-/** @name EthereumPrimitivesHeader */
-export interface EthereumPrimitivesHeader extends Struct {
-  readonly parentHash: H256;
-  readonly timestamp: u64;
-  readonly number: EthereumBlockNumber;
-  readonly author: EthereumAddress;
-  readonly transactionsRoot: H256;
-  readonly unclesHash: H256;
-  readonly extraData: Bytes;
-  readonly stateRoot: H256;
-  readonly receiptsRoot: H256;
-  readonly logBloom: Bloom;
-  readonly gasUsed: U256;
-  readonly gasLimit: U256;
-  readonly difficulty: U256;
-  readonly seal: Vec<Bytes>;
-  readonly baseFeePerGas: Option<U256>;
-  readonly blockHash: Option<H256>;
-}
-
-/** @name EthereumPrimitivesReceiptTypedReceipt */
-export interface EthereumPrimitivesReceiptTypedReceipt extends Struct {
-  readonly Legacy: LegacyReceipt;
-  readonly AccessList: LegacyReceipt;
-  readonly EIP1559Transaction: LegacyReceipt;
 }
 
 /** @name EthereumReceiptProof */
@@ -194,14 +103,11 @@ export interface EthereumReceiptProof extends Struct {
   readonly headerHash: H256;
 }
 
-/** @name EthereumReceiptProofThing */
-export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, EthereumReceiptProof, MMRProof]> {}
-
-/** @name EthereumRelayHeaderParcel */
-export interface EthereumRelayHeaderParcel extends Struct {
-  readonly header: EthereumHeader;
-  readonly parentMmrRoot: H256;
-}
+// /** @name EthereumRelayHeaderParcel */
+// export interface EthereumRelayHeaderParcel extends Struct {
+//   readonly header: EthereumHeader;
+//   readonly parentMmrRoot: H256;
+// }
 
 /** @name EthereumTransactionIndex */
 export interface EthereumTransactionIndex extends ITuple<[H256, u64]> {}
@@ -275,23 +181,6 @@ export interface MMRRoot extends Hash {}
 /** @name OpCode */
 export interface OpCode extends U8aFixed {}
 
-/** @name PalletFeeMarketOrder */
-export interface PalletFeeMarketOrder extends Struct {
-  readonly lane: LaneId;
-  readonly message: MessageNonce;
-  readonly sentTime: BlockNumber;
-  readonly confirmTime: BlockNumber;
-  readonly lockedCollateral: Balance;
-  readonly assignedRelayers: Vec<PriorRelayer>;
-}
-
-/** @name PalletFeeMarketRelayer */
-export interface PalletFeeMarketRelayer extends Struct {
-  readonly id: AccountId;
-  readonly collateral: Balance;
-  readonly fee: Balance;
-}
-
 /** @name Power */
 export interface Power extends u32 {}
 
@@ -341,12 +230,6 @@ export interface Signer extends EthereumAddress {}
 export interface SpanRecord extends Struct {
   readonly slashed: RKT;
   readonly paidOut: RKT;
-}
-
-/** @name SpCoreChangesTrieChangesTrieConfiguration */
-export interface SpCoreChangesTrieChangesTrieConfiguration extends Struct {
-  readonly digestInterval: u32;
-  readonly digestLevels: u32;
 }
 
 /** @name StakingLock */
@@ -407,5 +290,17 @@ export interface ValidatorPrefsWithBlocked extends Struct {
   readonly commission: Compact<Perbill>;
   readonly blocked: bool;
 }
+
+// /** @name StakingLedgerT */
+// export interface StakingLedgerT extends Struct {
+//   readonly stash: AccountId;
+//   readonly active: Balance;
+//   readonly activeDepositRing: Balance;
+//   readonly activeKton: Balance;
+//   readonly depositItems: Vec<TimeDepositItem>;
+//   readonly ringStakingLock: StakingLock;
+//   readonly ktonStakingLock: StakingLock;
+//   readonly claimedRewards: Vec<EraIndex>;
+// }
 
 export type PHANTOM_DARWINIAINJECT = 'darwiniaInject';

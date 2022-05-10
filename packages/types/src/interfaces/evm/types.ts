@@ -3,19 +3,6 @@
 
 import type { Enum, Text } from '@polkadot/types-codec';
 
-/** @name EvmCoreErrorExitReason */
-export interface EvmCoreErrorExitReason extends Enum {
-  readonly isSucceed: boolean;
-  readonly asSucceed: ExitSucceed;
-  readonly isError: boolean;
-  readonly asError: ExitError;
-  readonly isRevert: boolean;
-  readonly asRevert: ExitRevert;
-  readonly isFatal: boolean;
-  readonly asFatal: ExitFatal;
-  readonly type: 'Succeed' | 'Error' | 'Revert' | 'Fatal';
-}
-
 /** @name ExitError */
 export interface ExitError extends Enum {
   readonly isStackUnderflow: boolean;

@@ -1,7 +1,4 @@
 // Copyright 2017-2022 @darwinia/types-augment authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import './types-darwinia';
-import './types-crab';
-import './types-pangolin';
-import './types-pangoro';
+import './pangolin/types-lookup';

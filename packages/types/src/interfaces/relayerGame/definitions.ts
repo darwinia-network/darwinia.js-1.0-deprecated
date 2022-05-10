@@ -12,20 +12,9 @@ export default {
   },
   types: {
     RelayHeaderId: 'EthereumBlockNumber',
-    RelayHeaderParcel: 'EthereumRelayHeaderParcel',
+    // RelayHeaderParcel: 'EthereumRelayHeaderParcel',
     RelayProofs: 'EthereumRelayProofs',
-    DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId: {
-      game_id: 'RelayHeaderId',
-      round: 'u32',
-      index: 'u32'
-    },
-    DarwiniaRelayPrimitivesRelayerGameRelayAffirmation: {
-      relayer: 'AccountId',
-      relayHeaderParcels: 'EthereumRelayHeaderParcel',
-      bond: 'Balance',
-      maybeExtendedRelayAffirmationId: 'Option<RelayAffirmationId>',
-      verified: 'bool'
-    },
+
     RelayVotingState: {
       ayes: 'Vec<AccountId>',
       nays: 'Vec<AccountId>'

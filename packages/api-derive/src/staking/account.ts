@@ -1,7 +1,7 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { StakingLedgerT as StakingLedger } from '../../../types/src';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { DeriveApi, DeriveUnlocking, DeriveStakingKeys } from '@polkadot/api-derive/types';
 import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { ApiInterfaceRx } from '@polkadot/api/types';
@@ -21,7 +21,7 @@ const QUERY_OPTS = {
 };
 
 // eslint-disable-next-line space-before-function-paren
-function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undefined, best: BlockNumber): Balance {
+function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber): Balance {
   if (isUndefined(stakingLedger)) {
     return api.registry.createType('Balance');
   }
@@ -37,7 +37,7 @@ function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undef
 // eslint-disable-next-line space-before-function-paren
 function calculateUnlocking(
   api: ApiInterfaceRx,
-  stakingLedger: StakingLedger | undefined,
+  stakingLedger: DarwiniaStakingStructsStakingLedger | undefined,
   best: BlockNumber,
   currencyType: 'ring' | 'kton'
 ): [DeriveUnlocking[] | undefined, Balance] {
@@ -60,7 +60,7 @@ function calculateUnlocking(
 }
 
 function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: DeriveStakingQuery): DeriveStakingAccount {
-  const stakingLedger = query.stakingLedger as unknown as StakingLedger;
+  const stakingLedger = query.stakingLedger as unknown as DarwiniaStakingStructsStakingLedger;
   const calcUnlocking = calculateUnlocking(api, stakingLedger, best, 'ring');
   const calcUnlockingKton = calculateUnlocking(api, stakingLedger, best, 'kton');
   const depositItems = stakingLedger?.depositItems?.filter(({ expireTime }) => expireTime.toBn().gt(now));

@@ -13,8 +13,4 @@ export { default as staking } from './staking/definitions';
 export { default as democracy } from './democracy/definitions';
 export { default as evm } from './evm/definitions';
 export { default as eth } from './eth/definitions';
-export { default as grandpa } from './grandpa/definitions';
-export { default as beefy } from './beefy/definitions';
 export { default as session } from './session/definitions';
-export { default as scheduler } from './scheduler/definitions';
-export { default as claims } from './claims/definitions';

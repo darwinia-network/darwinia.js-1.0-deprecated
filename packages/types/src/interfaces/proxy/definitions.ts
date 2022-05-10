@@ -29,10 +29,8 @@ export default {
     },
     DarwiniaRuntimePalletsProxyProxyType: {
       _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'IdentityJudgement', 'EthereumBridge']
-    },
-    PangolinRuntimePalletsProxyProxyType: {
-      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'EthereumBridge']
     }
+
   },
   rpc: {
   }

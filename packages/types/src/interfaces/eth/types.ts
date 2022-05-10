@@ -1,23 +1,9 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { EthashProof } from '@darwinia/types/interfaces/darwiniaInject';
-import type { Bytes, Enum, Option, Struct, U256, U64, Vec, bool, u32, u64 } from '@polkadot/types-codec';
-import type { H256, H160, H2048, H64 } from '@polkadot/types/interfaces/runtime';
+import type { Bytes, Enum, Option, Struct, U256, Vec, bool, u64 } from '@polkadot/types-codec';
 
-
-/** @name DarwiniaBridgeEthereumEthereumRelayProofs */
-export interface DarwiniaBridgeEthereumEthereumRelayProofs extends Struct {
-  readonly ethashProof: Vec<EthashProof>;
-  readonly mmrProof: Vec<H256>;
-}
-
-/** @name DarwiniaBridgeEthereumMmrProof */
-export interface DarwiniaBridgeEthereumMmrProof extends Struct {
-  readonly memberLeafIndex: u64;
-  readonly lastLeafIndex: u64;
-  readonly proof: Vec<H256>;
-}
+import type {H256,H2048,H160,H64} from '@polkadot/types/interfaces/runtime';
 
 /** @name EIP1559Transaction */
 export interface EIP1559Transaction extends Struct {
@@ -65,47 +51,8 @@ export interface EthAddress extends H160 {}
 /** @name EthBloom */
 export interface EthBloom extends H2048 {}
 
-/** @name EthereumBlock */
-export interface EthereumBlock extends Struct {
-  readonly header: EthHeader;
-  readonly transactions: Vec<TransactionV2>;
-  readonly ommers: Vec<EthHeader>;
-}
-
-/** @name EthereumPrimitivesReceiptReceiptProof */
-export interface EthereumPrimitivesReceiptReceiptProof extends Struct {
-  readonly index: u64;
-  readonly proof: Bytes;
-  readonly headerHash: H256;
-}
-
-/** @name EthereumReceiptReceiptV3 */
-export interface EthereumReceiptReceiptV3 extends Struct {
-  readonly transactionHash: Option<H256>;
-  readonly transactionIndex: Option<U256>;
-  readonly blockHash: Option<H256>;
-  readonly from: Option<EthAddress>;
-  readonly to: Option<EthAddress>;
-  readonly blockNumber: Option<U256>;
-  readonly cumulativeGasUsed: U256;
-  readonly gasUsed: Option<U256>;
-  readonly contractAddress: Option<EthAddress>;
-  readonly logs: Vec<EthLog>;
-  readonly root: Option<H256>;
-  readonly logsBloom: EthBloom;
-  readonly statusCode: Option<U64>;
-}
-
-/** @name EthereumTransactionTransactionV2 */
-export interface EthereumTransactionTransactionV2 extends Enum {
-  readonly isLegacy: boolean;
-  readonly asLegacy: LegacyTransaction;
-  readonly isEip2930: boolean;
-  readonly asEip2930: EIP2930Transaction;
-  readonly isEip1559: boolean;
-  readonly asEip1559: EIP1559Transaction;
-  readonly type: 'Legacy' | 'Eip2930' | 'Eip1559';
-}
+// /** @name EthereumReceiptProofThing */
+// export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, EthereumPrimitivesReceiptReceiptProof, DarwiniaBridgeEthereumMmrProof]> {}
 
 /** @name EthHeader */
 export interface EthHeader extends Struct {
@@ -155,17 +102,6 @@ export interface EthTransactionSignature extends Struct {
   readonly s: H256;
 }
 
-/** @name FpRpcTransactionStatus */
-export interface FpRpcTransactionStatus extends Struct {
-  readonly transactionHash: H256;
-  readonly transactionIndex: u32;
-  readonly from: EthAddress;
-  readonly to: Option<EthAddress>;
-  readonly contractAddress: Option<EthAddress>;
-  readonly logs: Vec<EthLog>;
-  readonly logsBloom: EthBloom;
-}
-
 /** @name LegacyTransaction */
 export interface LegacyTransaction extends Struct {
   readonly nonce: U256;
@@ -175,13 +111,6 @@ export interface LegacyTransaction extends Struct {
   readonly value: U256;
   readonly input: Bytes;
   readonly signature: EthTransactionSignature;
-}
-
-/** @name ToEthereumBackingRedeemFor */
-export interface ToEthereumBackingRedeemFor extends Enum {
-  readonly isToken: boolean;
-  readonly isDeposit: boolean;
-  readonly type: 'Token' | 'Deposit';
 }
 
 /** @name TransactionV2 */

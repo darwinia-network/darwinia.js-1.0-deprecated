@@ -1,18 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { BpMessagesDeliveredMessages, PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter, PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter } from '@darwinia/types/interfaces/bridges';
-import type { EthereumLog, EthereumPrimitivesHeader, EthereumPrimitivesReceiptTypedReceipt } from '@darwinia/types/interfaces/darwiniaInject';
-import type { EvmCoreErrorExitReason } from '@darwinia/types/interfaces/evm';
-import type { PalletFeeMarketSlashReport } from '@darwinia/types/interfaces/fee';
-import type { PangolinRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
-import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
-import type { DarwiniaStakingStructsExposure } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError } from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError,BpMessagesDeliveredMessages,PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter,PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter,EvmCoreErrorExitReason,DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId,EthereumPrimitivesReceiptTypedReceipt,EthereumPrimitivesHeader,EthereumLog,DarwiniaStakingStructsExposure,PalletFeeMarketSlashReport,PangolinRuntimePalletsProxyProxyType } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {

@@ -1,21 +1,14 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { BpMessageDispatchMessagePayload, BpMessagesOperatingMode, BpMessagesUnrewardedRelayersState, BridgeRuntimeCommonMessagesSourceFromBridgedChainMessagesDeliveryProof, BridgeRuntimeCommonMessagesTargetFromBridgedChainMessagesProof, DarwiniaBridgeEthereumEthereumRelayHeaderParcel, PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter, PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter } from '@darwinia/types/interfaces/bridges';
-import type { DarwiniaClaimsOtherAddress, DarwiniaClaimsOtherSignature } from '@darwinia/types/interfaces/claims';
-import type { DpAssetTokenMetadata, EthereumPrimitivesHeader, SpCoreChangesTrieChangesTrieConfiguration } from '@darwinia/types/interfaces/darwiniaInject';
-import type { DarwiniaBridgeEthereumEthereumRelayProofs, DarwiniaBridgeEthereumMmrProof, EthereumPrimitivesReceiptReceiptProof, EthereumTransactionTransactionV2, ToEthereumBackingRedeemFor } from '@darwinia/types/interfaces/eth';
-import type { BpHeaderChainInitializationData, BpHeaderChainJustificationGrandpaJustification } from '@darwinia/types/interfaces/grandpa';
-import type { PangolinRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
-import type { DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId } from '@darwinia/types/interfaces/relayerGame';
-import type { PangolinRuntimePalletsSessionSessionKeys } from '@darwinia/types/interfaces/session';
-import type { DarwiniaStakingStructsRewardDestination, DarwiniaStakingStructsStakingBalance, DarwiniaStakingStructsValidatorPrefs } from '@darwinia/types/interfaces/staking';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { Bytes, Compact, Option, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
-import type { PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletSocietyJudgement, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsSupport, SpRuntimeHeader, SpSessionMembershipProof } from '@polkadot/types/lookup';
+import type { PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletSocietyJudgement, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsSupport, SpRuntimeHeader, SpSessionMembershipProof,BridgeRuntimeCommonMessagesSourceFromBridgedChainMessagesDeliveryProof,BpMessagesUnrewardedRelayersState,BridgeRuntimeCommonMessagesTargetFromBridgedChainMessagesProof,BpMessageDispatchMessagePayload,BpMessagesOperatingMode,PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter,
+  BpHeaderChainInitializationData,BpHeaderChainJustificationGrandpaJustification,PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter,DarwiniaClaimsOtherSignature,DarwiniaClaimsOtherAddress,ToEthereumBackingRedeemFor,EthereumTransactionTransactionV2,EthereumPrimitivesHeader,EthereumPrimitivesReceiptReceiptProof,DarwiniaBridgeEthereumMmrProof,
+  DarwiniaBridgeEthereumEthereumRelayHeaderParcel,DarwiniaBridgeEthereumEthereumRelayProofs,DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId,PangolinRuntimePalletsProxyProxyType,PangolinRuntimePalletsSessionSessionKeys,DarwiniaStakingStructsStakingBalance,DarwiniaStakingStructsRewardDestination,DarwiniaStakingStructsValidatorPrefs,SpCoreChangesTrieChangesTrieConfiguration,DpAssetTokenMetadata} from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/submittable' {
   export interface AugmentedSubmittables<ApiType extends ApiTypes> {

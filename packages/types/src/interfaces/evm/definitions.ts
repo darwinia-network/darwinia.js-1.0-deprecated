@@ -9,14 +9,7 @@ import type { Definitions } from '@polkadot/types/types';
 export default {
   rpc: {},
   types: {
-    EvmCoreErrorExitReason: {
-      _enum: {
-        Succeed: 'ExitSucceed',
-        Error: 'ExitError',
-        Revert: 'ExitRevert',
-        Fatal: 'ExitFatal'
-      }
-    },
+
     ExitRevert: {
       _enum: ['Reverted']
     },

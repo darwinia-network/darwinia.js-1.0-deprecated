@@ -11,38 +11,32 @@ export default {
 
   },
   types: {
-    PangolinRuntimePalletsSessionSessionKeys: {
-      babe: 'Babe',
-      grandpa: 'Grandpa',
-      beefy: 'Beefy',
-      imOnline: 'ImOnline',
-      authorityDiscovery: 'AuthorityDiscovery'
-    },
-    Grandpa: {
-      Equivocation: 'GrandpaEquivocation',
-      EquivocationProof: 'GrandpaEquivocationProof'
-    },
-    GrandpaEquivocation: {
-      _enum: {
-        Prevote: 'GrandpaEquivocationValue',
-        Precommit: 'GrandpaEquivocationValue'
-      }
-    },
-    GrandpaEquivocationProof: {
-      setId: 'SetId',
-      equivocation: 'GrandpaEquivocation'
-    },
-    GrandpaEquivocationValue: {
-      roundNumber: 'u64',
-      identity: 'AuthorityId',
-      first: '(GrandpaPrevote, AuthoritySignature)',
-      second: '(GrandpaPrevote, AuthoritySignature)'
-    },
-    GrandpaPrevote: {
-      targetHash: 'Hash',
-      targetNumber: 'BlockNumber'
-    },
-    AuthoritySignature: 'Signature'
+
+    // Grandpa: {
+    //   Equivocation: 'GrandpaEquivocation',
+    //   EquivocationProof: 'GrandpaEquivocationProof'
+    // },
+    // GrandpaEquivocation: {
+    //   _enum: {
+    //     Prevote: 'GrandpaEquivocationValue',
+    //     Precommit: 'GrandpaEquivocationValue'
+    //   }
+    // },
+    // GrandpaEquivocationProof: {
+    //   setId: 'SetId',
+    //   equivocation: 'GrandpaEquivocation'
+    // },
+    // GrandpaEquivocationValue: {
+    //   roundNumber: 'u64',
+    //   identity: 'AuthorityId',
+    //   first: '(GrandpaPrevote, AuthoritySignature)',
+    //   second: '(GrandpaPrevote, AuthoritySignature)'
+    // },
+    // GrandpaPrevote: {
+    //   targetHash: 'Hash',
+    //   targetNumber: 'BlockNumber'
+    // },
+    // AuthoritySignature: 'Signature'
     // Signature: 'H512'
 
   }

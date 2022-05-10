@@ -26,31 +26,27 @@ export default {
       stakingAmount: 'Balance',
       unbondings: 'Vec<Unbonding>'
     },
+    // StakingLedgerT: {
+    //   stash: 'AccountId',
+    //   active: 'Balance',
+    //   activeDepositRing: 'Balance',
+    //   activeKton: 'Balance',
+    //   depositItems: 'Vec<TimeDepositItem>',
+    //   ringStakingLock: 'StakingLock',
+    //   ktonStakingLock: 'StakingLock',
+    //   claimedRewards: 'Vec<EraIndex>'
+    // },
     Unbonding: {
       amount: 'Balance',
       until: 'BlockNumber'
     },
-    DrmlCommonRuntimeImplsAccountData: {
-      free: 'Balance',
-      reserved: 'Balance',
-      freeKton: 'Balance',
-      reservedKton: 'Balance'
-    },
+
     RingBalance: 'Balance',
     KtonBalance: 'Balance',
     TsInMs: 'u64',
     Power: 'u32',
     DepositId: 'U256',
-    DarwiniaStakingStructsStakingLedger: {
-      stash: 'AccountId',
-      active: 'RingBalance',
-      activeDepositRing: 'RingBalance',
-      activeKton: 'KtonBalance',
-      depositItems: 'Vec<TimeDepositItem>',
-      ringStakingLock: 'StakingLock',
-      ktonStakingLock: 'StakingLock',
-      claimedRewards: 'Vec<EraIndex>'
-    },
+
     TimeDepositItem: {
       value: 'Balance',
       startTime: 'TsInMs',
@@ -79,10 +75,6 @@ export default {
       r: 'Balance',
       k: 'Balance'
     },
-    DarwiniaStakingSlashingRk: {
-      r: 'RingBalance',
-      k: 'KtonBalance'
-    },
     SpanRecord: {
       slashed: 'RKT',
       paidOut: 'RKT'
@@ -99,34 +91,12 @@ export default {
 
     EthereumTransactionIndex: '(H256, u64)',
     EthereumBlockNumber: 'u64',
-    EthereumPrimitivesHeader: {
-      parentHash: 'H256',
-      timestamp: 'u64',
-      number: 'EthereumBlockNumber',
-      author: 'EthereumAddress',
-      transactionsRoot: 'H256',
-      unclesHash: 'H256',
-      extraData: 'Bytes',
-      stateRoot: 'H256',
-      receiptsRoot: 'H256',
-      logBloom: 'Bloom',
-      gasUsed: 'U256',
-      gasLimit: 'U256',
-      difficulty: 'U256',
-      seal: 'Vec<Bytes>',
-      baseFeePerGas: 'Option<U256>',
-      blockHash: 'Option<H256>'
-    },
     Bloom: '[u8; 256; Bloom]',
     EthashProof: {
       dagNodes: '[H512; 2]',
       proof: 'Vec<H128>'
     },
-    EthereumPrimitivesReceiptTypedReceipt: {
-      Legacy: 'LegacyReceipt',
-      AccessList: 'LegacyReceipt',
-      EIP1559Transaction: 'LegacyReceipt'
-    },
+
     LegacyReceipt: {
       gas_used: 'U256',
       log_bloom: 'Bloom',
@@ -161,10 +131,10 @@ export default {
       lastLeafIndex: 'u64',
       proof: 'Vec<H256>'
     },
-    EthereumRelayHeaderParcel: {
-      header: 'EthereumHeader',
-      parentMmrRoot: 'H256'
-    },
+    // EthereumRelayHeaderParcel: {
+    //   header: 'EthereumHeader',
+    //   parentMmrRoot: 'H256'
+    // },
     EcdsaSignature: '[u8; 65; EcdsaSignature]',
     Signature: '[u8;65]',
     TronAddress: 'EthereumAddress',
@@ -181,18 +151,12 @@ export default {
       tokenSymbol: 'Option<Vec<Text>>'
     },
 
-    AccountInfo: {
-      nonce: 'Index',
-      refcount: 'RefCount',
-      data: 'DrmlCommonRuntimeImplsAccountData'
-    },
+    // AccountInfo: {
+    //   nonce: 'Index',
+    //   refcount: 'RefCount',
+    //   data: 'DrmlCommonRuntimeImplsAccountData'
+    // },
     Signer: 'EthereumAddress',
-    DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority: {
-      accountId: 'AccountId',
-      signer: 'EthereumAddress',
-      stake: 'Balance',
-      term: 'BlockNumber'
-    },
     MMRRoot: 'Hash',
     EcdsaAddress: 'EthereumAddress',
     EcdsaMessage: 'H256',
@@ -201,44 +165,18 @@ export default {
     RelayAuthoritySignature: 'EcdsaSignature',
     Term: 'BlockNumber',
     OpCode: '[u8; 4; OpCode]',
-    DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange: {
-      nextAuthorities: 'Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>',
-      deadline: 'BlockNumber'
-    },
-    DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign: {
-      mmrRoot: 'Hash',
-      signatures: 'Vec<(AccountId, Signature)>'
-    },
     ElectionCompute: {
       _enum: ['OnChain', 'Signed', 'Authority']
     },
     ValidatorPrefs: 'ValidatorPrefsWithBlocked',
-    PalletFeeMarketRelayer: {
-      id: 'AccountId',
-      collateral: 'Balance',
-      fee: 'Balance'
-    },
+
     PriorRelayer: {
       id: 'AccountId',
       fee: 'Balance',
       validRange: 'BlockNumber'
     },
     TokenMessageId: '[u8; 16; TokenMessageId]',
-    DpAssetTokenMetadata: {
-      token_type: 'u32',
-      address: 'H160',
-      name: 'Vec<u8>',
-      symbol: 'Vec<u8>',
-      decimal: 'u8'
-    },
-    PalletFeeMarketOrder: {
-      lane: 'LaneId',
-      message: 'MessageNonce',
-      sentTime: 'BlockNumber',
-      confirmTime: 'BlockNumber',
-      lockedCollateral: 'Balance',
-      assignedRelayers: 'Vec<PriorRelayer>'
-    },
+
     EraIndex: 'u32',
     RefCount: 'u32',
     Reasons: {
@@ -248,17 +186,8 @@ export default {
       commission: 'Compact<Perbill>',
       blocked: 'bool'
     },
-    EthereumAddress: 'GenericEthereumAccountId',
-    EthereumLog: {
-      address: 'H160',
-      topics: 'Vec<H256>',
-      data: 'Vec<u8>'
+    EthereumAddress: 'GenericEthereumAccountId'
 
-    },
-    SpCoreChangesTrieChangesTrieConfiguration: {
-      digestInterval: 'u32',
-      digestLevels: 'u32'
-    }
   },
   rpc: {
 

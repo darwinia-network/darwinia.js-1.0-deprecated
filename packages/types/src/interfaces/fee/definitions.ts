@@ -7,20 +7,7 @@
 import type { Definitions } from '@polkadot/types/types';
 
 export default {
-  rpc: {
-    marketFee: {
-      alias: ['fee_marketFee'],
-      description: 'fee_marketFee',
-      params: [],
-      type: 'Fee'
-    },
-    inProcessOrders: {
-      alias: ['fee_inProcessOrders'],
-      description: 'fee_inProcessOrders',
-      params: [],
-      type: 'InProcessOrders'
-    }
-  },
+  rpc: {},
   types: {
     Fee: {
       amount: 'Balance'
@@ -39,15 +26,6 @@ export default {
 
     },
     DarwiniaFeeMarketSlashReport: {
-      lane: 'LaneId',
-      message: 'MessageNonce',
-      sent_time: 'BlockNumber',
-      confirm_time: 'Option<BlockNumber>',
-      delay_time: 'Option<BlockNumber>',
-      account_id: 'AccountId',
-      amount: 'Balance'
-    },
-    PalletFeeMarketSlashReport: {
       lane: 'LaneId',
       message: 'MessageNonce',
       sent_time: 'BlockNumber',

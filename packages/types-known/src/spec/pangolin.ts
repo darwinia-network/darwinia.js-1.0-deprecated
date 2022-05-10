@@ -8,7 +8,7 @@ const sharedTypes = {};
 
 const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, undefined],
+    minmax: [0, 28110],
     types: {
       ...sharedTypes
     }
