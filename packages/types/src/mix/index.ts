@@ -120,7 +120,7 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
     Pangolin: getBundleFromSpecName('Pangolin', true),
-    Pangoro: getBundleFromSpecName('Pangolin', true)
+    Pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -130,7 +130,7 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
     crab: getBundleFromSpecName('Crab', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
     pangolin: getBundleFromSpecName('Pangolin', true),
-    pangoro: getBundleFromSpecName('Pangolin', true)
+    pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -139,6 +139,6 @@ export const typesBundle: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
     Pangolin: getBundleFromSpecName('Pangolin', false),
-    Pangoro: getBundleFromSpecName('Pangolin', false)
+    Pangoro: getBundleFromSpecName('Pangoro', false)
   }
 };
