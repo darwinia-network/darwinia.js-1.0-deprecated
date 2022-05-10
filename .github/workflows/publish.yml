@@ -46,7 +46,7 @@ jobs:
         run: yarn lernaversion --yes ${{ steps.read-version.outputs.VERSION }}
 
       - name: Run build
-        run: yarn build
+        run: yarn build:ts
 
       - name: Publish to npm
         run: yarn publish

@@ -40,5 +40,5 @@ jobs:
         run: yarn test
 
       - name: Try build
-        run: yarn build
+        run: yarn build:ts
 
