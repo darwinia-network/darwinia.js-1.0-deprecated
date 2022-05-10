@@ -7,7 +7,9 @@ import { objectSpread } from '@polkadot/util';
 
 import pangolin from './pangolin/lookup';
 
+import pangoro from './pangoro/lookup';
+
 export default {
   rpc: {},
-  types: objectSpread({}, pangolin)
+  types: objectSpread({}, pangolin, pangoro)
 } as Definitions;

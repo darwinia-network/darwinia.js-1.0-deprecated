@@ -8,7 +8,7 @@ import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, MultiAddress, Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
 import type { PalletDemocracyConviction, PalletDemocracyVoteAccountVote, PalletElectionProviderMultiPhaseRawSolution, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletElectionsPhragmenRenouncing, PalletIdentityBitFlags, PalletIdentityIdentityInfo, PalletIdentityJudgement, PalletImOnlineHeartbeat, PalletImOnlineSr25519AppSr25519Signature, PalletMultisigTimepoint, PalletSocietyJudgement, PalletVestingVestingInfo, SpConsensusBabeDigestsNextConfigDescriptor, SpConsensusSlotsEquivocationProof, SpFinalityGrandpaEquivocationProof, SpNposElectionsSupport, SpRuntimeHeader, SpSessionMembershipProof,BridgeRuntimeCommonMessagesSourceFromBridgedChainMessagesDeliveryProof,BpMessagesUnrewardedRelayersState,BridgeRuntimeCommonMessagesTargetFromBridgedChainMessagesProof,BpMessageDispatchMessagePayload,BpMessagesOperatingMode,PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter,
   BpHeaderChainInitializationData,BpHeaderChainJustificationGrandpaJustification,PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter,DarwiniaClaimsOtherSignature,DarwiniaClaimsOtherAddress,ToEthereumBackingRedeemFor,EthereumTransactionTransactionV2,EthereumPrimitivesHeader,EthereumPrimitivesReceiptReceiptProof,DarwiniaBridgeEthereumMmrProof,
-  DarwiniaBridgeEthereumEthereumRelayHeaderParcel,DarwiniaBridgeEthereumEthereumRelayProofs,DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId,PangolinRuntimePalletsProxyProxyType,PangolinRuntimePalletsSessionSessionKeys,DarwiniaStakingStructsStakingBalance,DarwiniaStakingStructsRewardDestination,DarwiniaStakingStructsValidatorPrefs,SpCoreChangesTrieChangesTrieConfiguration,DpAssetTokenMetadata} from '@polkadot/types/lookup';
+  DarwiniaBridgeEthereumEthereumRelayHeaderParcel,DarwiniaBridgeEthereumEthereumRelayProofs,DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId,PangolinRuntimePalletsProxyProxyType,PangolinRuntimePalletsSessionSessionKeys,DarwiniaStakingStructsStakingBalance,DarwiniaStakingStructsRewardDestination,DarwiniaStakingStructsValidatorPrefs,SpCoreChangesTrieChangesTrieConfiguration,DpAssetTokenMetadata,SpCoreVoid} from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/submittable' {
   export interface AugmentedSubmittables<ApiType extends ApiTypes> {
@@ -1342,7 +1342,8 @@ declare module '@polkadot/api-base/types/submittable' {
        * against the extracted offender. If both are valid, the offence
        * will be reported.
        **/
-      reportEquivocation: AugmentedSubmittable<(equivocationProof: SpFinalityGrandpaEquivocationProof | { setId?: any; equivocation?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpFinalityGrandpaEquivocationProof, SpSessionMembershipProof]>;
+      reportEquivocation: AugmentedSubmittable<(equivocationProof: SpFinalityGrandpaEquivocationProof | { setId?: any; equivocation?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array | SpCoreVoid | null) => SubmittableExtrinsic<ApiType>, [SpFinalityGrandpaEquivocationProof, 
+        SpSessionMembershipProof | SpCoreVoid ]>;
       /**
        * Report voter equivocation/misbehavior. This method will verify the
        * equivocation proof and validate the given key ownership proof
@@ -1354,7 +1355,7 @@ declare module '@polkadot/api-base/types/submittable' {
        * if the block author is defined it will be defined as the equivocation
        * reporter.
        **/
-      reportEquivocationUnsigned: AugmentedSubmittable<(equivocationProof: SpFinalityGrandpaEquivocationProof | { setId?: any; equivocation?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array) => SubmittableExtrinsic<ApiType>, [SpFinalityGrandpaEquivocationProof, SpSessionMembershipProof]>;
+      reportEquivocationUnsigned: AugmentedSubmittable<(equivocationProof: SpFinalityGrandpaEquivocationProof | { setId?: any; equivocation?: any } | string | Uint8Array, keyOwnerProof: SpSessionMembershipProof | { session?: any; trieNodes?: any; validatorCount?: any } | string | Uint8Array | SpCoreVoid | null) => SubmittableExtrinsic<ApiType>, [SpFinalityGrandpaEquivocationProof, SpSessionMembershipProof |SpCoreVoid ]>;
       /**
        * Generic tx
        **/

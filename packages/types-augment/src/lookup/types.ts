@@ -2,3 +2,4 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import './pangolin/types-lookup';
+import './pangoro/types-lookup';

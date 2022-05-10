@@ -893,7 +893,7 @@ declare module '@polkadot/types/lookup' {
   /** @name PalletBridgeMessagesEvent (125) */
   export interface PalletBridgeMessagesEvent extends Enum {
     readonly isParameterUpdated: boolean;
-    readonly asParameterUpdated: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter;
+    readonly asParameterUpdated: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter | PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
     readonly isMessageAccepted: boolean;
     readonly asMessageAccepted: ITuple<[U8aFixed, u64]>;
     readonly isMessagesDelivered: boolean;
@@ -1386,7 +1386,7 @@ declare module '@polkadot/types/lookup' {
 
   /** @name PalletElectionProviderMultiPhaseRawSolution (295) */
   export interface PalletElectionProviderMultiPhaseRawSolution extends Struct {
-    readonly solution: PangolinRuntimePalletsElectionProviderMultiPhaseNposCompactSolution24;
+    readonly solution: PangolinRuntimePalletsElectionProviderMultiPhaseNposCompactSolution24 | PangoroRuntimePalletsElectionProviderMultiPhaseNposCompactSolution16;
     readonly score: Vec<u128>;
     readonly round: u32;
   }
@@ -1780,12 +1780,12 @@ declare module '@polkadot/types/lookup' {
     readonly isReportEquivocation: boolean;
     readonly asReportEquivocation: {
       readonly equivocationProof: SpFinalityGrandpaEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof;
+      readonly keyOwnerProof: SpSessionMembershipProof | SpCoreVoid;
     } & Struct;
     readonly isReportEquivocationUnsigned: boolean;
     readonly asReportEquivocationUnsigned: {
       readonly equivocationProof: SpFinalityGrandpaEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof;
+      readonly keyOwnerProof: SpSessionMembershipProof | SpCoreVoid;
     } & Struct;
     readonly isNoteStalled: boolean;
     readonly asNoteStalled: {
@@ -3249,7 +3249,7 @@ declare module '@polkadot/types/lookup' {
     } & Struct;
     readonly isUpdatePalletParameter: boolean;
     readonly asUpdatePalletParameter: {
-      readonly parameter: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter;
+      readonly parameter: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter | PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
     } & Struct;
     readonly isSendMessage: boolean;
     readonly asSendMessage: {
@@ -3770,7 +3770,7 @@ declare module '@polkadot/types/lookup' {
     readonly priority: u8;
     readonly call: Call;
     readonly maybePeriodic: Option<ITuple<[u32, u32]>>;
-    readonly origin: PangolinRuntimeOriginCaller;
+    readonly origin: PangolinRuntimeOriginCaller | PangoroRuntimeOriginCaller;
   }
 
   /** @name PangolinRuntimeOriginCaller (585) */

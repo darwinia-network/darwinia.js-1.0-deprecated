@@ -8,6 +8,8 @@ import * as substrateDefs from '@polkadot/types/interfaces/definitions';
 // import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
 // import crab from '@darwinia/types-support/src/metadata/static-crab';
 import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
+import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
+
 // import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
@@ -20,14 +22,10 @@ import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
 const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
 const LOOKUP = 'packages/types-augment/src/lookup';
-// handle pangolin first TODO
-const METAS = Object.entries({ pangolin }) as [string, HexString][];
+
+const METAS = Object.entries({ pangolin, pangoro }) as [string, HexString][];
 
 export function main (): void {
-  // generateDefaultLookup();
-  // generateDefaultInterface();
-  // generateDefaultTsDef();
-
   const userKeys = Object.keys(chainDefs);
   const filteredBase = Object
     .entries(substrateDefs as Record<string, unknown>)
