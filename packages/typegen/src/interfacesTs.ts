@@ -3,8 +3,6 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import * as substrateDefs from '@polkadot/types/interfaces/definitions';
-
 // import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
 // import crab from '@darwinia/types-support/src/metadata/static-crab';
 import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
@@ -16,9 +14,6 @@ import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
 
 import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx, generateDefaultLookup } from '@polkadot/typegen/generate';
 
-import { generateInterfaceTypes } from '@polkadot/typegen/generate/interfaceRegistry';
-import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
-
 const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
 const LOOKUP = 'packages/types-augment/src/lookup';
@@ -26,33 +21,6 @@ const LOOKUP = 'packages/types-augment/src/lookup';
 const METAS = Object.entries({ pangolin, pangoro }) as [string, HexString][];
 
 export function main (): void {
-  const userKeys = Object.keys(chainDefs);
-  const filteredBase = Object
-    .entries(substrateDefs as Record<string, unknown>)
-    .filter(([key]) => {
-      if (userKeys.includes(key)) {
-        console.warn(`Override found for ${key} in user types, ignoring in @polkadot/types`);
-
-        return false;
-      }
-
-      return true;
-    })
-    .reduce((defs: Record<string, any>, [key, value]) => {
-      defs[key] = value;
-
-      return defs;
-    }, {});
-
-  const allDefs = {
-    '@darwinia/types/interfaces': chainDefs,
-    '@polkadot/types/interfaces': filteredBase
-
-  };
-
-  generateTsDef(allDefs, 'packages/types/src/interfaces', '@darwinia/types/interfaces');
-  generateInterfaceTypes(allDefs, 'packages/types-augment/src/registry/interfaces.ts');
-
   for (const [name, staticMeta] of METAS) {
     console.log(`** Generating lookup for ${name}`);
     generateDefaultLookup(`${LOOKUP}/${name}`, staticMeta);

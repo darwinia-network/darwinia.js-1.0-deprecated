@@ -22,8 +22,9 @@
     "typescript": "4.3.3"
   },
   "scripts": {
-    "build": "yarn build:interfaces && yarn build:ts",
+    "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
     "build:interfaces": "darwinia-types-internal-interfaces",
+    "build:defs": "darwinia-types-from-defs",
     "publish": "darwinia-ci-ghact-build",
     "build:ts": "darwinia-dev-build-ts",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
