@@ -23,3 +23,8 @@ export interface DeriveDarwiniaSystemAccountInfo {
   sufficients: u32;
   data: DeriveDarwiniaBalancesAccountData;
 }
+
+export enum TokenType {
+  ring = 0,
+  kton = 1
+}

@@ -15,14 +15,14 @@ import type { Option, Vec } from '@polkadot/types-codec';
 function lastAssignedRelayerFee (api: ApiInterfaceRx) : Observable<DeriveMarketFee | undefined> {
   return api.query.feeMarket.assignedRelayers<Option<Vec<Relayer>>>().pipe(
     map((relayers): DeriveMarketFee | undefined => {
-      const datas = relayers.unwrapOr([]);
+      const data = relayers.unwrapOr([]);
 
-      if (datas.length === 0) {
+      if (data.length === 0) {
         return undefined;
       }
 
       // The market fee comes from the last item in AssignedRelayers from substrate runtime
-      return { amount: datas[datas.length - 1].fee };
+      return { amount: data[data.length - 1].fee };
     })
   );
 }

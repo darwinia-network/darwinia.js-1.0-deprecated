@@ -13,13 +13,12 @@ import { AccountInfo } from '@darwinia/types';
 
 import { PalletBalancesBalanceLock } from '@polkadot/types/lookup';
 
-import type { u8, Vec } from '@polkadot/types-codec';
-import type { AnyNumber } from '@polkadot/types-codec/types';
+import type { Vec } from '@polkadot/types-codec';
 
-import { DeriveUsableAccount } from './types';
+import { DeriveUsableAccount, TokenType } from './types';
 
-function systemAccount (api: ApiInterfaceRx, tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) : Observable<DeriveUsableAccount> {
-  if (tokenType !== 0 && tokenType !== 1) {
+function systemAccount (api: ApiInterfaceRx, tokenType: TokenType, accountId: AccountId | string | Uint8Array) : Observable<DeriveUsableAccount> {
+  if (tokenType !== TokenType.ring && tokenType !== TokenType.kton) {
     return of({ usableBalance: api.registry.createType('Balance', 0) });
   }
 
@@ -34,24 +33,20 @@ function systemAccount (api: ApiInterfaceRx, tokenType: u8 | AnyNumber | Uint8Ar
       let maxlock = new BN(0);
       let balanceFree = api.registry.createType('Balance');
 
-      if (tokenType === 0) {
+      if (tokenType === TokenType.ring) {
         balanceFree = free;
         locks.forEach((item) => {
-          if (item.reasons.isFee) {
-            return;
+          if (!item.reasons.isFee) {
+            maxlock = bnMax(item.amount, maxlock);
           }
-
-          maxlock = bnMax(item.amount, maxlock);
         }
         );
       } else {
         balanceFree = freeKton;
         ktonLocks.forEach((item) => {
-          if (item.reasons.isFee) {
-            return;
+          if (!item.reasons.isFee) {
+            maxlock = bnMax(item.amount, maxlock);
           }
-
-          maxlock = bnMax(item.amount, maxlock);
         });
       }
 
@@ -75,7 +70,7 @@ function systemAccount (api: ApiInterfaceRx, tokenType: u8 | AnyNumber | Uint8Ar
  *   console.log(`The usableBalance  ${usableBalance}.`);
  * });
  */
-export function usableAccount (instanceId: string, api: ApiInterfaceRx): (tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) => Observable<DeriveUsableAccount> {
-  return memo(instanceId, (tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) : Observable<DeriveUsableAccount> =>
+export function usableAccount (instanceId: string, api: ApiInterfaceRx): (tokenType: TokenType, accountId: AccountId | string | Uint8Array) => Observable<DeriveUsableAccount> {
+  return memo(instanceId, (tokenType: TokenType, accountId: AccountId | string | Uint8Array) : Observable<DeriveUsableAccount> =>
     systemAccount(api, tokenType, accountId));
 }
