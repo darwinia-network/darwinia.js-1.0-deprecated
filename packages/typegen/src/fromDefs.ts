@@ -19,6 +19,7 @@ export function main (): void {
 
       return true;
     })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .reduce((defs: Record<string, any>, [key, value]) => {
       defs[key] = value;
 

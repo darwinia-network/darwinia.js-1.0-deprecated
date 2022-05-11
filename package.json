@@ -1,16 +1,5 @@
 {
   "name": "darwinia.js",
-  "jest": {
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
-    ]
-  },
   "private": true,
   "repository": "https://github.com/darwinia-network/darwinia.js",
   "license": "Apache-2",
