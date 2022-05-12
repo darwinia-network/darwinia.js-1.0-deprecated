@@ -1,14 +1,14 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { DarwiniaSupportStructsBalanceLock, LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter, DeliveredMessages, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
+import type {  LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
+import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
 import type { Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumAddress, EthereumBlockNumber, EthereumNetwork, EthereumReceiptProof, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, Power, PriorRelayer, RKT, Reasons, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, Signature, Signer, SpanRecord, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { EIP1559Transaction, EIP2930Transaction, EthAccessList, EthAccessListItem, EthAddress, EthBloom, EthHeader, EthLog, EthTransactionAction, EthTransactionSignature, LegacyTransaction, TransactionV2 } from '@darwinia/types/interfaces/eth';
 import type { ExitError, ExitFatal, ExitRevert, ExitSucceed } from '@darwinia/types/interfaces/evm';
-import type { DarwiniaFeeMarketSlashReport, DpFeeSlashReport, Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
+import type {  Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
 import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, CrabRuntimePalletsProxyProxyType, DarwiniaRuntimePalletsProxyProxyType, ProxyAnnouncement, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { EthereumRelayProofs, RelayAffirmationId, RelayHeaderId, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
@@ -35,18 +35,13 @@ declare module '@polkadot/types/types/registry' {
     Bytes: Bytes;
     ChainProperties: ChainProperties;
     Common: Common;
-    CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter: CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter;
     CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter: CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter;
     CrabRuntimePalletsProxyProxyType: CrabRuntimePalletsProxyProxyType;
     DarwiniaDemocracyVoteThreshold: DarwiniaDemocracyVoteThreshold;
-    DarwiniaFeeMarketSlashReport: DarwiniaFeeMarketSlashReport;
-    DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter;
     DarwiniaRuntimePalletsProxyProxyType: DarwiniaRuntimePalletsProxyProxyType;
-    DarwiniaSupportStructsBalanceLock: DarwiniaSupportStructsBalanceLock;
     Data: Data;
     DeliveredMessages: DeliveredMessages;
     DepositId: DepositId;
-    DpFeeSlashReport: DpFeeSlashReport;
     EcdsaAddress: EcdsaAddress;
     EcdsaMessage: EcdsaMessage;
     EcdsaSignature: EcdsaSignature;

@@ -2,6 +2,5 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export * from './darwinia';
-export * from './crab';
 export * from './pangolin';
 export * from './pangoro';

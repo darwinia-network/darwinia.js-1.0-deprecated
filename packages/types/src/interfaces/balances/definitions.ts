@@ -18,11 +18,7 @@ export default {
         Reserved: null
       }
     },
-    DarwiniaSupportStructsBalanceLock: {
-      id: 'LockIdentifier',
-      amount: 'Balance',
-      reasons: 'Reasons'
-    },
+
     LockIdentifier: '[u8; 8]'
   }
 } as Definitions;

@@ -18,17 +18,7 @@ export default {
       }
     },
 
-    CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter: {
-      _enum: {
-        DarwiniaToCrabConversionRate: 'FixedU128'
-      }
-    },
     FixedU128: 'UInt<128, FixedU128>',
-    DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: {
-      _enum: {
-        CrabToDarwiniaConversionRate: 'FixedU128'
-      }
-    },
 
     RelayerId: 'AccountId',
 

@@ -9,7 +9,9 @@ import pangolin from './pangolin/lookup';
 
 import pangoro from './pangoro/lookup';
 
+import darwinia from './darwinia/lookup';
+
 export default {
   rpc: {},
-  types: objectSpread({}, pangolin, pangoro)
+  types: objectSpread({}, darwinia, pangolin, pangoro)
 } as Definitions;

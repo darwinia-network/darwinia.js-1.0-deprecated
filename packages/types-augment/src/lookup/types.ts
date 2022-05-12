@@ -3,3 +3,5 @@
 
 import './pangolin/types-lookup';
 import './pangoro/types-lookup';
+import './darwinia/types-lookup';
+import './crab/types-lookup';

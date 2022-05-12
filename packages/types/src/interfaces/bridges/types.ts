@@ -11,12 +11,6 @@ export interface BridgedBlockHash extends Hash {}
 /** @name BridgedHeaderHash */
 export interface BridgedHeaderHash extends Hash {}
 
-/** @name CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter */
-export interface CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter extends Enum {
-  readonly isDarwiniaToCrabConversionRate: boolean;
-  readonly asDarwiniaToCrabConversionRate: FixedU128;
-  readonly type: 'DarwiniaToCrabConversionRate';
-}
 
 /** @name CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter */
 export interface CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter extends Enum {
@@ -25,12 +19,7 @@ export interface CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParamet
   readonly type: 'DarwiniaToCrabConversionRate';
 }
 
-/** @name DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter */
-export interface DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter extends Enum {
-  readonly isCrabToDarwiniaConversionRate: boolean;
-  readonly asCrabToDarwiniaConversionRate: FixedU128;
-  readonly type: 'CrabToDarwiniaConversionRate';
-}
+
 
 /** @name DeliveredMessages */
 export interface DeliveredMessages extends Struct {
