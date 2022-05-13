@@ -13,9 +13,6 @@
       ],
     "references": [
       { "path": "../types/tsconfig.build.json" },
-      // { "path": "./tsconfig.crab.json"},
-      // { "path": "./tsconfig.pangolin.json"},
-      // { "path": "./tsconfig.pangoro.json"}
     ]
   }
   

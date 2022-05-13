@@ -2,4 +2,4 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import '@darwinia/rpc-augment';
-import '@darwinia/pangoro-lookup';
+import '@darwinia/types-augment/lookup/pangoro';

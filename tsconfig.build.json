@@ -18,12 +18,9 @@
       { "path": "./packages/types-augment/tsconfig.build.json" },
       { "path": "./packages/types-known/tsconfig.build.json" },
       { "path": "./packages/types-support/tsconfig.build.json" },
-      // { "path": "./packages/types-augment/tsconfig.pangolin.json"},
-      // { "path": "./packages/types-augment/tsconfig.pangoro.json"},
-      // { "path": "./packages/types-augment/tsconfig.crab.json"}
-      { "path": "./packages/crab-lookup/tsconfig.build.json" },
-      { "path": "./packages/pangolin-lookup/tsconfig.build.json" },
-      { "path": "./packages/pangoro-lookup/tsconfig.build.json" },
+      { "path": "./packages/types-augment/tsconfig.pangolin.json"},
+      { "path": "./packages/types-augment/tsconfig.pangoro.json"},
+      { "path": "./packages/types-augment/tsconfig.crab.json"}
     ]
   }
   

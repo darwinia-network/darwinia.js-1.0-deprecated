@@ -1484,39 +1484,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/crab-lookup@workspace:packages/crab-lookup":
-  version: 0.0.0-use.local
-  resolution: "@darwinia/crab-lookup@workspace:packages/crab-lookup"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@polkadot/types": 8.1.2-1
-    "@polkadot/types-codec": 8.1.2-1
-    "@polkadot/util": ^9.0.1
-  languageName: unknown
-  linkType: soft
-
-"@darwinia/pangolin-lookup@workspace:packages/pangolin-lookup":
-  version: 0.0.0-use.local
-  resolution: "@darwinia/pangolin-lookup@workspace:packages/pangolin-lookup"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@polkadot/types": 8.1.2-1
-    "@polkadot/types-codec": 8.1.2-1
-    "@polkadot/util": ^9.0.1
-  languageName: unknown
-  linkType: soft
-
-"@darwinia/pangoro-lookup@workspace:packages/pangoro-lookup":
-  version: 0.0.0-use.local
-  resolution: "@darwinia/pangoro-lookup@workspace:packages/pangoro-lookup"
-  dependencies:
-    "@babel/runtime": ^7.17.9
-    "@polkadot/types": 8.1.2-1
-    "@polkadot/types-codec": 8.1.2-1
-    "@polkadot/util": ^9.0.1
-  languageName: unknown
-  linkType: soft
-
 "@darwinia/rpc-augment@workspace:packages/rpc-augment":
   version: 0.0.0-use.local
   resolution: "@darwinia/rpc-augment@workspace:packages/rpc-augment"

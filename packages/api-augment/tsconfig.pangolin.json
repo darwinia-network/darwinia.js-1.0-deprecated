@@ -18,13 +18,8 @@
     "references": [
       { "path": "../rpc-augment/tsconfig.build.json" },
       { "path": "../types/tsconfig.build.json" },
-      // { "path": "../types-augment/tsconfig.build.json" },
-      // { "path": "../types-augment/tsconfig.pangolin.json" },
-     // { "path": "../types-augment/tsconfig.build.json" },
+      { "path": "../types-augment/tsconfig.pangolin.json" },
       { "path": "../types-support/tsconfig.build.json" },
-     // { "path": "../crab-lookup/tsconfig.build.json" },
-      { "path": "../pangolin-lookup/tsconfig.build.json" },
-     // { "path": "../pangoro-lookup/tsconfig.build.json" },
     ]
   }
   

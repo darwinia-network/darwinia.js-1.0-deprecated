@@ -6,7 +6,6 @@
       "rootDir": "."
     },
     "include": [
-      "**/base.ts",
       "**/pangolin/*.ts"
     ],
     "exclude": [

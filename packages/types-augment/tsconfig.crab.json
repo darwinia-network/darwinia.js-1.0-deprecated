@@ -6,7 +6,6 @@
       "rootDir": "./src"
     },
     "include": [
-      "**/base.ts",
       "**/crab/*.ts"
     ],
     "exclude": [
