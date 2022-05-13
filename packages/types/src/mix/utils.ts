@@ -19,7 +19,7 @@ function typesFromDefinitions (
 
 function jsonrpcFromDefinitions (
   definitions: Record<string, Definitions>
-) : Record<string, Record<string, DefinitionRpcExt>> {
+): Record<string, Record<string, DefinitionRpcExt>> {
   const jsonrpc: Record<string, Record<string, DefinitionRpcExt>> = {};
 
   Object

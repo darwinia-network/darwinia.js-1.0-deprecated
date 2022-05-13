@@ -1,15 +1,18 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
-import { DeriveApi, DeriveUnlocking, DeriveStakingKeys } from '@polkadot/api-derive/types';
-import { firstMemo, memo } from '@polkadot/api-derive/util';
-import { ApiInterfaceRx } from '@polkadot/api/types';
 import type { Balance, BlockNumber } from '@polkadot/types/interfaces';
+
+import { combineLatest, map, Observable } from 'rxjs';
+
+import { ApiInterfaceRx } from '@polkadot/api/types';
+import { DeriveApi, DeriveStakingKeys, DeriveUnlocking } from '@polkadot/api-derive/types';
+import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { Moment } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { BN, isUndefined } from '@polkadot/util';
 import { Memoized } from '@polkadot/util/types';
-import { combineLatest, map, Observable } from 'rxjs';
+
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
 
 const QUERY_OPTS = {
@@ -82,7 +85,7 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 /**
  * @description From a list of stashes, fill in all the relevant staking details
  */
-export function accounts (instanceId: string, api: DeriveApi) : Memoized<(accountIds:(Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
+export function accounts (instanceId: string, api: DeriveApi): Memoized<(accountIds: (Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
   return memo(instanceId, (accountIds: (Uint8Array | string)[]) => {
     const keysObs = api.derive.staking.keysMulti(accountIds);
     const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS);

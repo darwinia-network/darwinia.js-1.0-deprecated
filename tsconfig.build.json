@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "composite": true,
+      "resolveJsonModule": true,
+
+    },
+  
+    "files": [],
+    "references": [
+      { "path": "./packages/api-augment/tsconfig.build.json" },
+      { "path": "./packages/api-augment/tsconfig.pangolin.json" },
+      { "path": "./packages/api-augment/tsconfig.pangoro.json" },
+      { "path": "./packages/rpc-augment/tsconfig.build.json" },
+      { "path": "./packages/typegen/tsconfig.build.json" },
+      { "path": "./packages/types/tsconfig.build.json" },
+      { "path": "./packages/types/tsconfig.spec.json" },
+      { "path": "./packages/types-augment/tsconfig.build.json" },
+      { "path": "./packages/types-known/tsconfig.build.json" },
+      { "path": "./packages/types-support/tsconfig.build.json" },
+      { "path": "./packages/types-augment/tsconfig.pangolin.json"},
+      { "path": "./packages/types-augment/tsconfig.pangoro.json"},
+      { "path": "./packages/types-augment/tsconfig.crab.json"}
+    ]
+  }
+  

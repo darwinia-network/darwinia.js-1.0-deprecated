@@ -3,8 +3,8 @@
 
 import { OverrideVersionedType } from '@polkadot/types/types';
 
-import darwiniaCrab from './darwinia-crab';
 import darwinia from './darwinia';
+import darwiniaCrab from './darwinia-crab';
 import pangolin from './pangolin';
 import pangoro from './pangoro';
 

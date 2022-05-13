@@ -1,11 +1,10 @@
 // Copyright 2017-2022 @darwinia/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ChainUpgradesRaw, ChainUpgrades } from './types';
-
 import { BN, hexToU8a } from '@polkadot/util';
 
 import darwiniaCrab from './darwinia-crab';
+import { ChainUpgrades, ChainUpgradesRaw } from './types';
 
 function rawToFinal ({ genesisHash, versions }: ChainUpgradesRaw): ChainUpgrades {
   return {

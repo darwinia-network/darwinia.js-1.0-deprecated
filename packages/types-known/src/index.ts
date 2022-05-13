@@ -1,13 +1,12 @@
 // Copyright 2017-2022 @darwinia/types-known authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Hash } from '@polkadot/types/interfaces';
-import { DefinitionRpc, DefinitionRpcSub, Registry, RegistryTypes, OverrideModuleType, OverrideVersionedType } from '@polkadot/types/types';
-import { ChainUpgradeVersion } from './upgrades/types';
-
 import { Text } from '@polkadot/types';
+import { Hash } from '@polkadot/types/interfaces';
+import { DefinitionRpc, DefinitionRpcSub, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from '@polkadot/types/types';
 import { BN, bnToBn, isUndefined } from '@polkadot/util';
 
+import { ChainUpgradeVersion } from './upgrades/types';
 import typesChain from './chain';
 import typesMeta from './metadata';
 import typesModules from './modules';

@@ -5,9 +5,10 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable sort-keys */
 
+import typesSpec from '@darwinia/types-known/spec';
+
 import { OverrideBundleDefinition, OverrideVersionedType, RegistryTypes } from '@polkadot/types/types';
 
-import typesSpec from '@darwinia/types-known/spec';
 import balances from '../interfaces/balances/definitions';
 import bridges from '../interfaces/bridges/definitions';
 import bsc from '../interfaces/bsc/definitions';

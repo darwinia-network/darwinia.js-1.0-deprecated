@@ -2,9 +2,9 @@
 /* eslint-disable */
 
 import type { LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
-import type { Option, Struct, Vec } from '@polkadot/types-codec';
+import type { Struct, Vec } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type {BlockNumber, AccountId,Balance } from '@polkadot/types/interfaces/runtime';
+import type { Balance } from '@polkadot/types/interfaces/runtime';
 
 
 /** @name Fee */

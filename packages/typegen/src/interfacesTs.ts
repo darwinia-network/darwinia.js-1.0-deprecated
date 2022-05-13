@@ -3,16 +3,14 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
-import crab from '@darwinia/types-support/src/metadata/static-crab';
-import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
-import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
-
 // import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
-
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
+import crab from '@darwinia/types-support/src/metadata/static-crab';
 
-import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultQuery, generateDefaultRpc, generateDefaultTx, generateDefaultLookup } from '@polkadot/typegen/generate';
+// import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
+// import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
+// import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
+import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultLookup, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
 
 const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';

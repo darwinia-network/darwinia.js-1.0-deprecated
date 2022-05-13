@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @darwinia/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */

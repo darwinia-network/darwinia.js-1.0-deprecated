@@ -1,7 +1,6 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Reasons } from '@darwinia/types/interfaces/darwiniaInject';
 import type { Enum, Struct, U8aFixed } from '@polkadot/types-codec';
 import type { Balance } from '@polkadot/types/interfaces/runtime';
 

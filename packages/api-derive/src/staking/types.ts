@@ -1,17 +1,13 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { Exposure } from '../../../types/src';
-import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '@polkadot/types/lookup';
-import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
-import { AccountId,
-  Balance,
-  BlockNumber,
-  EraIndex,
-  Keys,
-  RewardDestination,
-  ValidatorPrefs } from '@polkadot/types/interfaces';
 import type BN from 'bn.js';
+
+import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
+import { AccountId, Balance, BlockNumber, EraIndex, Keys, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '@polkadot/types/lookup';
+
+import { Exposure } from '../../../types/src';
 
 type DeriveUnlocking = {
   remainingEras: BN;

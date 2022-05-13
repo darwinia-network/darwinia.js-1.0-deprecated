@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Copyright 2017-2022 @polkadot/typegen authors & contributors
+// Copyright 2017-2022 @darwinia/typegen authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
 /* eslint-disable sort-keys */
 
 let main;
@@ -26,4 +27,7 @@ try {
   main = require('../src/fromDefs.ts').main;
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exit(-1);
+});

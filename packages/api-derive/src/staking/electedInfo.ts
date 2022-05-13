@@ -1,13 +1,14 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { DeriveStakingElected, StakingQueryFlags } from '@polkadot/api-derive/types';
-import { memo } from '@polkadot/api-derive/util';
-import { ApiInterfaceRx } from '@polkadot/api/types';
-import { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
-import { arrayFlatten } from '@polkadot/util';
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+
+import { ApiInterfaceRx } from '@polkadot/api/types';
+import { DeriveStakingElected, StakingQueryFlags } from '@polkadot/api-derive/types';
+import { memo } from '@polkadot/api-derive/util';
+import { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { arrayFlatten } from '@polkadot/util';
 
 export interface IDeriveStakingElected extends DeriveStakingElected {
   activeCommissions: ValidatorPrefs[];

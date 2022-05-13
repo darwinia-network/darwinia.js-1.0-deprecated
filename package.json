@@ -1,32 +1,35 @@
 {
+  "bugs": "https://github.com/darwinia-network/darwinia.js/issues",
+  "homepage": "https://github.com/darwinia-network/darwinia.js#readme",
+  "license": "Apache-2.0",
   "name": "darwinia.js",
   "private": true,
-  "repository": "https://github.com/darwinia-network/darwinia.js",
-  "license": "Apache-2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darwinia-network/darwinia.js.git"
+  },
+  "sideEffects": false,
+  "version": "2.7.6",
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0",
-    "typescript": "4.3.3"
-  },
   "scripts": {
     "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
-    "build:interfaces": "darwinia-types-internal-interfaces",
+    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts",
     "build:defs": "darwinia-types-from-defs",
-    "publish": "darwinia-ci-ghact-build",
-    "build:ts": "darwinia-dev-build-ts",
+    "build:interfaces": "darwinia-types-internal-interfaces",
+    "build:ts": "polkadot-dev-build-ts",
+    "chain:info": "polkadot-types-chain-info",
+    "clean": "polkadot-dev-clean-build",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
     "docs:release": "polkadot-ci-ghact-docs",
-    "chain:info": "polkadot-types-chain-info",
+    "lernaversion": "lerna version --skip-git",
     "lint": "polkadot-dev-run-lint",
-    "clean": "polkadot-dev-clean-build",
     "postinstall": "polkadot-dev-yarn-only",
+    "publish": "darwinia-ci-ghact-build",
     "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
     "test:one": "polkadot-dev-run-test --detectOpenHandles --forceExit",
-    "test:watch": "polkadot-dev-run-test --watch",
-    "lernaversion": "lerna version --skip-git",
-    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
+    "test:watch": "polkadot-dev-run-test --watch"
   },
   "dependencies": {
     "@babel/core": "^7.11.6",
@@ -35,7 +38,7 @@
     "@babel/runtime": "^7.11.2",
     "@darwinia/typegen": "workspace:packages/typegen",
     "@polkadot/api": "8.1.2-1",
-    "@polkadot/dev": "^0.55.46",
+    "@polkadot/dev": "^0.66.5",
     "@polkadot/ts": "^0.3.42",
     "@polkadot/typegen": "8.1.2-1",
     "@types/jest": "^26.0.13",
@@ -48,5 +51,8 @@
     "typedoc-plugin-markdown": "^2.4.2",
     "typedoc-plugin-no-inherit": "^1.1.10"
   },
-  "version": "2.7.6"
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0",
+    "typescript": "^4.6.3"
+  }
 }

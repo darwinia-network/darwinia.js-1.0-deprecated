@@ -1,14 +1,16 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { ExposureT } from '../../../types/src';
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
-import { memo } from '@polkadot/api-derive/util';
+import { combineLatest, map, Observable, of, switchMap } from 'rxjs';
+
 import { ApiInterfaceRx } from '@polkadot/api/types';
+import { memo } from '@polkadot/api-derive/util';
 import { Option, Vec } from '@polkadot/types';
 import { AccountId, Keys, Nominations, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { ITuple } from '@polkadot/types/types';
-import { combineLatest, map, Observable, of, switchMap } from 'rxjs';
+
+import { ExposureT } from '../../../types/src';
 import { DeriveStakingQuery } from './types';
 
 type MultiResult = [
@@ -64,29 +66,30 @@ function retrieveController (
 ): Observable<DeriveStakingQuery> {
   const controllerId = controllerIdOpt.unwrapOr(null);
 
-  return controllerId ? api.query.staking.ledger(controllerId).pipe(
-    map((stakingLedgerOpt: Option<DarwiniaStakingStructsStakingLedger>): DeriveStakingQuery =>
-      ({
-        accountId: stashId,
-        controllerId: controllerId,
-        exposure,
-        nominators: nominatorsOpt.isSome ? nominatorsOpt.unwrap().targets : [],
-        stakingLedger: stakingLedgerOpt.unwrapOrDefault(),
-        stashId: stashId,
-        validatorPrefs: Array.isArray(validatorPrefs) ? validatorPrefs[0] : validatorPrefs,
-        ...unwrapSessionIds(stashId, queuedKeys, nextKeys),
-        rewardDestination
-      }))
-  )
+  return controllerId
+    ? api.query.staking.ledger(controllerId).pipe(
+      map((stakingLedgerOpt: Option<DarwiniaStakingStructsStakingLedger>): DeriveStakingQuery =>
+        ({
+          accountId: stashId,
+          controllerId,
+          exposure,
+          nominators: nominatorsOpt.isSome ? nominatorsOpt.unwrap().targets : [],
+          stakingLedger: stakingLedgerOpt.unwrapOrDefault(),
+          stashId,
+          validatorPrefs: Array.isArray(validatorPrefs) ? validatorPrefs[0] : validatorPrefs,
+          ...unwrapSessionIds(stashId, queuedKeys, nextKeys),
+          rewardDestination
+        }))
+    )
     : of(
       { accountId: stashId,
         controllerId: null,
         nextSessionIds: [],
         nominators: [],
-        rewardDestination: rewardDestination,
+        rewardDestination,
         sessionIds: [],
         stakingLedger: api.registry.createType('DarwiniaStakingStructsStakingLedger'),
-        stashId: stashId,
+        stashId,
         validatorPrefs: Array.isArray(validatorPrefs) ? validatorPrefs[0] : validatorPrefs }
     );
 }

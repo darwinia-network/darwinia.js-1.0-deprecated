@@ -1,0 +1,23 @@
+{
+    "extends": "@polkadot/dev/config/tsconfig.json",
+    "compilerOptions": {
+      "composite": true,
+      "paths": {
+      
+        "@darwinia/api-augment": ["api-augment/src"],
+        "@darwinia/api-augment/*": ["api-augment/src/*"],
+        "@darwinia/rpc-augment": ["rpc-augment/src"],
+        "@darwinia/rpc-augment/*": ["rpc-augment/src/*"],
+        "@darwinia/types": ["types/src"],
+        "@darwinia/types/*": ["types/src/*"],
+        "@darwinia/types-augment": ["types-augment/src"],
+        "@darwinia/types-augment/*": ["types-augment/src/*"],
+        "@darwinia/types-known": ["types-known/src"],
+        "@darwinia/types-known/*": ["types-known/src/*"],
+        "@darwinia/types-support": ["types-support/src"],
+        "@darwinia/types-support/*": ["types-support/src/*"]
+      },
+      "skipLibCheck": true
+    }
+   }
+  

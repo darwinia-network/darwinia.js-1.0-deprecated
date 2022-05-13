@@ -1,0 +1,21 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src"
+    },
+    "include": [
+      "**/base.ts",
+      "**/crab/*.ts"
+    ],
+    "exclude": [
+      "**/crab/*.spec.ts"
+    ],
+    "references": [
+      { "path": "../rpc-augment/tsconfig.build.json" },
+      { "path": "../types/tsconfig.build.json" },
+     
+    ]
+  }
+  

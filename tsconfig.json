@@ -1,70 +1,13 @@
 {
-  "extends": "@polkadot/dev/config/tsconfig.json",
-  "exclude": [
-    "**/node_modules/**/*",
-    "build/**/*",
-    "**/build/**/*",
-    "docs/examples/promise/90_typegen/*",
-    "dist/**/*",
-    "**/node_modules/**/*",
-    "example/**",
-    "**/test/*",
-    "**/checkTypes.manual.ts",
-     
-  ],
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "declaration": true,
-    "jsx": "preserve",
-    "noImplicitAny": false,
-    "noUnusedLocals": false,
-    "noImplicitReturns": true,
-    "noUnusedParameters":false,
-
-  
-    "paths":
-    {
-      // "@darwinia/api": ["packages/api/src"],
-      // "@darwinia/api/*": ["packages/api/src/*"],
-      // "@darwinia/types": ["packages/types/src"],
-      // "@darwinia/types/*": ["packages/types/src/*"],
-      // "@darwinia/types-known": ["packages/types-known/src"],
-      // "@darwinia/types-known/*": ["packages/types-known/src/*"],
-      // "@darwinia/api-options": ["packages/api-options/src"],
-      // "@darwinia/api-options/*": ["packages/api-options/src/*"],
-      // "@polkadot/api-augment": ["packages/types/src/interfaces/augment-api.ts"],
-      // "@polkadot/types-augment": ["packages/types/src/interfaces/augment-types.ts"],
-      // "@polkadot/types/lookup": ["node_modules/@polkadot/types-augment/lookup/index.d.ts"],
-      "@polkadot/types/lookup": ["packages/types-augment/lookup"],
-      "@darwinia/api-augment": ["packages/api-augment/src"],
-      "@darwinia/api-augment/*": ["packages/api-augment/src/*"],
-      "@darwinia/api-derive": ["packages/api-derive/src"],
-      "@darwinia/api-derive/*": ["packages/api-derive/src/*"],
-      "@darwinia/rpc-augment": ["packages/rpc-augment/src"],
-      "@darwinia/rpc-augment/*": ["packages/rpc-augment/src/*"],
-      "@darwinia/types": ["packages/types/src"],
-      "@darwinia/types/*": ["packages/types/src/*"],
-      "@darwinia/types-augment": ["packages/types-augment/src"],
-      "@darwinia/types-augment/*": ["packages/types-augment/src/*"],
-      "@darwinia/types-known": ["packages/types-known/src"],
-      "@darwinia/types-known/*": ["packages/types-known/src/*"],
-      "@darwinia/types-support": ["packages/types-support/src"],
-      "@darwinia/types-support/*": ["packages/types-support/src/*"],
-
-    },
-    "skipLibCheck": true,
-    
-    "typeRoots": [
-      "./node_modules/@polkadot/ts",
-      "./node_modules/@types"
-    ]
-  }
+    "baseUrl": "./packages",
+    "composite": false
+  },
+  "include": [
+    "packages/**/src/**/*"
+  ],
+  "exclude": [
+    "**/node_modules/**/*"
+  ]
 }

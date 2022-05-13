@@ -1,10 +1,11 @@
-// Copyright 2017-2022 @polkadot/typegen authors & contributors
+// Copyright 2017-2022 @darwinia/typegen authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import * as substrateDefs from '@polkadot/types/interfaces/definitions';
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
+
 import { generateInterfaceTypes } from '@polkadot/typegen/generate/interfaceRegistry';
 import { generateTsDef } from '@polkadot/typegen/generate/tsDef';
+import * as substrateDefs from '@polkadot/types/interfaces/definitions';
 
 export function main (): void {
   const userKeys = Object.keys(chainDefs);
