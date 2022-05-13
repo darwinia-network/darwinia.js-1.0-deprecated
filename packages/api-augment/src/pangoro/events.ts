@@ -5,7 +5,7 @@ import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages,PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter,EvmCoreErrorExitReason, EthereumLog,DarwiniaStakingStructsExposure,PalletFeeMarketSlashReport,DpAssetTokenMetadata } from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter, EvmCoreErrorExitReason, EthereumLog, DarwiniaStakingStructsExposure, PalletFeeMarketSlashReport, DpAssetTokenMetadata} from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {

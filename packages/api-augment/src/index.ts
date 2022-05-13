@@ -4,3 +4,4 @@
 export * from './darwinia';
 export * from './pangolin';
 export * from './pangoro';
+export * from './crab';

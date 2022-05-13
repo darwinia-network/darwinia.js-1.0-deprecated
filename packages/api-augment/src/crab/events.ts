@@ -1,11 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
+import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
+import type { CrabRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
 import type { ApiTypes } from '@polkadot/api-base/types';
-import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter, PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter, EvmCoreErrorExitReason, DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId, EthereumPrimitivesReceiptTypedReceipt, EthereumPrimitivesHeader, DarwiniaStakingStructsExposure, EthereumLog, PalletFeeMarketSlashReport, PangolinRuntimePalletsProxyProxyType} from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError,BpMessagesDeliveredMessages,CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter,EvmCoreErrorExitReason,EthereumLog,DarwiniaFeeMarketSlashReport,DarwiniaStakingStructsExposure} from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -94,7 +96,7 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    bridgePangolinParachainDispatch: {
+    bridgeDarwiniaDispatch: {
       /**
        * Phantom member, never used. Needed to handle multiple pallet instances.
        **/
@@ -138,7 +140,7 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    bridgePangolinParachainMessages: {
+    bridgeDarwiniaMessages: {
       /**
        * Message has been accepted and is waiting to be delivered.
        **/
@@ -150,69 +152,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Pallet parameter has been updated.
        **/
-      ParameterUpdated: AugmentedEvent<ApiType, [PangolinRuntimeBridgesMessagePangolinParachainPangolinToPangolinParachainParameter]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    bridgePangoroDispatch: {
-      /**
-       * Phantom member, never used. Needed to handle multiple pallet instances.
-       **/
-      _Dummy: AugmentedEvent<ApiType, []>;
-      /**
-       * We have failed to decode Call from the message.
-       **/
-      MessageCallDecodeFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
-      /**
-       * The call from the message has been rejected by the call filter.
-       **/
-      MessageCallRejected: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
-      /**
-       * Message has been dispatched with given result.
-       **/
-      MessageDispatched: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, Result<Null, SpRuntimeDispatchError>]>;
-      /**
-       * The origin account has failed to pay fee for dispatching the message.
-       **/
-      MessageDispatchPaymentFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, AccountId32, u64]>;
-      /**
-       * Message has been rejected before reaching dispatch.
-       **/
-      MessageRejected: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
-      /**
-       * Message signature mismatch.
-       **/
-      MessageSignatureMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
-      /**
-       * Message has been rejected by dispatcher because of spec version mismatch.
-       * Last two arguments are: expected and passed spec version.
-       **/
-      MessageVersionSpecMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, u32, u32]>;
-      /**
-       * Message has been rejected by dispatcher because of weight mismatch.
-       * Last two arguments are: expected and passed call weight.
-       **/
-      MessageWeightMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, u64, u64]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    bridgePangoroMessages: {
-      /**
-       * Message has been accepted and is waiting to be delivered.
-       **/
-      MessageAccepted: AugmentedEvent<ApiType, [U8aFixed, u64]>;
-      /**
-       * Messages in the inclusive range have been delivered to the bridged chain.
-       **/
-      MessagesDelivered: AugmentedEvent<ApiType, [U8aFixed, BpMessagesDeliveredMessages]>;
-      /**
-       * Pallet parameter has been updated.
-       **/
-      ParameterUpdated: AugmentedEvent<ApiType, [PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter]>;
+      ParameterUpdated: AugmentedEvent<ApiType, [CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter]>;
       /**
        * Generic event
        **/
@@ -331,10 +271,9 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * A referendum has begun. \[ref_index, threshold\]
        **/
-      Started: AugmentedEvent<ApiType, [u32, PalletDemocracyVoteThreshold]>;
+      Started: AugmentedEvent<ApiType, [u32, DarwiniaDemocracyVoteThreshold]>;
       /**
-       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit,
-       * depositors\]
+       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit, depositors\]
        **/
       Tabled: AugmentedEvent<ApiType, [u32, u128, Vec<AccountId32>]>;
       /**
@@ -392,151 +331,13 @@ declare module '@polkadot/api-base/types/events' {
        **/
       DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
       /**
-       * An ethereum transaction was successfully executed. \[from, to/contract_address,
-       * transaction_hash, exit_reason\]
+       * An ethereum transaction was successfully executed. \[from, to/contract_address, transaction_hash, exit_reason\]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
       /**
        * Kton transfer \[from, to, value\]
        **/
       KtonDVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    ethereumBacking: {
-      /**
-       * Someone lock some *KTON*. \[account, ethereum account, asset address, amount\]
-       **/
-      LockKton: AugmentedEvent<ApiType, [AccountId32, H160, H160, u128]>;
-      /**
-       * Someone lock some *RING*. \[account, ethereum account, asset address, amount\]
-       **/
-      LockRing: AugmentedEvent<ApiType, [AccountId32, H160, H160, u128]>;
-      /**
-       * Someone redeem a deposit. \[account, deposit id, amount, transaction index\]
-       **/
-      RedeemDeposit: AugmentedEvent<ApiType, [AccountId32, U256, u128, ITuple<[H256, u64]>]>;
-      /**
-       * Someone redeem some *KTON*. \[account, amount, transaction index\]
-       **/
-      RedeemKton: AugmentedEvent<ApiType, [AccountId32, u128, ITuple<[H256, u64]>]>;
-      /**
-       * Someone redeem some *RING*. \[account, amount, transaction index\]
-       **/
-      RedeemRing: AugmentedEvent<ApiType, [AccountId32, u128, ITuple<[H256, u64]>]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    ethereumIssuing: {
-      /**
-       * burn event
-       * type: 1, backing_address, sender, recipient, original_token, mapping_token, value
-       **/
-      BurnToken: AugmentedEvent<ApiType, [u8, H160, H160, H160, H160, H160, U256]>;
-      /**
-       * set ethereum backing address
-       * [old, new]
-       **/
-      EthereumBackingAddressUpdated: AugmentedEvent<ApiType, [H160, H160]>;
-      /**
-       * set mapping token factory address
-       * [old, new]
-       **/
-      MappingFactoryAddressUpdated: AugmentedEvent<ApiType, [H160, H160]>;
-      /**
-       * redeem erc20 token
-       **/
-      RedeemErc20: AugmentedEvent<ApiType, [H160, ITuple<[H256, u64]>]>;
-      /**
-       * token registered event
-       * type: u8 = 0, backing_address, original_token(origin erc20), mapping_token(mapped
-       * erc20)
-       **/
-      TokenRegisterFinished: AugmentedEvent<ApiType, [u8, H160, H160, H160]>;
-      /**
-       * register new erc20 token
-       **/
-      TokenRegisterSubmitted: AugmentedEvent<ApiType, [H160, ITuple<[H256, u64]>]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    ethereumRelay: {
-      /**
-       * A new relay header parcel affirmed. [relayer, relay affirmation id]
-       **/
-      Affirmed: AugmentedEvent<ApiType, [AccountId32, DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId]>;
-      /**
-       * A different affirmation submitted, dispute found. [relayer, relay affirmation id]
-       **/
-      DisputedAndAffirmed: AugmentedEvent<ApiType, [AccountId32, DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId]>;
-      /**
-       * An extended affirmation submitted, dispute go on. [relayer, relay affirmation id]
-       **/
-      Extended: AugmentedEvent<ApiType, [AccountId32, DarwiniaRelayPrimitivesRelayerGameRelayAffirmationId]>;
-      /**
-       * A game has been settled. [game id]
-       **/
-      GameOver: AugmentedEvent<ApiType, [u64]>;
-      /**
-       * A guard voted. [ethereum block number, aye]
-       **/
-      GuardVoted: AugmentedEvent<ApiType, [u64, bool]>;
-      /**
-       * A new round started. [game id, game sample points]
-       **/
-      NewRound: AugmentedEvent<ApiType, [u64, Vec<u64>]>;
-      /**
-       * A relay header parcel got pended. [ethereum block number]
-       **/
-      Pended: AugmentedEvent<ApiType, [u64]>;
-      /**
-       * Pending relay header parcel confirmed. [ethereum block number, reason]
-       **/
-      PendingRelayHeaderParcelConfirmed: AugmentedEvent<ApiType, [u64, Bytes]>;
-      /**
-       * Pending relay header parcel rejected. [ethereum block number]
-       **/
-      PendingRelayHeaderParcelRejected: AugmentedEvent<ApiType, [u64]>;
-      /**
-       * The specific confirmed parcel removed. [ethereum block number]
-       **/
-      RemoveConfirmedParcel: AugmentedEvent<ApiType, [u64]>;
-      /**
-       * EthereumReceipt verification. [account, ethereum receipt, ethereum header]
-       **/
-      VerifyReceipt: AugmentedEvent<ApiType, [AccountId32, EthereumPrimitivesReceiptTypedReceipt, EthereumPrimitivesHeader]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    ethereumRelayAuthorities: {
-      /**
-       * The Next Authorities Signed. [term, next authorities, signatures]
-       **/
-      AuthoritiesChangeSigned: AugmentedEvent<ApiType, [u32, Vec<H160>, Vec<ITuple<[AccountId32, U8aFixed]>>]>;
-      /**
-       * MMR Root Signed. [block number of the mmr root, mmr root, signatures]
-       **/
-      MMRRootSigned: AugmentedEvent<ApiType, [u32, H256, Vec<ITuple<[AccountId32, U8aFixed]>>]>;
-      /**
-       * A New Authority Set Change Scheduled Request to be Signed. [message to sign]
-       **/
-      ScheduleAuthoritiesChange: AugmentedEvent<ApiType, [U8aFixed]>;
-      /**
-       * A New MMR Root Scheduled Request to be Signed. [block number of the mmr root to sign]
-       **/
-      ScheduleMMRRoot: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Slash on Misbehavior. [who, slashed]
-       **/
-      SlashOnMisbehavior: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -564,14 +365,72 @@ declare module '@polkadot/api-base/types/events' {
        **/
       Executed: AugmentedEvent<ApiType, [H160]>;
       /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees
-       * applied.
+       * A \[contract\] has been executed with errors. States are reverted with only gas fees applied.
        **/
       ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
       /**
        * Ethereum events from contracts.
        **/
       Log: AugmentedEvent<ApiType, [EthereumLog]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    feeMarket: {
+      /**
+       * Relayer cancel enrollment. \[account_id\]
+       **/
+      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
+       **/
+      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      /**
+       * Slash report
+       **/
+      FeeMarketSlash: AugmentedEvent<ApiType, [DarwiniaFeeMarketSlashReport]>;
+      /**
+       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
+       **/
+      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Update collateral slash protect value. \[slash_protect_value\]
+       **/
+      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
+      /**
+       * Update relayer locked collateral. \[account_id, new_collateral\]
+       **/
+      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Update relayer fee. \[account_id, new_fee\]
+       **/
+      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    fromDarwiniaIssuing: {
+      /**
+       * Set mapping token factory address
+       * [old, new]
+       **/
+      MappingFactoryAddressUpdated: AugmentedEvent<ApiType, [H160, H160]>;
+      /**
+       * Update remote backing address \[account\]
+       **/
+      RemoteBackingAccountUpdated: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Redeem Token
+       * [backing_address, mapping_token, recipient, amount]
+       **/
+      TokenIssued: AugmentedEvent<ApiType, [H160, H160, H160, U256]>;
+      /**
+       * Create new token
+       * [user, backing_address, original_token, mapping_token]
+       **/
+      TokenRegistered: AugmentedEvent<ApiType, [AccountId32, H160, H160, H160]>;
       /**
        * Generic event
        **/
@@ -656,6 +515,24 @@ declare module '@polkadot/api-base/types/events' {
        * At the end of the session, at least one validator was found to be \[offline\].
        **/
       SomeOffline: AugmentedEvent<ApiType, [Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>>]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    indices: {
+      /**
+       * A account index was assigned. \[index, who\]
+       **/
+      IndexAssigned: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      /**
+       * A account index has been freed up (unassigned). \[index\]
+       **/
+      IndexFreed: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * A account index has been frozen to its current account ID. \[index, who\]
+       **/
+      IndexFrozen: AugmentedEvent<ApiType, [u32, AccountId32]>;
       /**
        * Generic event
        **/
@@ -772,74 +649,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    pangolinParachainFeeMarket: {
-      /**
-       * Relayer cancel enrollment. \[account_id\]
-       **/
-      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
-       **/
-      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
-      /**
-       * Slash report
-       **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
-      /**
-       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
-       **/
-      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Update collateral slash protect value. \[slash_protect_value\]
-       **/
-      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
-      /**
-       * Update relayer locked collateral. \[account_id, new_collateral\]
-       **/
-      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
-      /**
-       * Update relayer fee. \[account_id, new_fee\]
-       **/
-      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    pangoroFeeMarket: {
-      /**
-       * Relayer cancel enrollment. \[account_id\]
-       **/
-      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
-       **/
-      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
-      /**
-       * Slash report
-       **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
-      /**
-       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
-       **/
-      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Update collateral slash protect value. \[slash_protect_value\]
-       **/
-      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
-      /**
-       * Update relayer locked collateral. \[account_id, new_collateral\]
-       **/
-      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
-      /**
-       * Update relayer fee. \[account_id, new_fee\]
-       **/
-      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
     phragmenElection: {
       /**
        * A \[candidate\] was slashed by \[amount\] due to failing to obtain a seat as member or
@@ -893,11 +702,11 @@ declare module '@polkadot/api-base/types/events' {
        * disambiguation index and proxy type. \[anonymous, who, proxy_type,
        * disambiguation_index\]
        **/
-      AnonymousCreated: AugmentedEvent<ApiType, [AccountId32, AccountId32, PangolinRuntimePalletsProxyProxyType, u16]>;
+      AnonymousCreated: AugmentedEvent<ApiType, [AccountId32, AccountId32, CrabRuntimePalletsProxyProxyType, u16]>;
       /**
        * A proxy was added. \[delegator, delegatee, proxy_type, delay\]
        **/
-      ProxyAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, PangolinRuntimePalletsProxyProxyType, u32]>;
+      ProxyAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, CrabRuntimePalletsProxyProxyType, u32]>;
       /**
        * A proxy was executed correctly, with the given \[result\].
        **/
@@ -1121,31 +930,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    substrate2SubstrateIssuing: {
-      /**
-       * Set mapping token factory address
-       * [old, new]
-       **/
-      MappingFactoryAddressUpdated: AugmentedEvent<ApiType, [H160, H160]>;
-      /**
-       * Update remote backing address \[account\]
-       **/
-      RemoteBackingAccountUpdated: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * Redeem Token
-       * [backing_address, mapping_token, recipient, amount]
-       **/
-      TokenIssued: AugmentedEvent<ApiType, [H160, H160, H160, U256]>;
-      /**
-       * Create new token
-       * [user, backing_address, original_token, mapping_token]
-       **/
-      TokenRegistered: AugmentedEvent<ApiType, [AccountId32, H160, H160, H160]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
     sudo: {
       /**
        * The \[sudoer\] just switched identity; the old key is supplied.
@@ -1288,20 +1072,6 @@ declare module '@polkadot/api-base/types/events' {
        * A tip suggestion has been slashed. \[tip_hash, finder, deposit\]
        **/
       TipSlashed: AugmentedEvent<ApiType, [H256, AccountId32, u128]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    transactionPause: {
-      /**
-       * Paused transaction . \[pallet_name_bytes, function_name_bytes\]
-       **/
-      TransactionPaused: AugmentedEvent<ApiType, [Bytes, Bytes]>;
-      /**
-       * Unpaused transaction . \[pallet_name_bytes, function_name_bytes\]
-       **/
-      TransactionUnpaused: AugmentedEvent<ApiType, [Bytes, Bytes]>;
       /**
        * Generic event
        **/

@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @darwinia/types-augment authors & contributors
-// SPDX-License-Identifier: Apache-2.0
+// Auto-generated via `yarn polkadot-types-from-defs`, do not edit
+/* eslint-disable */
 
-import './types-lookup';
+// import  './types-lookup';

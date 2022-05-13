@@ -15,7 +15,8 @@
     "references": [
       { "path": "../rpc-augment/tsconfig.build.json" },
       { "path": "../types/tsconfig.build.json" },
-      { "path": "../types-augment/tsconfig.build.json" }
+      { "path": "../types-augment/tsconfig.build.json" },
+      { "path": "../types-augment/tsconfig.pangoro.json" },
     ]
   }
   

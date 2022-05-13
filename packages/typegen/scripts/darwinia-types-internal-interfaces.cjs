@@ -31,7 +31,5 @@ try {
   main = require('../src/interfacesTs.ts').main;
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(-1);
-});
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
+main();

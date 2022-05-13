@@ -142,7 +142,7 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    bridgeCrabGrandpa: {
+    bridgeDarwiniaGrandpa: {
       /**
        * The pallet has already been initialized.
        **/
@@ -190,7 +190,7 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    bridgeCrabMessages: {
+    bridgeDarwiniaMessages: {
       /**
        * Submitter has failed to pay fee for delivering and dispatching messages.
        **/
@@ -241,6 +241,33 @@ declare module '@polkadot/api-base/types/errors' {
        * messages in the proof. This may mean that this or bridged chain storage is corrupted.
        **/
       TryingToConfirmMoreMessagesThanExpected: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    claims: {
+      /**
+       * Invalid Ethereum signature.
+       **/
+      InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Can NOT Move Claim to an EXISTED Address.
+       **/
+      MoveToExistedAddress: AugmentedError<ApiType>;
+      /**
+       * New Address Type - MISMATCHED
+       **/
+      NewAddressTypeMis: AugmentedError<ApiType>;
+      /**
+       * There's not enough in the pot to pay out some unvested amount. Generally implies a logic
+       * log::error.
+       **/
+      PotUnderflow: AugmentedError<ApiType>;
+      /**
+       * Ethereum address has no claim.
+       **/
+      SignerHasNoClaim: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -461,241 +488,55 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    ethereumBacking: {
+    ethereum: {
       /**
-       * Address - CONVERSION FAILED
+       * The internal transaction failed.
        **/
-      AddressCF: AugmentedError<ApiType>;
+      InternalTransactionExitError: AugmentedError<ApiType>;
+      InternalTransactionFatalError: AugmentedError<ApiType>;
+      InternalTransactionRevertError: AugmentedError<ApiType>;
       /**
-       * Address Length - MISMATCHED
+       * Signature is invalid.
        **/
-      AddrLenMis: AugmentedError<ApiType>;
+      InvalidSignature: AugmentedError<ApiType>;
       /**
-       * Array - CONVERSION FAILED
+       * Pre-log is present, therefore transact is not allowed.
        **/
-      ArrayCF: AugmentedError<ApiType>;
+      PreLogExists: AugmentedError<ApiType>;
       /**
-       * Asset - ALREADY REDEEMED
+       * The internal call failed.
        **/
-      AssetAR: AugmentedError<ApiType>;
-      /**
-       * Authorities Change - ALREADY SYNCED
-       **/
-      AuthoritiesChangeAR: AugmentedError<ApiType>;
-      /**
-       * Bytes - CONVERSION FAILED
-       **/
-      BytesCF: AugmentedError<ApiType>;
-      /**
-       * Eth Log - PARSING FAILED
-       **/
-      EthLogPF: AugmentedError<ApiType>;
-      /**
-       * Int - CONVERSION FAILED
-       **/
-      IntCF: AugmentedError<ApiType>;
-      /**
-       * *KTON* Locked - NO SUFFICIENT BACKING ASSETS
-       **/
-      KtonLockedNSBA: AugmentedError<ApiType>;
-      /**
-       * Kton Lock - LIMITED
-       **/
-      KtonLockLim: AugmentedError<ApiType>;
-      /**
-       * Log Entry - NOT EXISTED
-       **/
-      LogEntryNE: AugmentedError<ApiType>;
-      /**
-       * Pubkey Prefix - MISMATCHED
-       **/
-      PubkeyPrefixMis: AugmentedError<ApiType>;
-      /**
-       * Redeem - DISABLED
-       **/
-      RedeemDis: AugmentedError<ApiType>;
-      /**
-       * *RING* Locked - NO SUFFICIENT BACKING ASSETS
-       **/
-      RingLockedNSBA: AugmentedError<ApiType>;
-      /**
-       * Ring Lock - LIMITED
-       **/
-      RingLockLim: AugmentedError<ApiType>;
+      ReadyOnlyCall: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    ethereumRelay: {
+    evm: {
       /**
-       * Affirmation - EXISTED
+       * Not enough balance to perform action
        **/
-      AffirmationExisted: AugmentedError<ApiType>;
+      BalanceLow: AugmentedError<ApiType>;
       /**
-       * Already Vote for Aye - DUPLICATED
+       * Calculating total fee overflowed
        **/
-      AlreadyVoteForAyeDup: AugmentedError<ApiType>;
+      FeeOverflow: AugmentedError<ApiType>;
       /**
-       * Already Vote for Nay - DUPLICATED
+       * Gas price is too low.
        **/
-      AlreadyVoteForNayDup: AugmentedError<ApiType>;
+      GasPriceTooLow: AugmentedError<ApiType>;
       /**
-       * Confirmed Blocks - CONFLICT
+       * Nonce is invalid
        **/
-      ConfirmedBlocksC: AugmentedError<ApiType>;
+      InvalidNonce: AugmentedError<ApiType>;
       /**
-       * Confirmed Header - NOT EXISTED
+       * Calculating total payment overflowed
        **/
-      ConfirmedHeaderNE: AugmentedError<ApiType>;
+      PaymentOverflow: AugmentedError<ApiType>;
       /**
-       * Continuous - INVALID
+       * Withdraw fee failed
        **/
-      ContinuousInv: AugmentedError<ApiType>;
-      /**
-       * Header Hash - INVALID
-       **/
-      HeaderHashInv: AugmentedError<ApiType>;
-      /**
-       * Header Hash - MISMATCHED
-       **/
-      HeaderHashMis: AugmentedError<ApiType>;
-      /**
-       * Header - INVALID
-       **/
-      HeaderInv: AugmentedError<ApiType>;
-      /**
-       * MMR - INVALID
-       **/
-      MMRInv: AugmentedError<ApiType>;
-      /**
-       * Pending Relay Header Parcel - ALREADY EXISTED
-       **/
-      PendingRelayHeaderParcelAE: AugmentedError<ApiType>;
-      /**
-       * Pending Relay Header Parcel - NOT EXISTED
-       **/
-      PendingRelayHeaderParcelNE: AugmentedError<ApiType>;
-      /**
-       * EthereumReceipt Proof - INVALID
-       **/
-      ReceiptProofInv: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    ethereumRelayAuthorities: {
-      /**
-       * Authorities Count - TOO LOW
-       **/
-      AuthoritiesCountTL: AugmentedError<ApiType>;
-      /**
-       * Authorities - MISMATCHED
-       **/
-      AuthoritiesMis: AugmentedError<ApiType>;
-      /**
-       * Authority - ALREADY EXISTED
-       **/
-      AuthorityAE: AugmentedError<ApiType>;
-      /**
-       * Authority - IN TERM
-       **/
-      AuthorityIT: AugmentedError<ApiType>;
-      /**
-       * Authority - NOT EXISTED
-       **/
-      AuthorityNE: AugmentedError<ApiType>;
-      /**
-       * Candidate - ALREADY EXISTED
-       **/
-      CandidateAE: AugmentedError<ApiType>;
-      /**
-       * Candidate - NOT EXISTED
-       **/
-      CandidateNE: AugmentedError<ApiType>;
-      /**
-       * Next Authorities - NOT EXISTED
-       **/
-      NextAuthoritiesNE: AugmentedError<ApiType>;
-      /**
-       * On Authorities Change - DISABLED
-       **/
-      OnAuthoritiesChangeDis: AugmentedError<ApiType>;
-      /**
-       * Scheduled Sign -NOT EXISTED
-       **/
-      ScheduledSignNE: AugmentedError<ApiType>;
-      /**
-       * Scheduled Items - TOO MANY
-       **/
-      ScheduledTM: AugmentedError<ApiType>;
-      /**
-       * Signature - INVALID
-       **/
-      SignatureInv: AugmentedError<ApiType>;
-      /**
-       * Stake - INSUFFICIENT
-       **/
-      StakeIns: AugmentedError<ApiType>;
-      /**
-       * Term - MISMATCHED
-       **/
-      TermMis: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    ethereumRelayerGame: {
-      /**
-       * Active Games - TOO MANY
-       **/
-      ActiveGamesTM: AugmentedError<ApiType>;
-      /**
-       * Existed Affirmation(s) Found - CONFLICT
-       **/
-      ExistedAffirmationsFoundC: AugmentedError<ApiType>;
-      /**
-       * Extended Relay Affirmation - NOT EXISTED
-       **/
-      ExtendedRelayAffirmationNE: AugmentedError<ApiType>;
-      /**
-       * Game at This Round - CLOSED
-       **/
-      GameAtThisRoundC: AugmentedError<ApiType>;
-      /**
-       * Pending Relay Parcel - NOT EXISTED
-       **/
-      PendingRelayParcelNE: AugmentedError<ApiType>;
-      /**
-       * Previous Relay Proofs - INCOMPLETE
-       **/
-      PreviousRelayProofsInc: AugmentedError<ApiType>;
-      /**
-       * Relay Affirmation - DUPLICATED
-       **/
-      RelayAffirmationDup: AugmentedError<ApiType>;
-      /**
-       * Relay Affirmation - NOT EXISTED
-       **/
-      RelayAffirmationNE: AugmentedError<ApiType>;
-      /**
-       * Relay Parcel - ALREADY RELAYED
-       **/
-      RelayParcelAR: AugmentedError<ApiType>;
-      /**
-       * Relay Proofs Quantity - INVALID
-       **/
-      RelayProofsQuantityInv: AugmentedError<ApiType>;
-      /**
-       * Round - MISMATCHED
-       **/
-      RoundMis: AugmentedError<ApiType>;
-      /**
-       * Usable *RING* for Stake - INSUFFICIENT
-       **/
-      StakeIns: AugmentedError<ApiType>;
+      WithdrawFailed: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -726,6 +567,36 @@ declare module '@polkadot/api-base/types/errors' {
        * Update locked collateral is not allow since some orders are not confirm.
        **/
       StillHasOrdersNotConfirmed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    fromDarwiniaIssuing: {
+      /**
+       * invalid ethereum address length
+       **/
+      InvalidAddressLen: AugmentedError<ApiType>;
+      /**
+       * encode erc20 tx failed
+       **/
+      InvalidEncodeERC20: AugmentedError<ApiType>;
+      /**
+       * encode issue tx failed
+       **/
+      InvalidIssueEncoding: AugmentedError<ApiType>;
+      /**
+       * Invalid Issuing System Account
+       **/
+      InvalidIssuingAccount: AugmentedError<ApiType>;
+      /**
+       * StringCF
+       **/
+      StringCF: AugmentedError<ApiType>;
+      /**
+       * Token unregistered when issuing
+       **/
+      TokenUnregistered: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -846,6 +717,32 @@ declare module '@polkadot/api-base/types/errors' {
        * Non existent public key.
        **/
       InvalidKey: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    indices: {
+      /**
+       * The index was not available.
+       **/
+      InUse: AugmentedError<ApiType>;
+      /**
+       * The index was not already assigned.
+       **/
+      NotAssigned: AugmentedError<ApiType>;
+      /**
+       * The index is assigned to another account.
+       **/
+      NotOwner: AugmentedError<ApiType>;
+      /**
+       * The source and destination accounts are identical.
+       **/
+      NotTransfer: AugmentedError<ApiType>;
+      /**
+       * The index is permanent and may not be freed/changed.
+       **/
+      Permanent: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1510,36 +1407,6 @@ declare module '@polkadot/api-base/types/errors' {
        * The tip hash is unknown.
        **/
       UnknownTip: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    toCrabBacking: {
-      /**
-       * Insufficient balance.
-       **/
-      InsufficientBalance: AugmentedError<ApiType>;
-      /**
-       * Invalid recipient
-       **/
-      InvalidRecipient: AugmentedError<ApiType>;
-      /**
-       * Message nonce duplicated.
-       **/
-      NonceDuplicated: AugmentedError<ApiType>;
-      /**
-       * Redeem Daily Limited
-       **/
-      RingDailyLimited: AugmentedError<ApiType>;
-      /**
-       * Ring Lock LIMITED.
-       **/
-      RingLockLimited: AugmentedError<ApiType>;
-      /**
-       * Unsupported token
-       **/
-      UnsupportedToken: AugmentedError<ApiType>;
       /**
        * Generic error
        **/

@@ -6,21 +6,22 @@ import type { HexString } from '@polkadot/util/types';
 // import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
 import crab from '@darwinia/types-support/src/metadata/static-crab';
+import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
+import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
+import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 
-// import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
-// import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
-// import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultLookup, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
 
 const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
 const LOOKUP = 'packages/types-augment/src/lookup';
 
-const METAS = Object.entries({ crab }) as [string, HexString][];
+const METAS = Object.entries({ crab, darwinia, pangolin, pangoro }) as [string, HexString][];
 
 export function main (): void {
   for (const [name, staticMeta] of METAS) {
     console.log(`** Generating lookup for ${name}`);
+    // for different  packages path todo ?
     generateDefaultLookup(`${LOOKUP}/${name}`, staticMeta);
 
     console.log(`*** Generating for ${name}`);

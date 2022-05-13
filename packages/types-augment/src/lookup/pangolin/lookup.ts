@@ -3782,12 +3782,8 @@ export default {
   PalletFeeMarketPriorRelayer: {
     id: 'AccountId32',
     fee: 'u128',
-    validRange: 'Range'
+    validRange: 'Range<u32>'
   },
-  /**
-   * Lookup663: Range<Idx>
-   **/
-  Range: 'Range<u32>',
   /**
    * Lookup664: pallet_fee_market::pallet::Error<T, I>
    **/

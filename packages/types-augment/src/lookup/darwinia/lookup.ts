@@ -643,15 +643,15 @@ export default {
    **/
   PalletBridgeMessagesEvent: {
     _enum: {
-      ParameterUpdated: 'DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter',
+      ParameterUpdated: 'DarwiniaRuntimeBridgesMessageCrabDarwiniaToCrabMessagesParameter',
       MessageAccepted: '([u8;4],u64)',
       MessagesDelivered: '([u8;4],BpMessagesDeliveredMessages)'
     }
   },
   /**
-   * Lookup112: darwinia_runtime::messages::crab_message::DarwiniaToCrabMessagesParameter
+   * Lookup112: darwinia_runtime::bridges_message::crab::DarwiniaToCrabMessagesParameter
    **/
-  DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter: {
+  DarwiniaRuntimeBridgesMessageCrabDarwiniaToCrabMessagesParameter: {
     _enum: {
       CrabToDarwiniaConversionRate: 'u128'
     }
@@ -679,13 +679,13 @@ export default {
       CancelEnrollment: 'AccountId32',
       UpdateCollateralSlashProtect: 'u128',
       UpdateAssignedRelayersNumber: 'u32',
-      FeeMarketSlash: 'DpFeeSlashReport'
+      FeeMarketSlash: 'DarwiniaFeeMarketSlashReport'
     }
   },
   /**
-   * Lookup118: dp_fee::SlashReport<sp_core::crypto::AccountId32, BlockNumber, Balance>
+   * Lookup118: darwinia_fee_market::types::SlashReport<sp_core::crypto::AccountId32, BlockNumber, Balance>
    **/
-  DpFeeSlashReport: {
+  DarwiniaFeeMarketSlashReport: {
     lane: '[u8;4]',
     message: 'u64',
     sentTime: 'u32',
@@ -2615,7 +2615,7 @@ export default {
         operatingMode: 'BpMessagesOperatingMode',
       },
       update_pallet_parameter: {
-        parameter: 'DarwiniaRuntimeMessagesCrabMessageDarwiniaToCrabMessagesParameter',
+        parameter: 'DarwiniaRuntimeBridgesMessageCrabDarwiniaToCrabMessagesParameter',
       },
       send_message: {
         laneId: '[u8;4]',
@@ -2799,7 +2799,7 @@ export default {
     _enum: ['NotMember', 'DuplicateProposal', 'ProposalMissing', 'WrongIndex', 'DuplicateVote', 'AlreadyInitialized', 'TooEarly', 'TooManyProposals', 'WrongProposalWeight', 'WrongProposalLength']
   },
   /**
-   * Lookup466: darwinia_elections_phragmen::SeatHolder<sp_core::crypto::AccountId32, Balance>
+   * Lookup465: darwinia_elections_phragmen::SeatHolder<sp_core::crypto::AccountId32, Balance>
    **/
   DarwiniaElectionsPhragmenSeatHolder: {
     who: 'AccountId32',
@@ -2807,7 +2807,7 @@ export default {
     deposit: 'u128'
   },
   /**
-   * Lookup467: darwinia_elections_phragmen::Voter<sp_core::crypto::AccountId32, Balance>
+   * Lookup466: darwinia_elections_phragmen::Voter<sp_core::crypto::AccountId32, Balance>
    **/
   DarwiniaElectionsPhragmenVoter: {
     votes: 'Vec<AccountId32>',
@@ -2815,19 +2815,19 @@ export default {
     deposit: 'u128'
   },
   /**
-   * Lookup468: darwinia_elections_phragmen::pallet::Error<T>
+   * Lookup467: darwinia_elections_phragmen::pallet::Error<T>
    **/
   DarwiniaElectionsPhragmenError: {
     _enum: ['UnableToVote', 'NoVotes', 'TooManyVotes', 'MaximumVotesExceeded', 'LowBalance', 'UnableToPayBond', 'MustBeVoter', 'ReportSelf', 'DuplicatedCandidate', 'MemberSubmit', 'RunnerUpSubmit', 'InsufficientCandidateFunds', 'NotMember', 'InvalidWitnessData', 'InvalidVoteCount', 'InvalidRenouncing', 'InvalidReplacement']
   },
   /**
-   * Lookup469: pallet_membership::pallet::Error<T, I>
+   * Lookup468: pallet_membership::pallet::Error<T, I>
    **/
   PalletMembershipError: {
     _enum: ['AlreadyMember', 'NotMember']
   },
   /**
-   * Lookup470: pallet_treasury::Proposal<sp_core::crypto::AccountId32, Balance>
+   * Lookup469: pallet_treasury::Proposal<sp_core::crypto::AccountId32, Balance>
    **/
   PalletTreasuryProposal: {
     proposer: 'AccountId32',
@@ -2836,17 +2836,17 @@ export default {
     bond: 'u128'
   },
   /**
-   * Lookup473: frame_support::PalletId
+   * Lookup472: frame_support::PalletId
    **/
   FrameSupportPalletId: '[u8;8]',
   /**
-   * Lookup474: pallet_treasury::pallet::Error<T, I>
+   * Lookup473: pallet_treasury::pallet::Error<T, I>
    **/
   PalletTreasuryError: {
     _enum: ['InsufficientProposersBalance', 'InvalidIndex', 'TooManyApprovals']
   },
   /**
-   * Lookup476: pallet_tips::OpenTip<sp_core::crypto::AccountId32, Balance, BlockNumber, primitive_types::H256>
+   * Lookup475: pallet_tips::OpenTip<sp_core::crypto::AccountId32, Balance, BlockNumber, primitive_types::H256>
    **/
   PalletTipsOpenTip: {
     reason: 'H256',
@@ -2858,13 +2858,13 @@ export default {
     findersFee: 'bool'
   },
   /**
-   * Lookup477: pallet_tips::pallet::Error<T>
+   * Lookup476: pallet_tips::pallet::Error<T>
    **/
   PalletTipsError: {
     _enum: ['ReasonTooBig', 'AlreadyKnown', 'UnknownTip', 'NotFinder', 'StillOpen', 'Premature']
   },
   /**
-   * Lookup478: pallet_bounties::Bounty<sp_core::crypto::AccountId32, Balance, BlockNumber>
+   * Lookup477: pallet_bounties::Bounty<sp_core::crypto::AccountId32, Balance, BlockNumber>
    **/
   PalletBountiesBounty: {
     proposer: 'AccountId32',
@@ -2875,7 +2875,7 @@ export default {
     status: 'PalletBountiesBountyStatus'
   },
   /**
-   * Lookup479: pallet_bounties::BountyStatus<sp_core::crypto::AccountId32, BlockNumber>
+   * Lookup478: pallet_bounties::BountyStatus<sp_core::crypto::AccountId32, BlockNumber>
    **/
   PalletBountiesBountyStatus: {
     _enum: {
@@ -2897,37 +2897,37 @@ export default {
     }
   },
   /**
-   * Lookup480: pallet_bounties::pallet::Error<T>
+   * Lookup479: pallet_bounties::pallet::Error<T>
    **/
   PalletBountiesError: {
     _enum: ['InsufficientProposersBalance', 'InvalidIndex', 'ReasonTooBig', 'UnexpectedStatus', 'RequireCurator', 'InvalidValue', 'InvalidFee', 'PendingPayout', 'Premature']
   },
   /**
-   * Lookup481: pallet_sudo::pallet::Error<T>
+   * Lookup480: pallet_sudo::pallet::Error<T>
    **/
   PalletSudoError: {
     _enum: ['RequireSudo']
   },
   /**
-   * Lookup484: darwinia_vesting::Releases
+   * Lookup483: darwinia_vesting::Releases
    **/
   DarwiniaVestingReleases: {
     _enum: ['V0', 'V1']
   },
   /**
-   * Lookup485: darwinia_vesting::pallet::Error<T>
+   * Lookup484: darwinia_vesting::pallet::Error<T>
    **/
   DarwiniaVestingError: {
     _enum: ['NotVesting', 'AtMaxVestingSchedules', 'AmountLow', 'ScheduleIndexOutOfBounds', 'InvalidScheduleParams']
   },
   /**
-   * Lookup486: pallet_utility::pallet::Error<T>
+   * Lookup485: pallet_utility::pallet::Error<T>
    **/
   PalletUtilityError: {
     _enum: ['TooManyCalls']
   },
   /**
-   * Lookup487: pallet_identity::types::Registration<Balance, MaxJudgements, MaxAdditionalFields>
+   * Lookup486: pallet_identity::types::Registration<Balance, MaxJudgements, MaxAdditionalFields>
    **/
   PalletIdentityRegistration: {
     judgements: 'Vec<(u32,PalletIdentityJudgement)>',
@@ -2935,7 +2935,7 @@ export default {
     info: 'PalletIdentityIdentityInfo'
   },
   /**
-   * Lookup495: pallet_identity::types::RegistrarInfo<Balance, sp_core::crypto::AccountId32>
+   * Lookup494: pallet_identity::types::RegistrarInfo<Balance, sp_core::crypto::AccountId32>
    **/
   PalletIdentityRegistrarInfo: {
     account: 'AccountId32',
@@ -2943,13 +2943,13 @@ export default {
     fields: 'PalletIdentityBitFlags'
   },
   /**
-   * Lookup497: pallet_identity::pallet::Error<T>
+   * Lookup496: pallet_identity::pallet::Error<T>
    **/
   PalletIdentityError: {
     _enum: ['TooManySubAccounts', 'NotFound', 'NotNamed', 'EmptyIndex', 'FeeChanged', 'NoIdentity', 'StickyJudgement', 'JudgementGiven', 'InvalidJudgement', 'InvalidIndex', 'InvalidTarget', 'TooManyFields', 'TooManyRegistrars', 'AlreadyClaimed', 'NotSub', 'NotOwned']
   },
   /**
-   * Lookup499: pallet_society::Bid<sp_core::crypto::AccountId32, Balance>
+   * Lookup498: pallet_society::Bid<sp_core::crypto::AccountId32, Balance>
    **/
   PalletSocietyBid: {
     who: 'AccountId32',
@@ -2957,7 +2957,7 @@ export default {
     value: 'u128'
   },
   /**
-   * Lookup500: pallet_society::BidKind<sp_core::crypto::AccountId32, Balance>
+   * Lookup499: pallet_society::BidKind<sp_core::crypto::AccountId32, Balance>
    **/
   PalletSocietyBidKind: {
     _enum: {
@@ -2966,25 +2966,25 @@ export default {
     }
   },
   /**
-   * Lookup502: pallet_society::VouchingStatus
+   * Lookup501: pallet_society::VouchingStatus
    **/
   PalletSocietyVouchingStatus: {
     _enum: ['Vouching', 'Banned']
   },
   /**
-   * Lookup506: pallet_society::Vote
+   * Lookup505: pallet_society::Vote
    **/
   PalletSocietyVote: {
     _enum: ['Skeptic', 'Reject', 'Approve']
   },
   /**
-   * Lookup507: pallet_society::pallet::Error<T, I>
+   * Lookup506: pallet_society::pallet::Error<T, I>
    **/
   PalletSocietyError: {
     _enum: ['BadPosition', 'NotMember', 'AlreadyMember', 'Suspended', 'NotSuspended', 'NoPayout', 'AlreadyFounded', 'InsufficientPot', 'AlreadyVouching', 'NotVouching', 'Head', 'Founder', 'AlreadyBid', 'AlreadyCandidate', 'NotCandidate', 'MaxMembers', 'NotFounder', 'NotHead']
   },
   /**
-   * Lookup508: pallet_recovery::RecoveryConfig<BlockNumber, Balance, sp_core::crypto::AccountId32>
+   * Lookup507: pallet_recovery::RecoveryConfig<BlockNumber, Balance, sp_core::crypto::AccountId32>
    **/
   PalletRecoveryRecoveryConfig: {
     delayPeriod: 'u32',
@@ -2993,7 +2993,7 @@ export default {
     threshold: 'u16'
   },
   /**
-   * Lookup509: pallet_recovery::ActiveRecovery<BlockNumber, Balance, sp_core::crypto::AccountId32>
+   * Lookup508: pallet_recovery::ActiveRecovery<BlockNumber, Balance, sp_core::crypto::AccountId32>
    **/
   PalletRecoveryActiveRecovery: {
     created: 'u32',
@@ -3001,13 +3001,13 @@ export default {
     friends: 'Vec<AccountId32>'
   },
   /**
-   * Lookup510: pallet_recovery::pallet::Error<T>
+   * Lookup509: pallet_recovery::pallet::Error<T>
    **/
   PalletRecoveryError: {
     _enum: ['NotAllowed', 'ZeroThreshold', 'NotEnoughFriends', 'MaxFriends', 'NotSorted', 'NotRecoverable', 'AlreadyRecoverable', 'AlreadyStarted', 'NotStarted', 'NotFriend', 'DelayPeriod', 'AlreadyVouched', 'Threshold', 'StillActive', 'AlreadyProxy', 'BadState']
   },
   /**
-   * Lookup513: pallet_scheduler::ScheduledV2<darwinia_runtime::Call, BlockNumber, darwinia_runtime::OriginCaller, sp_core::crypto::AccountId32>
+   * Lookup512: pallet_scheduler::ScheduledV2<darwinia_runtime::Call, BlockNumber, darwinia_runtime::OriginCaller, sp_core::crypto::AccountId32>
    **/
   PalletSchedulerScheduledV2: {
     maybeId: 'Option<Bytes>',
@@ -3017,7 +3017,7 @@ export default {
     origin: 'DarwiniaRuntimeOriginCaller'
   },
   /**
-   * Lookup514: darwinia_runtime::OriginCaller
+   * Lookup513: darwinia_runtime::OriginCaller
    **/
   DarwiniaRuntimeOriginCaller: {
     _enum: {
@@ -3042,7 +3042,7 @@ export default {
     }
   },
   /**
-   * Lookup515: frame_system::RawOrigin<sp_core::crypto::AccountId32>
+   * Lookup514: frame_system::RawOrigin<sp_core::crypto::AccountId32>
    **/
   FrameSystemRawOrigin: {
     _enum: {
@@ -3052,7 +3052,7 @@ export default {
     }
   },
   /**
-   * Lookup516: pallet_collective::RawOrigin<sp_core::crypto::AccountId32, I>
+   * Lookup515: pallet_collective::RawOrigin<sp_core::crypto::AccountId32, I>
    **/
   PalletCollectiveRawOrigin: {
     _enum: {
@@ -3062,23 +3062,23 @@ export default {
     }
   },
   /**
-   * Lookup518: sp_core::Void
+   * Lookup517: sp_core::Void
    **/
   SpCoreVoid: 'Null',
   /**
-   * Lookup519: pallet_scheduler::Releases
+   * Lookup518: pallet_scheduler::Releases
    **/
   PalletSchedulerReleases: {
     _enum: ['V1', 'V2']
   },
   /**
-   * Lookup520: pallet_scheduler::pallet::Error<T>
+   * Lookup519: pallet_scheduler::pallet::Error<T>
    **/
   PalletSchedulerError: {
     _enum: ['FailedToSchedule', 'NotFound', 'TargetBlockNumberInPast', 'RescheduleNoChange']
   },
   /**
-   * Lookup523: pallet_proxy::ProxyDefinition<sp_core::crypto::AccountId32, darwinia_runtime::pallets::proxy::ProxyType, BlockNumber>
+   * Lookup522: pallet_proxy::ProxyDefinition<sp_core::crypto::AccountId32, darwinia_runtime::pallets::proxy::ProxyType, BlockNumber>
    **/
   PalletProxyProxyDefinition: {
     delegate: 'AccountId32',
@@ -3086,7 +3086,7 @@ export default {
     delay: 'u32'
   },
   /**
-   * Lookup527: pallet_proxy::Announcement<sp_core::crypto::AccountId32, primitive_types::H256, BlockNumber>
+   * Lookup526: pallet_proxy::Announcement<sp_core::crypto::AccountId32, primitive_types::H256, BlockNumber>
    **/
   PalletProxyAnnouncement: {
     real: 'AccountId32',
@@ -3094,13 +3094,13 @@ export default {
     height: 'u32'
   },
   /**
-   * Lookup529: pallet_proxy::pallet::Error<T>
+   * Lookup528: pallet_proxy::pallet::Error<T>
    **/
   PalletProxyError: {
     _enum: ['TooMany', 'NotFound', 'NotProxy', 'Unproxyable', 'Duplicate', 'NoPermission', 'Unannounced', 'NoSelfProxy']
   },
   /**
-   * Lookup531: pallet_multisig::Multisig<BlockNumber, Balance, sp_core::crypto::AccountId32>
+   * Lookup530: pallet_multisig::Multisig<BlockNumber, Balance, sp_core::crypto::AccountId32>
    **/
   PalletMultisigMultisig: {
     when: 'PalletMultisigTimepoint',
@@ -3109,32 +3109,32 @@ export default {
     approvals: 'Vec<AccountId32>'
   },
   /**
-   * Lookup533: pallet_multisig::pallet::Error<T>
+   * Lookup532: pallet_multisig::pallet::Error<T>
    **/
   PalletMultisigError: {
     _enum: ['MinimumThreshold', 'AlreadyApproved', 'NoApprovalsNeeded', 'TooFewSignatories', 'TooManySignatories', 'SignatoriesOutOfOrder', 'SenderInSignatories', 'NotFound', 'NotOwner', 'NoTimepoint', 'WrongTimepoint', 'UnexpectedTimepoint', 'MaxWeightTooLow', 'AlreadyStored']
   },
   /**
-   * Lookup536: darwinia_relay_primitives::relayer_game::RelayVotingState<sp_core::crypto::AccountId32>
+   * Lookup535: darwinia_relay_primitives::relayer_game::RelayVotingState<sp_core::crypto::AccountId32>
    **/
   DarwiniaRelayPrimitivesRelayerGameRelayVotingState: {
     ayes: 'Vec<AccountId32>',
     nays: 'Vec<AccountId32>'
   },
   /**
-   * Lookup537: darwinia_bridge_ethereum::Error<T>
+   * Lookup536: darwinia_bridge_ethereum::Error<T>
    **/
   DarwiniaBridgeEthereumError: {
     _enum: ['HeaderInv', 'ConfirmedBlocksC', 'ContinuousInv', 'AffirmationExisted', 'HeaderHashInv', 'MMRInv', 'HeaderHashMis', 'ConfirmedHeaderNE', 'ReceiptProofInv', 'PendingRelayHeaderParcelNE', 'PendingRelayHeaderParcelAE', 'AlreadyVoteForAyeDup', 'AlreadyVoteForNayDup']
   },
   /**
-   * Lookup539: to_ethereum_backing::pallet::Error<T>
+   * Lookup538: to_ethereum_backing::pallet::Error<T>
    **/
   ToEthereumBackingError: {
     _enum: ['AddrLenMis', 'PubkeyPrefixMis', 'BytesCF', 'IntCF', 'ArrayCF', 'AddressCF', 'AssetAR', 'AuthoritiesChangeAR', 'EthLogPF', 'KtonLockedNSBA', 'RingLockedNSBA', 'LogEntryNE', 'RedeemDis', 'RingLockLim', 'KtonLockLim']
   },
   /**
-   * Lookup542: darwinia_relay_primitives::relayer_game::RelayAffirmation<darwinia_bridge_ethereum::EthereumRelayHeaderParcel, sp_core::crypto::AccountId32, Balance, RelayHeaderId>
+   * Lookup541: darwinia_relay_primitives::relayer_game::RelayAffirmation<darwinia_bridge_ethereum::EthereumRelayHeaderParcel, sp_core::crypto::AccountId32, Balance, RelayHeaderId>
    **/
   DarwiniaRelayPrimitivesRelayerGameRelayAffirmation: {
     relayer: 'AccountId32',
@@ -3144,13 +3144,13 @@ export default {
     verifiedOnChain: 'bool'
   },
   /**
-   * Lookup545: darwinia_relayer_game::Error<T, I>
+   * Lookup544: darwinia_relayer_game::Error<T, I>
    **/
   DarwiniaRelayerGameError: {
     _enum: ['RelayParcelAR', 'RoundMis', 'ActiveGamesTM', 'ExistedAffirmationsFoundC', 'GameAtThisRoundC', 'RelayAffirmationDup', 'StakeIns', 'RelayProofsQuantityInv', 'RelayAffirmationNE', 'ExtendedRelayAffirmationNE', 'PreviousRelayProofsInc', 'PendingRelayParcelNE']
   },
   /**
-   * Lookup547: darwinia_relay_primitives::relay_authorities::RelayAuthority<sp_core::crypto::AccountId32, primitive_types::H160, RingBalance, BlockNumber>
+   * Lookup546: darwinia_relay_primitives::relay_authorities::RelayAuthority<sp_core::crypto::AccountId32, primitive_types::H160, RingBalance, BlockNumber>
    **/
   DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority: {
     accountId: 'AccountId32',
@@ -3159,54 +3159,54 @@ export default {
     term: 'u32'
   },
   /**
-   * Lookup548: darwinia_relay_primitives::relay_authorities::ScheduledAuthoritiesChange<sp_core::crypto::AccountId32, primitive_types::H160, RingBalance, BlockNumber>
+   * Lookup547: darwinia_relay_primitives::relay_authorities::ScheduledAuthoritiesChange<sp_core::crypto::AccountId32, primitive_types::H160, RingBalance, BlockNumber>
    **/
   DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange: {
     nextAuthorities: 'Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>',
     deadline: 'u32'
   },
   /**
-   * Lookup550: darwinia_relay_primitives::relay_authorities::MmrRootToSign<primitive_types::H256, sp_core::crypto::AccountId32, Signature>
+   * Lookup549: darwinia_relay_primitives::relay_authorities::MmrRootToSign<primitive_types::H256, sp_core::crypto::AccountId32, Signature>
    **/
   DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign: {
     mmrRoot: 'H256',
     signatures: 'Vec<(AccountId32,[u8;65])>'
   },
   /**
-   * Lookup551: darwinia_relay_authorities::Error<T, I>
+   * Lookup550: darwinia_relay_authorities::Error<T, I>
    **/
   DarwiniaRelayAuthoritiesError: {
     _enum: ['CandidateAE', 'CandidateNE', 'AuthorityAE', 'AuthorityNE', 'AuthorityIT', 'AuthoritiesCountTL', 'StakeIns', 'OnAuthoritiesChangeDis', 'ScheduledTM', 'ScheduledSignNE', 'SignatureInv', 'TermMis', 'AuthoritiesMis', 'NextAuthoritiesNE']
   },
   /**
-   * Lookup552: bp_header_chain::AuthoritySet
+   * Lookup551: bp_header_chain::AuthoritySet
    **/
   BpHeaderChainAuthoritySet: {
     authorities: 'Vec<(SpFinalityGrandpaAppPublic,u64)>',
     setId: 'u64'
   },
   /**
-   * Lookup553: pallet_bridge_grandpa::pallet::Error<T, I>
+   * Lookup552: pallet_bridge_grandpa::pallet::Error<T, I>
    **/
   PalletBridgeGrandpaError: {
     _enum: ['InvalidJustification', 'InvalidAuthoritySet', 'TooManyRequests', 'OldHeader', 'UnknownHeader', 'UnsupportedScheduledChange', 'NotInitialized', 'AlreadyInitialized', 'Halted', 'StorageRootMismatch']
   },
   /**
-   * Lookup554: bp_messages::InboundLaneData<sp_core::crypto::AccountId32>
+   * Lookup553: bp_messages::InboundLaneData<sp_core::crypto::AccountId32>
    **/
   BpMessagesInboundLaneData: {
     relayers: 'Vec<BpMessagesUnrewardedRelayer>',
     lastConfirmedNonce: 'u64'
   },
   /**
-   * Lookup556: bp_messages::UnrewardedRelayer<sp_core::crypto::AccountId32>
+   * Lookup555: bp_messages::UnrewardedRelayer<sp_core::crypto::AccountId32>
    **/
   BpMessagesUnrewardedRelayer: {
     relayer: 'AccountId32',
     messages: 'BpMessagesDeliveredMessages'
   },
   /**
-   * Lookup557: bp_messages::OutboundLaneData
+   * Lookup556: bp_messages::OutboundLaneData
    **/
   BpMessagesOutboundLaneData: {
     oldestUnprunedNonce: 'u64',
@@ -3214,94 +3214,94 @@ export default {
     latestGeneratedNonce: 'u64'
   },
   /**
-   * Lookup558: bp_messages::MessageKey
+   * Lookup557: bp_messages::MessageKey
    **/
   BpMessagesMessageKey: {
     laneId: '[u8;4]',
     nonce: 'u64'
   },
   /**
-   * Lookup559: bp_messages::MessageData<Fee>
+   * Lookup558: bp_messages::MessageData<Fee>
    **/
   BpMessagesMessageData: {
     payload: 'Bytes',
     fee: 'u128'
   },
   /**
-   * Lookup560: pallet_bridge_messages::pallet::Error<T, I>
+   * Lookup559: pallet_bridge_messages::pallet::Error<T, I>
    **/
   PalletBridgeMessagesError: {
     _enum: ['Halted', 'MessageRejectedByChainVerifier', 'MessageRejectedByLaneVerifier', 'FailedToWithdrawMessageFee', 'TooManyMessagesInTheProof', 'InvalidMessagesProof', 'InvalidMessagesDeliveryProof', 'InvalidUnrewardedRelayers', 'InvalidUnrewardedRelayersState', 'MessageIsAlreadyDelivered', 'MessageIsNotYetSent', 'TryingToConfirmMoreMessagesThanExpected']
   },
   /**
-   * Lookup561: dp_fee::Relayer<sp_core::crypto::AccountId32, Balance>
+   * Lookup560: darwinia_fee_market::types::Relayer<sp_core::crypto::AccountId32, Balance>
    **/
-  DpFeeRelayer: {
+  DarwiniaFeeMarketRelayer: {
     id: 'AccountId32',
     collateral: 'u128',
     fee: 'u128'
   },
   /**
-   * Lookup563: dp_fee::Order<sp_core::crypto::AccountId32, BlockNumber, Balance>
+   * Lookup562: darwinia_fee_market::types::Order<sp_core::crypto::AccountId32, BlockNumber, Balance>
    **/
-  DpFeeOrder: {
+  DarwiniaFeeMarketOrder: {
     lane: '[u8;4]',
     message: 'u64',
     sentTime: 'u32',
     confirmTime: 'Option<u32>',
     lockedCollateral: 'u128',
-    relayers: 'Vec<DpFeePriorRelayer>'
+    relayers: 'Vec<DarwiniaFeeMarketPriorRelayer>'
   },
   /**
-   * Lookup565: dp_fee::PriorRelayer<sp_core::crypto::AccountId32, BlockNumber, Balance>
+   * Lookup564: darwinia_fee_market::types::PriorRelayer<sp_core::crypto::AccountId32, BlockNumber, Balance>
    **/
-  DpFeePriorRelayer: {
+  DarwiniaFeeMarketPriorRelayer: {
     id: 'AccountId32',
     fee: 'u128',
     validRange: 'Range<u32>'
   },
   /**
-   * Lookup567: darwinia_fee_market::pallet::Error<T>
+   * Lookup566: darwinia_fee_market::pallet::Error<T>
    **/
   DarwiniaFeeMarketError: {
-    _enum: ['InsufficientBalance', 'AlreadyEnrolled', 'NotEnrolled', 'StillHasOrdersNotConfirmed', 'RelayFeeTooLow', 'OccupiedRelayer', 'ExtendLockFailed']
+    _enum: ['InsufficientBalance', 'AlreadyEnrolled', 'NotEnrolled', 'StillHasOrdersNotConfirmed', 'RelayFeeTooLow', 'OccupiedRelayer']
   },
   /**
-   * Lookup569: to_substrate_backing::pallet::Error<T>
+   * Lookup568: to_substrate_backing::pallet::Error<T>
    **/
   ToSubstrateBackingError: {
     _enum: ['InsufficientBalance', 'RingLockLimited', 'RingDailyLimited', 'NonceDuplicated', 'UnsupportedToken', 'InvalidRecipient']
   },
   /**
-   * Lookup572: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
+   * Lookup571: frame_system::extensions::check_spec_version::CheckSpecVersion<T>
    **/
   FrameSystemExtensionsCheckSpecVersion: 'Null',
   /**
-   * Lookup573: frame_system::extensions::check_tx_version::CheckTxVersion<T>
+   * Lookup572: frame_system::extensions::check_tx_version::CheckTxVersion<T>
    **/
   FrameSystemExtensionsCheckTxVersion: 'Null',
   /**
-   * Lookup574: frame_system::extensions::check_genesis::CheckGenesis<T>
+   * Lookup573: frame_system::extensions::check_genesis::CheckGenesis<T>
    **/
   FrameSystemExtensionsCheckGenesis: 'Null',
   /**
-   * Lookup577: frame_system::extensions::check_nonce::CheckNonce<T>
+   * Lookup576: frame_system::extensions::check_nonce::CheckNonce<T>
    **/
   FrameSystemExtensionsCheckNonce: 'Compact<u32>',
   /**
-   * Lookup578: frame_system::extensions::check_weight::CheckWeight<T>
+   * Lookup577: frame_system::extensions::check_weight::CheckWeight<T>
    **/
   FrameSystemExtensionsCheckWeight: 'Null',
   /**
-   * Lookup579: pallet_transaction_payment::ChargeTransactionPayment<T>
+   * Lookup578: pallet_transaction_payment::ChargeTransactionPayment<T>
    **/
   PalletTransactionPaymentChargeTransactionPayment: 'Compact<u128>',
   /**
-   * Lookup580: darwinia_bridge_ethereum::CheckEthereumRelayHeaderParcel<darwinia_runtime::Runtime>
+   * Lookup579: darwinia_bridge_ethereum::CheckEthereumRelayHeaderParcel<darwinia_runtime::Runtime>
    **/
   DarwiniaBridgeEthereumCheckEthereumRelayHeaderParcel: 'Null',
   /**
-   * Lookup581: darwinia_runtime::Runtime
+   * Lookup580: darwinia_runtime::Runtime
    **/
   DarwiniaRuntimeRuntime: 'Null'
 };

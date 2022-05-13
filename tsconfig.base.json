@@ -15,7 +15,7 @@
         "@darwinia/types-known": ["types-known/src"],
         "@darwinia/types-known/*": ["types-known/src/*"],
         "@darwinia/types-support": ["types-support/src"],
-        "@darwinia/types-support/*": ["types-support/src/*"]
+        "@darwinia/types-support/*": ["types-support/src/*"],
       },
       "skipLibCheck": true
     }

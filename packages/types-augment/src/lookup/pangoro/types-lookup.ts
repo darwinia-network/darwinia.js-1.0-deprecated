@@ -367,7 +367,7 @@ declare module '@polkadot/types/lookup' {
   /** @name PalletBridgeMessagesEvent (62) */
   export interface PalletBridgeMessagesEvent extends Enum {
     readonly isParameterUpdated: boolean;
-    readonly asParameterUpdated: PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter | PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter;
+    readonly asParameterUpdated: PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
     readonly isMessageAccepted: boolean;
     readonly asMessageAccepted: ITuple<[U8aFixed, u64]>;
     readonly isMessagesDelivered: boolean;
@@ -389,8 +389,8 @@ declare module '@polkadot/types/lookup' {
     readonly dispatchResults: BitVec;
   }
 
-  // /** @name BitvecOrderMsb0 (67) */
-  // export type BitvecOrderMsb0 = Null;
+  /** @name BitvecOrderMsb0 (67) */
+  export type BitvecOrderMsb0 = Null;
 
   /** @name PalletFeeMarketEvent (68) */
   export interface PalletFeeMarketEvent extends Enum {
@@ -748,8 +748,8 @@ declare module '@polkadot/types/lookup' {
     readonly digest: SpRuntimeDigest;
   }
 
-  // /** @name SpRuntimeBlakeTwo256 (129) */
-  // export type SpRuntimeBlakeTwo256 = Null;
+  /** @name SpRuntimeBlakeTwo256 (129) */
+  export type SpRuntimeBlakeTwo256 = Null;
 
   /** @name SpSessionMembershipProof (130) */
   export interface SpSessionMembershipProof extends Struct {
@@ -964,7 +964,7 @@ declare module '@polkadot/types/lookup' {
 
   /** @name PalletElectionProviderMultiPhaseRawSolution (227) */
   export interface PalletElectionProviderMultiPhaseRawSolution extends Struct {
-    readonly solution: PangoroRuntimePalletsElectionProviderMultiPhaseNposCompactSolution16 | PangolinRuntimePalletsElectionProviderMultiPhaseNposCompactSolution24;
+    readonly solution: PangoroRuntimePalletsElectionProviderMultiPhaseNposCompactSolution16;
     readonly score: Vec<u128>;
     readonly round: u32;
   }
@@ -1358,12 +1358,12 @@ declare module '@polkadot/types/lookup' {
     readonly isReportEquivocation: boolean;
     readonly asReportEquivocation: {
       readonly equivocationProof: SpFinalityGrandpaEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof | SpCoreVoid;
+      readonly keyOwnerProof: SpCoreVoid;
     } & Struct;
     readonly isReportEquivocationUnsigned: boolean;
     readonly asReportEquivocationUnsigned: {
       readonly equivocationProof: SpFinalityGrandpaEquivocationProof;
-      readonly keyOwnerProof: SpSessionMembershipProof | SpCoreVoid;
+      readonly keyOwnerProof: SpCoreVoid;
     } & Struct;
     readonly isNoteStalled: boolean;
     readonly asNoteStalled: {
@@ -1422,8 +1422,8 @@ declare module '@polkadot/types/lookup' {
     readonly targetNumber: u32;
   }
 
-  // /** @name SpCoreVoid (293) */
-  // export type SpCoreVoid = Null;
+  /** @name SpCoreVoid (293) */
+  export type SpCoreVoid = Null;
 
   /** @name PalletGrandpaError (294) */
   export interface PalletGrandpaError extends Enum {
@@ -1664,7 +1664,7 @@ declare module '@polkadot/types/lookup' {
     } & Struct;
     readonly isUpdatePalletParameter: boolean;
     readonly asUpdatePalletParameter: {
-      readonly parameter: PangolinRuntimeBridgesMessagePangoroPangolinToPangoroMessagesParameter| PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
+      readonly parameter: PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter;
     } & Struct;
     readonly isSendMessage: boolean;
     readonly asSendMessage: {
@@ -2042,7 +2042,7 @@ declare module '@polkadot/types/lookup' {
     readonly priority: u8;
     readonly call: Call;
     readonly maybePeriodic: Option<ITuple<[u32, u32]>>;
-    readonly origin: PangolinRuntimeOriginCaller | PangoroRuntimeOriginCaller;
+    readonly origin: PangoroRuntimeOriginCaller;
   }
 
   /** @name PangoroRuntimeOriginCaller (369) */
@@ -2318,20 +2318,20 @@ declare module '@polkadot/types/lookup' {
     readonly type: 'InvalidHeadersSize' | 'RidiculousNumber' | 'NotCheckpoint' | 'InvalidSigner' | 'SignedRecently' | 'HeadersNotEnough' | 'InvalidNonce' | 'InvalidGasLimit' | 'TooMuchGasUsed' | 'InvalidUncleHash' | 'InvalidDifficulty' | 'InvalidMixDigest' | 'HeaderTimestampIsAhead' | 'MissingVanity' | 'MissingSignature' | 'InvalidCheckpointValidators' | 'ExtraValidators' | 'UnknownAncestor' | 'HeaderTimestampTooClose' | 'CheckpointNoSigner' | 'CheckpointInvalidSigners' | 'RecoverPubkeyFail' | 'VerifyStorageFail';
   }
 
-  // /** @name FrameSystemExtensionsCheckSpecVersion (414) */
-  // export type FrameSystemExtensionsCheckSpecVersion = Null;
+  /** @name FrameSystemExtensionsCheckSpecVersion (414) */
+  export type FrameSystemExtensionsCheckSpecVersion = Null;
 
-  // /** @name FrameSystemExtensionsCheckTxVersion (415) */
-  // export type FrameSystemExtensionsCheckTxVersion = Null;
+  /** @name FrameSystemExtensionsCheckTxVersion (415) */
+  export type FrameSystemExtensionsCheckTxVersion = Null;
 
-  // /** @name FrameSystemExtensionsCheckGenesis (416) */
-  // export type FrameSystemExtensionsCheckGenesis = Null;
+  /** @name FrameSystemExtensionsCheckGenesis (416) */
+  export type FrameSystemExtensionsCheckGenesis = Null;
 
-  // /** @name FrameSystemExtensionsCheckNonce (419) */
-  // export interface FrameSystemExtensionsCheckNonce extends Compact<u32> {}
+  /** @name FrameSystemExtensionsCheckNonce (419) */
+  export interface FrameSystemExtensionsCheckNonce extends Compact<u32> {}
 
-  // /** @name FrameSystemExtensionsCheckWeight (420) */
-  // export type FrameSystemExtensionsCheckWeight = Null;
+  /** @name FrameSystemExtensionsCheckWeight (420) */
+  export type FrameSystemExtensionsCheckWeight = Null;
 
   /** @name PalletTransactionPaymentChargeTransactionPayment (421) */
   export interface PalletTransactionPaymentChargeTransactionPayment extends Compact<u128> {}

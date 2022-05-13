@@ -10,6 +10,7 @@
       { "path": "./packages/api-augment/tsconfig.build.json" },
       { "path": "./packages/api-augment/tsconfig.pangolin.json" },
       { "path": "./packages/api-augment/tsconfig.pangoro.json" },
+      { "path": "./packages/api-augment/tsconfig.crab.json" },
       { "path": "./packages/rpc-augment/tsconfig.build.json" },
       { "path": "./packages/typegen/tsconfig.build.json" },
       { "path": "./packages/types/tsconfig.build.json" },
