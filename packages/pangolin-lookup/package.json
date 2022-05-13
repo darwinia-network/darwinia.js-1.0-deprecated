@@ -1,0 +1,25 @@
+{
+    "name": "@darwinia/pangolin-lookup",
+    "version": "2.7.6",
+    "description": "Types generated augmentation",
+    "keywords": [
+        "darwinia",
+        "Polkadot",
+        "JsonRPC"
+    ],
+    "contributors": [],
+    "license": "Apache-2.0",
+    "repository": {
+        "directory": "packages/pangolin-lookup",
+        "type": "git",
+        "url": "https://github.com/darwinia-network/darwinia.js.git"
+    },
+    "type": "module",
+    "main": "index.js",
+    "dependencies": {
+        "@babel/runtime": "^7.17.9",
+        "@polkadot/types": "8.1.2-1",
+        "@polkadot/types-codec": "8.1.2-1",
+        "@polkadot/util": "^9.0.1"
+    }
+}

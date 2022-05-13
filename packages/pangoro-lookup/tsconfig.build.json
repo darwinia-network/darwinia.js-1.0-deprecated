@@ -1,0 +1,15 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "."
+    },
+    "exclude": [
+        "**/*.spec.ts",
+      ],
+    "references": [
+      { "path": "../types/tsconfig.build.json" }
+    ]
+  }
+  

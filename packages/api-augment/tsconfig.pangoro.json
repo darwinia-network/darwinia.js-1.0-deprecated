@@ -6,17 +6,25 @@
       "rootDir": "."
     },
     "include": [
-      "**/base.ts",
+      "**/pangoro_base.ts",
       "**/pangoro/*.ts"
     ],
     "exclude": [
-      "**/pangoro/*.spec.ts"
+      "**/pangoro/*.spec.ts",
+      "**/darwinia_base.ts",
+      "**/crab_base.ts",
+      "**/pangolin_base.ts"
     ],
     "references": [
       { "path": "../rpc-augment/tsconfig.build.json" },
       { "path": "../types/tsconfig.build.json" },
-      { "path": "../types-augment/tsconfig.build.json" },
-      { "path": "../types-augment/tsconfig.pangoro.json" },
+      // { "path": "../types-augment/tsconfig.build.json" },
+      // { "path": "../types-augment/tsconfig.pangoro.json" },
+     // { "path": "../types-augment/tsconfig.build.json" },
+      { "path": "../types-support/tsconfig.build.json" },
+      // { "path": "../crab-lookup/tsconfig.build.json" },
+      // { "path": "../pangolin-lookup/tsconfig.build.json" },
+      { "path": "../pangoro-lookup/tsconfig.build.json" },
     ]
   }
   
