@@ -63,7 +63,7 @@ function calculateUnlocking(
 }
 
 function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: DeriveStakingQuery): DeriveStakingAccount {
-  const stakingLedger = query.stakingLedger as unknown as DarwiniaStakingStructsStakingLedger;
+  const stakingLedger = query.stakingLedger;
   const calcUnlocking = calculateUnlocking(api, stakingLedger, best, 'ring');
   const calcUnlockingKton = calculateUnlocking(api, stakingLedger, best, 'kton');
   const depositItems = stakingLedger?.depositItems?.filter(({ expireTime }) => expireTime.toBn().gt(now));
@@ -94,8 +94,9 @@ export function accounts (instanceId: string, api: DeriveApi): Memoized<(account
 
     return combineLatest([keysObs, queryObs, bestObs, timestampObs]).pipe(
       map(([keys, queries, best, timestamp]) =>
+
         queries.map((q, index) => ({
-          ...parseResult(api, best, timestamp, q as unknown as DeriveStakingQuery),
+          ...parseResult(api, best, timestamp as Moment, { nextSessionIds: [], sessionIds: [], ...q }),
           ...keys[index]
         }))
       )

@@ -67,7 +67,7 @@ function retrieveController (
   const controllerId = controllerIdOpt.unwrapOr(null);
 
   return controllerId
-    ? api.query.staking.ledger(controllerId).pipe(
+    ? api.query.staking.ledger<Option<DarwiniaStakingStructsStakingLedger>>(controllerId).pipe(
       map((stakingLedgerOpt: Option<DarwiniaStakingStructsStakingLedger>): DeriveStakingQuery =>
         ({
           accountId: stashId,
@@ -88,7 +88,8 @@ function retrieveController (
         nominators: [],
         rewardDestination,
         sessionIds: [],
-        stakingLedger: api.registry.createType('DarwiniaStakingStructsStakingLedger'),
+
+        stakingLedger: api.registry.createType<DarwiniaStakingStructsStakingLedger>('DarwiniaStakingStructsStakingLedger'),
         stashId,
         validatorPrefs: Array.isArray(validatorPrefs) ? validatorPrefs[0] : validatorPrefs }
     );

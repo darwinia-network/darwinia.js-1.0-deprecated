@@ -20,7 +20,8 @@
       { "path": "./packages/types-support/tsconfig.build.json" },
       { "path": "./packages/types-augment/tsconfig.pangolin.json"},
       { "path": "./packages/types-augment/tsconfig.pangoro.json"},
-      { "path": "./packages/types-augment/tsconfig.crab.json"}
+      { "path": "./packages/types-augment/tsconfig.crab.json"},
+      { "path": "./packages/api-derive/tsconfig.build.json" }
     ]
   }
   
