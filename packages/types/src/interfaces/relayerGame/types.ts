@@ -5,6 +5,7 @@ import type { EthashProof, EthereumBlockNumber } from '@darwinia/types/interface
 import type { Struct, Vec, u32 } from '@polkadot/types-codec';
 import type { H256, AccountId} from '@polkadot/types/interfaces/runtime';
 
+
 /** @name EthereumRelayProofs */
 export interface EthereumRelayProofs extends Struct {
   readonly ethashProof: Vec<EthashProof>;

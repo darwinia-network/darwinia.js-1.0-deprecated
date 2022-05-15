@@ -25,7 +25,6 @@
     "@babel/runtime": "^7.17.9",
     "@darwinia/types-known": "^2.7.5",
     "@polkadot/keyring": "^9.0.1",
-    "@polkadot/types": "^8.1.2-1",
     "@polkadot/types-augment": "8.1.2-1",
     "@polkadot/types-codec": "8.1.2-1",
     "@polkadot/types-create": "8.1.2-1",
