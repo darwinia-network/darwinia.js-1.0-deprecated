@@ -31,25 +31,17 @@
     "test:one": "polkadot-dev-run-test --detectOpenHandles --forceExit",
     "test:watch": "polkadot-dev-run-test --watch"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/node": "^7.13.10",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "@darwinia/typegen": "workspace:packages/typegen",
-    "@polkadot/api": "8.1.2-1",
     "@polkadot/dev": "^0.66.5",
-    "@polkadot/ts": "^0.3.42",
-    "@polkadot/typegen": "8.1.2-1",
+    "@polkadot/ts": "^0.4.13",
     "@types/jest": "^26.0.13",
-    "@vuepress/plugin-search": "^1.5.4",
     "copyfiles": "^2.3.0",
     "cpx": "^1.5.0",
-    "ts-node": "^9.1.1",
-    "tsconfig-paths": "^3.9.0",
-    "typedoc": "^0.19.1",
-    "typedoc-plugin-markdown": "^2.4.2",
-    "typedoc-plugin-no-inherit": "^1.1.10"
+    "ts-node": "^9.1.1"
   },
   "resolutions": {
     "babel-core": "^7.0.0-bridge.0",

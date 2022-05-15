@@ -26,6 +26,11 @@
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/type-known",
   "dependencies": {
-    "@babel/runtime": "^7.9.6"
+    "@babel/runtime": "^7.17.9",
+    "@polkadot/networks": "^9.0.1",
+    "@polkadot/types": "8.1.2-1",
+    "@polkadot/types-codec": "8.1.2-1",
+    "@polkadot/types-create": "8.1.2-1",
+    "@polkadot/util": "^9.0.1"
   }
 }

@@ -3,3 +3,4 @@
 
 import '@darwinia/rpc-augment';
 import '@darwinia/types-augment/lookup/pangolin';
+import '@polkadot/types-augment';

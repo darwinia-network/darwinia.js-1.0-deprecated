@@ -27,7 +27,7 @@ function systemAccount (api: ApiInterfaceRx, tokenType: TokenType, accountId: Ac
       const { free, freeKton } = balanceInfo.data;
 
       let maxlock = new BN(0);
-      let balanceFree = api.registry.createType<Balance>('Balance');
+      let balanceFree: Balance = api.registry.createType('Balance');
 
       if (tokenType === TokenType.Ring) {
         balanceFree = free;
