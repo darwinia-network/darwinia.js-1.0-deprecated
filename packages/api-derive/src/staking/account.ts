@@ -88,7 +88,7 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 export function accounts (instanceId: string, api: DeriveApi): Memoized<(accountIds: (Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
   return memo(instanceId, (accountIds: (Uint8Array | string)[]) => {
     const keysObs = api.derive.staking.keysMulti(accountIds);
-    const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS);
+    const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS); // rewrite in query.ts
     const bestObs = api.derive.chain.bestNumber();
     const timestampObs = api.query.timestamp.now();
 
@@ -96,7 +96,7 @@ export function accounts (instanceId: string, api: DeriveApi): Memoized<(account
       map(([keys, queries, best, timestamp]) =>
 
         queries.map((q, index) => ({
-          ...parseResult(api, best, timestamp as Moment, { nextSessionIds: [], sessionIds: [], ...q }),
+          ...parseResult(api, best, timestamp as Moment, q as unknown as DeriveStakingQuery),
           ...keys[index]
         }))
       )

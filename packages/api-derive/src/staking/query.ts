@@ -1,6 +1,7 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { ExposureT } from '@darwinia/types/interfaces';
 import { combineLatest, map, Observable, of, switchMap } from 'rxjs';
 
 import { ApiInterfaceRx } from '@polkadot/api/types';
@@ -10,7 +11,6 @@ import { AccountId, Keys, Nominations, RewardDestination, ValidatorPrefs } from 
 import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { ITuple } from '@polkadot/types/types';
 
-import { ExposureT } from '../../../types/src';
 import { DeriveStakingQuery } from './types';
 
 type MultiResult = [

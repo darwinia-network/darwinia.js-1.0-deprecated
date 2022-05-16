@@ -3,11 +3,11 @@
 
 import type BN from 'bn.js';
 
+import { Exposure } from '@darwinia/types/interfaces';
+
 import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
 import { AccountId, Balance, BlockNumber, EraIndex, Keys, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
 import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '@polkadot/types/lookup';
-
-import { Exposure } from '../../../types/src';
 
 type DeriveUnlocking = {
   remainingEras: BN;

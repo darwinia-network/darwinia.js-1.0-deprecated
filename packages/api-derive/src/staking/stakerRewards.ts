@@ -187,8 +187,10 @@ export function _stakerRewards (
 
           return api.derive.staking.queryMulti(allValidators, { withLedger: true }).pipe(
             map((queriedVals): DeriveStakerReward[][] =>
-              queries.map(({ stakingLedger }, index): DeriveStakerReward[] =>
-                filterRewards(
+              queries.map(({ stakingLedger }, index): DeriveStakerReward[] => {
+                const lederValue = stakingLedger as unknown as DarwiniaStakingStructsStakingLedger;
+
+                return filterRewards(
                   eras,
                   stashValidators[index].map((validatorId): [string, DeriveStakingQuery] => [
                     validatorId,
@@ -196,9 +198,11 @@ export function _stakerRewards (
                   ]),
                   {
                     rewards: allRewards[index],
-                    stakingLedger
+                    stakingLedger: lederValue
+
                   }
-                )
+                );
+              }
               )
             )
           );
