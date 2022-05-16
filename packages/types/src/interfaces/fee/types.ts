@@ -1,11 +1,11 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
+import type { LaneId, MessageNonce } from '@darwinia/types/interfaces/bridges';
 import type { Struct, Vec } from '@polkadot/types-codec';
+import type { ITuple } from '@polkadot/types-codec/types';
 import type { Balance } from '@polkadot/types/interfaces/runtime';
 
-import { LaneId, MessageNonce } from '../darwiniaInject';
-import type { ITuple } from '@polkadot/types/types';
 
 /** @name Fee */
 export interface Fee extends Struct {
@@ -14,7 +14,7 @@ export interface Fee extends Struct {
 
 /** @name InProcessOrders */
 export interface InProcessOrders extends Struct {
-  readonly orders: Vec<ITuple<[LaneId,MessageNonce]>>;
+  readonly orders: Vec<ITuple<[LaneId, MessageNonce]>>;
 }
 
 export type PHANTOM_FEE = 'fee';

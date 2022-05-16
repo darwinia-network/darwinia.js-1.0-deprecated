@@ -1,4 +1,4 @@
-// Copyright 2017-2021 authors & contributors
+// Copyright 2017-2022 @darwinia/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { DefinitionRpcExt, Definitions } from '@polkadot/types/types';
@@ -19,7 +19,7 @@ function typesFromDefinitions (
 
 function jsonrpcFromDefinitions (
   definitions: Record<string, Definitions>
-) : Record<string, Record<string, DefinitionRpcExt>> {
+): Record<string, Record<string, DefinitionRpcExt>> {
   const jsonrpc: Record<string, Record<string, DefinitionRpcExt>> = {};
 
   Object

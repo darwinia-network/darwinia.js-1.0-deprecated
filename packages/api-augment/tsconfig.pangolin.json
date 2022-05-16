@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src",
+    },
+    "include": [
+      "**/pangolin_base.ts",
+      "**/pangolin/*.ts"
+    ],
+    "exclude": [
+      "**/pangolin/*.spec.ts",
+      "**/darwinia_base.ts",
+      "**/crab_base.ts",
+      "**/pangoro_base.ts",
+    ],
+    "references": [
+      { "path": "../rpc-augment/tsconfig.build.json" },
+      { "path": "../types/tsconfig.build.json" },
+      { "path": "../types-augment/tsconfig.pangolin.json" },
+      { "path": "../types-support/tsconfig.build.json" },
+    ]
+  }
+  

@@ -1,18 +1,19 @@
-// Copyright 2017-2020 @polkadot/types-known authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types-known authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 import { OverrideVersionedType } from '@polkadot/types/types';
 
-import darwiniaCrab from './darwinia-crab';
 import darwinia from './darwinia';
+import darwiniaCrab from './darwinia-crab';
 import pangolin from './pangolin';
+import pangoro from './pangoro';
 
 // Type overrides for specific spec types & versions as given in runtimeVersion
 const typesSpec: Record<string, OverrideVersionedType[]> = {
   Crab: darwiniaCrab,
   Darwinia: darwinia,
-  Pangolin: pangolin
+  Pangolin: pangolin,
+  Pangoro: pangoro
 };
 
 export default typesSpec;

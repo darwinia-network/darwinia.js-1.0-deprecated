@@ -22,10 +22,22 @@
     },
     "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
     "dependencies": {
-        "lodash": "^4.17.21",
-        "rxjs": "^7.5.2"
+        "@babel/runtime": "^7.17.9",
+        "@polkadot/api": "8.1.2-1",
+        "@polkadot/api-augment": "8.1.2-1",
+        "@polkadot/api-base": "8.1.2-1",
+        "@polkadot/rpc-core": "8.1.2-1",
+        "@polkadot/types": "8.1.2-1",
+        "@polkadot/types-codec": "8.1.2-1",
+        "@polkadot/util": "^9.0.1",
+        "@polkadot/util-crypto": "^9.0.1",
+        "rxjs": "^7.5.5"
     },
     "devDependencies": {
-        "@types/lodash": "^4.14.181"
+        "@polkadot/api": "8.1.2-1",
+        "@polkadot/api-augment": "8.1.2-1",
+        "@polkadot/rpc-augment": "8.1.2-1",
+        "@polkadot/rpc-provider": "8.1.2-1",
+        "@polkadot/types-support": "8.1.2-1"
     }
 }

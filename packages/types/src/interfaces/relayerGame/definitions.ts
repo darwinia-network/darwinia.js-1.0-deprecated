@@ -1,9 +1,10 @@
-// Copyright 2017-2020 @polkadot/types authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 // order important in structs... :)
 /* eslint-disable sort-keys */
+
+import type { Definitions } from '@polkadot/types/types';
 
 export default {
   rpc: {
@@ -11,23 +12,21 @@ export default {
   },
   types: {
     RelayHeaderId: 'EthereumBlockNumber',
-    RelayHeaderParcel: 'EthereumRelayHeaderParcel',
+    // RelayHeaderParcel: 'EthereumRelayHeaderParcel',
     RelayProofs: 'EthereumRelayProofs',
-    RelayAffirmationId: {
-      relayHeaderId: 'EthereumBlockNumber',
-      round: 'u32',
-      index: 'u32'
-    },
-    RelayAffirmationT: {
-      relayer: 'AccountId',
-      relayHeaderParcels: 'EthereumRelayHeaderParcel',
-      bond: 'Balance',
-      maybeExtendedRelayAffirmationId: 'Option<RelayAffirmationId>',
-      verified: 'bool'
-    },
+
     RelayVotingState: {
       ayes: 'Vec<AccountId>',
       nays: 'Vec<AccountId>'
+    },
+    RelayAffirmationId: {
+      relayHeaderId: 'RelayHeaderId',
+      round: 'u32',
+      index: 'u32'
+    },
+    EthereumRelayProofs: {
+      ethashProof: 'Vec<EthashProof>',
+      mmrProof: 'Vec<H256>'
     }
   }
-};
+} as Definitions;

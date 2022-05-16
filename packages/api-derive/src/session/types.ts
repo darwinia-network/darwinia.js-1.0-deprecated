@@ -1,10 +1,8 @@
-// Copyright 2017-2020 @polkadot/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
-
-import { BlockNumber, EraIndex, Moment, SessionIndex } from '@polkadot/types/interfaces';
+// Copyright 2017-2022 @darwinia/api-derive authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 import { Option, u32 } from '@polkadot/types';
+import { BlockNumber, EraIndex, Moment, SessionIndex } from '@polkadot/types/interfaces';
 
 export interface DeriveSessionIndexes {
   activeEra: EraIndex;

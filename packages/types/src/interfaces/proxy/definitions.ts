@@ -1,9 +1,10 @@
-// Copyright 2017-2020 @polkadot/types authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 // order important in structs... :)
 /* eslint-disable sort-keys */
+
+import type { Definitions } from '@polkadot/types/types';
 
 export default {
   types: {
@@ -17,8 +18,20 @@ export default {
         EthereumBridge: null
       }
     },
-    Announcement: 'ProxyAnnouncement'
+    Announcement: 'ProxyAnnouncement',
+    ProxyAnnouncement: {
+      real: 'AccountId',
+      callHash: 'Hash',
+      height: 'BlockNumber'
+    },
+    CrabRuntimePalletsProxyProxyType: {
+      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'IdentityJudgement', 'EthereumBridge']
+    },
+    DarwiniaRuntimePalletsProxyProxyType: {
+      _enum: ['Any', 'NonTransfer', 'Governance', 'Staking', 'IdentityJudgement', 'EthereumBridge']
+    }
+
   },
   rpc: {
   }
-};
+} as Definitions;

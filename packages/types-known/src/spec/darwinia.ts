@@ -1,6 +1,6 @@
-// Copyright 2017-2020 @polkadot/types-known authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types-known authors & contributors
+// SPDX-License-Identifier: Apache-2.0
+
 /* eslint-disable sort-keys */
 
 import { OverrideVersionedType } from '@polkadot/types/types';
@@ -85,7 +85,13 @@ const versioned: OverrideVersionedType[] = [
     }
   },
   {
-    minmax: [1160, undefined],
+    minmax: [1160, 1200],
+    types: {
+      ...sharedTypes
+    }
+  },
+  {
+    minmax: [1210, undefined],
     types: {
       ...sharedTypes
     }

@@ -1,16 +1,18 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
-import { StakingLedgerT as StakingLedger } from '../../../types/src';
-import { DeriveApi, DeriveUnlocking, DeriveStakingKeys } from '@polkadot/api-derive/types';
-import { firstMemo, memo } from '@polkadot/api-derive/util';
-import { ApiInterfaceRx } from '@polkadot/api/types';
 import type { Balance, BlockNumber } from '@polkadot/types/interfaces';
+
+import { combineLatest, map, Observable } from 'rxjs';
+
+import { ApiInterfaceRx } from '@polkadot/api/types';
+import { DeriveApi, DeriveStakingKeys, DeriveUnlocking } from '@polkadot/api-derive/types';
+import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { Moment } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { BN, isUndefined } from '@polkadot/util';
 import { Memoized } from '@polkadot/util/types';
-import { combineLatest, map, Observable } from 'rxjs';
+
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
 
 const QUERY_OPTS = {
@@ -22,7 +24,7 @@ const QUERY_OPTS = {
 };
 
 // eslint-disable-next-line space-before-function-paren
-function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undefined, best: BlockNumber): Balance {
+function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber): Balance {
   if (isUndefined(stakingLedger)) {
     return api.registry.createType('Balance');
   }
@@ -38,15 +40,15 @@ function redeemableSum(api: ApiInterfaceRx, stakingLedger: StakingLedger | undef
 // eslint-disable-next-line space-before-function-paren
 function calculateUnlocking(
   api: ApiInterfaceRx,
-  stakingLedger: StakingLedger | undefined,
+  stakingLedger: DarwiniaStakingStructsStakingLedger | undefined,
   best: BlockNumber,
   currencyType: 'ring' | 'kton'
 ): [DeriveUnlocking[] | undefined, Balance] {
-  if (isUndefined(stakingLedger) || !stakingLedger[`${currencyType}StakingLock`]) {
+  if (isUndefined(stakingLedger) || !stakingLedger.get(`${currencyType}StakingLock`)) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
 
-  const stakingLock = stakingLedger[`${currencyType}StakingLock`] as StakingLock;
+  const stakingLock = stakingLedger.get(`${currencyType}StakingLock`) as unknown as StakingLock;
   const unlockingChunks = stakingLock?.unbondings.filter(({ until }) => {
     return until.gt(best);
   });
@@ -61,7 +63,7 @@ function calculateUnlocking(
 }
 
 function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: DeriveStakingQuery): DeriveStakingAccount {
-  const stakingLedger = query.stakingLedger as unknown as StakingLedger;
+  const stakingLedger = query.stakingLedger;
   const calcUnlocking = calculateUnlocking(api, stakingLedger, best, 'ring');
   const calcUnlockingKton = calculateUnlocking(api, stakingLedger, best, 'kton');
   const depositItems = stakingLedger?.depositItems?.filter(({ expireTime }) => expireTime.toBn().gt(now));
@@ -83,7 +85,7 @@ function parseResult (api: DeriveApi, best: BlockNumber, now: Moment, query: Der
 /**
  * @description From a list of stashes, fill in all the relevant staking details
  */
-export function accounts (instanceId: string, api: DeriveApi) : Memoized<(accountIds:(Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
+export function accounts (instanceId: string, api: DeriveApi): Memoized<(accountIds: (Uint8Array | string)[]) => Observable<DeriveStakingAccount & DeriveStakingKeys>> {
   return memo(instanceId, (accountIds: (Uint8Array | string)[]) => {
     const keysObs = api.derive.staking.keysMulti(accountIds);
     const queryObs = api.derive.staking.queryMulti(accountIds, QUERY_OPTS);
@@ -92,8 +94,9 @@ export function accounts (instanceId: string, api: DeriveApi) : Memoized<(accoun
 
     return combineLatest([keysObs, queryObs, bestObs, timestampObs]).pipe(
       map(([keys, queries, best, timestamp]) =>
+
         queries.map((q, index) => ({
-          ...parseResult(api, best, timestamp, q as unknown as DeriveStakingQuery),
+          ...parseResult(api, best, timestamp as Moment, { nextSessionIds: [], sessionIds: [], ...q }),
           ...keys[index]
         }))
       )

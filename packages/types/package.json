@@ -22,6 +22,14 @@
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
   "dependencies": {
-    "@darwinia/types-known": "^2.7.5"
+    "@babel/runtime": "^7.17.9",
+    "@darwinia/types-known": "^2.7.5",
+    "@polkadot/keyring": "^9.0.1",
+    "@polkadot/types-augment": "8.1.2-1",
+    "@polkadot/types-codec": "8.1.2-1",
+    "@polkadot/types-create": "8.1.2-1",
+    "@polkadot/util": "^9.0.1",
+    "@polkadot/util-crypto": "^9.0.1",
+    "rxjs": "^7.5.5"
   }
 }

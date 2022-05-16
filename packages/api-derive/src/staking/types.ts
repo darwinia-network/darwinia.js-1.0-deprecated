@@ -1,18 +1,13 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
-import { Exposure, StakingLedgerT as StakingLedger } from '../../../types/src';
-import { TimeDepositItem } from '../../../types/src/interfaces/darwiniaInject';
-import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
-import { AccountId,
-  Balance,
-  BlockNumber,
-  EraIndex,
-  Keys,
-  RewardDestination,
-  ValidatorPrefs } from '@polkadot/types/interfaces';
 import type BN from 'bn.js';
+
+import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
+import { AccountId, Balance, BlockNumber, EraIndex, Keys, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '@polkadot/types/lookup';
+
+import { Exposure } from '../../../types/src';
 
 type DeriveUnlocking = {
   remainingEras: BN;
@@ -75,13 +70,13 @@ export interface DeriveStakingQuery extends DeriveStakingStash {
   accountId: AccountId;
   nextSessionIds: AccountId[];
   sessionIds: AccountId[];
-  stakingLedger: StakingLedger;
+  stakingLedger: DarwiniaStakingStructsStakingLedger;
 }
 
 export interface DeriveStakingAccount extends DeriveStakingQuery, DeriveStakingKeys {
   redeemable?: Balance;
   unlocking?: DeriveUnlocking[];
-  activeDepositItems?: TimeDepositItem[];
+  activeDepositItems?: DarwiniaStakingStructsTimeDepositItem[];
   unlockingTotalValue: Balance;
   unlockingKton?: DeriveUnlocking[];
   unlockingKtonTotalValue: Balance;

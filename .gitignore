@@ -25,3 +25,12 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json
 test.sh
+.pnp.*
+.vscode/
+cc-test-reporter
+lerna-debug.log*
+npm-debug.log*
+package-lock.json
+*.tsbuildinfo
+yarn-debug.log*
+yarn-error.log*

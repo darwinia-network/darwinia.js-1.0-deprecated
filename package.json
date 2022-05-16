@@ -1,64 +1,50 @@
 {
+  "bugs": "https://github.com/darwinia-network/darwinia.js/issues",
+  "homepage": "https://github.com/darwinia-network/darwinia.js#readme",
+  "license": "Apache-2.0",
   "name": "darwinia.js",
-  "jest":{
-    "testEnvironment": "node",
-    "moduleFileExtensions": [
-      "js",
-      "ts",
-      "json"
-    ],
-    
-    "transformIgnorePatterns": [
-      "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
-    ]
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darwinia-network/darwinia.js.git"
   },
-  "repository": "https://github.com/darwinia-network/darwinia.js",
-  "license": "Apache-2",
+  "sideEffects": false,
+  "version": "2.7.6",
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "babel-core": "^7.0.0-bridge.0",
-    "typescript": "4.3.3"
-  },
   "scripts": {
-    "build": "node polkadot-dev-build-ts.js",
-    "build:interfaces": "polkadot-types-internal-interfaces",
-    "publish": "node polkadot-ci-ghact-build.js",
-    "build:ts": "node polkadot-dev-build-ts.js",
+    "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
+    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts",
+    "build:defs": "darwinia-types-from-defs",
+    "build:interfaces": "darwinia-types-internal-interfaces",
+    "build:ts": "polkadot-dev-build-ts",
+    "chain:info": "polkadot-types-chain-info",
+    "clean": "polkadot-dev-clean-build",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
     "docs:release": "polkadot-ci-ghact-docs",
-    "chain:info": "polkadot-types-chain-info",
-    "lint": "polkadot-dev-run-lint",
-    "clean": "polkadot-dev-clean-build",
-    "postinstall": "polkadot-dev-yarn-only",
-    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
-    "test:one": "polkadot-dev-run-test",
-    "test:watch": "polkadot-dev-run-test --watch",
-    "generate:defs": "ts-node --skip-project node_modules/.bin/polkadot-types-from-defs --package '.' --input ./packages/types/src/interfaces",
-    "generate:meta": "ts-node --skip-project node_modules/.bin/polkadot-types-from-chain --package '.' --endpoint ./packages/types/src/metadata/darwinia.json --output ./packages/types/src/interfaces",
     "lernaversion": "lerna version --skip-git",
-    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts"
-  },
-  "dependencies": {
-    "@polkadot/api": "7.13.1"
+    "lint": "polkadot-dev-run-lint",
+    "postinstall": "polkadot-dev-yarn-only",
+    "publish": "darwinia-ci-ghact-build",
+    "test": "polkadot-dev-run-test --coverage --runInBand --testPathIgnorePatterns e2e",
+    "test:one": "polkadot-dev-run-test --detectOpenHandles --forceExit",
+    "test:watch": "polkadot-dev-run-test --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@babel/node": "^7.13.10",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
-    "@polkadot/dev": "^0.55.46",
-    "@polkadot/ts": "^0.3.42",
-    "@polkadot/typegen": "^7.13.1",
+    "@darwinia/typegen": "workspace:packages/typegen",
+    "@polkadot/dev": "^0.66.5",
+    "@polkadot/ts": "^0.4.13",
     "@types/jest": "^26.0.13",
-    "@vuepress/plugin-search": "^1.5.4",
     "copyfiles": "^2.3.0",
-    "ts-node": "^9.1.1",
-    "tsconfig-paths": "^3.9.0",
-    "typedoc": "^0.19.1",
-    "typedoc-plugin-markdown": "^2.4.2",
-    "typedoc-plugin-no-inherit": "^1.1.10"
+    "cpx": "^1.5.0",
+    "ts-node": "^9.1.1"
   },
-  "version": "2.6.9"
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0",
+    "typescript": "4.3.3"
+  }
 }

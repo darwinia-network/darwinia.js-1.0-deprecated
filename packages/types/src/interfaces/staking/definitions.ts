@@ -1,27 +1,28 @@
-// Copyright 2017-2020 @polkadot/types authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 // order important in structs... :)
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
   rpc: {
-    powerOf: {
-      alias: ['staking_powerOf'],
-      description: 'staking_powerOf',
-      params: [
-        {
-          name: 'accountId',
-          type: 'AccountId'
-        }
-      ],
-      type: 'PowerOf'
-    }
   },
   types: {
     PowerOf: {
       power: 'Power'
-    }
+    },
+
+    PalletStakingIndividualExposure: {
+      who: 'AccountId32',
+      value: 'Compact<u128>'
+    },
+    RewardPoint: 'u32',
+
+    SpanIndex: 'u32',
+
+    UnappliedSlashOther: '(AccountId, RKT)'
+
   }
-};
+} as Definitions;

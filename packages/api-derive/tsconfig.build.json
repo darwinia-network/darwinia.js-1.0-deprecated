@@ -1,0 +1,28 @@
+{
+    "extends": "@polkadot/dev/config/tsconfig.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src",
+      "composite": true,
+      "paths": {
+      
+        "@darwinia/types": ["types/src"],
+        "@darwinia/types/*": ["types/src/*"],
+        "@polkadot/types/lookup":["types-augment/src/lookup/pangolin"],
+        "@polkadot/types/lookup/*":["types-augment/src/lookup/pangolin/*"],
+    
+      },
+      "skipLibCheck": true
+    },
+    "exclude": [
+      "**/test/*",
+      "**/checkTypes.manual.ts",
+      "**/*.spec.ts"
+    ],
+    "references": [
+        { "path": "../types/tsconfig.build.json" },
+        { "path": "../types-augment/tsconfig.pangolin.json" },
+    ]
+  }
+  

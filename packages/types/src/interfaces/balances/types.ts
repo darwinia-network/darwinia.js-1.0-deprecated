@@ -1,8 +1,13 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type { Enum, Struct } from '@polkadot/types-codec';
+import type { Enum, Struct, U8aFixed } from '@polkadot/types-codec';
 import type { Balance } from '@polkadot/types/interfaces/runtime';
+
+
+
+/** @name LockIdentifier */
+export interface LockIdentifier extends U8aFixed {}
 
 /** @name Status */
 export interface Status extends Enum {

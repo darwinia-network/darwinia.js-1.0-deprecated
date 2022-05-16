@@ -1,13 +1,14 @@
-// Copyright 2017-2021 authors & contributors
+// Copyright 2017-2022 @darwinia/types authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable sort-keys */
 
+import typesSpec from '@darwinia/types-known/spec';
+
 import { OverrideBundleDefinition, OverrideVersionedType, RegistryTypes } from '@polkadot/types/types';
 
-import typesSpec from '@darwinia/types-known/spec';
 import balances from '../interfaces/balances/definitions';
 import bridges from '../interfaces/bridges/definitions';
 import bsc from '../interfaces/bsc/definitions';
@@ -120,7 +121,7 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
     Pangolin: getBundleFromSpecName('Pangolin', true),
-    Pangoro: getBundleFromSpecName('Pangolin', true)
+    Pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -130,7 +131,7 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
     crab: getBundleFromSpecName('Crab', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
     pangolin: getBundleFromSpecName('Pangolin', true),
-    pangoro: getBundleFromSpecName('Pangolin', true)
+    pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
 
@@ -139,6 +140,6 @@ export const typesBundle: SpecOverrideBundleDefinition = {
     Crab: getBundleFromSpecName('Crab', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
     Pangolin: getBundleFromSpecName('Pangolin', false),
-    Pangoro: getBundleFromSpecName('Pangolin', false)
+    Pangoro: getBundleFromSpecName('Pangoro', false)
   }
 };

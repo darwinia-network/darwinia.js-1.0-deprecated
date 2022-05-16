@@ -1,21 +1,23 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
-import { DeriveEraPoints,
-  DeriveEraPrefs,
-  DeriveEraRewards,
-  DeriveEraValPrefs,
-  DeriveStakerRewardValidator,
-  DeriveStakingQuery } from '@polkadot/api-derive/staking/types';
-import { DeriveApi } from '@polkadot/api-derive/types';
-import { memo } from '@polkadot/api-derive/util';
-import { ApiInterfaceRx } from '@polkadot/api/types';
-import { AccountId, EraIndex } from '@polkadot/types/interfaces';
-import { PalletStakingStakingLedger } from '@polkadot/types/lookup';
-import { BN, BN_ZERO, BN_BILLION } from '@polkadot/util';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+
 import { combineLatest, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+
+import { ApiInterfaceRx } from '@polkadot/api/types';
+import { DeriveEraPoints, DeriveEraPrefs, DeriveEraRewards, DeriveEraValPrefs, DeriveStakerRewardValidator, DeriveStakingQuery } from '@polkadot/api-derive/staking/types';
+import { DeriveApi } from '@polkadot/api-derive/types';
+import { memo } from '@polkadot/api-derive/util';
+import { u32 } from '@polkadot/types';
+import { AccountId, EraIndex } from '@polkadot/types/interfaces';
+import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
+import { BN, BN_BILLION, BN_ZERO } from '@polkadot/util';
+
 import { DeriveStakerExposure, DeriveStakerReward } from './types';
 
 type ErasResult = [DeriveEraPoints[], DeriveEraPrefs[], DeriveEraRewards[]];
@@ -119,7 +121,7 @@ function removeClaimed (validators: string[], queryValidators: DeriveStakingQuer
     if (index !== -1) {
       const valLedger = queryValidators[index].stakingLedger;
 
-      if (valLedger?.claimedRewards.some((e) => reward.era.eq(e))) {
+      if (valLedger?.claimedRewards.some((e: u32) => reward.era.eq(e))) {
         rm.push(validatorId);
       }
     }
@@ -133,9 +135,10 @@ function removeClaimed (validators: string[], queryValidators: DeriveStakingQuer
 function filterRewards (
   eras: EraIndex[],
   valInfo: [string, DeriveStakingQuery][],
-  { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: PalletStakingStakingLedger }
+  { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: DarwiniaStakingStructsStakingLedger }
 ): DeriveStakerReward[] {
-  const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s) => s.eq(e)));
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s: u32) => s.eq(e)));
   const validators = valInfo.map(([v]) => v);
   const queryValidators = valInfo.map(([, q]) => q);
 

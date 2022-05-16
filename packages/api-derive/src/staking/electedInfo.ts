@@ -1,14 +1,16 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// SPDX-License-Identifier: Apache-2.0
 
-import { DeriveStakingElected, StakingQueryFlags } from '@polkadot/api-derive/types';
-import { memo } from '@polkadot/api-derive/util';
-import { ApiInterfaceRx } from '@polkadot/api/types';
-import { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
-import { arrayFlatten } from '@polkadot/util';
+import type { Option, u32 } from '@polkadot/types-codec';
+
 import { combineLatest, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+
+import { ApiInterfaceRx } from '@polkadot/api/types';
+import { DeriveStakingElected, StakingQueryFlags } from '@polkadot/api-derive/types';
+import { memo } from '@polkadot/api-derive/util';
+import { AccountId, ValidatorPrefs } from '@polkadot/types/interfaces';
+import { arrayFlatten } from '@polkadot/util';
 
 export interface IDeriveStakingElected extends DeriveStakingElected {
   activeCommissions: ValidatorPrefs[];
@@ -29,7 +31,7 @@ export function electedInfo (instanceId: string, api: ApiInterfaceRx): () => Obs
           const infoObs = api.derive.staking
             .queryMulti(combineAccounts(nextElected, validators), flags)
             .pipe(map((info): Pick<IDeriveStakingElected, 'info'> => ({ info })));
-          const commissionsObs = (api.query.staking.currentEra()).pipe(
+          const commissionsObs = (api.query.staking.currentEra<Option<u32>>()).pipe(
             switchMap((currentEra) =>
               combineLatest(
                 nextElected.map((accountId) =>

@@ -1,0 +1,20 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "baseUrl": "..",
+      "outDir": "./build",
+      "rootDir": "./src"
+    },
+    "include": [
+      "**/pangoro/*.ts"
+    ],
+    "exclude": [
+      "**/pangoro/*.spec.ts"
+    ],
+    "references": [
+      { "path": "../rpc-augment/tsconfig.build.json" },
+      { "path": "../types/tsconfig.build.json" },
+      
+    ]
+  }
+  

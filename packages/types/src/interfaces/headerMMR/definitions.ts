@@ -1,28 +1,13 @@
-// Copyright 2017-2020 @polkadot/types authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 // order important in structs... :)
 /* eslint-disable sort-keys */
 
+import type { Definitions } from '@polkadot/types/types';
+
 export default {
-  rpc: {
-    genProof: {
-      alias: ['headerMMR_genProof'],
-      description: 'headerMMR_genProof',
-      params: [
-        {
-          name: 'blockNumberOfMemberleaf',
-          type: 'u64'
-        },
-        {
-          name: 'blockNumberOfLastLeaf',
-          type: 'u64'
-        }
-      ],
-      type: 'MMRProofResult'
-    }
-  },
+  rpc: {},
   types: {
     MMRProofResult: {
       mmrSize: 'u64',
@@ -35,4 +20,4 @@ export default {
       lastPosition: 'NodeIndex'
     }
   }
-};
+} as Definitions;

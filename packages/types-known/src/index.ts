@@ -1,14 +1,12 @@
-// Copyright 2017-2020 @polkadot/types-known authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
-
-import { Hash } from '@polkadot/types/interfaces';
-import { DefinitionRpc, DefinitionRpcSub, Registry, RegistryTypes, OverrideModuleType, OverrideVersionedType } from '@polkadot/types/types';
-import { ChainUpgradeVersion } from './upgrades/types';
+// Copyright 2017-2022 @darwinia/types-known authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 import { Text } from '@polkadot/types';
+import { Hash } from '@polkadot/types/interfaces';
+import { DefinitionRpc, DefinitionRpcSub, OverrideModuleType, OverrideVersionedType, Registry, RegistryTypes } from '@polkadot/types/types';
 import { BN, bnToBn, isUndefined } from '@polkadot/util';
 
+import { ChainUpgradeVersion } from './upgrades/types';
 import typesChain from './chain';
 import typesMeta from './metadata';
 import typesModules from './modules';

@@ -1,12 +1,44 @@
-// Copyright 2017-2020 @polkadot/types authors & contributors
-// This software may be modified and distributed under the terms
-// of the Apache-2.0 license. See the LICENSE file for details.
+// Copyright 2017-2022 @darwinia/types authors & contributors
+// SPDX-License-Identifier: Apache-2.0
 
 /* eslint-disable sort-keys */
+
+import type { Definitions } from '@polkadot/types/types';
 
 export default {
   rpc: {},
   types: {
-    MessageId: '(LaneId, MessageNonce)'
+    MessageId: '(LaneId, MessageNonce)',
+    LaneId: '[u8; 4]',
+    MessageNonce: 'u64',
+
+    CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter: {
+      _enum: {
+        DarwiniaToCrabConversionRate: 'FixedU128'
+      }
+    },
+
+    FixedU128: 'UInt<128, FixedU128>',
+
+    RelayerId: 'AccountId',
+
+    UnrewardedRelayer: {
+      relayer: 'RelayerId',
+      messages: 'DeliveredMessages'
+    },
+    DeliveredMessages: {
+      begin: 'MessageNonce',
+      end: 'MessageNonce',
+      dispatchResults: 'BitVec'
+    },
+    MessagePayload: 'Vec<u8>',
+
+    TechnicalMember: 'AccountId',
+
+    BridgedHeaderHash: 'Hash',
+
+    BridgedBlockHash: 'Hash',
+    RawStorageProof: 'Vec<Bytes>'
+
   }
-};
+} as Definitions;
