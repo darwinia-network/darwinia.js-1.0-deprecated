@@ -34,5 +34,5 @@ export function main (): void {
   };
 
   generateTsDef(allDefs, 'packages/types/src/interfaces', '@darwinia/types/interfaces');
-  generateInterfaceTypes(allDefs, 'packages/types-augment/src/registry/interfaces.ts');
+  generateInterfaceTypes(allDefs, 'packages/types/src/interfaces/augment-types.ts');
 }

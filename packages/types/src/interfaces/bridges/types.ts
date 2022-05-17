@@ -3,7 +3,8 @@
 
 import type { BitVec, Bytes, Enum, Struct, U8aFixed, UInt, Vec, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { Hash, AccountId } from '@polkadot/types/interfaces/runtime';
+
+import type { AccountId, Hash } from '@polkadot/types/interfaces/runtime';
 
 /** @name BridgedBlockHash */
 export interface BridgedBlockHash extends Hash {}
@@ -11,15 +12,12 @@ export interface BridgedBlockHash extends Hash {}
 /** @name BridgedHeaderHash */
 export interface BridgedHeaderHash extends Hash {}
 
-
 /** @name CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter */
 export interface CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter extends Enum {
   readonly isDarwiniaToCrabConversionRate: boolean;
   readonly asDarwiniaToCrabConversionRate: FixedU128;
   readonly type: 'DarwiniaToCrabConversionRate';
 }
-
-
 
 /** @name DeliveredMessages */
 export interface DeliveredMessages extends Struct {
