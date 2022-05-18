@@ -82,7 +82,3 @@ export interface DeriveStakingAccount extends DeriveStakingQuery, DeriveStakingK
   unlockingKtonTotalValue: Balance;
   activeDepositAmount?: Balance;
 }
-
-export interface PowerOf {
-  power: BN
-}

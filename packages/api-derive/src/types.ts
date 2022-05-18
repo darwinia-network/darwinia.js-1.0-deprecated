@@ -5,3 +5,4 @@ export * from './session/types';
 export * from './staking/types';
 export * from './accounts/types';
 export * from './feeMarket/types';
+export * from './darwiniaStaking/types';
