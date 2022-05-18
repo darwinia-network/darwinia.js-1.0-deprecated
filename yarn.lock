@@ -1464,6 +1464,7 @@ __metadata:
     "@polkadot/types-support": 8.1.2-1
     "@polkadot/util": ^9.0.1
     "@polkadot/util-crypto": ^9.0.1
+    bignumber.js: 9.0.2
     rxjs: ^7.5.5
   languageName: unknown
   linkType: soft
@@ -4119,6 +4120,13 @@ __metadata:
   version: 2.2.2
   resolution: "before-after-hook@npm:2.2.2"
   checksum: 06dd8fc2a1c5c4a16f21d725a7b7d05814d94c4a0a003abe923bb509b3863638efc8ab89515192046dc8d29bbc5dbd3f75fe47a2d3bffbffae427fc976c142bb
+  languageName: node
+  linkType: hard
+
+"bignumber.js@npm:9.0.2":
+  version: 9.0.2
+  resolution: "bignumber.js@npm:9.0.2"
+  checksum: 02ddb54ceea94179430857b495ffa6b7795023356392e8a084ed51963d641384edf2c5b492e262eb4cc489712496707783bfd2588bdad9f7ffec9c929cc648d7
   languageName: node
   linkType: hard
 
