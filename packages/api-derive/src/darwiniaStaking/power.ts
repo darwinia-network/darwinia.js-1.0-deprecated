@@ -15,35 +15,31 @@ import { BN } from '@polkadot/util';
 
 import { PowerOf } from './types';
 
-const ration = 500000000;
+const ration = 500_000_000;
 
 function stashPower (api: DeriveApi, accountId: AccountId | string | Uint8Array): Observable<PowerOf> {
   return api.query.staking.bonded(accountId).pipe(
-    switchMap((account): Observable<PowerOf> =>
-      account.isNone
-        ? of({ power: new BN('0') })
-        : api.queryMulti<[u128, u128, Option<DarwiniaStakingStructsStakingLedger>]>([
-          api.query.staking.ktonPool,
-          api.query.staking.ringPool,
-          [api.query.staking.ledger, account.unwrap()]
-        ]).pipe(
-          map(([ktonTatal, ringTatal, ledger]): PowerOf => {
-            if (ledger.isNone) {
-              return { power: new BN('0') };
-            }
+    switchMap(
+      (account): Observable<PowerOf> =>
+        account.isNone
+          ? of({ power: new BN('0') })
+          : api.queryMulti<[u128, u128, Option<DarwiniaStakingStructsStakingLedger>]>([api.query.staking.ktonPool, api.query.staking.ringPool, [api.query.staking.ledger, account.unwrap()]]).pipe(
+            map(([ktonTotal, ringTotal, ledger]): PowerOf => {
+              if (ledger.isNone) {
+                return { power: new BN('0') };
+              }
 
-            const l = ledger.unwrap();
-            const active = new BigNumber(l.active.toString());
-            const activeKton = new BigNumber(l.activeKton.toString());
+              const l = ledger.unwrap();
+              const active = new BigNumber(l.active.toString());
+              const activeKton = new BigNumber(l.activeKton.toString());
 
-            const ringPower = active.div(ringTatal.toString()).multipliedBy(ration);
-            const ktonPower = activeKton.div(ktonTatal.toString()).multipliedBy(ration);
+              const ringPower = active.div(ringTotal.toString()).multipliedBy(ration);
+              const ktonPower = activeKton.div(ktonTotal.toString()).multipliedBy(ration);
 
-            return { power: new BN(ringPower.plus(ktonPower).toFixed(0).toString()) };
-          })
-        )
+              return { power: new BN(ringPower.plus(ktonPower).toFixed(0).toString()) };
+            })
+          )
     )
-
   );
 }
 
@@ -61,6 +57,5 @@ function stashPower (api: DeriveApi, accountId: AccountId | string | Uint8Array)
  * ```
  */
 export function powerOf (instanceId: string, api: DeriveApi): (accountId: AccountId | string | Uint8Array) => Observable<PowerOf> {
-  return memo(instanceId, (accountId: AccountId | string | Uint8Array): Observable<PowerOf> =>
-    stashPower(api, accountId));
+  return memo(instanceId, (accountId: AccountId | string | Uint8Array): Observable<PowerOf> => stashPower(api, accountId));
 }

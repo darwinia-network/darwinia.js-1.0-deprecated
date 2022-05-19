@@ -10,19 +10,15 @@ import type { DeriveMarketFee } from './feeMarket/types';
 import { AccountId, LaneId, MessageNonce } from '@polkadot/types/interfaces';
 import { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 
-declare module '@polkadot/api-derive/derive'{
-
+declare module '@polkadot/api-derive/derive' {
   export interface ExactDerive {
-
     // our derive section definition
-    fee: { markert: ReturnType<() => () => Observable<DeriveMarketFee | undefined>>,
-      inProcessOrder: ReturnType<() => () => Observable<ITuple<[LaneId, MessageNonce]>[]>>},
+    fee: { markert: ReturnType<() => () => Observable<DeriveMarketFee | undefined>>; inProcessOrder: ReturnType<() => () => Observable<ITuple<[LaneId, MessageNonce]>[]>> };
     usableBalance: {
-      balance: ReturnType<() => (tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) => Observable<DeriveUsableAccount>>
-    }
+      balance: ReturnType<() => (tokenType: u8 | AnyNumber | Uint8Array, accountId: AccountId | string | Uint8Array) => Observable<DeriveUsableAccount>>;
+    };
     darwiniaStaking: {
-      powerOf: ReturnType<() => (accountId: AccountId | string | Uint8Array) => Observable<PowerOf>>,
-    }
-
+      powerOf: ReturnType<() => (accountId: AccountId | string | Uint8Array) => Observable<PowerOf>>;
+    };
   }
 }

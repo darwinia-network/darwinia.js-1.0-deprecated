@@ -11,5 +11,7 @@ export const overwriteDerive = {
 };
 
 export const extentionDerive = {
-  darwiniStaking, feeMarket, usableBalance
+  darwiniStaking,
+  feeMarket,
+  usableBalance
 };

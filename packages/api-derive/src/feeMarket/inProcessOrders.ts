@@ -32,6 +32,5 @@ function orders (api: DeriveApi): Observable<ITuple<[LaneId, MessageNonce]>[]> {
  * ```
  */
 export function inProcessOrders (instanceId: string, api: DeriveApi): () => Observable<ITuple<[LaneId, MessageNonce]>[]> {
-  return memo(instanceId, (): Observable<ITuple<[LaneId, MessageNonce]>[]> =>
-    orders(api));
+  return memo(instanceId, (): Observable<ITuple<[LaneId, MessageNonce]>[]> => orders(api));
 }

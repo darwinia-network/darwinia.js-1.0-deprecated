@@ -4,5 +4,5 @@
 import type BN from 'bn.js';
 
 export interface PowerOf {
-  power: BN
+  power: BN;
 }

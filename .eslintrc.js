@@ -21,5 +21,5 @@ module.exports = {
       { pattern: ' Copyright 20(17|18|19|20|21|22)(-2022)? @darwinia/' },
       ' SPDX-License-Identifier: Apache-2.0'
     ], 2],
-  }
+  },
 };

@@ -20,7 +20,7 @@ const QUERY_OPTS = {
   withLedger: true,
   withNominations: true,
   // eslint-disable-next-line comma-dangle
-  withPrefs: true,
+  withPrefs: true
 };
 
 // eslint-disable-next-line space-before-function-paren
@@ -38,12 +38,7 @@ function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStruct
 }
 
 // eslint-disable-next-line space-before-function-paren
-function calculateUnlocking(
-  api: ApiInterfaceRx,
-  stakingLedger: DarwiniaStakingStructsStakingLedger | undefined,
-  best: BlockNumber,
-  currencyType: 'ring' | 'kton'
-): [DeriveUnlocking[] | undefined, Balance] {
+function calculateUnlocking(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber, currencyType: 'ring' | 'kton'): [DeriveUnlocking[] | undefined, Balance] {
   if (isUndefined(stakingLedger) || !stakingLedger.get(`${currencyType}StakingLock`)) {
     return [undefined, api.registry.createType('Balance', 0)];
   }
@@ -94,7 +89,6 @@ export function accounts (instanceId: string, api: DeriveApi): Memoized<(account
 
     return combineLatest([keysObs, queryObs, bestObs, timestampObs]).pipe(
       map(([keys, queries, best, timestamp]) =>
-
         queries.map((q, index) => ({
           ...parseResult(api, best, timestamp as Moment, q as unknown as DeriveStakingQuery),
           ...keys[index]
@@ -104,6 +98,4 @@ export function accounts (instanceId: string, api: DeriveApi): Memoized<(account
   });
 }
 
-export const account = firstMemo((api: DeriveApi, accountId: Uint8Array | string) =>
-  api.derive.staking.accounts([accountId])
-);
+export const account = firstMemo((api: DeriveApi, accountId: Uint8Array | string) => api.derive.staking.accounts([accountId]));

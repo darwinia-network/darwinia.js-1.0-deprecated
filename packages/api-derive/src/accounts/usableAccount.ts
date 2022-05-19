@@ -18,42 +18,42 @@ function systemAccount (api: DeriveApi, tokenType: TokenType, accountId: Account
     return of({ usableBalance: api.registry.createType<Balance>('Balance', 0) });
   }
 
-  return api.queryMulti<[FrameSystemAccountInfo, Vec<PalletBalancesBalanceLock>, Vec<PalletBalancesBalanceLock>]>([
+  return api
+    .queryMulti<[FrameSystemAccountInfo, Vec<PalletBalancesBalanceLock>, Vec<PalletBalancesBalanceLock>]>([
     [api.query.system.account, accountId],
     [api.query.balances.locks, accountId],
     [api.query.kton.locks, accountId]
-  ]).pipe(
-    map(([balanceInfo, locks, ktonLocks]): DeriveUsableAccount => {
-      const { free, freeKton } = balanceInfo.data;
+  ])
+    .pipe(
+      map(([balanceInfo, locks, ktonLocks]): DeriveUsableAccount => {
+        const { free, freeKton } = balanceInfo.data;
 
-      let maxlock = new BN(0);
-      let balanceFree: Balance = api.registry.createType('Balance');
+        let maxlock = new BN(0);
+        let balanceFree: Balance = api.registry.createType('Balance');
 
-      if (tokenType === TokenType.Ring) {
-        balanceFree = free;
-        locks.forEach((item) => {
-          if (item.reasons.isFee) {
-            return;
-          }
+        if (tokenType === TokenType.Ring) {
+          balanceFree = free;
+          locks.forEach((item) => {
+            if (item.reasons.isFee) {
+              return;
+            }
 
-          maxlock = bnMax(item.amount, maxlock);
+            maxlock = bnMax(item.amount, maxlock);
+          });
+        } else {
+          balanceFree = freeKton;
+          ktonLocks.forEach((item) => {
+            if (item.reasons.isFee) {
+              return;
+            }
+
+            maxlock = bnMax(item.amount, maxlock);
+          });
         }
-        );
-      } else {
-        balanceFree = freeKton;
-        ktonLocks.forEach((item) => {
-          if (item.reasons.isFee) {
-            return;
-          }
 
-          maxlock = bnMax(item.amount, maxlock);
-        });
-      }
-
-      return { usableBalance: api.registry.createType('Balance', balanceFree.sub(maxlock)) };
-    })
-
-  );
+        return { usableBalance: api.registry.createType('Balance', balanceFree.sub(maxlock)) };
+      })
+    );
 }
 
 /**
@@ -71,6 +71,5 @@ function systemAccount (api: DeriveApi, tokenType: TokenType, accountId: Account
  * });
  */
 export function usableAccount (instanceId: string, api: DeriveApi): (tokenType: TokenType, accountId: AccountId | string | Uint8Array) => Observable<DeriveUsableAccount> {
-  return memo(instanceId, (tokenType: TokenType, accountId: AccountId | string | Uint8Array): Observable<DeriveUsableAccount> =>
-    systemAccount(api, tokenType, accountId));
+  return memo(instanceId, (tokenType: TokenType, accountId: AccountId | string | Uint8Array): Observable<DeriveUsableAccount> => systemAccount(api, tokenType, accountId));
 }
