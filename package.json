@@ -15,7 +15,6 @@
   ],
   "scripts": {
     "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
-    "build-types-bundle": "node -r ts-node/register -r tsconfig-paths/register packages/types/scripts/build-json.ts",
     "build:defs": "darwinia-types-from-defs",
     "build:interfaces": "darwinia-types-internal-interfaces",
     "build:ts": "polkadot-dev-build-ts",
