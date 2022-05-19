@@ -8,12 +8,14 @@ This Library contains Typescript bindings for custom darwinia-node modules.
 
 The repo is split up into a number of internal packages 
 
+* @darwinia/api-augment applies darwinia, crab, pangolin, pangoro types and endpoint augmentation
 * @darwinia/api-derive Derived api for darwinia.
-
 * @darwinia/api-option Provider user to inject derived, rpc method and additional types used by runtime modules.
-  
-* @darwinia/types Definition of customize types for Darwinia's chains(Darwinia, Crab, Crab parachain, Pangolin/Pangoro etc).
+* @darwinia/rpc-augment  decorate all RPC endpoints
+* @darwinia/types Definition of customize types for Darwinia's chains(Darwinia, Crab, Crab parachain, Pangolin/Pangoro).
+* @darwnia/types-augment applies all generic lookup types for darwinia, crab, pangolin, pangoro.
 * @darwinia/types-known Specific known base type overrides for Darwinia's chains & specs. This does not contain user-specfic types. 
+* @darwnia/types-support runtime metadata for darwinia, crab, pangolin, pangoro.
 	
 	
 ### Dependencies
@@ -27,7 +29,10 @@ Your project's @polkadot/api version must be greater than 7.11.1, The polkadot/a
 yarn add @darwinia/types  
 ```
 
-You will also need to update the tsconfig.json of your project to include the following: 
+You will also need to update the **tsconfig.json** of your project to include the following: 
+
+
+#### mapping darwinia api and types
 
 ```json
 
@@ -35,35 +40,102 @@ You will also need to update the tsconfig.json of your project to include the fo
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api/augment": ["./node_modules/@darwinia/types/interfaces/augment-api.d.ts"],
-      "@polkadot/types/augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/index.d.ts"]
     }
   }
 }
 
 ```
 
+
+#### mapping crab api and types
+
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/crab/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/crab/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/crab/index.d.ts"]
+    }
+  }
+}
+
+```
+
+####  mapping pangolin api and types
+
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangolin/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangolin/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangolin/index.d.ts"]
+    }
+  }
+}
+
+```
+
+
+#### mapping pangoro api and types
+
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangoro/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangoro/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangoro/index.d.ts"]
+    }
+  }
+}
+
+```
+
+
+
 After that, you can import the darwinia/types/mix and polkadot/api in your project. A few examples:
 
 
 ```javascript
-import { typesBundleForPolkadotApps } from "@darwinia/types/mix";
+import { typesBundle } from "@darwinia/types/mix";
 import { ApiPromise, WsProvider } from "@polkadot/api";
 
 export const darwiniaTypesBundle = {
   spec: {
-    Crab: typesBundleForPolkadotApps.spec.Crab,
-    Darwinia: typesBundleForPolkadotApps.spec.Darwinia,
-    Pangolin: typesBundleForPolkadotApps.spec.Pangolin,
+    Crab: typesBundle.spec.Crab,
+    Darwinia: typesBundle.spec.Darwinia,
+    Pangolin: typesBundle.spec.Pangolin,
+    Pangoro: typesBundle.spec.pangoro
   },
 };
 
-const wsProvider = new WsProvider("wss://pangolin-rpc.darwinia.network");
+const darwinia = "wss://rpc.darwinia.network";
+const crab = "wss://crab-rpc.darwinia.network"
+const pangolin = "wss://pangolin-rpc.darwinia.network"
+const pangoro = "wss://pangoro-rpc.darwinia.network"
+
+// connect pangolin 
+const wsProvider = new WsProvider(pangolin);
 
 ApiPromise.create({ provider: wsProvider, typesBundle: darwiniaTypesBundle })
   .then((api) => {
     api.query.system
-      .account("5EYCAe5gKAhKhPeR7nUZzpcX2f9eYoAhqtEHqnG433EfnCpQ")
+      .account("<address>")
       .then(({ nonce, data }) => {
         console.log(`balance of ${data.free} and a nonce of ${nonce}`);
       })
@@ -77,38 +149,13 @@ ApiPromise.create({ provider: wsProvider, typesBundle: darwiniaTypesBundle })
 
 ```
 
-```javascript
-import darwiniaApiOptions from "@darwinia/api-options";
-import { ApiPromise, WsProvider } from "@polkadot/api";
-
-async function main () {
-  const wsProvider = new WsProvider("wss://crab-rpc.darwinia.network");
-
-  ApiPromise.create(darwiniaApiOptions({provider: wsProvider}))
-    .then((api) => {
-      api.query.system
-        .account("5EYCAe5gKAhKhPeR7nUZzpcX2f9eYoAhqtEHqnG433EfnCpQ")
-        .then(({ nonce, data }) => {
-          console.log(`balance of ${data.free} and a nonce of ${nonce}`);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
-
-main();
-```
 
 You could find more usecases at example directory of root project.
 
 
 ### Generating
 
-We can run the generate command via `yarn generate:meta`, generate types from Metadata. And run via `yarn generate:defs`, generate types from user-edits are the definitions.ts files.
+We can run the generate command via `yarn build:interfaces`, generate api-augment from Metadata. And run via `yarn build:defs`, generate types from customer definition in definitions.ts files and runtime lookup types.
 
 Now if we check the actual output against the source via yarn lint, we would see that valid output has been generated -
 ```
@@ -122,7 +169,7 @@ $ tsc --noEmit --pretty
 
 2. Now we can build the generated types file via the `yarn build:ts` command. The files after build are saved in `packages/**/build`.
 
-3. Via the `yarn build:publish` command run the file `./polkadot-ci-ghact-build.js` will traverse the build files under the packages folder and execute the `npm publish` command in build folders.
+3. Via the `yarn publish` command will traverse the build files under the packages folder and execute the `npm publish` command in each build folders.
 
 
 ### Project using Darwinia.js
