@@ -25,5 +25,5 @@ export interface DeriveDarwiniaSystemAccountInfo {
 
 export enum TokenType {
   Ring = 1,
-  Kton =2
+  Kton = 2
 }

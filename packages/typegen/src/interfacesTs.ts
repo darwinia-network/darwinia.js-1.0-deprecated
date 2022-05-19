@@ -21,7 +21,7 @@ const METAS = Object.entries({ crab, darwinia, pangolin, pangoro }) as [string, 
 export function main (): void {
   for (const [name, staticMeta] of METAS) {
     console.log(`** Generating lookup for ${name}`);
-    // for different  packages path todo ?
+
     generateDefaultLookup(`${LOOKUP}/${name}`, staticMeta);
 
     console.log(`*** Generating for ${name}`);

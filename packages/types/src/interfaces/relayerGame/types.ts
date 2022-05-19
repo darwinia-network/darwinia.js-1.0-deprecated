@@ -3,8 +3,8 @@
 
 import type { EthashProof, EthereumBlockNumber } from '@darwinia/types/interfaces/darwiniaInject';
 import type { Struct, Vec, u32 } from '@polkadot/types-codec';
-import type { H256, AccountId} from '@polkadot/types/interfaces/runtime';
 
+import type { AccountId, H256 } from '@polkadot/types/interfaces/runtime';
 
 /** @name EthereumRelayProofs */
 export interface EthereumRelayProofs extends Struct {
@@ -21,9 +21,6 @@ export interface RelayAffirmationId extends Struct {
 
 /** @name RelayHeaderId */
 export interface RelayHeaderId extends EthereumBlockNumber {}
-
-// /** @name RelayHeaderParcel */
-// export interface RelayHeaderParcel extends EthereumRelayHeaderParcel {}
 
 /** @name RelayProofs */
 export interface RelayProofs extends EthereumRelayProofs {}

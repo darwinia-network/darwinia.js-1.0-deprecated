@@ -11,6 +11,8 @@
         "@darwinia/types/*": ["types/src/*"],
         "@polkadot/types/lookup":["types-augment/src/lookup/pangolin"],
         "@polkadot/types/lookup/*":["types-augment/src/lookup/pangolin/*"],
+        "@polkadot/api-augment": ["api-augment/src/pangolin"],
+        "@polkadot/api-augment/*": ["api-augment/src/pangolin/*"],
     
       },
       "skipLibCheck": true
@@ -23,6 +25,7 @@
     "references": [
         { "path": "../types/tsconfig.build.json" },
         { "path": "../types-augment/tsconfig.pangolin.json" },
+        { "path": "../api-augment/tsconfig.pangolin.json"}
     ]
   }
   

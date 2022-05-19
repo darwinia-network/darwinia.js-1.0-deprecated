@@ -5,16 +5,9 @@ import type { LockIdentifier } from '@darwinia/types/interfaces/balances';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { Hash,BlockNumber,Perbill,Balance, H256, H128, H512, AccountId } from '@polkadot/types/interfaces/runtime';
-// import type { DrmlCommonRuntimeImplsAccountData,EthereumHeader } from '@polkadot/types/lookup'
 
+import type { AccountId, Balance, BlockNumber, Hash, H128, H256, H512, Perbill} from '@polkadot/types/interfaces/runtime';
 
-// /** @name AccountInfo */
-// export interface AccountInfo extends Struct {
-//   readonly nonce: Index;
-//   readonly refcount: RefCount;
-//   readonly data: DrmlCommonRuntimeImplsAccountData;
-// }
 
 /** @name Address */
 export interface Address extends U8aFixed {}
@@ -102,12 +95,6 @@ export interface EthereumReceiptProof extends Struct {
   readonly proof: Bytes;
   readonly headerHash: H256;
 }
-
-// /** @name EthereumRelayHeaderParcel */
-// export interface EthereumRelayHeaderParcel extends Struct {
-//   readonly header: EthereumHeader;
-//   readonly parentMmrRoot: H256;
-// }
 
 /** @name EthereumTransactionIndex */
 export interface EthereumTransactionIndex extends ITuple<[H256, u64]> {}
@@ -290,17 +277,5 @@ export interface ValidatorPrefsWithBlocked extends Struct {
   readonly commission: Compact<Perbill>;
   readonly blocked: bool;
 }
-
-// /** @name StakingLedgerT */
-// export interface StakingLedgerT extends Struct {
-//   readonly stash: AccountId;
-//   readonly active: Balance;
-//   readonly activeDepositRing: Balance;
-//   readonly activeKton: Balance;
-//   readonly depositItems: Vec<TimeDepositItem>;
-//   readonly ringStakingLock: StakingLock;
-//   readonly ktonStakingLock: StakingLock;
-//   readonly claimedRewards: Vec<EraIndex>;
-// }
 
 export type PHANTOM_DARWINIAINJECT = 'darwiniaInject';

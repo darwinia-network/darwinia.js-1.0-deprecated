@@ -28,17 +28,9 @@ export function electedInfo (instanceId: string, api: ApiInterfaceRx): () => Obs
     (flags: StakingQueryFlags = DEFAULT_FLAGS): Observable<DeriveStakingElected> =>
       api.derive.staking.validators().pipe(
         switchMap(({ nextElected, validators }): Observable<DeriveStakingElected> => {
-          const infoObs = api.derive.staking
-            .queryMulti(combineAccounts(nextElected, validators), flags)
-            .pipe(map((info): Pick<IDeriveStakingElected, 'info'> => ({ info })));
-          const commissionsObs = (api.query.staking.currentEra<Option<u32>>()).pipe(
-            switchMap((currentEra) =>
-              combineLatest(
-                nextElected.map((accountId) =>
-                  api.query.staking.erasValidatorPrefs(currentEra.unwrap(), accountId.toString())
-                )
-              )
-            ),
+          const infoObs = api.derive.staking.queryMulti(combineAccounts(nextElected, validators), flags).pipe(map((info): Pick<IDeriveStakingElected, 'info'> => ({ info })));
+          const commissionsObs = api.query.staking.currentEra<Option<u32>>().pipe(
+            switchMap((currentEra) => combineLatest(nextElected.map((accountId) => api.query.staking.erasValidatorPrefs(currentEra.unwrap(), accountId.toString())))),
             map(
               (active): Pick<IDeriveStakingElected, 'activeCommissions'> => ({
                 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion

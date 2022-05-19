@@ -23,12 +23,7 @@ import { DeriveStakerExposure, DeriveStakerReward } from './types';
 type ErasResult = [DeriveEraPoints[], DeriveEraPrefs[], DeriveEraRewards[]];
 
 // eslint-disable-next-line max-len
-function parseRewards (
-  api: ApiInterfaceRx,
-  stashId: AccountId,
-  [erasPoints, erasPrefs, erasRewards]: ErasResult,
-  exposures: DeriveStakerExposure[]
-): DeriveStakerReward[] {
+function parseRewards (api: ApiInterfaceRx, stashId: AccountId, [erasPoints, erasPrefs, erasRewards]: ErasResult, exposures: DeriveStakerExposure[]): DeriveStakerReward[] {
   return exposures.map(({ era, isEmpty, isValidator, nominating, validators: eraValidators }): DeriveStakerReward => {
     const { eraPoints, validators: allValPoints } = erasPoints.find((p) => p.era.eq(era)) || {
       eraPoints: BN_ZERO,
@@ -132,11 +127,7 @@ function removeClaimed (validators: string[], queryValidators: DeriveStakingQuer
   });
 }
 
-function filterRewards (
-  eras: EraIndex[],
-  valInfo: [string, DeriveStakingQuery][],
-  { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: DarwiniaStakingStructsStakingLedger }
-): DeriveStakerReward[] {
+function filterRewards (eras: EraIndex[], valInfo: [string, DeriveStakingQuery][], { rewards, stakingLedger }: { rewards: DeriveStakerReward[]; stakingLedger: DarwiniaStakingStructsStakingLedger }): DeriveStakerReward[] {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
   const filter = eras.filter((e) => !stakingLedger.claimedRewards.some((s: u32) => s.eq(e)));
   const validators = valInfo.map(([v]) => v);
@@ -160,24 +151,13 @@ function filterRewards (
     }));
 }
 
-export function _stakerRewards (
-  instanceId: string,
-  api: DeriveApi
-): (accountIds: (Uint8Array | string)[], eras: EraIndex[], withActive?: boolean) => Observable<DeriveStakerReward[][]> {
+export function _stakerRewards (instanceId: string, api: DeriveApi): (accountIds: (Uint8Array | string)[], eras: EraIndex[], withActive?: boolean) => Observable<DeriveStakerReward[][]> {
   return memo(
     instanceId,
     (accountIds: (Uint8Array | string)[], eras: EraIndex[], withActive = false): Observable<DeriveStakerReward[][]> =>
-      combineLatest([
-        api.derive.staking.queryMulti(accountIds, { withLedger: true }),
-        api.derive.staking._stakerExposures(accountIds, eras, withActive),
-        api.derive.staking._stakerRewardsEras(eras, withActive)
-      ]).pipe(
+      combineLatest([api.derive.staking.queryMulti(accountIds, { withLedger: true }), api.derive.staking._stakerExposures(accountIds, eras, withActive), api.derive.staking._stakerRewardsEras(eras, withActive)]).pipe(
         switchMap(([queries, exposures, erasResult]): Observable<DeriveStakerReward[][]> => {
-          const allRewards = queries.map(({ stakingLedger, stashId }, index): DeriveStakerReward[] =>
-            !stashId || !stakingLedger
-              ? []
-              : parseRewards(api, stashId, erasResult, exposures[index] as unknown as DeriveStakerExposure[])
-          );
+          const allRewards = queries.map(({ stakingLedger, stashId }, index): DeriveStakerReward[] => (!stashId || !stakingLedger ? [] : parseRewards(api, stashId, erasResult, exposures[index] as unknown as DeriveStakerExposure[])));
 
           if (withActive) {
             return of(allRewards);
@@ -187,19 +167,18 @@ export function _stakerRewards (
 
           return api.derive.staking.queryMulti(allValidators, { withLedger: true }).pipe(
             map((queriedVals): DeriveStakerReward[][] =>
-              queries.map(({ stakingLedger }, index): DeriveStakerReward[] =>
-                filterRewards(
+              queries.map(({ stakingLedger }, index): DeriveStakerReward[] => {
+                const lederValue = stakingLedger as unknown as DarwiniaStakingStructsStakingLedger;
+
+                return filterRewards(
                   eras,
-                  stashValidators[index].map((validatorId): [string, DeriveStakingQuery] => [
-                    validatorId,
-                    queriedVals.find((q) => q.accountId.eq(validatorId)) as DeriveStakingQuery
-                  ]),
+                  stashValidators[index].map((validatorId): [string, DeriveStakingQuery] => [validatorId, queriedVals.find((q) => q.accountId.eq(validatorId)) as DeriveStakingQuery]),
                   {
                     rewards: allRewards[index],
-                    stakingLedger
+                    stakingLedger: lederValue
                   }
-                )
-              )
+                );
+              })
             )
           );
         })

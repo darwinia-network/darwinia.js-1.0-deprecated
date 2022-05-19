@@ -3,7 +3,7 @@
 
 import type { Bytes, Enum, Option, Struct, U256, Vec, bool, u64 } from '@polkadot/types-codec';
 
-import type {H256,H2048,H160,H64} from '@polkadot/types/interfaces/runtime';
+import type { H64,H160, H256, H2048 } from '@polkadot/types/interfaces/runtime';
 
 /** @name EIP1559Transaction */
 export interface EIP1559Transaction extends Struct {
@@ -50,9 +50,6 @@ export interface EthAddress extends H160 {}
 
 /** @name EthBloom */
 export interface EthBloom extends H2048 {}
-
-// /** @name EthereumReceiptProofThing */
-// export interface EthereumReceiptProofThing extends ITuple<[EthereumHeader, EthereumPrimitivesReceiptReceiptProof, DarwiniaBridgeEthereumMmrProof]> {}
 
 /** @name EthHeader */
 export interface EthHeader extends Struct {

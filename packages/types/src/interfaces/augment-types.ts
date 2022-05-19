@@ -1,18 +1,17 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
-import type {  LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
+import type { LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
 import type { Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumAddress, EthereumBlockNumber, EthereumNetwork, EthereumReceiptProof, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, Power, PriorRelayer, RKT, Reasons, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, Signature, Signer, SpanRecord, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { EIP1559Transaction, EIP2930Transaction, EthAccessList, EthAccessListItem, EthAddress, EthBloom, EthHeader, EthLog, EthTransactionAction, EthTransactionSignature, LegacyTransaction, TransactionV2 } from '@darwinia/types/interfaces/eth';
 import type { ExitError, ExitFatal, ExitRevert, ExitSucceed } from '@darwinia/types/interfaces/evm';
-import type {  Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
+import type { Fee, InProcessOrders } from '@darwinia/types/interfaces/fee';
 import type { MMRProofResult, MmrNodesPruningConfiguration, NodeIndex } from '@darwinia/types/interfaces/headerMMR';
 import type { Announcement, CrabRuntimePalletsProxyProxyType, DarwiniaRuntimePalletsProxyProxyType, ProxyAnnouncement, ProxyType } from '@darwinia/types/interfaces/proxy';
 import type { EthereumRelayProofs, RelayAffirmationId, RelayHeaderId, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
-import type { AuthoritySignature, GrandpaPrevote } from '@darwinia/types/interfaces/session';
 import type { PalletStakingIndividualExposure, PowerOf, RewardPoint, SpanIndex, UnappliedSlashOther } from '@darwinia/types/interfaces/staking';
 import type { Data, StorageKey } from '@polkadot/types';
 import type { BitVec, Bool, Bytes, I128, I16, I256, I32, I64, I8, Json, Null, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
@@ -22,7 +21,6 @@ declare module '@polkadot/types/types/registry' {
     Address: Address;
     AddressT: AddressT;
     Announcement: Announcement;
-    AuthoritySignature: AuthoritySignature;
     BalanceInfo: BalanceInfo;
     BalanceLock: BalanceLock;
     BitVec: BitVec;
@@ -73,7 +71,6 @@ declare module '@polkadot/types/types/registry' {
     ExposureT: ExposureT;
     Fee: Fee;
     FixedU128: FixedU128;
-    GrandpaPrevote: GrandpaPrevote;
     i128: i128;
     I128: I128;
     i16: i16;
@@ -133,7 +130,6 @@ declare module '@polkadot/types/types/registry' {
     Signer: Signer;
     SpanIndex: SpanIndex;
     SpanRecord: SpanRecord;
-    // StakingLedgerT: StakingLedgerT;
     StakingLock: StakingLock;
     Status: Status;
     StorageKey: StorageKey;
