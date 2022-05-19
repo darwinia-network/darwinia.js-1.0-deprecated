@@ -153,6 +153,85 @@ ApiPromise.create({ provider: wsProvider, typesBundle: darwiniaTypesBundle })
 You could find more usecases at example directory of root project.
 
 
+
+### api-derive usage
+
+Those api derive from RPC calls and storage queries base on pangolin endpoint at now. In futrue we could
+maintain darwinia, crab, pangolin and pangoro different derived api. taking an 'usableBalance' exmple to 
+show how derived api working.
+
+
+config tsconfig.json with  paths as below:
+#### mapping pangolin api and types
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangolin/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangolin/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangolin/index.d.ts"]
+    }
+  }
+}
+
+```
+
+```javascript
+
+    import '@darwinia/api-derive/bundle';
+    import '@polkadot/api-augment';
+
+    import { typesBundle } from '@darwinia/types/mix';
+
+    import { ApiPromise, WsProvider } from '@polkadot/api';
+    import { DeriveCustom } from '@polkadot/api/types';
+
+    import * as accounts from '@darwinia/api-derive/accounts';
+    import { TokenType } from '@darwinia/api-derive/accounts/types';
+
+    const darwiniaTypesBundle = {
+      spec: {
+        Crab: typesBundle.spec.Crab,
+        Darwinia: typesBundle.spec.Darwinia,
+        Pangolin: typesBundle.spec.Pangolin,
+        Pangoro: typesBundle.spec.Pangoro
+      }
+    };
+
+    const pangolin = 'wss://pangolin-rpc.darwinia.network';
+    const address = '<address>';
+
+    // reigistry usableBalance derived api 
+    const customDerive = {
+    
+      usableBalance: {
+        balance: accounts.usableAccount
+      }
+
+    } as DeriveCustom;
+
+    function main () {
+      const wsProvider = new WsProvider(pangolin);
+
+      ApiPromise.create({ derives: customDerive, provider: wsProvider, typesBundle: darwiniaTypesBundle }).then(async (api) => {
+     
+        await api.derive.usableBalance.balance(TokenType.Ring, address).then((balance) => {
+          console.log(` account usableBalance ${balance.usableBalance} `);
+        });
+      }).catch((err) => {
+        console.log(err);
+      });
+    }
+
+    main();
+
+
+```
+
+
 ### Generating
 
 We can run the generate command via `yarn build:interfaces`, generate api-augment from Metadata. And run via `yarn build:defs`, generate types from customer definition in definitions.ts files and runtime lookup types.
