@@ -17,7 +17,7 @@
     "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
     "build:defs": "darwinia-types-from-defs",
     "build:interfaces": "darwinia-types-internal-interfaces",
-    "build:ts": "polkadot-dev-build-ts",
+    "build:ts": "darwinia-dev-build-ts",
     "chain:info": "polkadot-types-chain-info",
     "clean": "polkadot-dev-clean-build",
     "docs": "polkadot-types-internal-metadata && polkadot-dev-build-docs",
@@ -31,9 +31,9 @@
     "test:watch": "polkadot-dev-run-test --watch"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/register": "^7.11.5",
-    "@babel/runtime": "^7.11.2",
+    "@babel/core": "^7.17.9",
+    "@babel/register": "^7.17.7",
+    "@babel/runtime": "^7.17.9",
     "@darwinia/typegen": "workspace:packages/typegen",
     "@polkadot/dev": "^0.66.5",
     "@polkadot/ts": "^0.4.13",
