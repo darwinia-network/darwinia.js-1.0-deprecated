@@ -181,7 +181,7 @@ config tsconfig.json with  paths as below:
 
 ```javascript
 
-    import '@darwinia/api-derive/bundle';
+    import { darwiniaDerive } from '@darwinia/api-derive/bundle';
     import '@polkadot/api-augment';
 
     import { typesBundle } from '@darwinia/types/mix';
@@ -204,20 +204,13 @@ config tsconfig.json with  paths as below:
     const pangolin = 'wss://pangolin-rpc.darwinia.network';
     const address = '<address>';
 
-    // reigistry usableBalance derived api 
-    const customDerive = {
-    
-      usableBalance: {
-        balance: accounts.usableAccount
-      }
-
-    } as DeriveCustom;
 
     function main () {
       const wsProvider = new WsProvider(pangolin);
 
-      ApiPromise.create({ derives: customDerive, provider: wsProvider, typesBundle: darwiniaTypesBundle }).then(async (api) => {
-     
+      ApiPromise.create({ derives: darwiniaDerive, provider: wsProvider, typesBundle: darwiniaTypesBundle }).then(async (api) => {
+       
+        // usableBalance from darwiniaDerive       
         await api.derive.usableBalance.balance(TokenType.Ring, address).then((balance) => {
           console.log(` account usableBalance ${balance.usableBalance} `);
         });
