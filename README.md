@@ -40,7 +40,7 @@ You will also need to update the **tsconfig.json** of your project to include th
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/index.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/index.d.ts"],
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/index.d.ts"]
@@ -59,7 +59,7 @@ You will also need to update the **tsconfig.json** of your project to include th
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/crab/index.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/crab/index.d.ts"],
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/crab/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/crab/index.d.ts"]
@@ -77,7 +77,7 @@ You will also need to update the **tsconfig.json** of your project to include th
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangolin/index.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/pangolin/index.d.ts"],
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangolin/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangolin/index.d.ts"]
@@ -96,7 +96,7 @@ You will also need to update the **tsconfig.json** of your project to include th
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangoro/index.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/pangoro/index.d.ts"],
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangoro/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangoro/index.d.ts"]
@@ -169,7 +169,7 @@ config tsconfig.json with  paths as below:
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@polkadot/api-augment": ["./node_modules/@darwinia/api-agument/pangolin/index.d.ts"],
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/pangolin/index.d.ts"],
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangolin/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangolin/index.d.ts"]

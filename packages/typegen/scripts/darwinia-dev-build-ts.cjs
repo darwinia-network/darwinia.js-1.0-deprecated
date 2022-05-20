@@ -13,16 +13,17 @@ const CPX = ['css', 'gif', 'hbs', 'jpg', 'js', 'png', 'svg', 'd.ts']
   .map((ext) => `src/**/*.${ext}`)
   .concat('package.json');
 
-console.log('$ polkadot-dev-build-ts', process.argv.slice(2).join(' '));
+console.log('$ darwinia-dev-build-ts', process.argv.slice(2).join(' '));
 
 function buildWebpack () {
   execSync('yarn polkadot-exec-webpack --config webpack.config.js --mode production');
 }
 
 async function buildBabel (dir) {
+  console.log(` build  babel ${dir}`);
   await babel({
     babelOptions: {
-      configFile: path.join(process.cwd(), '../../babel.config.js')
+      configFile: path.join(process.cwd(), '../../babel.config.cjs')
     },
     cliOptions: {
       extensions: ['.ts', '.tsx'],
@@ -38,6 +39,8 @@ async function buildBabel (dir) {
 }
 
 async function buildJs (dir) {
+  console.log(` build  js ${dir}`);
+
   if (!fs.existsSync(path.join(process.cwd(), '.skip-build'))) {
     const { name, version } = require(path.join(process.cwd(), './package.json'));
 
@@ -61,11 +64,8 @@ async function buildJs (dir) {
 
 async function main () {
   execSync('yarn polkadot-dev-clean-build');
-
+  execSync('yarn polkadot-exec-tsc --build tsconfig.build.json');
   process.chdir('packages');
-
-  execSync('yarn polkadot-exec-tsc --emitDeclarationOnly --outdir ../build');
-
   const dirs = fs
     .readdirSync('.')
     .filter((dir) => fs.statSync(dir).isDirectory() && fs.existsSync(path.join(process.cwd(), dir, 'src')));
