@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/rpc-augment",
-    "version": "2.7.6",
+    "version": "2.8.0",
     "description": "RPC generated augmentation",
     "keywords": [
         "darwinia",
@@ -18,9 +18,9 @@
     "main": "index.js",
     "dependencies": {
         "@babel/runtime": "^7.17.9",
-        "@polkadot/rpc-core": "8.1.2-1",
-        "@polkadot/types": "8.1.2-1",
-        "@polkadot/types-codec": "8.1.2-1",
+        "@polkadot/rpc-core": "^8.1.2-1",
+        "@polkadot/types": "^8.1.2-1",
+        "@polkadot/types-codec": "^8.1.2-1",
         "@polkadot/util": "^9.0.1"
     }
 }
