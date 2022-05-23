@@ -20,14 +20,27 @@ The repo is split up into a number of internal packages
 	
 ### Dependencies
 
-Your project's @polkadot/api version must be greater than 7.11.1, The polkadot/api library wraps APIs around polkadot and substrate based chains via RPC calls, visit the [document portal](https://polkadot.js.org/docs/api/).
+Your project's @polkadot/api version must be greater than 8.1.2-1, The polkadot/api library wraps APIs around polkadot and substrate based chains via RPC calls, visit the [document portal](https://polkadot.js.org/docs/api/). The darwinia.js related library version must be greater than 2.8.0.
 	
 
 ### Usage
 
 ```bash
-yarn add @darwinia/types  
+yarn add @polkadot/api @darwinia/types   @darwinia/api-augment @darwinia/types-augment    @darwinia/rpc-augment
 ```
+
+check your package.json dependencies
+
+```json
+
+    "@darwinia/types": "^2.8.1",
+    "@darwinia/api-augment":"^2.8.1",
+    "@darwinia/types-augment": "^2.8.1",
+    "@darwinia/rpc-augment": "^2.8.1",
+    "@polkadot/api": "^8.1.2-1",
+    
+```
+
 
 You will also need to update the **tsconfig.json** of your project to include the following: 
 
@@ -158,7 +171,11 @@ You could find more usecases at example directory of root project.
 
 Those api derive from RPC calls and storage queries base on pangolin endpoint at now. In futrue we could
 maintain darwinia, crab, pangolin and pangoro different derived api. taking an 'usableBalance' exmple to 
-show how derived api working.
+show how derived api working.  @darwiniaapi-derive library bersion must be greater than 2.8.0.
+
+```bash
+  yarn add @darwinia/api-derive
+```
 
 
 config tsconfig.json with  paths as below:
