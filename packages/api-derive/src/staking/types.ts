@@ -74,7 +74,7 @@ export interface DeriveStakingQuery extends DeriveStakingStash {
 }
 
 export interface DeriveStakingAccount extends DeriveStakingQuery, DeriveStakingKeys {
-  redeemable?: Balance;
+  redeemable?: Balance[];
   unlocking?: DeriveUnlocking[];
   activeDepositItems?: DarwiniaStakingStructsTimeDepositItem[];
   unlockingTotalValue: Balance;

@@ -9,7 +9,7 @@ import { ApiInterfaceRx } from '@polkadot/api/types';
 import { DeriveApi, DeriveStakingKeys, DeriveUnlocking } from '@polkadot/api-derive/types';
 import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { Moment } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
+import { DarwiniaStakingStructsStakingLedger, DarwiniaSupportStructsUnbonding } from '@polkadot/types/lookup';
 import { BN, isUndefined } from '@polkadot/util';
 import { Memoized } from '@polkadot/util/types';
 
@@ -24,17 +24,22 @@ const QUERY_OPTS = {
 };
 
 // eslint-disable-next-line space-before-function-paren
-function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber): Balance {
-  if (isUndefined(stakingLedger)) {
-    return api.registry.createType('Balance');
-  }
-
-  return api.registry.createType(
+function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber): Balance[] {
+  const ring = api.registry.createType(
     'Balance',
-    stakingLedger.ringStakingLock?.unbondings.reduce((total, { amount, until }): BN => {
-      return until.gte(best) ? total.add(amount) : total;
+    (stakingLedger?.ringStakingLock.unbondings || ([] as DarwiniaSupportStructsUnbonding[])).reduce((total, { amount, until }): BN => {
+      return best.gte(until) ? total.add(amount) : total;
     }, new BN(0)) ?? new BN(0)
   );
+
+  const kton = api.registry.createType(
+    'Balance',
+    (stakingLedger?.ktonStakingLock.unbondings || ([] as DarwiniaSupportStructsUnbonding[])).reduce((total, { amount, until }): BN => {
+      return best.gte(until) ? total.add(amount) : total;
+    }, new BN(0)) ?? new BN(0)
+  );
+
+  return [ring, kton];
 }
 
 // eslint-disable-next-line space-before-function-paren
