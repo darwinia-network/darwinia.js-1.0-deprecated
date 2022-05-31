@@ -22,7 +22,7 @@
         "darwinia-types-from-defs": "./scripts/darwinia-types-from-defs.cjs",
         "darwinia-types-internal-interfaces": "./scripts/darwinia-types-internal-interfaces.cjs"
     },
-    "dependencies": {
+    "devDependencies": {
         "@babel/core": "^7.16.0",
         "@babel/register": "^7.16.0",
         "@babel/runtime": "^7.16.0",
@@ -34,12 +34,10 @@
         "@polkadot/types": "^8.1.2-1",
         "@polkadot/types-support": "^8.1.2-1",
         "@polkadot/util": "^9.0.1",
+        "@types/websocket": "^1.0.4",
+        "@types/yargs": "^17.0.5",
         "handlebars": "^4.7.7",
         "websocket": "^1.0.34",
         "yargs": "^17.2.1"
-    },
-    "devDependencies": {
-        "@types/websocket": "^1.0.4",
-        "@types/yargs": "^17.0.5"
     }
 }

@@ -25,7 +25,7 @@
     "url": "https://github.com/darwinia-network/darwinia.js/issues"
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/type-known",
-  "dependencies": {
+  "devDependencies": {
     "@babel/runtime": "^7.17.9",
     "@polkadot/networks": "^9.0.1",
     "@polkadot/types": "^8.1.2-1",

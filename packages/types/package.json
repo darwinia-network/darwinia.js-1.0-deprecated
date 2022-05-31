@@ -21,7 +21,7 @@
     "url": "https://github.com/darwinia-network/darwinia.js/issues"
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
-  "dependencies": {
+  "devDependencies": {
     "@babel/runtime": "^7.17.9",
     "@darwinia/types-known": "^2.8.1",
     "@polkadot/keyring": "^9.0.1",

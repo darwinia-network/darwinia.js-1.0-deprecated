@@ -16,7 +16,7 @@
     },
     "type": "module",
     "main": "index.js",
-    "dependencies": {
+    "devDependencies": {
         "@babel/runtime": "^7.17.9",
         "@darwinia/rpc-augment": "^2.8.1",
         "@darwinia/types": "^2.8.1",
@@ -25,9 +25,7 @@
         "@polkadot/types": "^8.1.2-1",
         "@polkadot/types-augment": "^8.1.2-1",
         "@polkadot/types-codec": "^8.1.2-1",
+        "@polkadot/types-support": "^8.1.2-1",
         "@polkadot/util": "^9.0.1"
-    },
-    "devDependencies": {
-        "@polkadot/types-support": "^8.1.2-1"
     }
 }
