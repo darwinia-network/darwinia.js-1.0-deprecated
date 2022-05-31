@@ -7,7 +7,7 @@ import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError,BpMessagesDeliveredMessages,CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter,EvmCoreErrorExitReason,EthereumLog,DarwiniaFeeMarketSlashReport,DarwiniaStakingStructsExposure} from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter, EvmCoreErrorExitReason, DarwiniaFeeMarketSlashReport, EthereumLog, DarwiniaStakingStructsExposure } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -309,10 +309,10 @@ declare module '@polkadot/api-base/types/events' {
       Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * A solution was stored with the given compute.
-       * 
+       *
        * If the solution is signed, this means that it hasn't yet been processed. If the
        * solution is unsigned, this means that it has also been processed.
-       * 
+       *
        * The `bool` is `true` when a previous solution was ejected to make room for this one.
        **/
       SolutionStored: AugmentedEvent<ApiType, [PalletElectionProviderMultiPhaseElectionCompute, bool]>;
@@ -653,7 +653,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * A \[candidate\] was slashed by \[amount\] due to failing to obtain a seat as member or
        * runner-up.
-       * 
+       *
        * Note that old members and runners-up are also candidates.
        **/
       CandidateSlashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
@@ -879,7 +879,7 @@ declare module '@polkadot/api-base/types/events' {
       Kicked: AugmentedEvent<ApiType, [AccountId32, AccountId32]>;
       /**
        * An account has bonded this amount. \[account, amount, start, end\]
-       * 
+       *
        * NOTE: This event is only emitted when funds are bonded via a dispatchable. Notably,
        * it will not be emitted for staking rewards when they are added to stake.
        **/
@@ -903,7 +903,7 @@ declare module '@polkadot/api-base/types/events' {
       Rewarded: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * An account has bonded this amount. \[amount, start, end\]
-       * 
+       *
        * NOTE: This event is only emitted when funds are bonded via a dispatchable. Notably,
        * it will not be emitted for staking rewards when they are added to stake.
        **/
