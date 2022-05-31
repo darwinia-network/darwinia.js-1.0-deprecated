@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/types",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "Implementation of the Parity codec",
   "main": "index.js",
   "keywords": [
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
   "devDependencies": {
     "@babel/runtime": "^7.17.9",
-    "@darwinia/types-known": "^2.8.1",
+    "@darwinia/types-known": "^2.8.2",
     "@polkadot/keyring": "^9.0.1",
     "@polkadot/types-augment": "^8.1.2-1",
     "@polkadot/types-codec": "^8.1.2-1",
