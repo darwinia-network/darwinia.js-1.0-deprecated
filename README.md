@@ -26,7 +26,7 @@ Your project's @polkadot/api version must be greater than 8.1.2-1, The polkadot/
 ### Usage
 
 ```bash
-yarn add @polkadot/api @darwinia/types   @darwinia/api-augment @darwinia/types-augment    @darwinia/rpc-augment
+yarn add @polkadot/api @darwinia/types   @darwinia/api-augment @darwinia/types-augment    @darwinia/rpc-augment @darwinia/types-known
 ```
 
 check your package.json dependencies
@@ -37,6 +37,7 @@ check your package.json dependencies
     "@darwinia/api-augment":"^2.8.1",
     "@darwinia/types-augment": "^2.8.1",
     "@darwinia/rpc-augment": "^2.8.1",
+    "@darwinia/types-known": "^2.8.1",
     "@polkadot/api": "^8.1.2-1",
     
 ```
