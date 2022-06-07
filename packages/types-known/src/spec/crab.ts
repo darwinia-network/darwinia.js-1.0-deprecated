@@ -34,7 +34,52 @@ const addrAccountIdTypes = {
 
 const versioned: OverrideVersionedType[] = [
   {
-    minmax: [0, 41],
+    minmax: [0, 0],
+    types: objectSpread({}, sharedTypes, addrAccountIdTypes, {
+      StakingBalanceT: {
+        _enum: {
+          RingBalance: 'Balance',
+          KtonBalance: 'Balance'
+        }
+      },
+      Signature: 'H512',
+      Keys: 'SessionKeys4',
+      NominatorIndexCompact: 'u32',
+      ValidatorIndexCompact: 'u16',
+      OffchainAccuracyCompact: 'PerU16',
+      PerU16: 'UInt<16, PerU16>',
+      EthHeader: {
+        parent_hash: 'H256',
+        timestamp: 'u64',
+        number: 'EthBlockNumber',
+        author: 'EthAddress',
+        transaction_root: 'H256',
+        uncles_hash: 'H256',
+        extra_data: 'Bytes',
+        state_root: 'H256',
+        receipts_root: 'H256',
+        log_bloom: 'Bloom',
+        gas_used: 'U256',
+        gas_limit: 'U256',
+        difficulty: 'U256',
+        seal: 'Vec<Bytes>',
+        hash: 'Option<H256>'
+      },
+      EthBlockNumber: 'u64',
+      DoubleNodeWithMerkleProof: {
+        dag_nodes: '[H512;2]',
+        proof: 'Vec<H128>'
+      },
+      OtherSignature: {
+        _enum: {
+          Eth: 'EcdsaSignature',
+          Tron: 'EcdsaSignature'
+        }
+      }
+    })
+  },
+  {
+    minmax: [1, 41],
     types: objectSpread({}, sharedTypes, addrAccountIdTypes, {
       StakingBalanceT: {
         _enum: {
@@ -87,6 +132,8 @@ const versioned: OverrideVersionedType[] = [
       },
       NominatorIndexCompact: 'u32',
       ValidatorIndexCompact: 'u32',
+      OffchainAccuracyCompact: 'PerU16',
+      PerU16: 'UInt<16, PerU16>',
 
       DoubleNodeWithMerkleProof: {
         dag_nodes: '[H512;2]',
@@ -109,7 +156,19 @@ const versioned: OverrideVersionedType[] = [
         seal: 'Vec<Bytes>',
         hash: 'Option<H256>'
       },
-      EthBlockNumber: 'u64'
+      EthBlockNumber: 'u64',
+      TcBlockNumber: 'u64',
+      GameId: 'TcBlockNumber',
+      EthereumHeaderThingWithProof: {
+        header: 'EthereumHeader',
+        ethashProof: 'Vec<EthashProof>',
+        mmrRoot: 'H256',
+        mmrProof: 'Vec<H256>'
+      },
+      EthereumHeaderThing: {
+        header: 'EthereumHeader',
+        mmrRoot: 'H256'
+      }
     })
   },
   {
