@@ -53,8 +53,8 @@ export default {
       expireTime: 'TsInMs'
     },
     ExposureT: {
-      ownRingBalance: 'Balance',
-      ownKtonBalance: 'Balance',
+      ownRingBalance: 'Compact<Balance>',
+      ownKtonBalance: 'Compact<Balance>',
       ownPower: 'Power',
       totalPower: 'Power',
       others: 'Vec<IndividualExposure>'
@@ -62,8 +62,8 @@ export default {
     Exposure: 'ExposureT',
     IndividualExposure: {
       who: 'AccountId',
-      ringBalance: 'Balance',
-      ktonBalance: 'Balance',
+      ringBalance: 'Compact<Balance>',
+      ktonBalance: 'Compact<Balance>',
       power: 'Power'
     },
     ElectionResultT: {
@@ -186,10 +186,13 @@ export default {
       commission: 'Compact<Perbill>',
       blocked: 'bool'
     },
-    EthereumAddress: 'GenericEthereumAccountId'
-
+    EthereumAddress: 'GenericEthereumAccountId',
+    RedeemFor: {
+      _enum: {
+        Token: null,
+        Deposit: null
+      }
+    }
   },
-  rpc: {
-
-  }
+  rpc: {}
 } as Definitions;
