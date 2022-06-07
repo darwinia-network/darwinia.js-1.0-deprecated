@@ -131,7 +131,7 @@ const versioned: OverrideVersionedType[] = [
         proof: 'Vec<H256>'
       },
       NominatorIndexCompact: 'u32',
-      ValidatorIndexCompact: 'u32',
+      ValidatorIndexCompact: 'u16',
       OffchainAccuracyCompact: 'PerU16',
       PerU16: 'UInt<16, PerU16>',
 
