@@ -186,7 +186,13 @@ export default {
       commission: 'Compact<Perbill>',
       blocked: 'bool'
     },
-    EthereumAddress: 'GenericEthereumAccountId'
+    EthereumAddress: 'GenericEthereumAccountId',
+    RedeemFor: {
+      _enum: {
+        Token: null,
+        Deposit: null
+      }
+    }
   },
   rpc: {}
 } as Definitions;

@@ -114,7 +114,8 @@ const versioned: OverrideVersionedType[] = [
   },
   {
     minmax: [42, 43],
-    types: objectSpread({}, sharedTypes, {
+    types: {
+      ...sharedTypes,
       AccountInfo: 'AccountInfoWithTripleRefCount',
       AccountInfoWithTripleRefCount: {
         nonce: 'Index',
@@ -122,15 +123,19 @@ const versioned: OverrideVersionedType[] = [
         providers: 'RefCount',
         data: 'AccountData'
       }
-    })
+    }
   },
   {
-    minmax: [43, 1210],
-    types: objectSpread({}, sharedTypes)
+    minmax: [43, undefined],
+    types: {
+      ...sharedTypes
+    }
   },
   {
     minmax: [1210, undefined],
-    types: {}
+    types: {
+      ...sharedTypes
+    }
   }
 ];
 
