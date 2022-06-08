@@ -168,6 +168,13 @@ const versioned: OverrideVersionedType[] = [
       EthereumHeaderThing: {
         header: 'EthereumHeader',
         mmrRoot: 'H256'
+      },
+      RawHeaderThing: 'Vec<u8>',
+      OtherAddress: {
+        _enum: {
+          Eth: 'EthereumAddress',
+          Tron: 'EthereumAddress'
+        }
       }
     })
   },
@@ -180,11 +187,13 @@ const versioned: OverrideVersionedType[] = [
         consumers: 'RefCount',
         providers: 'RefCount',
         data: 'AccountData'
-      }
+      },
+      Address: 'MultiAddress',
+      LookupSource: 'MultiAddress'
     })
   },
   {
-    minmax: [43, 1210],
+    minmax: [44, 1210],
     types: objectSpread({}, sharedTypes)
   },
   {
