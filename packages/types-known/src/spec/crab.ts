@@ -188,6 +188,13 @@ const versioned: OverrideVersionedType[] = [
         providers: 'RefCount',
         data: 'AccountData'
       },
+      StakingBalanceT: {
+        _enum: {
+          RingBalance: 'Balance',
+          KtonBalance: 'Balance'
+        }
+      },
+      Signature: 'H512',
       Address: 'MultiAddress',
       LookupSource: 'MultiAddress'
     })
