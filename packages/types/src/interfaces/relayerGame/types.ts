@@ -3,7 +3,6 @@
 
 import type { EthashProof, EthereumBlockNumber } from '@darwinia/types/interfaces/darwiniaInject';
 import type { Struct, Vec, u32 } from '@polkadot/types-codec';
-
 import type { AccountId, H256 } from '@polkadot/types/interfaces/runtime';
 
 /** @name EthereumRelayProofs */

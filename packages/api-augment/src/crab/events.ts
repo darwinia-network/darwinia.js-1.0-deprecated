@@ -1,13 +1,12 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { CrabRuntimePalletsProxyProxyType } from '@darwinia/types/interfaces/proxy';
 import type { ApiTypes } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter, EvmCoreErrorExitReason, DarwiniaFeeMarketSlashReport, EthereumLog, DarwiniaStakingStructsExposure } from '@polkadot/types/lookup';
+import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletDemocracyVoteThreshold, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, PalletMultisigTimepoint, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, CrabRuntimeBridgesMessageCrabParachainCrabToCrabParachainParameter, CrabRuntimeBridgesMessageDarwiniaCrabToDarwiniaMessagesParameter, PalletFeeMarketSlashReport, EvmCoreErrorExitReason, EthereumLog, DarwiniaStakingStructsExposure } from '@polkadot/types/lookup';
 
 declare module '@polkadot/api-base/types/events' {
   export interface AugmentedEvents<ApiType extends ApiTypes> {
@@ -96,6 +95,68 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
+    bridgeCrabParachainDispatch: {
+      /**
+       * Phantom member, never used. Needed to handle multiple pallet instances.
+       **/
+      _Dummy: AugmentedEvent<ApiType, []>;
+      /**
+       * We have failed to decode Call from the message.
+       **/
+      MessageCallDecodeFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
+      /**
+       * The call from the message has been rejected by the call filter.
+       **/
+      MessageCallRejected: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
+      /**
+       * Message has been dispatched with given result.
+       **/
+      MessageDispatched: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, Result<Null, SpRuntimeDispatchError>]>;
+      /**
+       * The origin account has failed to pay fee for dispatching the message.
+       **/
+      MessageDispatchPaymentFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, AccountId32, u64]>;
+      /**
+       * Message has been rejected before reaching dispatch.
+       **/
+      MessageRejected: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
+      /**
+       * Message signature mismatch.
+       **/
+      MessageSignatureMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
+      /**
+       * Message has been rejected by dispatcher because of spec version mismatch.
+       * Last two arguments are: expected and passed spec version.
+       **/
+      MessageVersionSpecMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, u32, u32]>;
+      /**
+       * Message has been rejected by dispatcher because of weight mismatch.
+       * Last two arguments are: expected and passed call weight.
+       **/
+      MessageWeightMismatch: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, u64, u64]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    bridgeCrabParachainMessages: {
+      /**
+       * Message has been accepted and is waiting to be delivered.
+       **/
+      MessageAccepted: AugmentedEvent<ApiType, [U8aFixed, u64]>;
+      /**
+       * Messages in the inclusive range have been delivered to the bridged chain.
+       **/
+      MessagesDelivered: AugmentedEvent<ApiType, [U8aFixed, BpMessagesDeliveredMessages]>;
+      /**
+       * Pallet parameter has been updated.
+       **/
+      ParameterUpdated: AugmentedEvent<ApiType, [CrabRuntimeBridgesMessageCrabParachainCrabToCrabParachainParameter]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
     bridgeDarwiniaDispatch: {
       /**
        * Phantom member, never used. Needed to handle multiple pallet instances.
@@ -158,16 +219,6 @@ declare module '@polkadot/api-base/types/events' {
        **/
       [key: string]: AugmentedEvent<ApiType>;
     };
-    claims: {
-      /**
-       * Someone claimed some *RING*s. [account, address, amount]
-       **/
-      Claimed: AugmentedEvent<ApiType, [AccountId32, U8aFixed, u128]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
     council: {
       /**
        * A motion was approved by the required threshold.
@@ -206,6 +257,74 @@ declare module '@polkadot/api-base/types/events' {
        * \[account, proposal_hash, voted, yes, no\]
        **/
       Voted: AugmentedEvent<ApiType, [AccountId32, H256, bool, u32, u32]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    crabParachainFeeMarket: {
+      /**
+       * Relayer cancel enrollment. \[account_id\]
+       **/
+      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
+       **/
+      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      /**
+       * Slash report
+       **/
+      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
+      /**
+       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
+       **/
+      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Update collateral slash protect value. \[slash_protect_value\]
+       **/
+      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
+      /**
+       * Update relayer locked collateral. \[account_id, new_collateral\]
+       **/
+      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Update relayer fee. \[account_id, new_fee\]
+       **/
+      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    darwiniaFeeMarket: {
+      /**
+       * Relayer cancel enrollment. \[account_id\]
+       **/
+      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
+      /**
+       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
+       **/
+      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      /**
+       * Slash report
+       **/
+      FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
+      /**
+       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
+       **/
+      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
+      /**
+       * Update collateral slash protect value. \[slash_protect_value\]
+       **/
+      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
+      /**
+       * Update relayer locked collateral. \[account_id, new_collateral\]
+       **/
+      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Update relayer fee. \[account_id, new_fee\]
+       **/
+      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -271,9 +390,10 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * A referendum has begun. \[ref_index, threshold\]
        **/
-      Started: AugmentedEvent<ApiType, [u32, DarwiniaDemocracyVoteThreshold]>;
+      Started: AugmentedEvent<ApiType, [u32, PalletDemocracyVoteThreshold]>;
       /**
-       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit, depositors\]
+       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit,
+       * depositors\]
        **/
       Tabled: AugmentedEvent<ApiType, [u32, u128, Vec<AccountId32>]>;
       /**
@@ -331,7 +451,8 @@ declare module '@polkadot/api-base/types/events' {
        **/
       DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
       /**
-       * An ethereum transaction was successfully executed. \[from, to/contract_address, transaction_hash, exit_reason\]
+       * An ethereum transaction was successfully executed. \[from, to/contract_address,
+       * transaction_hash, exit_reason\]
        **/
       Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
       /**
@@ -365,47 +486,14 @@ declare module '@polkadot/api-base/types/events' {
        **/
       Executed: AugmentedEvent<ApiType, [H160]>;
       /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees applied.
+       * A \[contract\] has been executed with errors. States are reverted with only gas fees
+       * applied.
        **/
       ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
       /**
        * Ethereum events from contracts.
        **/
       Log: AugmentedEvent<ApiType, [EthereumLog]>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    feeMarket: {
-      /**
-       * Relayer cancel enrollment. \[account_id\]
-       **/
-      CancelEnrollment: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * Relayer enrollment. \[account_id, locked_collateral, relay_fee\]
-       **/
-      Enroll: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
-      /**
-       * Slash report
-       **/
-      FeeMarketSlash: AugmentedEvent<ApiType, [DarwiniaFeeMarketSlashReport]>;
-      /**
-       * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
-       **/
-      UpdateAssignedRelayersNumber: AugmentedEvent<ApiType, [u32]>;
-      /**
-       * Update collateral slash protect value. \[slash_protect_value\]
-       **/
-      UpdateCollateralSlashProtect: AugmentedEvent<ApiType, [u128]>;
-      /**
-       * Update relayer locked collateral. \[account_id, new_collateral\]
-       **/
-      UpdateLockedCollateral: AugmentedEvent<ApiType, [AccountId32, u128]>;
-      /**
-       * Update relayer fee. \[account_id, new_fee\]
-       **/
-      UpdateRelayFee: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -925,24 +1013,6 @@ declare module '@polkadot/api-base/types/events' {
        * The election failed. No new era is planned.
        **/
       StakingElectionFailed: AugmentedEvent<ApiType, []>;
-      /**
-       * Generic event
-       **/
-      [key: string]: AugmentedEvent<ApiType>;
-    };
-    sudo: {
-      /**
-       * The \[sudoer\] just switched identity; the old key is supplied.
-       **/
-      KeyChanged: AugmentedEvent<ApiType, [AccountId32]>;
-      /**
-       * A sudo just took place. \[result\]
-       **/
-      Sudid: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
-      /**
-       * A sudo just took place. \[result\]
-       **/
-      SudoAsDone: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
       /**
        * Generic event
        **/

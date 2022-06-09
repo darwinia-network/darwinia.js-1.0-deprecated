@@ -4,7 +4,7 @@
 import type { LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
-import type { Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumAddress, EthereumBlockNumber, EthereumNetwork, EthereumReceiptProof, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, Power, PriorRelayer, RKT, Reasons, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, Signature, Signer, SpanRecord, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
+import type { Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumAddress, EthereumBlockNumber, EthereumNetwork, EthereumReceiptProof, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, Power, PriorRelayer, RKT, Reasons, RedeemFor, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, Signature, Signer, SpanRecord, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
 import type { EIP1559Transaction, EIP2930Transaction, EthAccessList, EthAccessListItem, EthAddress, EthBloom, EthHeader, EthLog, EthTransactionAction, EthTransactionSignature, LegacyTransaction, TransactionV2 } from '@darwinia/types/interfaces/eth';
 import type { ExitError, ExitFatal, ExitRevert, ExitSucceed } from '@darwinia/types/interfaces/evm';
@@ -14,7 +14,7 @@ import type { Announcement, CrabRuntimePalletsProxyProxyType, DarwiniaRuntimePal
 import type { EthereumRelayProofs, RelayAffirmationId, RelayHeaderId, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import type { PalletStakingIndividualExposure, PowerOf, RewardPoint, SpanIndex, UnappliedSlashOther } from '@darwinia/types/interfaces/staking';
 import type { Data, StorageKey } from '@polkadot/types';
-import type { BitVec, Bool, Bytes, I128, I16, I256, I32, I64, I8, Json, Null, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
+import type { BitVec, Bool, Bytes, I128, I16, I256, I32, I64, I8, Json, Null, OptionBool, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
 
 declare module '@polkadot/types/types/registry' {
   export interface InterfaceTypes {
@@ -105,6 +105,7 @@ declare module '@polkadot/types/types/registry' {
     NodeIndex: NodeIndex;
     Null: Null;
     OpCode: OpCode;
+    OptionBool: OptionBool;
     PalletStakingIndividualExposure: PalletStakingIndividualExposure;
     Power: Power;
     PowerOf: PowerOf;
@@ -114,6 +115,7 @@ declare module '@polkadot/types/types/registry' {
     Raw: Raw;
     RawStorageProof: RawStorageProof;
     Reasons: Reasons;
+    RedeemFor: RedeemFor;
     RefCount: RefCount;
     RelayAffirmationId: RelayAffirmationId;
     RelayAuthorityMessage: RelayAuthorityMessage;
