@@ -3,7 +3,6 @@
 
 import type { BitVec, Bytes, Enum, Struct, U8aFixed, UInt, Vec, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-
 import type { AccountId, Hash } from '@polkadot/types/interfaces/runtime';
 
 /** @name BridgedBlockHash */

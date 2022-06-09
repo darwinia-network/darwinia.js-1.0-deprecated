@@ -184,11 +184,11 @@ const versioned: OverrideVersionedType[] = [
     })
   },
   {
-    minmax: [43, 1210],
+    minmax: [44, 1210],
     types: objectSpread({}, sharedTypes)
   },
   {
-    minmax: [1210, undefined],
+    minmax: [1211, undefined],
     types: {}
   }
 ];

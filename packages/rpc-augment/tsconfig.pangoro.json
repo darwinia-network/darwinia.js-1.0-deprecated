@@ -1,0 +1,22 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "..",
+        "outDir": "./build",
+        "rootDir": "./src"
+    },
+    "include": [
+        "**/pangoro/*.ts"
+    ],
+    "exclude": [
+        "**/*.spec.ts",
+        "**/crab/*.ts",
+        "**/pangolin/*.ts",
+        "**/darwinia/*.ts",
+    ],
+    "references": [
+        {
+            "path": "../types/tsconfig.build.json"
+        }
+    ]
+}

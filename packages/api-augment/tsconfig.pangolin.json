@@ -16,7 +16,7 @@
       "**/pangoro_base.ts",
     ],
     "references": [
-      { "path": "../rpc-augment/tsconfig.build.json" },
+      { "path": "../rpc-augment/tsconfig.pangolin.json" },
       { "path": "../types/tsconfig.build.json" },
       { "path": "../types-augment/tsconfig.pangolin.json" },
       { "path": "../types-support/tsconfig.build.json" },

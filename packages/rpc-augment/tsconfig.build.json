@@ -5,6 +5,12 @@
       "outDir": "./build",
       "rootDir": "./src"
     },
+    "exclude": [
+      "**/*.spec.ts",
+      "**/pangolin/*.ts",
+      "**/pangoro/*.ts",
+      "**/crab/*.ts",
+    ],
     "references": [
       { "path": "../types/tsconfig.build.json" }
     ]
