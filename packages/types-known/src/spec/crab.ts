@@ -188,6 +188,7 @@ const versioned: OverrideVersionedType[] = [
         providers: 'RefCount',
         data: 'AccountData'
       },
+      Keys: 'SessionKeys4',
       StakingBalanceT: {
         _enum: {
           RingBalance: 'Balance',
@@ -196,7 +197,13 @@ const versioned: OverrideVersionedType[] = [
       },
       Signature: 'H512',
       Address: 'MultiAddress',
-      LookupSource: 'MultiAddress'
+      LookupSource: 'MultiAddress',
+      OtherSignature: {
+        _enum: {
+          Eth: 'EcdsaSignature',
+          Tron: 'EcdsaSignature'
+        }
+      }
     })
   },
   {
