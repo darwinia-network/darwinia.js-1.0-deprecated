@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import type { Enum, Struct, U8aFixed } from '@polkadot/types-codec';
-import type { Balance } from '@polkadot/types/interfaces/runtime';
+import { Balance } from '@polkadot/types/interfaces';
 
 /** @name LockIdentifier */
 export interface LockIdentifier extends U8aFixed {}

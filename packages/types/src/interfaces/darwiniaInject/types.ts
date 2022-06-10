@@ -5,9 +5,7 @@ import type { LockIdentifier } from '@darwinia/types/interfaces/balances';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-
-import type { AccountId, Balance, BlockNumber, Hash, H128, H256, H512, Perbill} from '@polkadot/types/interfaces/runtime';
-
+import type { AccountId, Balance, BlockNumber, Hash, H128, H256, H512, Perbill } from '@polkadot/types/interfaces/runtime';
 
 /** @name Address */
 export interface Address extends U8aFixed {}
@@ -104,8 +102,8 @@ export interface Exposure extends ExposureT {}
 
 /** @name ExposureT */
 export interface ExposureT extends Struct {
-  readonly ownRingBalance: Balance;
-  readonly ownKtonBalance: Balance;
+  readonly ownRingBalance: Compact<Balance>;
+  readonly ownKtonBalance: Compact<Balance>;
   readonly ownPower: Power;
   readonly totalPower: Power;
   readonly others: Vec<IndividualExposure>;
@@ -114,8 +112,8 @@ export interface ExposureT extends Struct {
 /** @name IndividualExposure */
 export interface IndividualExposure extends Struct {
   readonly who: AccountId;
-  readonly ringBalance: Balance;
-  readonly ktonBalance: Balance;
+  readonly ringBalance: Compact<Balance>;
+  readonly ktonBalance: Compact<Balance>;
   readonly power: Power;
 }
 
@@ -184,6 +182,13 @@ export interface Reasons extends Enum {
   readonly isMisc: boolean;
   readonly isAll: boolean;
   readonly type: 'Fee' | 'Misc' | 'All';
+}
+
+/** @name RedeemFor */
+export interface RedeemFor extends Enum {
+  readonly isToken: boolean;
+  readonly isDeposit: boolean;
+  readonly type: 'Token' | 'Deposit';
 }
 
 /** @name RefCount */

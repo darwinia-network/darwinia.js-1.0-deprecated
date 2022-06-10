@@ -142,6 +142,62 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    bridgeCrabParachainMessages: {
+      /**
+       * Submitter has failed to pay fee for delivering and dispatching messages.
+       **/
+      FailedToWithdrawMessageFee: AugmentedError<ApiType>;
+      /**
+       * All pallet operations are halted.
+       **/
+      Halted: AugmentedError<ApiType>;
+      /**
+       * Invalid messages delivery proof has been submitted.
+       **/
+      InvalidMessagesDeliveryProof: AugmentedError<ApiType>;
+      /**
+       * Invalid messages has been submitted.
+       **/
+      InvalidMessagesProof: AugmentedError<ApiType>;
+      /**
+       * The bridged chain has invalid `UnrewardedRelayers` in its storage (fatal for the lane).
+       **/
+      InvalidUnrewardedRelayers: AugmentedError<ApiType>;
+      /**
+       * The relayer has declared invalid unrewarded relayers state in the
+       * `receive_messages_delivery_proof` call.
+       **/
+      InvalidUnrewardedRelayersState: AugmentedError<ApiType>;
+      /**
+       * The message someone is trying to work with (i.e. increase fee) is already-delivered.
+       **/
+      MessageIsAlreadyDelivered: AugmentedError<ApiType>;
+      /**
+       * The message someone is trying to work with (i.e. increase fee) is not yet sent.
+       **/
+      MessageIsNotYetSent: AugmentedError<ApiType>;
+      /**
+       * Message has been treated as invalid by chain verifier.
+       **/
+      MessageRejectedByChainVerifier: AugmentedError<ApiType>;
+      /**
+       * Message has been treated as invalid by lane verifier.
+       **/
+      MessageRejectedByLaneVerifier: AugmentedError<ApiType>;
+      /**
+       * The transaction brings too many messages.
+       **/
+      TooManyMessagesInTheProof: AugmentedError<ApiType>;
+      /**
+       * The number of actually confirmed messages is going to be larger than the number of
+       * messages in the proof. This may mean that this or bridged chain storage is corrupted.
+       **/
+      TryingToConfirmMoreMessagesThanExpected: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     bridgeDarwiniaGrandpa: {
       /**
        * The pallet has already been initialized.
@@ -181,7 +237,7 @@ declare module '@polkadot/api-base/types/errors' {
       UnknownHeader: AugmentedError<ApiType>;
       /**
        * The scheduled authority set change found in the header is unsupported by the pallet.
-       * 
+       *
        * This is the case for non-standard (e.g forced) authority set changes.
        **/
       UnsupportedScheduledChange: AugmentedError<ApiType>;
@@ -246,28 +302,75 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    claims: {
+    bridgeKusamaGrandpa: {
       /**
-       * Invalid Ethereum signature.
+       * The pallet has already been initialized.
        **/
-      InvalidSignature: AugmentedError<ApiType>;
+      AlreadyInitialized: AugmentedError<ApiType>;
       /**
-       * Can NOT Move Claim to an EXISTED Address.
+       * All pallet operations are halted.
        **/
-      MoveToExistedAddress: AugmentedError<ApiType>;
+      Halted: AugmentedError<ApiType>;
       /**
-       * New Address Type - MISMATCHED
+       * The authority set from the underlying header chain is invalid.
        **/
-      NewAddressTypeMis: AugmentedError<ApiType>;
+      InvalidAuthoritySet: AugmentedError<ApiType>;
       /**
-       * There's not enough in the pot to pay out some unvested amount. Generally implies a logic
-       * log::error.
+       * The given justification is invalid for the given header.
        **/
-      PotUnderflow: AugmentedError<ApiType>;
+      InvalidJustification: AugmentedError<ApiType>;
       /**
-       * Ethereum address has no claim.
+       * The pallet is not yet initialized.
        **/
-      SignerHasNoClaim: AugmentedError<ApiType>;
+      NotInitialized: AugmentedError<ApiType>;
+      /**
+       * The header being imported is older than the best finalized header known to the pallet.
+       **/
+      OldHeader: AugmentedError<ApiType>;
+      /**
+       * The storage proof doesn't contains storage root. So it is invalid for given header.
+       **/
+      StorageRootMismatch: AugmentedError<ApiType>;
+      /**
+       * There are too many requests for the current window to handle.
+       **/
+      TooManyRequests: AugmentedError<ApiType>;
+      /**
+       * The header is unknown to the pallet.
+       **/
+      UnknownHeader: AugmentedError<ApiType>;
+      /**
+       * The scheduled authority set change found in the header is unsupported by the pallet.
+       *
+       * This is the case for non-standard (e.g forced) authority set changes.
+       **/
+      UnsupportedScheduledChange: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    bridgeKusamaParachain: {
+      /**
+       * Failed to extract state root from given parachain head.
+       **/
+      FailedToExtractStateRoot: AugmentedError<ApiType>;
+      /**
+       * Invalid storage proof has been passed.
+       **/
+      InvalidStorageProof: AugmentedError<ApiType>;
+      /**
+       * The storage proof doesn't contains storage root. So it is invalid for given header.
+       **/
+      StorageRootMismatch: AugmentedError<ApiType>;
+      /**
+       * Given parachain head is unknown.
+       **/
+      UnknownParaHead: AugmentedError<ApiType>;
+      /**
+       * Relay chain block is unknown to us.
+       **/
+      UnknownRelayChainBlock: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -314,6 +417,66 @@ declare module '@polkadot/api-base/types/errors' {
        * The given weight bound for the proposal was too low.
        **/
       WrongProposalWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    crabParachainFeeMarket: {
+      /**
+       * The relayer has been enrolled.
+       **/
+      AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Insufficient balance.
+       **/
+      InsufficientBalance: AugmentedError<ApiType>;
+      /**
+       * This relayer doesn't enroll ever.
+       **/
+      NotEnrolled: AugmentedError<ApiType>;
+      /**
+       * The relayer is occupied, and can't cancel enrollment now.
+       **/
+      OccupiedRelayer: AugmentedError<ApiType>;
+      /**
+       * The fee is lower than MinimumRelayFee.
+       **/
+      RelayFeeTooLow: AugmentedError<ApiType>;
+      /**
+       * Update locked collateral is not allow since some orders are not confirm.
+       **/
+      StillHasOrdersNotConfirmed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    darwiniaFeeMarket: {
+      /**
+       * The relayer has been enrolled.
+       **/
+      AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Insufficient balance.
+       **/
+      InsufficientBalance: AugmentedError<ApiType>;
+      /**
+       * This relayer doesn't enroll ever.
+       **/
+      NotEnrolled: AugmentedError<ApiType>;
+      /**
+       * The relayer is occupied, and can't cancel enrollment now.
+       **/
+      OccupiedRelayer: AugmentedError<ApiType>;
+      /**
+       * The fee is lower than MinimumRelayFee.
+       **/
+      RelayFeeTooLow: AugmentedError<ApiType>;
+      /**
+       * Update locked collateral is not allow since some orders are not confirm.
+       **/
+      StillHasOrdersNotConfirmed: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -537,36 +700,6 @@ declare module '@polkadot/api-base/types/errors' {
        * Withdraw fee failed
        **/
       WithdrawFailed: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    feeMarket: {
-      /**
-       * The relayer has been enrolled.
-       **/
-      AlreadyEnrolled: AugmentedError<ApiType>;
-      /**
-       * Insufficient balance.
-       **/
-      InsufficientBalance: AugmentedError<ApiType>;
-      /**
-       * This relayer doesn't enroll ever.
-       **/
-      NotEnrolled: AugmentedError<ApiType>;
-      /**
-       * The relayer is occupied, and can't cancel enrollment now.
-       **/
-      OccupiedRelayer: AugmentedError<ApiType>;
-      /**
-       * The fee is lower than MinimumRelayFee.
-       **/
-      RelayFeeTooLow: AugmentedError<ApiType>;
-      /**
-       * Update locked collateral is not allow since some orders are not confirm.
-       **/
-      StillHasOrdersNotConfirmed: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1264,8 +1397,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       PayoutIns: AugmentedError<ApiType>;
       /**
-       * There are too many nominators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many nominators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyNominators: AugmentedError<ApiType>;
       /**
@@ -1273,20 +1406,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooManyTargets: AugmentedError<ApiType>;
       /**
-       * There are too many validators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many validators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyValidators: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    sudo: {
-      /**
-       * Sender must be the Sudo account
-       **/
-      RequireSudo: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1295,7 +1418,7 @@ declare module '@polkadot/api-base/types/errors' {
     system: {
       /**
        * Failed to extract the runtime version from the new runtime.
-       * 
+       *
        * Either calling `Core_version` or decoding `RuntimeVersion` failed.
        **/
       FailedToExtractRuntimeVersion: AugmentedError<ApiType>;

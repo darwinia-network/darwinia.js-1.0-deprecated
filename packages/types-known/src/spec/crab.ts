@@ -132,6 +132,7 @@ const versioned: OverrideVersionedType[] = [
       },
       NominatorIndexCompact: 'u32',
       ValidatorIndexCompact: 'u16',
+
       OffchainAccuracyCompact: 'PerU16',
       PerU16: 'UInt<16, PerU16>',
 
@@ -211,7 +212,7 @@ const versioned: OverrideVersionedType[] = [
     types: objectSpread({}, sharedTypes)
   },
   {
-    minmax: [1210, undefined],
+    minmax: [1211, undefined],
     types: {}
   }
 ];
