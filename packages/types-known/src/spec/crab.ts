@@ -131,7 +131,8 @@ const versioned: OverrideVersionedType[] = [
         proof: 'Vec<H256>'
       },
       NominatorIndexCompact: 'u32',
-      ValidatorIndexCompact: 'u32',
+      ValidatorIndexCompact: 'u16',
+
       OffchainAccuracyCompact: 'PerU16',
       PerU16: 'UInt<16, PerU16>',
 
@@ -168,6 +169,13 @@ const versioned: OverrideVersionedType[] = [
       EthereumHeaderThing: {
         header: 'EthereumHeader',
         mmrRoot: 'H256'
+      },
+      RawHeaderThing: 'Vec<u8>',
+      OtherAddress: {
+        _enum: {
+          Eth: 'EthereumAddress',
+          Tron: 'EthereumAddress'
+        }
       }
     })
   },
@@ -180,6 +188,22 @@ const versioned: OverrideVersionedType[] = [
         consumers: 'RefCount',
         providers: 'RefCount',
         data: 'AccountData'
+      },
+      Keys: 'SessionKeys4',
+      StakingBalanceT: {
+        _enum: {
+          RingBalance: 'Balance',
+          KtonBalance: 'Balance'
+        }
+      },
+      Signature: 'H512',
+      Address: 'MultiAddress',
+      LookupSource: 'MultiAddress',
+      OtherSignature: {
+        _enum: {
+          Eth: 'EcdsaSignature',
+          Tron: 'EcdsaSignature'
+        }
       }
     })
   },
