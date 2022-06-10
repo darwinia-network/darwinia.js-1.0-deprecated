@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/typegen",
-    "version": "2.8.4",
+    "version": "2.8.5",
     "description": "Type generation scripts",
     "keywords": [
         "darwinia",
@@ -26,8 +26,8 @@
         "@babel/core": "^7.16.0",
         "@babel/register": "^7.16.0",
         "@babel/runtime": "^7.16.0",
-        "@darwinia/types": "^2.8.4",
-        "@darwinia/types-support": "^2.8.4",
+        "@darwinia/types": "^2.8.5",
+        "@darwinia/types-support": "^2.8.5",
         "@polkadot/api": "^8.1.2-1",
         "@polkadot/rpc-provider": "^8.1.2-1",
         "@polkadot/typegen": "^8.1.2-1",
