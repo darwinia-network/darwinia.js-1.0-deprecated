@@ -5,7 +5,7 @@ import type { ApiTypes } from '@polkadot/api-base/types';
 import type { BTreeMap, Bytes, Option, U8aFixed, Vec, WrapperKeepOpaque, bool, u128, u16, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H256 } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletMultisigMultisig, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletTransactionPaymentReleases, PalletXcmQueryStatus, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesOutboundHrmpMessage, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpRuntimeHeader, XcmVersionedMultiLocation, BpHeaderChainAuthoritySet, BpMessagesInboundLaneData, BpMessagesOutboundLaneData, BpMessagesMessageKey, BpMessagesMessageData, BpMessagesOperatingMode, PalletFeeMarketRelayer, PalletCollatorSelectionCandidateInfo, CumulusPalletDmpQueueConfigData, PalletFeeMarketOrder, SpConsensusAuraSr25519AppSr25519Public, CumulusPalletDmpQueuePageIndexData, PolkadotPrimitivesV1AbridgedHostConfiguration, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, PolkadotPrimitivesV1UpgradeRestriction, PolkadotPrimitivesV1PersistedValidationData, CrabParachainRuntimePalletsSessionSessionKeys, CumulusPalletXcmpQueueInboundChannelDetails, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueQueueConfigData } from '@polkadot/types/lookup';
+import type { BpHeaderChainAuthoritySet, BpMessagesInboundLaneData, BpMessagesMessageData, BpMessagesMessageKey, BpMessagesOperatingMode, BpMessagesOutboundLaneData, CrabParachainRuntimePalletsSessionSessionKeys, CumulusPalletDmpQueueConfigData, CumulusPalletDmpQueuePageIndexData, CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot, CumulusPalletXcmpQueueInboundChannelDetails, CumulusPalletXcmpQueueOutboundChannelDetails, CumulusPalletXcmpQueueQueueConfigData, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBalancesAccountData, PalletBalancesBalanceLock, PalletBalancesReleases, PalletBalancesReserveData, PalletCollatorSelectionCandidateInfo, PalletFeeMarketOrder, PalletFeeMarketRelayer, PalletMultisigMultisig, PalletProxyAnnouncement, PalletProxyProxyDefinition, PalletTransactionPaymentReleases, PalletXcmQueryStatus, PalletXcmVersionMigrationStage, PolkadotCorePrimitivesOutboundHrmpMessage, PolkadotPrimitivesV1AbridgedHostConfiguration, PolkadotPrimitivesV1PersistedValidationData, PolkadotPrimitivesV1UpgradeRestriction, SpConsensusAuraSr25519AppSr25519Public, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpRuntimeHeader, XcmVersionedMultiLocation } from '@polkadot/types/lookup';
 import type { Observable } from '@polkadot/types/types';
 
 declare module '@polkadot/api-base/types/storage' {
@@ -17,7 +17,7 @@ declare module '@polkadot/api-base/types/storage' {
       authorities: AugmentedQuery<ApiType, () => Observable<Vec<SpConsensusAuraSr25519AppSr25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The current slot of this block.
-       *
+       * 
        * This will be set in `on_initialize`.
        **/
       currentSlot: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
@@ -29,7 +29,7 @@ declare module '@polkadot/api-base/types/storage' {
     auraExt: {
       /**
        * Serves as cache for the authorities.
-       *
+       * 
        * The authorities in AuRa are overwritten in `on_initialize` when we switch to a new session,
        * but we require the old authorities to verify the seal when validating a PoV. This will always
        * be updated to the latest AuRa authorities in `on_finalize`.
@@ -61,25 +61,25 @@ declare module '@polkadot/api-base/types/storage' {
     balances: {
       /**
        * The Balances pallet example of storing the balance of an account.
-       *
+       * 
        * # Example
-       *
+       * 
        * ```nocompile
        * impl pallet_balances::Config for Runtime {
        * type AccountStore = StorageMapShim<Self::Account<Runtime>, frame_system::Provider<Runtime>, AccountId, Self::AccountData<Balance>>
        * }
        * ```
-       *
+       * 
        * You can also store the balance of an account in the `System` pallet.
-       *
+       * 
        * # Example
-       *
+       * 
        * ```nocompile
        * impl pallet_balances::Config for Runtime {
        * type AccountStore = System
        * }
        * ```
-       *
+       * 
        * But this comes with tradeoffs, storing account balances in the system pallet stores
        * `frame_system` data alongside the account data contrary to storing account balances in the
        * `Balances` pallet, which uses a `StorageMap` to store balances data only.
@@ -97,7 +97,7 @@ declare module '@polkadot/api-base/types/storage' {
       reserves: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesReserveData>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Storage version of the pallet.
-       *
+       * 
        * This is set to v2.0.0 for new networks.
        **/
       storageVersion: AugmentedQuery<ApiType, () => Observable<PalletBalancesReleases>, []> & QueryableStorageEntry<ApiType, []>;
@@ -141,7 +141,7 @@ declare module '@polkadot/api-base/types/storage' {
       isHalted: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Optional pallet owner.
-       *
+       * 
        * Pallet owner has a right to halt all pallet operations and then resume it. If it is
        * `None`, then there are no direct ways to halt/resume pallet operations, but other
        * runtime methods may still be used to do that (i.e. democracy::referendum to update halt
@@ -150,10 +150,10 @@ declare module '@polkadot/api-base/types/storage' {
       palletOwner: AugmentedQuery<ApiType, () => Observable<Option<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The current number of requests which have written to storage.
-       *
+       * 
        * If the `RequestCount` hits `MaxRequests`, no more calls will be allowed to the pallet until
        * the request capacity is increased.
-       *
+       * 
        * The `RequestCount` is decreased by one at the beginning of every block. This is to ensure
        * that the pallet can always make progress.
        **/
@@ -178,13 +178,13 @@ declare module '@polkadot/api-base/types/storage' {
       outboundMessages: AugmentedQuery<ApiType, (arg: BpMessagesMessageKey | { laneId?: any; nonce?: any } | string | Uint8Array) => Observable<Option<BpMessagesMessageData>>, [BpMessagesMessageKey]> & QueryableStorageEntry<ApiType, [BpMessagesMessageKey]>;
       /**
        * The current operating mode of the pallet.
-       *
+       * 
        * Depending on the mode either all, some, or no transactions will be allowed.
        **/
       palletOperatingMode: AugmentedQuery<ApiType, () => Observable<BpMessagesOperatingMode>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Optional pallet owner.
-       *
+       * 
        * Pallet owner has a right to halt all pallet operations and then resume it. If it is
        * `None`, then there are no direct ways to halt/resume pallet operations, but other
        * runtime methods may still be used to do that (i.e. democracy::referendum to update halt
@@ -199,7 +199,7 @@ declare module '@polkadot/api-base/types/storage' {
     collatorSelection: {
       /**
        * Fixed amount to deposit to become a collator.
-       *
+       * 
        * When a collator calls `leave_intent` they immediately receive the deposit back.
        **/
       candidacyBond: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
@@ -209,7 +209,7 @@ declare module '@polkadot/api-base/types/storage' {
       candidates: AugmentedQuery<ApiType, () => Observable<Vec<PalletCollatorSelectionCandidateInfo>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Desired number of candidates.
-       *
+       * 
        * This should ideally always be less than [`Config::MaxCandidates`] for weights to be correct.
        **/
       desiredCandidates: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
@@ -290,7 +290,7 @@ declare module '@polkadot/api-base/types/storage' {
       authorizedUpgrade: AugmentedQuery<ApiType, () => Observable<Option<H256>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * A custom head data that should be returned as result of `validate_block`.
-       *
+       * 
        * See [`Pallet::set_custom_validation_head_data`] for more information.
        **/
       customValidationHeadData: AugmentedQuery<ApiType, () => Observable<Option<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
@@ -300,35 +300,35 @@ declare module '@polkadot/api-base/types/storage' {
       didSetValidationCode: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The parachain host configuration that was obtained from the relay parent.
-       *
+       * 
        * This field is meant to be updated each block with the validation data inherent. Therefore,
        * before processing of the inherent, e.g. in `on_initialize` this data may be stale.
-       *
+       * 
        * This data is also absent from the genesis.
        **/
       hostConfiguration: AugmentedQuery<ApiType, () => Observable<Option<PolkadotPrimitivesV1AbridgedHostConfiguration>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * HRMP messages that were sent in a block.
-       *
+       * 
        * This will be cleared in `on_initialize` of each new block.
        **/
       hrmpOutboundMessages: AugmentedQuery<ApiType, () => Observable<Vec<PolkadotCorePrimitivesOutboundHrmpMessage>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * HRMP watermark that was set in a block.
-       *
+       * 
        * This will be cleared in `on_initialize` of each new block.
        **/
       hrmpWatermark: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The last downward message queue chain head we have observed.
-       *
+       * 
        * This value is loaded before and saved after processing inbound downward messages carried
        * by the system inherent.
        **/
       lastDmqMqcHead: AugmentedQuery<ApiType, () => Observable<H256>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The message queue chain heads we have observed per each channel incoming channel.
-       *
+       * 
        * This value is loaded before and saved after processing inbound downward messages carried
        * by the system inherent.
        **/
@@ -336,7 +336,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Validation code that is set by the parachain and is to be communicated to collator and
        * consequently the relay-chain.
-       *
+       * 
        * This will be cleared in `on_initialize` of each new block if no other pallet already set
        * the value.
        **/
@@ -347,26 +347,26 @@ declare module '@polkadot/api-base/types/storage' {
       pendingUpwardMessages: AugmentedQuery<ApiType, () => Observable<Vec<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * In case of a scheduled upgrade, this storage field contains the validation code to be applied.
-       *
+       * 
        * As soon as the relay chain gives us the go-ahead signal, we will overwrite the [`:code`][well_known_keys::CODE]
        * which will result the next block process with the new validation code. This concludes the upgrade process.
-       *
+       * 
        * [well_known_keys::CODE]: sp_core::storage::well_known_keys::CODE
        **/
       pendingValidationCode: AugmentedQuery<ApiType, () => Observable<Bytes>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Number of downward messages processed in a block.
-       *
+       * 
        * This will be cleared in `on_initialize` of each new block.
        **/
       processedDownwardMessages: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The snapshot of some state related to messaging relevant to the current parachain as per
        * the relay parent.
-       *
+       * 
        * This field is meant to be updated each block with the validation data inherent. Therefore,
        * before processing of the inherent, e.g. in `on_initialize` this data may be stale.
-       *
+       * 
        * This data is also absent from the genesis.
        **/
       relevantMessagingState: AugmentedQuery<ApiType, () => Observable<Option<CumulusPalletParachainSystemRelayStateSnapshotMessagingStateSnapshot>>, []> & QueryableStorageEntry<ApiType, []>;
@@ -384,7 +384,7 @@ declare module '@polkadot/api-base/types/storage' {
        * An option which indicates if the relay-chain restricts signalling a validation code upgrade.
        * In other words, if this is `Some` and [`NewValidationCode`] is `Some` then the produced
        * candidate will be invalid.
-       *
+       * 
        * This storage item is a mirror of the corresponding value for the current parachain from the
        * relay-chain. This value is ephemeral which means it doesn't hit the storage. This value is
        * set after the inherent.
@@ -392,7 +392,7 @@ declare module '@polkadot/api-base/types/storage' {
       upgradeRestrictionSignal: AugmentedQuery<ApiType, () => Observable<Option<PolkadotPrimitivesV1UpgradeRestriction>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Upward messages that were sent in a block.
-       *
+       * 
        * This will be cleared in `on_initialize` of each new block.
        **/
       upwardMessages: AugmentedQuery<ApiType, () => Observable<Vec<Bytes>>, []> & QueryableStorageEntry<ApiType, []>;
@@ -410,7 +410,7 @@ declare module '@polkadot/api-base/types/storage' {
     polkadotXcm: {
       /**
        * The existing asset traps.
-       *
+       * 
        * Key is the blake2 256 hash of (origin, versioned `MultiAssets`) pair. Value is the number of
        * times this pair has been trapped (usually just 1 if it exists at all).
        **/
@@ -478,7 +478,7 @@ declare module '@polkadot/api-base/types/storage' {
       currentIndex: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Indices of disabled validators.
-       *
+       * 
        * The vec is always kept sorted so that we can find whether a given validator is
        * disabled using binary search. It gets cleared when `on_session_ending` returns
        * a new set of identities.
@@ -548,7 +548,7 @@ declare module '@polkadot/api-base/types/storage' {
       eventCount: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Events deposited for the current block.
-       *
+       * 
        * NOTE: This storage item is explicitly unbounded since it is never intended to be read
        * from within the runtime.
        **/
@@ -556,11 +556,11 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Mapping between a topic (represented by T::Hash) and a vector of indexes
        * of events in the `<Events<T>>` list.
-       *
+       * 
        * All topic vectors have deterministic storage locations depending on the topic. This
        * allows light-clients to leverage the changes trie storage tracking mechanism and
        * in case of changes fetch the list of events of interest.
-       *
+       * 
        * The value has the type `(T::BlockNumber, EventIndex)` because if we used only just
        * the `EventIndex` then in case if the topic has the same contents on the next block
        * no notification will be triggered thus the event might be lost.
@@ -650,7 +650,7 @@ declare module '@polkadot/api-base/types/storage' {
       outboundXcmpStatus: AugmentedQuery<ApiType, () => Observable<Vec<CumulusPalletXcmpQueueOutboundChannelDetails>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The messages that exceeded max individual message weight budget.
-       *
+       * 
        * These message stay in this storage map until they are manually dispatched via
        * `service_overweight`.
        **/

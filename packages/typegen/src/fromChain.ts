@@ -8,6 +8,7 @@ import path from 'path';
 import yargs from 'yargs';
 
 import { generateDefaultConsts, generateDefaultErrors, generateDefaultEvents, generateDefaultLookup, generateDefaultQuery, generateDefaultRpc, generateDefaultTx } from '@polkadot/typegen/generate';
+import { Definitions } from '@polkadot/types/types';
 import { formatNumber } from '@polkadot/util';
 import { WebSocket } from '@polkadot/x-ws';
 
@@ -21,15 +22,26 @@ function generate(metaHex: HexString, name: string, isStrict?: boolean): void {
   console.log(`** Generating lookup for ${name}`);
 
   generateDefaultLookup(`${LOOKUP}/${name}`, metaHex);
+  let chainLookupDefinitions: Definitions = { rpc: {}, types: {} };
+
+  try {
+    chainLookupDefinitions = {
+      rpc: {},
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires
+      types: require(path.join(`@darwinia/types-augment/src/lookup/${name}`, 'lookup.ts')).default
+    };
+  } catch (error) {
+    console.error('ERROR: No lookup definitions found:', (error as Error).message);
+  }
 
   console.log(`*** Generating for ${name}`);
 
   generateDefaultRpc(`${RPCBASE}/${name}/jsonrpc.ts`, { '@darwinia/types/interfaces': chainDefs });
-  generateDefaultConsts(`${BASE}/${name}/consts.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict);
+  generateDefaultConsts(`${BASE}/${name}/consts.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict, chainLookupDefinitions);
   generateDefaultErrors(`${BASE}/${name}/errors.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict);
-  generateDefaultEvents(`${BASE}/${name}/events.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict);
-  generateDefaultQuery(`${BASE}/${name}/query.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict);
-  generateDefaultTx(`${BASE}/${name}/tx.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict);
+  generateDefaultEvents(`${BASE}/${name}/events.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict, chainLookupDefinitions);
+  generateDefaultQuery(`${BASE}/${name}/query.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict, chainLookupDefinitions);
+  generateDefaultTx(`${BASE}/${name}/tx.ts`, metaHex, { '@darwinia/types/interfaces': chainDefs }, isStrict, chainLookupDefinitions);
 
   process.exit(0);
 }
