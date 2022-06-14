@@ -1,0 +1,25 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "..",
+        "outDir": "./build",
+        "rootDir": "./src",
+    },
+    "include": [
+        "**/crabParachain_base.ts",
+        "**/crabParachain/*.ts"
+    ],
+    "exclude": [
+        "**/crabParachain/*.spec.ts",
+        "**/crab_base.ts",
+        "**/darwinia_base.ts",
+        "**/pangolin_base.ts",
+        "**/pangoro_base.ts",
+    ],
+    "references": [
+        { "path": "../rpc-augment/tsconfig.crabParachain.json" },
+        { "path": "../types/tsconfig.build.json" },
+        { "path": "../types-augment/tsconfig.crabParachain.json" },
+        { "path": "../types-support/tsconfig.build.json" },
+    ]
+}

@@ -13,6 +13,8 @@
       "**/crab_base.ts",
       "**/pangolin_base.ts",
       "**/pangoro_base.ts",
+      "**/crabParachain_base.ts",
+      "**/crabParachain/*.ts",
     ],
     "references": [
       { "path": "../rpc-augment/tsconfig.build.json" },

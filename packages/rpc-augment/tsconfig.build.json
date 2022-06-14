@@ -10,6 +10,7 @@
       "**/pangolin/*.ts",
       "**/pangoro/*.ts",
       "**/crab/*.ts",
+      "**/crabParachain/*.ts",
     ],
     "references": [
       { "path": "../types/tsconfig.build.json" }

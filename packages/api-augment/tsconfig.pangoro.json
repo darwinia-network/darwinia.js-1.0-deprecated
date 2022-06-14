@@ -13,7 +13,8 @@
       "**/pangoro/*.spec.ts",
       "**/darwinia_base.ts",
       "**/crab_base.ts",
-      "**/pangolin_base.ts"
+      "**/pangolin_base.ts",
+      "**/crabParachain_base.ts",
     ],
     "references": [
       { "path": "../rpc-augment/tsconfig.pangoro.json" },

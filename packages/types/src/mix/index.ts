@@ -23,6 +23,7 @@ import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
 interface SpecOverrideBundleDefinition {
   spec: {
     Crab: OverrideBundleDefinition;
+    CrabParachain: OverrideBundleDefinition;
     Darwinia: OverrideBundleDefinition;
     Pangolin: OverrideBundleDefinition;
     Pangoro: OverrideBundleDefinition;
@@ -32,10 +33,11 @@ interface SpecOverrideBundleDefinition {
 interface CompatibleSpecOverrideBundleDefinition {
   spec: {
     crab: OverrideBundleDefinition;
+    CrabParachain: OverrideBundleDefinition;
     darwinia: OverrideBundleDefinition;
     pangolin: OverrideBundleDefinition;
     pangoro: OverrideBundleDefinition;
-  }
+  };
 }
 
 const polkadotCompatibleTypes: RegistryTypes = {
@@ -99,26 +101,25 @@ function getBundleFromSpecName (specName: string, isPolkadotCompatible?: boolean
   return {
     alias: {},
     rpc: jsonrpc,
-    types: [...typesSpec[specName]].map(
-      (version): OverrideVersionedType => {
-        return {
-          minmax: version.minmax,
-          // eslint-disable-next-line
-          // @ts-ignore
-          types: {
-            ...types,
-            ...version.types,
-            ...(isPolkadotCompatible ? polkadotCompatibleTypes : [])
-          }
-        };
-      }
-    )
+    types: [...typesSpec[specName]].map((version): OverrideVersionedType => {
+      return {
+        minmax: version.minmax,
+        // eslint-disable-next-line
+        // @ts-ignore
+        types: {
+          ...types,
+          ...version.types,
+          ...(isPolkadotCompatible ? polkadotCompatibleTypes : [])
+        }
+      };
+    })
   };
 }
 
 export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', true),
+    CrabParachain: getBundleFromSpecName('CrabParachain', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
     Pangolin: getBundleFromSpecName('Pangolin', true),
     Pangoro: getBundleFromSpecName('Pangoro', true)
@@ -129,6 +130,7 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
 export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
   spec: {
     crab: getBundleFromSpecName('Crab', true),
+    CrabParachain: getBundleFromSpecName('CrabParachain', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
     pangolin: getBundleFromSpecName('Pangolin', true),
     pangoro: getBundleFromSpecName('Pangoro', true)
@@ -138,6 +140,7 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
 export const typesBundle: SpecOverrideBundleDefinition = {
   spec: {
     Crab: getBundleFromSpecName('Crab', false),
+    CrabParachain: getBundleFromSpecName('CrabParachain', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
     Pangolin: getBundleFromSpecName('Pangolin', false),
     Pangoro: getBundleFromSpecName('Pangoro', false)

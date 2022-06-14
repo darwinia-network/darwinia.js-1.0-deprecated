@@ -6,11 +6,11 @@
         "rootDir": "./src"
     },
     "include": [
-        "**/crab/*.ts"
+        "**/crabParachain/*.ts"
     ],
     "exclude": [
         "**/*.spec.ts",
-        "**/crabParachain/*.ts",
+        "**/crab/*.ts",
         "**/pangolin/*.ts",
         "**/pangoro/*.ts",
         "**/darwinia/*.ts",
