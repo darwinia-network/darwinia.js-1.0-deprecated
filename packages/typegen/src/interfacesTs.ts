@@ -3,7 +3,6 @@
 
 import type { HexString } from '@polkadot/util/types';
 
-// import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 import * as chainDefs from '@darwinia/types/src/interfaces/definitions';
 import crab from '@darwinia/types-support/src/metadata/static-crab';
 import crabParachain from '@darwinia/types-support/src/metadata/static-crab-parachain';

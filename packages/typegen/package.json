@@ -19,6 +19,7 @@
     "bin": {
         "darwinia-ci-ghact-build": "./scripts/darwinia-ci-ghact-build.cjs",
         "darwinia-dev-build-ts": "./scripts/darwinia-dev-build-ts.cjs",
+        "darwinia-types-from-chain": "./scripts/darwinia-types-from-chain.cjs",
         "darwinia-types-from-defs": "./scripts/darwinia-types-from-defs.cjs",
         "darwinia-types-internal-interfaces": "./scripts/darwinia-types-internal-interfaces.cjs"
     },
