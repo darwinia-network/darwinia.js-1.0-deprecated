@@ -8,6 +8,7 @@ import crab from '@darwinia/types-support/src/metadata/static-crab';
 import crabParachain from '@darwinia/types-support/src/metadata/static-crab-parachain';
 import darwinia from '@darwinia/types-support/src/metadata/static-darwinia';
 import pangolin from '@darwinia/types-support/src/metadata/static-pangolin';
+import pangolinParachain from '@darwinia/types-support/src/metadata/static-pangolin-parachain';
 import pangoro from '@darwinia/types-support/src/metadata/static-pangoro';
 import path from 'path';
 
@@ -18,9 +19,9 @@ const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
 const LOOKUP = 'packages/types-augment/src/lookup';
 
-const METAS = Object.entries({ crab, crabParachain, darwinia, pangolin, pangoro }) as [string, HexString][];
+const METAS = Object.entries({ crab, crabParachain, darwinia, pangolin, pangolinParachain, pangoro }) as [string, HexString][];
 
-export function main(): void {
+export function main (): void {
   for (const [name, staticMeta] of METAS) {
     console.log(`** Generating lookup for ${name}`);
 

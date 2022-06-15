@@ -12,9 +12,11 @@
       { "path": "./packages/api-augment/tsconfig.pangoro.json" },
       { "path": "./packages/api-augment/tsconfig.crab.json" },
       { "path": "./packages/api-augment/tsconfig.crabParachain.json" },
+      { "path": "./packages/api-augment/tsconfig.pangolinParachain.json" },
       { "path": "./packages/rpc-augment/tsconfig.build.json" },
       { "path": "./packages/rpc-augment/tsconfig.crab.json" },
       { "path": "./packages/rpc-augment/tsconfig.crabParachain.json" },
+      { "path": "./packages/rpc-augment/tsconfig.pangolinParachain.json" },
       { "path": "./packages/rpc-augment/tsconfig.pangolin.json"},
       { "path": "./packages/rpc-augment/tsconfig.pangoro.json"},
       { "path": "./packages/typegen/tsconfig.build.json" },
@@ -27,6 +29,7 @@
       { "path": "./packages/types-augment/tsconfig.pangoro.json" },
       { "path": "./packages/types-augment/tsconfig.crab.json" },
       { "path": "./packages/types-augment/tsconfig.crabParachain.json" },
+      { "path": "./packages/types-augment/tsconfig.pangolinParachain.json" },
       { "path": "./packages/api-derive/tsconfig.json" },
       { "path": "./packages/api-options/tsconfig.build.json"}
     ]

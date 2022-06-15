@@ -26,6 +26,7 @@ interface SpecOverrideBundleDefinition {
     CrabParachain: OverrideBundleDefinition;
     Darwinia: OverrideBundleDefinition;
     Pangolin: OverrideBundleDefinition;
+    PangolinParachain: OverrideBundleDefinition;
     Pangoro: OverrideBundleDefinition;
   };
 }
@@ -36,6 +37,7 @@ interface CompatibleSpecOverrideBundleDefinition {
     CrabParachain: OverrideBundleDefinition;
     darwinia: OverrideBundleDefinition;
     pangolin: OverrideBundleDefinition;
+    PangolinParachain: OverrideBundleDefinition;
     pangoro: OverrideBundleDefinition;
   };
 }
@@ -122,6 +124,7 @@ export const typesBundleForPolkadotApps: SpecOverrideBundleDefinition = {
     CrabParachain: getBundleFromSpecName('CrabParachain', true),
     Darwinia: getBundleFromSpecName('Darwinia', true),
     Pangolin: getBundleFromSpecName('Pangolin', true),
+    PangolinParachain: getBundleFromSpecName('PangolinParachain', true),
     Pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
@@ -133,6 +136,7 @@ export const typesBundleForPolkadot: CompatibleSpecOverrideBundleDefinition = {
     CrabParachain: getBundleFromSpecName('CrabParachain', true),
     darwinia: getBundleFromSpecName('Darwinia', true),
     pangolin: getBundleFromSpecName('Pangolin', true),
+    PangolinParachain: getBundleFromSpecName('PangolinParachain', true),
     pangoro: getBundleFromSpecName('Pangoro', true)
   }
 };
@@ -143,6 +147,7 @@ export const typesBundle: SpecOverrideBundleDefinition = {
     CrabParachain: getBundleFromSpecName('CrabParachain', false),
     Darwinia: getBundleFromSpecName('Darwinia', false),
     Pangolin: getBundleFromSpecName('Pangolin', false),
+    PangolinParachain: getBundleFromSpecName('PangolinParachain', false),
     Pangoro: getBundleFromSpecName('Pangoro', false)
   }
 };

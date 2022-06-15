@@ -25,14 +25,14 @@ const QUERY_OPTS = {
 
 // eslint-disable-next-line space-before-function-paren
 function redeemableSum(api: ApiInterfaceRx, stakingLedger: DarwiniaStakingStructsStakingLedger | undefined, best: BlockNumber): Balance[] {
-  const ring = api.registry.createType(
+  const ring = api.registry.createType<Balance>(
     'Balance',
     (stakingLedger?.ringStakingLock.unbondings || ([] as DarwiniaSupportStructsUnbonding[])).reduce((total, { amount, until }): BN => {
       return best.gte(until) ? total.add(amount) : total;
     }, new BN(0)) ?? new BN(0)
   );
 
-  const kton = api.registry.createType(
+  const kton = api.registry.createType<Balance>(
     'Balance',
     (stakingLedger?.ktonStakingLock.unbondings || ([] as DarwiniaSupportStructsUnbonding[])).reduce((total, { amount, until }): BN => {
       return best.gte(until) ? total.add(amount) : total;

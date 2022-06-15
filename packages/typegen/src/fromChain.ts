@@ -16,7 +16,7 @@ const BASE = 'packages/api-augment/src';
 const RPCBASE = 'packages/rpc-augment/src';
 const LOOKUP = 'packages/types-augment/src/lookup';
 
-function generate(metaHex: HexString, name: string, isStrict?: boolean): void {
+function generate (metaHex: HexString, name: string, isStrict?: boolean): void {
   console.log(`Generating from metadata, ${formatNumber((metaHex.length - 2) / 2)} bytes`);
 
   console.log(`** Generating lookup for ${name}`);
@@ -48,12 +48,10 @@ function generate(metaHex: HexString, name: string, isStrict?: boolean): void {
 
 type ArgV = { endpoint: string; name: string; strict?: boolean };
 
-export function main(): void {
-  const {
-    endpoint,
+export function main (): void {
+  const { endpoint,
     name,
-    strict: isStrict
-  } = yargs.strict().options({
+    strict: isStrict } = yargs.strict().options({
     endpoint: {
       description: 'The endpoint to connect to (e.g. wss://rpc.darwinia.network) or relative path to a file containing the JSON output of an RPC state_getMetadata call',
       required: true,
