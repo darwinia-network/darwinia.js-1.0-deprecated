@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/api-augment",
-    "version": "2.8.5",
+    "version": "2.8.6",
     "description": "API generated augmentation",
     "keywords": [
         "darwinia",
@@ -18,9 +18,9 @@
     "main": "index.js",
     "devDependencies": {
         "@babel/runtime": "^7.17.9",
-        "@darwinia/rpc-augment": "^2.8.5",
-        "@darwinia/types": "^2.8.5",
-        "@darwinia/types-augment": "^2.8.5",
+        "@darwinia/rpc-augment": "^2.8.6",
+        "@darwinia/types": "^2.8.6",
+        "@darwinia/types-augment": "^2.8.6",
         "@polkadot/api-base": "^8.1.2-1",
         "@polkadot/types": "^8.1.2-1",
         "@polkadot/types-augment": "^8.1.2-1",

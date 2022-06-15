@@ -1,6 +1,6 @@
 {
   "name": "@darwinia/types-known",
-  "version": "2.8.5",
+  "version": "2.8.6",
   "description": "A JavaScript wrapper for the Polkadot JsonRPC interface",
   "main": "index.js",
   "keywords": [
