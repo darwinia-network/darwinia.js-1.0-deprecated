@@ -6,20 +6,17 @@
         "rootDir": "./src"
     },
     "include": [
-        "**/crab/*.ts"
+        "**/crabParachain/*.ts"
     ],
     "exclude": [
-        "**/*.spec.ts",
-        "**/crabParachain/*.ts",
-        "**/pangolin/*.ts",
-        "**/pangolinParachain/*.ts",
-        "**/pangoro/*.ts",
-        "**/darwinia/*.ts",
-       
+        "**/crabParachain/*.spec.ts"
     ],
     "references": [
         {
+            "path": "../rpc-augment/tsconfig.crabParachain.json"
+        },
+        {
             "path": "../types/tsconfig.build.json"
-        }
+        },
     ]
 }

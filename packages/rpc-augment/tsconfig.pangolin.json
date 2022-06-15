@@ -11,8 +11,10 @@
     "exclude": [
         "**/*.spec.ts",
         "**/crab/*.ts",
+        "**/crabParachain/*.ts",
         "**/pangoro/*.ts",
         "**/darwinia/*.ts",
+        "**/pangolinParachain/*.ts",
     ],
     "references": [
         {

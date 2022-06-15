@@ -8,7 +8,7 @@ This Library contains Typescript bindings for custom darwinia-node modules.
 
 The repo is split up into a number of internal packages 
 
-* @darwinia/api-augment applies darwinia, crab, pangolin, pangoro types and endpoint augmentation
+* @darwinia/api-augment applies darwinia, crab, pangolin, pangoro, crabParachain, pangolinParachain types and endpoint augmentation
 * @darwinia/api-derive Derived api for darwinia.
 * @darwinia/api-option Provider user to inject derived, rpc method and additional types used by runtime modules.
 * @darwinia/rpc-augment  decorate all RPC endpoints
@@ -114,6 +114,45 @@ You will also need to update the **tsconfig.json** of your project to include th
       "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
       "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangoro/index.d.ts"],
       "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangoro/index.d.ts"]
+    }
+  }
+}
+
+```
+
+
+#### mapping crabParachain api and types
+
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/crabParachain/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/crabParachain/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/crabParachain/index.d.ts"]
+    }
+  }
+}
+
+```
+
+
+
+#### mapping pangolinParachain api and types
+
+```json
+
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@polkadot/api-augment": ["./node_modules/@darwinia/api-augment/pangolinParachain/index.d.ts"],
+      "@polkadot/types-augment": ["./node_modules/@darwinia/types/interfaces/augment-types.d.ts"],
+      "@polkadot/rpc-augment": ["./node_modules/@darwinia/rpc-augment/pangolinParachain/index.d.ts"],
+      "@poladot/types/lookup": ["./node_modules/@darwinia/types-augment/lookup/pangolinParachain/index.d.ts"]
     }
   }
 }
@@ -245,7 +284,7 @@ config tsconfig.json with  paths as below:
 
 ### Generating
 
-We can run the generate command via `yarn build:interfaces`, generate api-augment from Metadata. And run via `yarn build:defs`, generate types from customer definition in definitions.ts files and runtime lookup types.
+We can run the generate command via `yarn build:interfaces`, generate all chain's api-augment from Metadata. And run via `yarn build:defs`, generate types from customer definition in definitions.ts files and runtime lookup types.
 
 Now if we check the actual output against the source via yarn lint, we would see that valid output has been generated -
 ```

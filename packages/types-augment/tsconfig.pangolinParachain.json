@@ -1,0 +1,18 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "baseUrl": "..",
+        "outDir": "./build",
+        "rootDir": "./src"
+    },
+    "include": [
+        "**/pangolinParachain/*.ts"
+    ],
+    "exclude": [
+        "**/pangolinParachain/*.spec.ts"
+    ],
+    "references": [
+        { "path": "../rpc-augment/tsconfig.pangolinParachain.json" },
+        { "path": "../types/tsconfig.build.json" },
+    ]
+}

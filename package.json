@@ -16,6 +16,7 @@
   "scripts": {
     "build": "yarn build:defs && yarn build:interfaces && yarn build:ts",
     "build:defs": "darwinia-types-from-defs",
+    "build:meta": "darwinia-types-from-chain",
     "build:interfaces": "darwinia-types-internal-interfaces",
     "build:ts": "darwinia-dev-build-ts",
     "chain:info": "polkadot-types-chain-info",
