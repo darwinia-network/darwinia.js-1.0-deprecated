@@ -7,24 +7,24 @@ import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { JsonRpcProvider } from '@ethersproject/providers';
 
 import { GenericCall as Call, Metadata, TypeRegistry } from '@polkadot/types';
-
-import { BalanceTransferInput } from './types';
+import { AccountId32, H160 } from '@polkadot/types/interfaces/runtime';
 
 const WITHDRAW_GAS = 55000;
-const precision = 100000000;
+const precision = 1000_000_000;
 
-export interface CallIndexConfig {
-  balanceTransfer: [number, number];
+export interface EvmConfig {
+  balancesTransferIndex: [number, number];
   metadata: HexString;
+  dispatchContractAddress: string;
 }
 
-export class DarwiniaDvmApi {
-  protected _cfg: CallIndexConfig;
+export class DarwiniaEvm {
+  protected _cfg: EvmConfig;
   protected ethers: JsonRpcProvider;
   protected _metadataType: Metadata;
   protected _registry = new TypeRegistry();
 
-  constructor (cfg: CallIndexConfig, ethers: JsonRpcProvider) {
+  constructor (cfg: EvmConfig, ethers: JsonRpcProvider) {
     this._cfg = cfg;
     this.ethers = ethers;
     this._metadataType = new Metadata(this._registry, this._cfg.metadata);
@@ -35,19 +35,27 @@ export class DarwiniaDvmApi {
     return this._cfg;
   }
 
-  async balanceTransferDispatch (from: string, to: string, input: BalanceTransferInput, gas?: number): Promise<TransactionResponse> {
+  /**
+   * @description transfer smart chain token to substrate chain by substrate contract
+   * @param from  evm address
+   * @param to    substrate account
+   * @param amount  token amount with precision  1000_000_000
+   * @param gas gasLimit
+   * @returns
+   */
+  async balanceTransferDispatch (from: H160, to: AccountId32, amount: number, gas?: number): Promise<TransactionResponse> {
     const signer = this.ethers.getSigner();
 
     const decodInput = new Call(this._registry, {
-      args: [input.destAccount, Number(input.amount.toPrecision(9)) * precision],
-      callIndex: this._cfg.balanceTransfer
+      args: [to.toString(), Number(amount.toPrecision(9)) / precision],
+      callIndex: this._cfg.balancesTransferIndex
     });
 
     return await signer.sendTransaction({
       data: decodInput.toU8a(),
-      from,
+      from: from.toString(),
       gasLimit: gas ?? WITHDRAW_GAS,
-      to
+      to: this._cfg.dispatchContractAddress
     });
   }
 }
