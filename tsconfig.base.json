@@ -6,6 +6,8 @@
       
         "@darwinia/api-augment": ["api-augment/src"],
         "@darwinia/api-augment/*": ["api-augment/src/*"],
+        "@darwinia/api-evm": ["api-evm/src"],
+        "@darwinia/api-evm/*": ["api-evm/src/*"],
         "@darwinia/rpc-augment": ["rpc-augment/src"],
         "@darwinia/rpc-augment/*": ["rpc-augment/src/*"],
         "@darwinia/types": ["types/src"],

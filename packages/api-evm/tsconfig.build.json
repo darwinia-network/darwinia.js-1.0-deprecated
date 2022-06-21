@@ -1,0 +1,32 @@
+{
+    "extends": "@polkadot/dev/config/tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": "..",
+        "outDir": "./build",
+        "rootDir": "./src",
+        "composite": true,
+        "paths": {
+            "@darwinia/types-support": [
+                "types-support/src"
+            ],
+            "@darwinia/types-support/*": [
+                "types-support/src/*"
+            ],
+        },
+        "skipLibCheck": true
+    },
+    "exclude": [
+       "**/test/**/*.json",
+        "**/test/**/*.ts",
+        "**/test/**/*.wasm",
+        "**/checkTypes.manual.ts",
+        "**/*.spec.ts",
+        "mock.ts"
+    ],
+    "references": [
+        {
+            "path": "../types-support/tsconfig.build.json"
+        }
+      
+    ]
+}
