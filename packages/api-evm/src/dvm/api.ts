@@ -4,10 +4,11 @@
 import type { HexString } from '@polkadot/util/types';
 
 import { TransactionResponse } from '@ethersproject/abstract-provider';
+import { BigNumber } from '@ethersproject/bignumber';
 import { JsonRpcProvider } from '@ethersproject/providers';
+import { ethers } from 'ethers';
 
 import { GenericCall as Call, Metadata, TypeRegistry } from '@polkadot/types';
-import { AccountId32, H160 } from '@polkadot/types/interfaces/runtime';
 
 const WITHDRAW_GAS = 55000;
 const precision = 1000_000_000;
@@ -43,17 +44,17 @@ export class DarwiniaEvm {
    * @param gas gasLimit
    * @returns
    */
-  async balanceTransferDispatch (from: H160, to: AccountId32, amount: number, gas?: number): Promise<TransactionResponse> {
+  async balanceTransfer (from: string, to: string, amount: BigNumber | bigint | string | number, gas?: number): Promise<TransactionResponse> {
     const signer = this.ethers.getSigner();
 
     const decodInput = new Call(this._registry, {
-      args: [to.toString(), Number(amount.toPrecision(9)) / precision],
+      args: [to, Number(ethers.utils.formatUnits(amount, 9)) / precision],
       callIndex: this._cfg.balancesTransferIndex
     });
 
     return await signer.sendTransaction({
       data: decodInput.toU8a(),
-      from: from.toString(),
+      from,
       gasLimit: gas ?? WITHDRAW_GAS,
       to: this._cfg.dispatchContractAddress
     });
