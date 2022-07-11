@@ -3,6 +3,7 @@
 
 import { DefinitionRpcExt, Definitions } from '@polkadot/types/types';
 
+// lint
 function typesFromDefinitions(
   /* eslint-disable @typescript-eslint/no-explicit-any */
   definitions: Record<string, { types: Record<string, any> }>,
