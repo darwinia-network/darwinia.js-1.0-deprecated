@@ -3,7 +3,7 @@
 
 import type { BitVec, Bytes, Enum, Struct, U8aFixed, UInt, Vec, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId, Hash } from '@polkadot/types/interfaces/runtime';
+import { Hash, AccountId, DispatchErrorModuleU8 } from '@polkadot/types/interfaces';
 
 /** @name BridgedBlockHash */
 export interface BridgedBlockHash extends Hash {}
@@ -24,6 +24,9 @@ export interface DeliveredMessages extends Struct {
   readonly end: MessageNonce;
   readonly dispatchResults: BitVec;
 }
+
+/** @name DispatchErrorModule */
+export interface DispatchErrorModule extends DispatchErrorModuleU8 {}
 
 /** @name FixedU128 */
 export interface FixedU128 extends UInt {}

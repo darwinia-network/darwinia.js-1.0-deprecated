@@ -2,7 +2,8 @@
 /* eslint-disable */
 
 import type { Bytes, Enum, Option, Struct, U256, Vec, bool, u64 } from '@polkadot/types-codec';
-import type { H64, H160, H256, H2048 } from '@polkadot/types/interfaces/runtime';
+
+import type { H64, H160, H256, H2048 } from '@polkadot/types/interfaces';
 
 /** @name EIP1559Transaction */
 export interface EIP1559Transaction extends Struct {

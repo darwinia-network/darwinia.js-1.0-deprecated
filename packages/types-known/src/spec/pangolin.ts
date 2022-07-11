@@ -13,6 +13,10 @@ const versioned: OverrideVersionedType[] = [
     types: {
       ...sharedTypes
     }
+  },
+  {
+    minmax: [28140, undefined],
+    types: {}
   }
 ];
 

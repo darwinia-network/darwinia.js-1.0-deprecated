@@ -38,7 +38,7 @@ export default {
     BridgedHeaderHash: 'Hash',
 
     BridgedBlockHash: 'Hash',
-    RawStorageProof: 'Vec<Bytes>'
-
+    RawStorageProof: 'Vec<Bytes>',
+    DispatchErrorModule: 'DispatchErrorModuleU8'
   }
 } as Definitions;
