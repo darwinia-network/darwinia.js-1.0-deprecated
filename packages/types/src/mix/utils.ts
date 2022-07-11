@@ -3,8 +3,7 @@
 
 import { DefinitionRpcExt, Definitions } from '@polkadot/types/types';
 
-// lint
-function typesFromDefinitions(
+function typesFromDefinitions (
   /* eslint-disable @typescript-eslint/no-explicit-any */
   definitions: Record<string, { types: Record<string, any> }>,
   initTypes: Record<string, any> = {}
@@ -18,7 +17,7 @@ function typesFromDefinitions(
   );
 }
 
-function jsonrpcFromDefinitions(definitions: Record<string, Definitions>): Record<string, Record<string, DefinitionRpcExt>> {
+function jsonrpcFromDefinitions (definitions: Record<string, Definitions>): Record<string, Record<string, DefinitionRpcExt>> {
   const jsonrpc: Record<string, Record<string, DefinitionRpcExt>> = {};
 
   Object.keys(definitions)
