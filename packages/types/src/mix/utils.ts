@@ -17,32 +17,24 @@ function typesFromDefinitions (
   );
 }
 
-function jsonrpcFromDefinitions (
-  definitions: Record<string, Definitions>
-): Record<string, Record<string, DefinitionRpcExt>> {
+function jsonrpcFromDefinitions (definitions: Record<string, Definitions>): Record<string, Record<string, DefinitionRpcExt>> {
   const jsonrpc: Record<string, Record<string, DefinitionRpcExt>> = {};
 
-  Object
-    .keys(definitions)
-    .filter((key) => Object.keys((definitions)[key].rpc || {}).length !== 0)
+  Object.keys(definitions)
+    .filter((key) => Object.keys(definitions[key].rpc || {}).length !== 0)
     .forEach((section): void => {
       if (!jsonrpc[section]) {
         jsonrpc[section] = {};
       }
 
-      Object
-        .entries(definitions[section].rpc)
-        .forEach(([method, def]): void => {
-          const isSubscription = !!(def as DefinitionRpcExt).pubsub;
+      Object.entries(definitions[section].rpc ?? {}).forEach(([method, def]): void => {
+        const isSubscription = !!(def as DefinitionRpcExt).pubsub;
 
-          jsonrpc[section][method] = ({ ...def, isSubscription, jsonrpc: `${section}_${method}`, method, section });
-        });
+        jsonrpc[section][method] = { ...def, isSubscription, jsonrpc: `${section}_${method}`, method, section };
+      });
     });
 
   return jsonrpc;
 }
 
-export {
-  typesFromDefinitions,
-  jsonrpcFromDefinitions
-};
+export { typesFromDefinitions, jsonrpcFromDefinitions };

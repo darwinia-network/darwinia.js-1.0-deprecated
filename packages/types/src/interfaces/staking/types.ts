@@ -4,7 +4,7 @@
 import type { Power, RKT } from '@darwinia/types/interfaces/darwiniaInject';
 import type { Compact, Struct, u128, u32 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, AccountId } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, AccountId32 } from '@polkadot/types/interfaces';
 
 /** @name PalletStakingIndividualExposure */
 export interface PalletStakingIndividualExposure extends Struct {

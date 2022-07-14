@@ -13,10 +13,14 @@ import balances from '../interfaces/balances/definitions';
 import bridges from '../interfaces/bridges/definitions';
 import bsc from '../interfaces/bsc/definitions';
 import darwiniaInject from '../interfaces/darwiniaInject/definitions';
+import democracy from '../interfaces/democracy/definitions';
+import eth from '../interfaces/eth/definitions';
+import evm from '../interfaces/evm/definitions';
 import fee from '../interfaces/fee/definitions';
 import headerMMR from '../interfaces/headerMMR/definitions';
 import proxy from '../interfaces/proxy/definitions';
 import relayerGame from '../interfaces/relayerGame/definitions';
+import session from '../interfaces/session/definitions';
 import staking from '../interfaces/staking/definitions';
 import { jsonrpcFromDefinitions, typesFromDefinitions } from './utils';
 
@@ -85,10 +89,14 @@ const definitions = {
   bridges,
   bsc,
   darwiniaInject,
+  democracy,
+  eth,
+  evm,
   fee,
   headerMMR,
   proxy,
   relayerGame,
+  session,
   staking
 };
 

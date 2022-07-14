@@ -21,11 +21,11 @@
         "@darwinia/rpc-augment": "^2.8.7",
         "@darwinia/types": "^2.8.7",
         "@darwinia/types-augment": "^2.8.7",
-        "@polkadot/api-base": "^8.1.2-1",
-        "@polkadot/types": "^8.1.2-1",
-        "@polkadot/types-augment": "^8.1.2-1",
-        "@polkadot/types-codec": "^8.1.2-1",
-        "@polkadot/types-support": "^8.1.2-1",
-        "@polkadot/util": "^9.0.1"
+        "@polkadot/api-base": "^8.12",
+        "@polkadot/types": "^8.12",
+        "@polkadot/types-augment": "^8.12",
+        "@polkadot/types-codec": "^8.12",
+        "@polkadot/types-support": "^8.12",
+        "@polkadot/util": "^10"
     }
 }

@@ -5,7 +5,7 @@ import type { LockIdentifier } from '@darwinia/types/interfaces/balances';
 import type { GenericEthereumAccountId } from '@polkadot/types';
 import type { Bytes, Compact, Enum, Option, Struct, Text, U256, U8aFixed, Vec, bool, u128, u32, u64, u8 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
-import type { AccountId, Balance, BlockNumber, Hash, H128, H256, H512, Perbill } from '@polkadot/types/interfaces/runtime';
+import type { AccountId, Balance, BlockNumber, Hash, H128, H256, H512, Perbill } from '@polkadot/types/interfaces';
 
 /** @name Address */
 export interface Address extends U8aFixed {}

@@ -2,7 +2,7 @@
 /* eslint-disable */
 
 import type { LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
-import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
+import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, DispatchErrorModule, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
 import type { Address, AddressT, BalanceInfo, BalanceLock, Bloom, ChainProperties, Common, DepositId, EcdsaAddress, EcdsaMessage, EcdsaSignature, ElectionCompute, ElectionResultT, EraIndex, EthashProof, EthereumAddress, EthereumBlockNumber, EthereumNetwork, EthereumReceiptProof, EthereumTransactionIndex, Exposure, ExposureT, IndividualExposure, KtonBalance, LegacyReceipt, LockFor, LogEntry, MMRProof, MMRRoot, MappedRing, MerkleMountainRangeRootLog, OpCode, Power, PriorRelayer, RKT, Reasons, RedeemFor, RefCount, RelayAuthorityMessage, RelayAuthoritySignature, RelayAuthoritySigner, RingBalance, Signature, Signer, SpanRecord, StakingLock, Term, TimeDepositItem, TokenMessageId, TransactionOutcome, TronAddress, TsInMs, UnappliedSlash, Unbonding, ValidatorPrefs, ValidatorPrefsWithBlocked } from '@darwinia/types/interfaces/darwiniaInject';
 import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
@@ -40,6 +40,7 @@ declare module '@polkadot/types/types/registry' {
     Data: Data;
     DeliveredMessages: DeliveredMessages;
     DepositId: DepositId;
+    DispatchErrorModule: DispatchErrorModule;
     EcdsaAddress: EcdsaAddress;
     EcdsaMessage: EcdsaMessage;
     EcdsaSignature: EcdsaSignature;
