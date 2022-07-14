@@ -41,7 +41,7 @@ function systemAccount (api: DeriveApi, tokenType: TokenType, accountId: Account
             maxlock = bnMax(item.amount, maxlock);
           });
         } else {
-          balanceFree = freeKton;
+          balanceFree = freeKton as Balance;
           ktonLocks.forEach((item) => {
             if (item.reasons.isFee) {
               return;

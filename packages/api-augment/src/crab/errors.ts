@@ -1,10 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/errors';
+
+import type { ApiTypes, AugmentedError } from '@polkadot/api-base/types';
+
+export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module '@polkadot/api-base/types/errors' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The uncle is genesis.
@@ -237,7 +243,7 @@ declare module '@polkadot/api-base/types/errors' {
       UnknownHeader: AugmentedError<ApiType>;
       /**
        * The scheduled authority set change found in the header is unsupported by the pallet.
-       *
+       * 
        * This is the case for non-standard (e.g forced) authority set changes.
        **/
       UnsupportedScheduledChange: AugmentedError<ApiType>;
@@ -341,7 +347,7 @@ declare module '@polkadot/api-base/types/errors' {
       UnknownHeader: AugmentedError<ApiType>;
       /**
        * The scheduled authority set change found in the header is unsupported by the pallet.
-       *
+       * 
        * This is the case for non-standard (e.g forced) authority set changes.
        **/
       UnsupportedScheduledChange: AugmentedError<ApiType>;
@@ -428,6 +434,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
       /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
+      /**
        * Insufficient balance.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
@@ -457,6 +467,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/
@@ -663,6 +677,14 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       InvalidSignature: AugmentedError<ApiType>;
       /**
+       * Message transaction invalid
+       **/
+      MessageTransactionError: AugmentedError<ApiType>;
+      /**
+       * Message validate invalid
+       **/
+      MessageValidateError: AugmentedError<ApiType>;
+      /**
        * Pre-log is present, therefore transact is not allowed.
        **/
       PreLogExists: AugmentedError<ApiType>;
@@ -722,6 +744,10 @@ declare module '@polkadot/api-base/types/errors' {
        * Invalid Issuing System Account
        **/
       InvalidIssuingAccount: AugmentedError<ApiType>;
+      /**
+       * invalid message sender
+       **/
+      InvalidMessageSender: AugmentedError<ApiType>;
       /**
        * StringCF
        **/
@@ -1418,7 +1444,7 @@ declare module '@polkadot/api-base/types/errors' {
     system: {
       /**
        * Failed to extract the runtime version from the new runtime.
-       *
+       * 
        * Either calling `Core_version` or decoding `RuntimeVersion` failed.
        **/
       FailedToExtractRuntimeVersion: AugmentedError<ApiType>;
@@ -1530,6 +1556,28 @@ declare module '@polkadot/api-base/types/errors' {
        * The tip hash is unknown.
        **/
       UnknownTip: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    toCrabParachainBacking: {
+      /**
+       * Insufficient balance.
+       **/
+      InsufficientBalance: AugmentedError<ApiType>;
+      /**
+       * Message nonce duplicated.
+       **/
+      NonceDuplicated: AugmentedError<ApiType>;
+      /**
+       * Redeem Daily Limited
+       **/
+      RingDailyLimited: AugmentedError<ApiType>;
+      /**
+       * Ring Lock LIMITED.
+       **/
+      RingLockLimited: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
