@@ -1,27 +1,69 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { DarwiniaDemocracyVoteThreshold } from '@darwinia/types/interfaces/democracy';
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/storage';
+
+import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
 import type { BTreeMap, Bytes, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, Perbill, Percent } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
 import type {
+  BpHeaderChainAuthoritySet,
+  BpMessagesInboundLaneData,
+  BpMessagesMessageData,
+  BpMessagesMessageKey,
+  BpMessagesOperatingMode,
+  BpMessagesOutboundLaneData,
+  DarwiniaBalancesReleases,
+  DarwiniaBalancesReserveData,
+  DarwiniaBridgeEthereumEthereumRelayHeaderParcel,
+  DarwiniaCommonRuntimeImplsAccountData,
+  DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign,
+  DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority,
+  DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange,
+  DarwiniaRelayPrimitivesRelayerGameRelayAffirmation,
+  DarwiniaRelayPrimitivesRelayerGameRelayVotingState,
+  DarwiniaRuntimePalletsSessionSessionKeys,
+  DarwiniaStakingSlashingRk,
+  DarwiniaStakingSlashingSlashingSpans,
+  DarwiniaStakingSlashingSpanRecord,
+  DarwiniaStakingStructsActiveEraInfo,
+  DarwiniaStakingStructsEraRewardPoints,
+  DarwiniaStakingStructsExposure,
+  DarwiniaStakingStructsForcing,
+  DarwiniaStakingStructsNominations,
+  DarwiniaStakingStructsReleases,
+  DarwiniaStakingStructsRewardDestination,
+  DarwiniaStakingStructsStakingLedger,
+  DarwiniaStakingStructsUnappliedSlash,
+  DarwiniaStakingStructsValidatorPrefs,
   FrameSupportWeightsPerDispatchClassU64,
   FrameSystemAccountInfo,
   FrameSystemEventRecord,
   FrameSystemLastRuntimeUpgradeInfo,
   FrameSystemPhase,
   PalletAuthorshipUncleEntryItem,
+  PalletBalancesBalanceLock,
   PalletBountiesBounty,
   PalletCollectiveVotes,
+  PalletDemocracyPreimageStatus,
+  PalletDemocracyReferendumInfo,
+  PalletDemocracyReleases,
+  PalletDemocracyVoteThreshold,
+  PalletDemocracyVoteVoting,
   PalletElectionProviderMultiPhasePhase,
   PalletElectionProviderMultiPhaseReadySolution,
   PalletElectionProviderMultiPhaseRoundSnapshot,
   PalletElectionProviderMultiPhaseSignedSignedSubmission,
   PalletElectionProviderMultiPhaseSolutionOrSnapshotSize,
+  PalletElectionsPhragmenSeatHolder,
+  PalletElectionsPhragmenVoter,
+  PalletFeeMarketOrder,
+  PalletFeeMarketRelayer,
   PalletGrandpaStoredPendingChange,
   PalletGrandpaStoredState,
   PalletIdentityRegistrarInfo,
@@ -33,6 +75,8 @@ import type {
   PalletProxyProxyDefinition,
   PalletRecoveryActiveRecovery,
   PalletRecoveryRecoveryConfig,
+  PalletSchedulerReleases,
+  PalletSchedulerScheduledV2,
   PalletSocietyBid,
   PalletSocietyBidKind,
   PalletSocietyVote,
@@ -40,60 +84,23 @@ import type {
   PalletTipsOpenTip,
   PalletTransactionPaymentReleases,
   PalletTreasuryProposal,
+  PalletVestingReleases,
+  PalletVestingVestingInfo,
   SpConsensusBabeAppPublic,
   SpConsensusBabeBabeEpochConfiguration,
   SpConsensusBabeDigestsNextConfigDescriptor,
   SpCoreCryptoKeyTypeId,
   SpRuntimeDigest,
   SpRuntimeHeader,
-  SpStakingOffenceOffenceDetails,
-  DarwiniaCommonRuntimeImplsAccountData,
-  DarwiniaSupportStructsBalanceLock,
-  DarwiniaBalancesReserveData,
-  DarwiniaBalancesReleases,
-  BpHeaderChainAuthoritySet,
-  BpMessagesInboundLaneData,
-  BpMessagesOutboundLaneData,
-  BpMessagesMessageKey,
-  BpMessagesMessageData,
-  BpMessagesOperatingMode,
-  DarwiniaDemocracyReferendumInfo,
-  DarwiniaDemocracyPreimageStatus,
-  DarwiniaDemocracyReleases,
-  DarwiniaDemocracyVoteVoting,
-  DarwiniaBridgeEthereumEthereumRelayHeaderParcel,
-  DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority,
-  DarwiniaRelayPrimitivesRelayerGameRelayVotingState,
-  DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign,
-  DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange,
-  DarwiniaFeeMarketOrder,
-  DarwiniaRelayPrimitivesRelayerGameRelayAffirmation,
-  DarwiniaFeeMarketRelayer,
-  DarwiniaElectionsPhragmenSeatHolder,
-  DarwiniaElectionsPhragmenVoter,
-  PalletSchedulerScheduledV2,
-  DarwiniaRuntimePalletsSessionSessionKeys,
-  PalletSchedulerReleases,
-  DarwiniaStakingStructsActiveEraInfo,
-  DarwiniaStakingStructsEraRewardPoints,
-  DarwiniaStakingStructsExposure,
-  DarwiniaStakingStructsNominations,
-  DarwiniaStakingStructsValidatorPrefs,
-  DarwiniaStakingSlashingRk,
-  DarwiniaStakingStructsForcing,
-  DarwiniaStakingStructsRewardDestination,
-  DarwiniaStakingSlashingSlashingSpans,
-  DarwiniaStakingSlashingSpanRecord,
-  DarwiniaStakingStructsReleases,
-  DarwiniaStakingStructsStakingLedger,
-  DarwiniaStakingStructsUnappliedSlash,
-  DarwiniaVestingReleases,
-  DarwiniaVestingVestingInfo
+  SpStakingOffenceOffenceDetails
 } from '@polkadot/types/lookup';
 import type { Observable } from '@polkadot/types/types';
 
+export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
+export type __QueryableStorageEntry<ApiType extends ApiTypes> = QueryableStorageEntry<ApiType>;
+
 declare module '@polkadot/api-base/types/storage' {
-  export interface AugmentedQueries<ApiType extends ApiTypes> {
+  interface AugmentedQueries<ApiType extends ApiTypes> {
     authorship: {
       /**
        * Author of current block.
@@ -225,7 +232,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaSupportStructsBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -385,6 +392,10 @@ declare module '@polkadot/api-base/types/storage' {
     };
     darwiniaHeaderMMR: {
       /**
+       * Migration step.
+       **/
+      migrationStep: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
        * Size of the MMR
        **/
       mmrSize: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
@@ -436,12 +447,12 @@ declare module '@polkadot/api-base/types/storage' {
        * - `LastTabledWasExternal` is `false`; or
        * - `PublicProps` is empty.
        **/
-      nextExternal: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[H256, DarwiniaDemocracyVoteThreshold]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      nextExternal: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[H256, PalletDemocracyVoteThreshold]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Map of hashes to the proposal preimage, along with who registered it and their deposit.
        * The block number is the block at which it was deposited.
        **/
-      preimages: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<DarwiniaDemocracyPreimageStatus>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
+      preimages: AugmentedQuery<ApiType, (arg: H256 | string | Uint8Array) => Observable<Option<PalletDemocracyPreimageStatus>>, [H256]> & QueryableStorageEntry<ApiType, [H256]>;
       /**
        * The number of (public) proposals that have been made so far.
        **/
@@ -459,20 +470,20 @@ declare module '@polkadot/api-base/types/storage' {
        *
        * TWOX-NOTE: SAFE as indexes are not under an attacker’s control.
        **/
-      referendumInfoOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<DarwiniaDemocracyReferendumInfo>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      referendumInfoOf: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<PalletDemocracyReferendumInfo>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
       /**
        * Storage version of the pallet.
        *
        * New networks start with last version.
        **/
-      storageVersion: AugmentedQuery<ApiType, () => Observable<Option<DarwiniaDemocracyReleases>>, []> & QueryableStorageEntry<ApiType, []>;
+      storageVersion: AugmentedQuery<ApiType, () => Observable<Option<PalletDemocracyReleases>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * All votes for a particular voter. We store the balance for the number of votes that we
        * have recorded. The second item is the total amount of delegations, that will be added.
        *
        * TWOX-NOTE: SAFE as `AccountId`s are crypto hashes anyway.
        **/
-      votingOf: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<DarwiniaDemocracyVoteVoting>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      votingOf: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletDemocracyVoteVoting>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/
@@ -707,12 +718,12 @@ declare module '@polkadot/api-base/types/storage' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
     feeMarket: {
-      assignedRelayers: AugmentedQuery<ApiType, () => Observable<Option<Vec<DarwiniaFeeMarketRelayer>>>, []> & QueryableStorageEntry<ApiType, []>;
+      assignedRelayers: AugmentedQuery<ApiType, () => Observable<Option<Vec<PalletFeeMarketRelayer>>>, []> & QueryableStorageEntry<ApiType, []>;
       assignedRelayersNumber: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       collateralSlashProtect: AugmentedQuery<ApiType, () => Observable<Option<u128>>, []> & QueryableStorageEntry<ApiType, []>;
-      orders: AugmentedQuery<ApiType, (arg: ITuple<[U8aFixed, u64]> | [U8aFixed | string | Uint8Array, u64 | AnyNumber | Uint8Array]) => Observable<Option<DarwiniaFeeMarketOrder>>, [ITuple<[U8aFixed, u64]>]> & QueryableStorageEntry<ApiType, [ITuple<[U8aFixed, u64]>]>;
+      orders: AugmentedQuery<ApiType, (arg: ITuple<[U8aFixed, u64]> | [U8aFixed | string | Uint8Array, u64 | AnyNumber | Uint8Array]) => Observable<Option<PalletFeeMarketOrder>>, [ITuple<[U8aFixed, u64]>]> & QueryableStorageEntry<ApiType, [ITuple<[U8aFixed, u64]>]>;
       relayers: AugmentedQuery<ApiType, () => Observable<Vec<AccountId32>>, []> & QueryableStorageEntry<ApiType, []>;
-      relayersMap: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<DarwiniaFeeMarketRelayer>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      relayersMap: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletFeeMarketRelayer>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/
@@ -829,7 +840,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaSupportStructsBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -920,20 +931,20 @@ declare module '@polkadot/api-base/types/storage' {
        *
        * Invariant: Always sorted based on account id.
        **/
-      members: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaElectionsPhragmenSeatHolder>>, []> & QueryableStorageEntry<ApiType, []>;
+      members: AugmentedQuery<ApiType, () => Observable<Vec<PalletElectionsPhragmenSeatHolder>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The current reserved runners-up.
        *
        * Invariant: Always sorted based on rank (worse to best). Upon removal of a member, the
        * last (i.e. _best_) runner-up will be replaced.
        **/
-      runnersUp: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaElectionsPhragmenSeatHolder>>, []> & QueryableStorageEntry<ApiType, []>;
+      runnersUp: AugmentedQuery<ApiType, () => Observable<Vec<PalletElectionsPhragmenSeatHolder>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Votes and locked stake of a particular voter.
        *
        * TWOX-NOTE: SAFE as `AccountId` is a crypto hash.
        **/
-      voting: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<DarwiniaElectionsPhragmenVoter>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      voting: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<PalletElectionsPhragmenVoter>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/
@@ -1131,9 +1142,9 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       canceledSlashPayout: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * The threshold for when users can start calling `chill_other` for other validators / nominators.
-       * The threshold is compared to the actual number of validators / nominators (`CountFor*`) in
-       * the system compared to the configured max (`Max*Count`).
+       * The threshold for when users can start calling `chill_other` for other validators /
+       * nominators. The threshold is compared to the actual number of validators / nominators
+       * (`CountFor*`) in the system compared to the configured max (`Max*Count`).
        **/
       chillThreshold: AugmentedQuery<ApiType, () => Observable<Option<Percent>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -1570,11 +1581,11 @@ declare module '@polkadot/api-base/types/storage' {
        *
        * New networks start with latest version, as determined by the genesis build.
        **/
-      storageVersion: AugmentedQuery<ApiType, () => Observable<DarwiniaVestingReleases>, []> & QueryableStorageEntry<ApiType, []>;
+      storageVersion: AugmentedQuery<ApiType, () => Observable<PalletVestingReleases>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Information regarding the vesting of a given account.
        **/
-      vesting: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<Vec<DarwiniaVestingVestingInfo>>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      vesting: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Option<Vec<PalletVestingVestingInfo>>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Generic query
        **/

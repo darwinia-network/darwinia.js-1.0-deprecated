@@ -1,10 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/errors';
+
+import type { ApiTypes, AugmentedError } from '@polkadot/api-base/types';
+
+export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module '@polkadot/api-base/types/errors' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The uncle is genesis.
@@ -1367,8 +1373,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       PayoutIns: AugmentedError<ApiType>;
       /**
-       * There are too many nominators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many nominators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyNominators: AugmentedError<ApiType>;
       /**
@@ -1376,8 +1382,8 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooManyTargets: AugmentedError<ApiType>;
       /**
-       * There are too many validators in the system. Governance needs to adjust the staking settings
-       * to keep things safe for the runtime.
+       * There are too many validators in the system. Governance needs to adjust the staking
+       * settings to keep things safe for the runtime.
        **/
       TooManyValidators: AugmentedError<ApiType>;
       /**
