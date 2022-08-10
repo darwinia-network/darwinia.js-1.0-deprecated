@@ -8,10 +8,9 @@ import { map, Observable, of } from 'rxjs';
 import { DeriveApi } from '@polkadot/api-derive/types';
 import { memo } from '@polkadot/api-derive/util';
 import { AccountId, Balance } from '@polkadot/types/interfaces';
-import { FrameSystemAccountInfo, PalletBalancesBalanceLock } from '@polkadot/types/lookup';
 import { BN, bnMax } from '@polkadot/util';
 
-import { DeriveUsableAccount, TokenType } from './types';
+import { DeriveUsableAccount, FrameSystemAccountInfo, PalletBalancesBalanceLock, TokenType } from './types';
 
 function systemAccount (api: DeriveApi, tokenType: TokenType, accountId: AccountId | string | Uint8Array): Observable<DeriveUsableAccount> {
   if (tokenType !== TokenType.Ring && tokenType !== TokenType.Kton) {

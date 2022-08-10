@@ -9,10 +9,10 @@
       
         "@darwinia/types": ["types/src"],
         "@darwinia/types/*": ["types/src/*"],
-        "@polkadot/types/lookup":["types-augment/src/lookup/pangolin"],
-        "@polkadot/types/lookup/*":["types-augment/src/lookup/pangolin/*"],
-        "@polkadot/api-augment": ["api-augment/src/pangolin"],
-        "@polkadot/api-augment/*": ["api-augment/src/pangolin/*"],
+        "@polkadot/types/lookup":["types-augment/src/lookup/darwinia"],
+        "@polkadot/types/lookup/*":["types-augment/src/lookup/darwinia/*"],
+        "@polkadot/api-augment": ["api-augment/src/darwinia"],
+        "@polkadot/api-augment/*": ["api-augment/src/darwinia/*"],
     
       },
       "skipLibCheck": true
@@ -24,8 +24,8 @@
     ],
     "references": [
         { "path": "../types/tsconfig.build.json" },
-        { "path": "../types-augment/tsconfig.pangolin.json" },
-        { "path": "../api-augment/tsconfig.pangolin.json"}
+        { "path": "../types-augment/tsconfig.build.json" },
+        { "path": "../api-augment/tsconfig.build.json"}
     ]
   }
   

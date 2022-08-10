@@ -9,11 +9,10 @@ import { map, Observable, of, switchMap } from 'rxjs';
 import { DeriveApi } from '@polkadot/api-derive/types';
 import { memo } from '@polkadot/api-derive/util';
 import { AccountId } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { Option, u128 } from '@polkadot/types-codec';
 import { BN } from '@polkadot/util';
 
-import { PowerOf } from './types';
+import { DarwiniaStakingStructsStakingLedger, PowerOf } from './types';
 
 const ration = 500_000_000;
 

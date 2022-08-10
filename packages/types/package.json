@@ -25,9 +25,9 @@
     "@babel/runtime": "^7.17.9",
     "@darwinia/types-known": "^2.8.8",
     "@polkadot/keyring": "^10",
-    "@polkadot/types-augment": "^8.12",
-    "@polkadot/types-codec": "^8.12",
-    "@polkadot/types-create": "^8.12",
+    "@polkadot/types-augment": "^9.0.1",
+    "@polkadot/types-codec": "^9.0.1",
+    "@polkadot/types-create": "^9.0.1",
     "@polkadot/util": "^10",
     "@polkadot/util-crypto": "^10",
     "rxjs": "^7.5.5"

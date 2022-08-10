@@ -24,6 +24,6 @@
   "dependencies": {
     "@babel/runtime": "^7.11.2",
     "@darwinia/types": "^2.8.8",
-    "@polkadot/api": "^8.12"
+    "@polkadot/api": "^9.0.1"
   }
 }

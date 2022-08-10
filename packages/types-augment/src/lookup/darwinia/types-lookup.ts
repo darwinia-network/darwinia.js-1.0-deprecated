@@ -14,7 +14,7 @@ import type { AccountId32, Call, H160, H256, H512, MultiAddress, PerU16, Perbill
 import type { Event } from '@polkadot/types/interfaces/system';
 
 declare module '@polkadot/types/lookup' {
-  /** @name FrameSystemAccountInfo (3) */
+  /** @name DarwiniaCommonRuntimeImplsAccountData (3) */
   interface FrameSystemAccountInfo extends Struct {
     readonly nonce: u32;
     readonly consumers: u32;
@@ -3719,5 +3719,4 @@ declare module '@polkadot/types/lookup' {
 
   /** @name DarwiniaRuntimeRuntime (579) */
   type DarwiniaRuntimeRuntime = Null;
-
 } // declare module

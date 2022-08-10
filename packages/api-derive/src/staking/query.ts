@@ -8,9 +8,9 @@ import { ApiInterfaceRx } from '@polkadot/api/types';
 import { memo } from '@polkadot/api-derive/util';
 import { Option, Vec } from '@polkadot/types';
 import { AccountId, Keys, Nominations, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { ITuple } from '@polkadot/types/types';
 
+import { DarwiniaStakingStructsStakingLedger } from '../darwiniaStaking/types';
 import { DeriveStakingQuery } from './types';
 
 type MultiResult = [Option<AccountId>, Option<Nominations>, RewardDestination, ITuple<[ValidatorPrefs]> | ValidatorPrefs, Option<Keys>, ExposureT];

@@ -18,9 +18,9 @@
     "main": "index.js",
     "devDependencies": {
         "@babel/runtime": "^7.17.9",
-        "@polkadot/rpc-core": "^8.12",
-        "@polkadot/types": "^8.12",
-        "@polkadot/types-codec": "^8.12",
+        "@polkadot/rpc-core": "^9.0.1",
+        "@polkadot/types": "^9.0.1",
+        "@polkadot/types-codec": "^9.0.1",
         "@polkadot/util": "^10"
     }
 }

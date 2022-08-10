@@ -7,7 +7,8 @@ import { Exposure } from '@darwinia/types/interfaces';
 
 import { DeriveStakingKeys } from '@polkadot/api-derive/staking/types';
 import { AccountId, Balance, BlockNumber, EraIndex, Keys, RewardDestination, ValidatorPrefs } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '@polkadot/types/lookup';
+
+import { DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsTimeDepositItem } from '../darwiniaStaking/types';
 
 type DeriveUnlocking = {
   remainingEras: BN;
