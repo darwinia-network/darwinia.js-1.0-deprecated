@@ -22,8 +22,14 @@
   },
   "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
   "dependencies": {
-    "@babel/runtime": "^7.11.2",
-    "@darwinia/types": "^2.8.8",
+    "@babel/runtime": "^7.17.9",
+    "@darwinia/api-augment": "^2.8.2",
+    "@darwinia/api-derive": "^2.8.2",
+    "@darwinia/rpc-augment": "^2.8.2",
+    "@darwinia/types": "^2.8.2",
+    "@darwinia/types-augment": "^2.8.2",
+    "@darwinia/types-known": "^2.8.2",
+    "@darwinia/types-support": "^2.8.2",
     "@polkadot/api": "^9.0.1"
   }
 }

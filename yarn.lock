@@ -1597,7 +1597,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.16.0, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.16.0, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.8.4":
   version: 7.18.3
   resolution: "@babel/runtime@npm:7.18.3"
   dependencies:
@@ -1731,7 +1731,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@darwinia/api-augment@workspace:packages/api-augment":
+"@darwinia/api-augment@^2.8.2, @darwinia/api-augment@workspace:packages/api-augment":
   version: 0.0.0-use.local
   resolution: "@darwinia/api-augment@workspace:packages/api-augment"
   dependencies:
@@ -1748,7 +1748,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/api-derive@workspace:packages/api-derive":
+"@darwinia/api-derive@^2.8.2, @darwinia/api-derive@workspace:packages/api-derive":
   version: 0.0.0-use.local
   resolution: "@darwinia/api-derive@workspace:packages/api-derive"
   dependencies:
@@ -1782,13 +1782,19 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@darwinia/api-options@workspace:packages/api-options"
   dependencies:
-    "@babel/runtime": ^7.11.2
-    "@darwinia/types": ^2.8.8
+    "@babel/runtime": ^7.17.9
+    "@darwinia/api-augment": ^2.8.2
+    "@darwinia/api-derive": ^2.8.2
+    "@darwinia/rpc-augment": ^2.8.2
+    "@darwinia/types": ^2.8.2
+    "@darwinia/types-augment": ^2.8.2
+    "@darwinia/types-known": ^2.8.2
+    "@darwinia/types-support": ^2.8.2
     "@polkadot/api": ^9.0.1
   languageName: unknown
   linkType: soft
 
-"@darwinia/rpc-augment@^2.8.8, @darwinia/rpc-augment@workspace:packages/rpc-augment":
+"@darwinia/rpc-augment@^2.8.2, @darwinia/rpc-augment@^2.8.8, @darwinia/rpc-augment@workspace:packages/rpc-augment":
   version: 0.0.0-use.local
   resolution: "@darwinia/rpc-augment@workspace:packages/rpc-augment"
   dependencies:
@@ -1829,7 +1835,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types-augment@^2.8.8, @darwinia/types-augment@workspace:packages/types-augment":
+"@darwinia/types-augment@^2.8.2, @darwinia/types-augment@^2.8.8, @darwinia/types-augment@workspace:packages/types-augment":
   version: 0.0.0-use.local
   resolution: "@darwinia/types-augment@workspace:packages/types-augment"
   dependencies:
@@ -1841,7 +1847,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types-known@^2.8.8, @darwinia/types-known@workspace:packages/types-known":
+"@darwinia/types-known@^2.8.2, @darwinia/types-known@^2.8.8, @darwinia/types-known@workspace:packages/types-known":
   version: 0.0.0-use.local
   resolution: "@darwinia/types-known@workspace:packages/types-known"
   dependencies:
@@ -1854,7 +1860,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types-support@^2.8.8, @darwinia/types-support@workspace:packages/types-support":
+"@darwinia/types-support@^2.8.2, @darwinia/types-support@^2.8.8, @darwinia/types-support@workspace:packages/types-support":
   version: 0.0.0-use.local
   resolution: "@darwinia/types-support@workspace:packages/types-support"
   dependencies:
@@ -1863,7 +1869,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darwinia/types@^2.8.8, @darwinia/types@workspace:packages/types":
+"@darwinia/types@^2.8.2, @darwinia/types@^2.8.8, @darwinia/types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@darwinia/types@workspace:packages/types"
   dependencies:
