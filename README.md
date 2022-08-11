@@ -20,25 +20,20 @@ The repo is split up into a number of internal packages
 	
 ### Dependencies
 
-Your project's @polkadot/api version must be greater than 8.1.2-1, The polkadot/api library wraps APIs around polkadot and substrate based chains via RPC calls, visit the [document portal](https://polkadot.js.org/docs/api/). The darwinia.js related library version must be greater than 2.8.0.
+Your project's @polkadot/api version must be greater than 8.1.2-1, The polkadot/api library wraps APIs around polkadot and substrate based chains via RPC calls, visit the [document portal](https://polkadot.js.org/docs/api/). The darwinia.js related library version must be greater than 2.8.2.
 	
 
 ### Usage
 
 ```bash
-yarn add @polkadot/api @darwinia/types   @darwinia/api-augment @darwinia/types-augment    @darwinia/rpc-augment @darwinia/types-known
+yarn add @polkadot/api @darwinia/api-options    
 ```
 
 check your package.json dependencies
 
 ```json
 
-    "@darwinia/types": "^2.8.1",
-    "@darwinia/api-augment":"^2.8.1",
-    "@darwinia/types-augment": "^2.8.1",
-    "@darwinia/rpc-augment": "^2.8.1",
-    "@darwinia/types-known": "^2.8.1",
-    "@polkadot/api": "^8.1.2-1",
+    "@darwinia/api-options": "^2.8.2",
     
 ```
 

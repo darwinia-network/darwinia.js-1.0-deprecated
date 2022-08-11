@@ -1,14 +1,20 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
-import type { U8aFixed, Vec, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/consts';
+
+import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
+import type { Bytes, U8aFixed, Vec, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { Codec } from '@polkadot/types-codec/types';
 import type { Perbill, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion, DpAssetTokenMetadata } from '@polkadot/types/lookup';
+import type { DpAssetTokenMetadata, FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from '@polkadot/types/lookup';
+
+export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
 declare module '@polkadot/api-base/types/consts' {
-  export interface AugmentedConsts<ApiType extends ApiTypes> {
+  interface AugmentedConsts<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The number of blocks back we should accept uncles.
@@ -92,6 +98,37 @@ declare module '@polkadot/api-base/types/consts' {
        * Gets the chain id value from the instance.
        **/
       bridgedChainId: U8aFixed & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    ecdsaAuthority: {
+      /**
+       * Chain's ID, which is using for constructing the message. (follow EIP-712 SPEC)
+       **/
+      chainId: Bytes & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of authorities.
+       **/
+      maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * How long should we wait for the message root to be signed.
+       * 
+       * If the collecting new message root signatures process takes more than
+       * `MaxPendingPeriod`, we will drop the root. And update the root with a new one.
+       **/
+      maxPendingPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The signing threshold.
+       * 
+       * Once `signatures_count / authorities_count >= threshold`, we say the message is trusted.
+       **/
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      /**
+       * The interval of checking the message root.
+       **/
+      syncInterval: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -247,7 +284,6 @@ declare module '@polkadot/api-base/types/consts' {
        * The minimum fee for relaying.
        **/
       minimumRelayFee: u128 & AugmentedConst<ApiType>;
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * The slot times set
        **/

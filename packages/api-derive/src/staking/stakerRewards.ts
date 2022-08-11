@@ -15,9 +15,9 @@ import { DeriveApi } from '@polkadot/api-derive/types';
 import { memo } from '@polkadot/api-derive/util';
 import { u32 } from '@polkadot/types';
 import { AccountId, EraIndex } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger } from '@polkadot/types/lookup';
 import { BN, BN_BILLION, BN_ZERO } from '@polkadot/util';
 
+import { DarwiniaStakingStructsStakingLedger } from '../darwiniaStaking/types';
 import { DeriveStakerExposure, DeriveStakerReward } from './types';
 
 type ErasResult = [DeriveEraPoints[], DeriveEraPrefs[], DeriveEraRewards[]];

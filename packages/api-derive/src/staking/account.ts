@@ -9,10 +9,10 @@ import { ApiInterfaceRx } from '@polkadot/api/types';
 import { DeriveApi, DeriveStakingKeys, DeriveUnlocking } from '@polkadot/api-derive/types';
 import { firstMemo, memo } from '@polkadot/api-derive/util';
 import { Moment } from '@polkadot/types/interfaces';
-import { DarwiniaStakingStructsStakingLedger, DarwiniaSupportStructsUnbonding } from '@polkadot/types/lookup';
 import { BN, isUndefined } from '@polkadot/util';
 import { Memoized } from '@polkadot/util/types';
 
+import { DarwiniaStakingStructsStakingLedger, DarwiniaSupportStructsUnbonding } from '../darwiniaStaking/types';
 import { DeriveStakingAccount, DeriveStakingQuery, StakingLock } from './types';
 
 const QUERY_OPTS = {

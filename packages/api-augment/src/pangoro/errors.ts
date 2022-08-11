@@ -1,10 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/errors';
+
+import type { ApiTypes, AugmentedError } from '@polkadot/api-base/types';
+
+export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module '@polkadot/api-base/types/errors' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The uncle is genesis.
@@ -203,115 +209,43 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    bsc: {
+    ecdsaAuthority: {
       /**
-       * List of signers is invalid
+       * This authority had already finished his duty.
        **/
-      CheckpointInvalidSigners: AugmentedError<ApiType>;
+      AlreadySubmitted: AugmentedError<ApiType>;
       /**
-       * Missing signers
+       * Require at least one authority. Not allow to decrease below one.
        **/
-      CheckpointNoSigner: AugmentedError<ApiType>;
+      AtLeastOneAuthority: AugmentedError<ApiType>;
       /**
-       * Non-checkpoint block contains extra validator list
-       * ExtraValidators is returned if non-checkpoint block contain validator data in
-       * their extra-data fields
+       * The authority is already existed.
        **/
-      ExtraValidators: AugmentedError<ApiType>;
+      AuthorityExisted: AugmentedError<ApiType>;
       /**
-       * Submitted headers not enough
+       * Failed to verify the signature.
        **/
-      HeadersNotEnough: AugmentedError<ApiType>;
+      BadSignature: AugmentedError<ApiType>;
       /**
-       * Header timestamp is ahead of on-chain timestamp
+       * Didn't find any authorities changes to sign.
        **/
-      HeaderTimestampIsAhead: AugmentedError<ApiType>;
+      NoAuthoritiesChange: AugmentedError<ApiType>;
       /**
-       * Header timestamp too close while header timestamp is too close with parent's
+       * Didn't find any new message root to sign.
        **/
-      HeaderTimestampTooClose: AugmentedError<ApiType>;
+      NoNewMessageRoot: AugmentedError<ApiType>;
       /**
-       * Invalid validator list on checkpoint block
-       * errInvalidCheckpointValidators is returned if a checkpoint block contains an
-       * invalid list of validators (i.e. non divisible by 20 bytes)
+       * This is not an authority.
        **/
-      InvalidCheckpointValidators: AugmentedError<ApiType>;
+      NotAuthority: AugmentedError<ApiType>;
       /**
-       * Difficulty header field is invalid.
+       * Currently, the authorities is changing.
        **/
-      InvalidDifficulty: AugmentedError<ApiType>;
+      OnAuthoritiesChange: AugmentedError<ApiType>;
       /**
-       * Gas limit header field is invalid.
+       * Too many authorities.
        **/
-      InvalidGasLimit: AugmentedError<ApiType>;
-      /**
-       * The size of submitted headers is not N/2+1
-       **/
-      InvalidHeadersSize: AugmentedError<ApiType>;
-      /**
-       * Non-zero mix digest
-       * InvalidMixDigest is returned if a block's mix digest is non-zero
-       **/
-      InvalidMixDigest: AugmentedError<ApiType>;
-      /**
-       * Non empty nonce
-       * InvalidNonce is returned if a block header nonce is non-empty
-       **/
-      InvalidNonce: AugmentedError<ApiType>;
-      /**
-       * Invalid signer
-       **/
-      InvalidSigner: AugmentedError<ApiType>;
-      /**
-       * Non empty uncle hash
-       * InvalidUncleHash is returned if a block contains an non-empty uncle list
-       **/
-      InvalidUncleHash: AugmentedError<ApiType>;
-      /**
-       * Extra-data 65 byte signature suffix missing
-       * MissingSignature is returned if a block's extra-data section doesn't seem
-       * to contain a 65 byte secp256k1 signature
-       **/
-      MissingSignature: AugmentedError<ApiType>;
-      /**
-       * Extra-data 32 byte vanity prefix missing
-       * MissingVanity is returned if a block's extra-data section is shorter than
-       * 32 bytes, which is required to store the validator(signer) vanity
-       * 
-       * Extra-data 32 byte vanity prefix missing
-       **/
-      MissingVanity: AugmentedError<ApiType>;
-      /**
-       * This header is not checkpoint
-       **/
-      NotCheckpoint: AugmentedError<ApiType>;
-      /**
-       * EC_RECOVER error
-       * 
-       * Recover pubkey from signature error
-       **/
-      RecoverPubkeyFail: AugmentedError<ApiType>;
-      /**
-       * Block number isn't sensible
-       **/
-      RidiculousNumber: AugmentedError<ApiType>;
-      /**
-       * Signed recently
-       **/
-      SignedRecently: AugmentedError<ApiType>;
-      /**
-       * Block has too much gas used.
-       **/
-      TooMuchGasUsed: AugmentedError<ApiType>;
-      /**
-       * UnknownAncestor is returned when validating a block requires an ancestor that is
-       * unknown.
-       **/
-      UnknownAncestor: AugmentedError<ApiType>;
-      /**
-       * Verfiy Storage Proof Failed
-       **/
-      VerifyStorageFail: AugmentedError<ApiType>;
+      TooManyAuthorities: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -378,6 +312,14 @@ declare module '@polkadot/api-base/types/errors' {
        * Signature is invalid.
        **/
       InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Message transaction invalid
+       **/
+      MessageTransactionError: AugmentedError<ApiType>;
+      /**
+       * Message validate invalid
+       **/
+      MessageValidateError: AugmentedError<ApiType>;
       /**
        * Pre-log is present, therefore transact is not allowed.
        **/
@@ -518,6 +460,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/

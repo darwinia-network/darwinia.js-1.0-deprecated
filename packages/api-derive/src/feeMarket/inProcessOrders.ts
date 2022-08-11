@@ -11,7 +11,7 @@ import { LaneId, MessageNonce } from '@polkadot/types/interfaces';
 import { ITuple } from '@polkadot/types-codec/types';
 
 function orders (api: DeriveApi): Observable<ITuple<[LaneId, MessageNonce]>[]> {
-  return api.query.pangolinParachainFeeMarket.orders.keys().pipe(
+  return api.query.feeMarket.orders.keys().pipe(
     map((datas): ITuple<[LaneId, MessageNonce]>[] => {
       return datas.map(({ args: [item] }) => item);
     })

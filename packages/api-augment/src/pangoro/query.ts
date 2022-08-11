@@ -1,16 +1,22 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/storage';
+
+import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from '@polkadot/api-base/types';
 import type { BTreeMap, Bytes, Null, Option, U256, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletBalancesBalanceLock, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletTransactionPaymentReleases, PalletTreasuryProposal, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpRuntimeDigest, SpRuntimeHeader, SpStakingOffenceOffenceDetails, DrmlCommonRuntimeImplsAccountData,DarwiniaBalancesReserveData, DarwiniaBalancesReleases,BeefyPrimitivesCryptoPublic,BpHeaderChainAuthoritySet, BpMessagesInboundLaneData, BpMessagesOutboundLaneData, BpMessagesMessageKey, BpMessagesMessageData, EthereumBlock, EthereumReceiptReceiptV3, FpRpcTransactionStatus, EthereumTransactionTransactionV2, BeefyPrimitivesMmrBeefyNextAuthoritySet,PalletFeeMarketOrder, PangoroRuntimePalletsSessionSessionKeys, PalletFeeMarketRelayer,DarwiniaStakingStructsRewardDestination, PalletSchedulerScheduledV2, PalletSchedulerReleases, DarwiniaStakingStructsValidatorPrefs, DarwiniaStakingStructsEraRewardPoints, DarwiniaStakingStructsExposure, DarwiniaStakingStructsNominations, DarwiniaStakingStructsReleases, DarwiniaStakingSlashingRk, BscPrimitivesBscHeader, DarwiniaStakingStructsActiveEraInfo, DarwiniaStakingSlashingSlashingSpans, DarwiniaStakingSlashingSpanRecord, DarwiniaStakingStructsUnappliedSlash, BpMessagesOperatingMode, DarwiniaStakingStructsForcing, DarwiniaStakingStructsStakingLedger} from '@polkadot/types/lookup';
+import type { BeefyPrimitivesCryptoPublic, BpHeaderChainAuthoritySet, BpMessagesInboundLaneData, BpMessagesMessageData, BpMessagesMessageKey, BpMessagesOperatingMode, BpMessagesOutboundLaneData, DarwiniaBalancesBalanceLock, DarwiniaBalancesReleases, DarwiniaBalancesReserveData, DarwiniaEcdsaAuthorityPrimitivesCommitment, DarwiniaEcdsaAuthorityPrimitivesOperation, DarwiniaStakingSlashingRk, DarwiniaStakingSlashingSlashingSpans, DarwiniaStakingSlashingSpanRecord, DarwiniaStakingStructsActiveEraInfo, DarwiniaStakingStructsEraRewardPoints, DarwiniaStakingStructsExposure, DarwiniaStakingStructsForcing, DarwiniaStakingStructsNominations, DarwiniaStakingStructsReleases, DarwiniaStakingStructsRewardDestination, DarwiniaStakingStructsStakingLedger, DarwiniaStakingStructsUnappliedSlash, DarwiniaStakingStructsValidatorPrefs, DrmlCommonRuntimeImplsAccountData, EthereumBlock, EthereumReceiptReceiptV3, EthereumTransactionTransactionV2, FpRpcTransactionStatus, FrameSupportWeightsPerDispatchClassU64, FrameSystemAccountInfo, FrameSystemEventRecord, FrameSystemLastRuntimeUpgradeInfo, FrameSystemPhase, PalletAuthorshipUncleEntryItem, PalletElectionProviderMultiPhasePhase, PalletElectionProviderMultiPhaseReadySolution, PalletElectionProviderMultiPhaseRoundSnapshot, PalletElectionProviderMultiPhaseSignedSignedSubmission, PalletElectionProviderMultiPhaseSolutionOrSnapshotSize, PalletFeeMarketOrder, PalletFeeMarketRelayer, PalletGrandpaStoredPendingChange, PalletGrandpaStoredState, PalletImOnlineBoundedOpaqueNetworkState, PalletImOnlineSr25519AppSr25519Public, PalletSchedulerReleases, PalletSchedulerScheduledV2, PalletTransactionPaymentReleases, PalletTreasuryProposal, PangoroRuntimePalletsSessionSessionKeys, SpConsensusBabeAppPublic, SpConsensusBabeBabeEpochConfiguration, SpConsensusBabeDigestsNextConfigDescriptor, SpCoreCryptoKeyTypeId, SpCoreEcdsaSignature, SpRuntimeDigest, SpRuntimeHeader, SpStakingOffenceOffenceDetails } from '@polkadot/types/lookup';
 import type { Observable } from '@polkadot/types/types';
 
+export type __AugmentedQuery<ApiType extends ApiTypes> = AugmentedQuery<ApiType, () => unknown>;
+export type __QueryableStorageEntry<ApiType extends ApiTypes> = QueryableStorageEntry<ApiType>;
 
 declare module '@polkadot/api-base/types/storage' {
-  export interface AugmentedQueries<ApiType extends ApiTypes> {
+  interface AugmentedQueries<ApiType extends ApiTypes> {
     authorship: {
       /**
        * Author of current block.
@@ -142,7 +148,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -184,13 +190,6 @@ declare module '@polkadot/api-base/types/storage' {
        * The current validator set id
        **/
       validatorSetId: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    beefyGadget: {
-      commitmentContract: AugmentedQuery<ApiType, () => Observable<H160>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -282,22 +281,34 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
-    bsc: {
+    ecdsaAuthority: {
       /**
-       * [`Authorities`] is the set of qualified authorities that currently active or activated in
-       * previous rounds this was added to track the older qualified authorities, to make sure we can
-       * verify a older header
+       * The current active authorities.
        **/
       authorities: AugmentedQuery<ApiType, () => Observable<Vec<H160>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * [`AuthoritiesOfRound`] use a `Map<u64, Vec<u32>>` structure to track the active authorities
-       * in every epoch the key is `checkpoint.number / epoch_length`
-       * the value is the index of authorities which extracted from checkpoint block header
-       * So the the order of authorities vector **MUST** be stable.
+       * The authorities change waiting for signing.
        **/
-      authoritiesOfRound: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Vec<u32>>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
-      finalizedAuthorities: AugmentedQuery<ApiType, () => Observable<Vec<H160>>, []> & QueryableStorageEntry<ApiType, []>;
-      finalizedCheckpoint: AugmentedQuery<ApiType, () => Observable<BscPrimitivesBscHeader>, []> & QueryableStorageEntry<ApiType, []>;
+      authoritiesChangeToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesOperation, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The new message root waiting for signing.
+       **/
+      newMessageRootToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesCommitment, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The incoming authorities.
+       **/
+      nextAuthorities: AugmentedQuery<ApiType, () => Observable<Vec<H160>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The nonce of the current active authorities. AKA term/session/era.
+       **/
+      nonce: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Record the previous message root.
+       * 
+       * Use for checking if the message root getter get the same message root as the previous one.
+       * And if this is empty, it means the message root is require to be relayed.
+       **/
+      previousMessageRoot: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[u32, H256]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -483,7 +494,7 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       keys: AugmentedQuery<ApiType, () => Observable<Vec<PalletImOnlineSr25519AppSr25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * For each session index, we keep a mapping of 'SessionIndex` and `AuthIndex` to
+       * For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
        * `WrapperOpaque<BoundedOpaqueNetworkState>`.
        **/
       receivedHeartbeats: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<WrapperOpaque<PalletImOnlineBoundedOpaqueNetworkState>>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
@@ -503,7 +514,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -523,34 +534,8 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
-    mmr: {
-      /**
-       * Hashes of the nodes in the MMR.
-       * 
-       * Note this collection only contains MMR peaks, the inner nodes (and leaves)
-       * are pruned and only stored in the Offchain DB.
-       **/
-      nodes: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<Option<H256>>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
-      /**
-       * Current size of the MMR (number of leaves).
-       **/
-      numberOfLeaves: AugmentedQuery<ApiType, () => Observable<u64>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Latest MMR Root hash.
-       **/
-      rootHash: AugmentedQuery<ApiType, () => Observable<H256>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    mmrLeaf: {
-      /**
-       * Details of next BEEFY authority set.
-       * 
-       * This storage entry is used as cache for calls to [`update_beefy_next_authority_set`].
-       **/
-      beefyNextAuthorities: AugmentedQuery<ApiType, () => Observable<BeefyPrimitivesMmrBeefyNextAuthoritySet>, []> & QueryableStorageEntry<ApiType, []>;
+    messageGadget: {
+      commitmentContract: AugmentedQuery<ApiType, () => Observable<H160>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -619,7 +604,9 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Indices of disabled validators.
        * 
-       * The set is cleared when `on_session_ending` returns a new set of identities.
+       * The vec is always kept sorted so that we can find whether a given validator is
+       * disabled using binary search. It gets cleared when `on_session_ending` returns
+       * a new set of identities.
        **/
       disabledValidators: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -825,6 +812,18 @@ declare module '@polkadot/api-base/types/storage' {
        * All slashing events on nominators, mapped by era to the highest slash value of the era.
        **/
       nominatorSlashInEra: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<DarwiniaStakingSlashingRk>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
+      /**
+       * Indices of validators that have offended in the active era and whether they are currently
+       * disabled.
+       * 
+       * This value should be a superset of disabled validators since not all offences lead to the
+       * validator being disabled (if there was no slash). This is needed to track the percentage of
+       * validators that have offended in the current era, ensuring a new era is forced if
+       * `OffendingValidatorsThreshold` is reached. The vec is always kept sorted so that we can find
+       * whether a given validator has previously offended using binary search. It gets cleared when
+       * the era ends.
+       **/
+      offendingValidators: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, bool]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Where the reward payment should be made. Keyed by stash.
        **/

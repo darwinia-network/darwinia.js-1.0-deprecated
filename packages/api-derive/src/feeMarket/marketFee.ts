@@ -1,9 +1,8 @@
 // Copyright 2017-2022 @darwinia/api-derive authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { PalletFeeMarketRelayer } from '@polkadot/types/lookup';
 import type { Option, Vec } from '@polkadot/types-codec';
-import type { DeriveMarketFee } from './types';
+import type { DeriveMarketFee, PalletFeeMarketRelayer } from './types';
 
 import { map, Observable } from 'rxjs';
 

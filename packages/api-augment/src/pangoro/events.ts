@@ -1,21 +1,28 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/events';
+
+import type { ApiTypes, AugmentedEvent } from '@polkadot/api-base/types';
 import type { Bytes, Null, Option, Result, U256, U8aFixed, Vec, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, H160, H256, Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletImOnlineSr25519AppSr25519Public, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, BpMessagesDeliveredMessages, PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter, EvmCoreErrorExitReason, EthereumLog, DarwiniaStakingStructsExposure, PalletFeeMarketSlashReport, DpAssetTokenMetadata} from '@polkadot/types/lookup';
+import type { BpMessagesDeliveredMessages, DarwiniaEcdsaAuthorityPrimitivesCommitment, DarwiniaEcdsaAuthorityPrimitivesOperation, DarwiniaStakingStructsExposure, DpAssetTokenMetadata, EthereumLog, EvmCoreErrorExitReason, FrameSupportTokensMiscBalanceStatus, FrameSupportWeightsDispatchInfo, PalletElectionProviderMultiPhaseElectionCompute, PalletFeeMarketS2sPaymentRewardItem, PalletFeeMarketSlashReport, PalletImOnlineSr25519AppSr25519Public, PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter, SpCoreEcdsaSignature, SpFinalityGrandpaAppPublic, SpRuntimeDispatchError, SpRuntimeTransactionValidityTransactionValidityError } from '@polkadot/types/lookup';
+
+export type __AugmentedEvent<ApiType extends ApiTypes> = AugmentedEvent<ApiType>;
 
 declare module '@polkadot/api-base/types/events' {
-  export interface AugmentedEvents<ApiType extends ApiTypes> {
+  interface AugmentedEvents<ApiType extends ApiTypes> {
     balances: {
       /**
        * A balance was set by root. \[who, free, reserved\]
        **/
       BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
       /**
-       * Some amount was deposited (e.g. for transaction fees). \[who, deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
+       * deposit\]
        **/
       Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
@@ -38,6 +45,11 @@ declare module '@polkadot/api-base/types/events' {
        **/
       ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
       /**
+       * Some amount was removed from the account (e.g. for misbehavior). \[who,
+       * amount_slashed\]
+       **/
+      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
        * Transfer succeeded. \[from, to, value\]
        **/
       Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
@@ -45,6 +57,10 @@ declare module '@polkadot/api-base/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       **/
+      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -70,9 +86,9 @@ declare module '@polkadot/api-base/types/events' {
        **/
       MessageCallDecodeFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
       /**
-       * The call from the message has been rejected by the call filter.
+       * The call from the message has been rejected by the call validator.
        **/
-      MessageCallRejected: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>]>;
+      MessageCallValidateFailed: AugmentedEvent<ApiType, [U8aFixed, ITuple<[U8aFixed, u64]>, SpRuntimeTransactionValidityTransactionValidityError]>;
       /**
        * Message has been dispatched with given result.
        **/
@@ -117,6 +133,28 @@ declare module '@polkadot/api-base/types/events' {
        * Pallet parameter has been updated.
        **/
       ParameterUpdated: AugmentedEvent<ApiType, [PangoroRuntimeBridgesMessagePangolinPangoroToPangolinMessagesParameter]>;
+      /**
+       * Generic event
+       **/
+      [key: string]: AugmentedEvent<ApiType>;
+    };
+    ecdsaAuthority: {
+      /**
+       * Collected enough authorities change signatures.
+       **/
+      CollectedEnoughAuthoritiesChangeSignatures: AugmentedEvent<ApiType, [operation: DarwiniaEcdsaAuthorityPrimitivesOperation, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>>], { operation: DarwiniaEcdsaAuthorityPrimitivesOperation, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>> }>;
+      /**
+       * Collected enough new message root signatures.
+       **/
+      CollectedEnoughNewMessageRootSignatures: AugmentedEvent<ApiType, [commitment: DarwiniaEcdsaAuthorityPrimitivesCommitment, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>>], { commitment: DarwiniaEcdsaAuthorityPrimitivesCommitment, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>> }>;
+      /**
+       * Authorities changed. Collecting authorities change signatures.
+       **/
+      CollectingAuthoritiesChangeSignatures: AugmentedEvent<ApiType, [message: U8aFixed], { message: U8aFixed }>;
+      /**
+       * New message root found. Collecting new message root signatures.
+       **/
+      CollectingNewMessageRootSignatures: AugmentedEvent<ApiType, [message: U8aFixed], { message: U8aFixed }>;
       /**
        * Generic event
        **/
@@ -254,7 +292,8 @@ declare module '@polkadot/api-base/types/events' {
        **/
       BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
       /**
-       * Some amount was deposited (e.g. for transaction fees). \[who, deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
+       * deposit\]
        **/
       Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
@@ -277,6 +316,11 @@ declare module '@polkadot/api-base/types/events' {
        **/
       ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
       /**
+       * Some amount was removed from the account (e.g. for misbehavior). \[who,
+       * amount_slashed\]
+       **/
+      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
        * Transfer succeeded. \[from, to, value\]
        **/
       Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
@@ -284,6 +328,10 @@ declare module '@polkadot/api-base/types/events' {
        * Some balance was unreserved (moved from reserved to free). \[who, value\]
        **/
       Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      /**
+       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       **/
+      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
       /**
        * Generic event
        **/
@@ -314,6 +362,15 @@ declare module '@polkadot/api-base/types/events' {
        * Slash report
        **/
       FeeMarketSlash: AugmentedEvent<ApiType, [PalletFeeMarketSlashReport]>;
+      /**
+       * Create new order. \[lane_id, message_nonce, order_fee, assigned_relayers,
+       * out_of_slots_time\]
+       **/
+      OrderCreated: AugmentedEvent<ApiType, [U8aFixed, u64, u128, Vec<AccountId32>, Option<u32>]>;
+      /**
+       * Reward distribute of the order. \[lane_id, message_nonce, rewards\]
+       **/
+      OrderReward: AugmentedEvent<ApiType, [U8aFixed, u64, PalletFeeMarketS2sPaymentRewardItem]>;
       /**
        * Update market assigned relayers numbers. \[new_assigned_relayers_number\]
        **/

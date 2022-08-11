@@ -23,15 +23,15 @@
     "homepage": "https://github.com/darwinia-network/darwinia.js/tree/master/packages/api#readme",
     "devDependencies": {
         "@babel/runtime": "^7.17.9",
-        "@polkadot/api": "^8.12",
-        "@polkadot/api-augment": "^8.12",
-        "@polkadot/api-base": "^8.12",
-        "@polkadot/rpc-core": "^8.12",
-        "@polkadot/types": "^8.12",
-        "@polkadot/types-codec": "^8.12",
+        "@polkadot/api": "^9.0.1",
+        "@polkadot/api-augment": "^9.0.1",
+        "@polkadot/api-base": "^9.0.1",
+        "@polkadot/rpc-core": "^9.0.1",
+        "@polkadot/types": "^9.0.1",
+        "@polkadot/types-codec": "^9.0.1",
         "@polkadot/util": "^10",
         "@polkadot/util-crypto": "^10",
         "bignumber.js": "9.0.2",
-        "rxjs": "^7.5.5"
+        "rxjs": "^7.5.6"
     }
 }

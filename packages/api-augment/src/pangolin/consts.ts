@@ -1,14 +1,20 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/consts';
+
+import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
 import type { Bytes, Text, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
-import type { Codec } from '@polkadot/types-codec/types';
+import type { Codec, ITuple } from '@polkadot/types-codec/types';
 import type { Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
 import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from '@polkadot/types/lookup';
 
+export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
+
 declare module '@polkadot/api-base/types/consts' {
-  export interface AugmentedConsts<ApiType extends ApiTypes> {
+  interface AugmentedConsts<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The number of blocks back we should accept uncles.
@@ -183,17 +189,6 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
-    claims: {
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
-      /**
-       * The Prefix that is used in signed Ethereum messages for this network
-       **/
-      prefix: Bytes & AugmentedConst<ApiType>;
-      /**
-       * Generic const
-       **/
-      [key: string]: Codec;
-    };
     democracy: {
       /**
        * Period in blocks where an external proposal may not be re-submitted after being vetoed.
@@ -251,6 +246,50 @@ declare module '@polkadot/api-base/types/consts' {
        * How often (in blocks) to check for new votes.
        **/
       votingPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    ecdsaAuthority: {
+      /**
+       * Chain's ID, which is using for constructing the message. (follow EIP-712 SPEC)
+       **/
+      chainId: Bytes & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of authorities.
+       **/
+      maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * How long should we wait for the message root to be signed.
+       * 
+       * If the collecting new message root signatures process takes more than
+       * `MaxPendingPeriod`, we will drop the root. And update the root with a new one.
+       **/
+      maxPendingPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The signing threshold.
+       * 
+       * Once `signatures_count / authorities_count >= threshold`, we say the message is trusted.
+       **/
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      /**
+       * The interval of checking the message root.
+       **/
+      syncInterval: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    ecdsaRelayAuthority: {
+      lockId: U8aFixed & AugmentedConst<ApiType>;
+      maxMembers: u32 & AugmentedConst<ApiType>;
+      maxSchedules: u32 & AugmentedConst<ApiType>;
+      opCodes: ITuple<[U8aFixed, U8aFixed]> & AugmentedConst<ApiType>;
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      submitDuration: u32 & AugmentedConst<ApiType>;
+      termDuration: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -360,29 +399,11 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
-    ethereumIssuing: {
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
-      /**
-       * Generic const
-       **/
-      [key: string]: Codec;
-    };
     ethereumRelay: {
       approveThreshold: Perbill & AugmentedConst<ApiType>;
       confirmPeriod: u32 & AugmentedConst<ApiType>;
       palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       rejectThreshold: Perbill & AugmentedConst<ApiType>;
-      /**
-       * Generic const
-       **/
-      [key: string]: Codec;
-    };
-    ethereumRelayAuthorities: {
-      lockId: U8aFixed & AugmentedConst<ApiType>;
-      maxCandidates: u32 & AugmentedConst<ApiType>;
-      signThreshold: Perbill & AugmentedConst<ApiType>;
-      submitDuration: u32 & AugmentedConst<ApiType>;
-      termDuration: u32 & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -544,7 +565,6 @@ declare module '@polkadot/api-base/types/consts' {
        * The minimum fee for relaying.
        **/
       minimumRelayFee: u128 & AugmentedConst<ApiType>;
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * The slot times set
        **/
@@ -574,7 +594,6 @@ declare module '@polkadot/api-base/types/consts' {
        * The minimum fee for relaying.
        **/
       minimumRelayFee: u128 & AugmentedConst<ApiType>;
-      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * The slot times set
        **/
@@ -884,6 +903,20 @@ declare module '@polkadot/api-base/types/consts' {
        * The amount held on deposit for placing a tip report.
        **/
       tipReportDepositBase: u128 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    toPangolinParachainBacking: {
+      /**
+       * The max lock amount per transaction for security.
+       **/
+      maxLockRingAmountPerTx: u128 & AugmentedConst<ApiType>;
+      /**
+       * The pallet id of this pallet
+       **/
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

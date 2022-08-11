@@ -1,10 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/errors';
+
+import type { ApiTypes, AugmentedError } from '@polkadot/api-base/types';
+
+export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module '@polkadot/api-base/types/errors' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The uncle is genesis.
@@ -376,33 +382,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    claims: {
-      /**
-       * Invalid Ethereum signature.
-       **/
-      InvalidSignature: AugmentedError<ApiType>;
-      /**
-       * Can NOT Move Claim to an EXISTED Address.
-       **/
-      MoveToExistedAddress: AugmentedError<ApiType>;
-      /**
-       * New Address Type - MISMATCHED
-       **/
-      NewAddressTypeMis: AugmentedError<ApiType>;
-      /**
-       * There's not enough in the pot to pay out some unvested amount. Generally implies a logic
-       * log::error.
-       **/
-      PotUnderflow: AugmentedError<ApiType>;
-      /**
-       * Ethereum address has no claim.
-       **/
-      SignerHasNoClaim: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
     council: {
       /**
        * Members are already initialized!
@@ -568,6 +547,114 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    ecdsaAuthority: {
+      /**
+       * This authority had already finished his duty.
+       **/
+      AlreadySubmitted: AugmentedError<ApiType>;
+      /**
+       * Require at least one authority. Not allow to decrease below one.
+       **/
+      AtLeastOneAuthority: AugmentedError<ApiType>;
+      /**
+       * The authority is already existed.
+       **/
+      AuthorityExisted: AugmentedError<ApiType>;
+      /**
+       * Failed to verify the signature.
+       **/
+      BadSignature: AugmentedError<ApiType>;
+      /**
+       * Didn't find any authorities changes to sign.
+       **/
+      NoAuthoritiesChange: AugmentedError<ApiType>;
+      /**
+       * Didn't find any new message root to sign.
+       **/
+      NoNewMessageRoot: AugmentedError<ApiType>;
+      /**
+       * This is not an authority.
+       **/
+      NotAuthority: AugmentedError<ApiType>;
+      /**
+       * Currently, the authorities is changing.
+       **/
+      OnAuthoritiesChange: AugmentedError<ApiType>;
+      /**
+       * Too many authorities.
+       **/
+      TooManyAuthorities: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    ecdsaRelayAuthority: {
+      /**
+       * Authorities Count - TOO LOW
+       **/
+      AuthoritiesCountTL: AugmentedError<ApiType>;
+      /**
+       * Authorities - MISMATCHED
+       **/
+      AuthoritiesMis: AugmentedError<ApiType>;
+      /**
+       * Authority - ALREADY EXISTED
+       **/
+      AuthorityAE: AugmentedError<ApiType>;
+      /**
+       * Authority - IN TERM
+       **/
+      AuthorityIT: AugmentedError<ApiType>;
+      /**
+       * Authority - NOT EXISTED
+       **/
+      AuthorityNE: AugmentedError<ApiType>;
+      /**
+       * Candidate - ALREADY EXISTED
+       **/
+      CandidateAE: AugmentedError<ApiType>;
+      /**
+       * Candidate - NOT EXISTED
+       **/
+      CandidateNE: AugmentedError<ApiType>;
+      /**
+       * Next Authorities - NOT EXISTED
+       **/
+      NextAuthoritiesNE: AugmentedError<ApiType>;
+      /**
+       * On Authorities Change - DISABLED
+       **/
+      OnAuthoritiesChangeDis: AugmentedError<ApiType>;
+      /**
+       * Scheduled Sign -NOT EXISTED
+       **/
+      ScheduledSignNE: AugmentedError<ApiType>;
+      /**
+       * Signature - INVALID
+       **/
+      SignatureInv: AugmentedError<ApiType>;
+      /**
+       * Stake - INSUFFICIENT
+       **/
+      StakeIns: AugmentedError<ApiType>;
+      /**
+       * Term - MISMATCHED
+       **/
+      TermMis: AugmentedError<ApiType>;
+      /**
+       * Too many members
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
+      /**
+       * Too many scheduled `MmrToSign`.
+       **/
+      TooManySchedules: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     electionProviderMultiPhase: {
       /**
        * The call is not allowed at this point.
@@ -629,6 +716,14 @@ declare module '@polkadot/api-base/types/errors' {
        * Signature is invalid.
        **/
       InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Message transaction invalid
+       **/
+      MessageTransactionError: AugmentedError<ApiType>;
+      /**
+       * Message validate invalid
+       **/
+      MessageValidateError: AugmentedError<ApiType>;
       /**
        * Pre-log is present, therefore transact is not allowed.
        **/
@@ -708,52 +803,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    ethereumIssuing: {
-      /**
-       * assert already redeemed
-       **/
-      AssetAlreadyRedeemed: AugmentedError<ApiType>;
-      /**
-       * assert already registered
-       **/
-      AssetAlreadyRegistered: AugmentedError<ApiType>;
-      /**
-       * decode ethereum event failed
-       **/
-      DecodeEventFailed: AugmentedError<ApiType>;
-      /**
-       * invalid ethereum address length
-       **/
-      InvalidAddressLen: AugmentedError<ApiType>;
-      /**
-       * encode erc20 tx failed
-       **/
-      InvalidEncodeERC20: AugmentedError<ApiType>;
-      /**
-       * decode input value error
-       **/
-      InvalidInputData: AugmentedError<ApiType>;
-      /**
-       * Invalid Issuing System Account
-       **/
-      InvalidIssuingAccount: AugmentedError<ApiType>;
-      /**
-       * caller has no authority
-       **/
-      NoAuthority: AugmentedError<ApiType>;
-      /**
-       * StringCF
-       **/
-      StringCF: AugmentedError<ApiType>;
-      /**
-       * the action is not supported
-       **/
-      UnsupportedAction: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
     ethereumRelay: {
       /**
        * Affirmation - EXISTED
@@ -807,68 +856,6 @@ declare module '@polkadot/api-base/types/errors' {
        * EthereumReceipt Proof - INVALID
        **/
       ReceiptProofInv: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
-    ethereumRelayAuthorities: {
-      /**
-       * Authorities Count - TOO LOW
-       **/
-      AuthoritiesCountTL: AugmentedError<ApiType>;
-      /**
-       * Authorities - MISMATCHED
-       **/
-      AuthoritiesMis: AugmentedError<ApiType>;
-      /**
-       * Authority - ALREADY EXISTED
-       **/
-      AuthorityAE: AugmentedError<ApiType>;
-      /**
-       * Authority - IN TERM
-       **/
-      AuthorityIT: AugmentedError<ApiType>;
-      /**
-       * Authority - NOT EXISTED
-       **/
-      AuthorityNE: AugmentedError<ApiType>;
-      /**
-       * Candidate - ALREADY EXISTED
-       **/
-      CandidateAE: AugmentedError<ApiType>;
-      /**
-       * Candidate - NOT EXISTED
-       **/
-      CandidateNE: AugmentedError<ApiType>;
-      /**
-       * Next Authorities - NOT EXISTED
-       **/
-      NextAuthoritiesNE: AugmentedError<ApiType>;
-      /**
-       * On Authorities Change - DISABLED
-       **/
-      OnAuthoritiesChangeDis: AugmentedError<ApiType>;
-      /**
-       * Scheduled Sign -NOT EXISTED
-       **/
-      ScheduledSignNE: AugmentedError<ApiType>;
-      /**
-       * Scheduled Items - TOO MANY
-       **/
-      ScheduledTM: AugmentedError<ApiType>;
-      /**
-       * Signature - INVALID
-       **/
-      SignatureInv: AugmentedError<ApiType>;
-      /**
-       * Stake - INSUFFICIENT
-       **/
-      StakeIns: AugmentedError<ApiType>;
-      /**
-       * Term - MISMATCHED
-       **/
-      TermMis: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -1206,6 +1193,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
       /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
+      /**
        * Insufficient balance.
        **/
       InsufficientBalance: AugmentedError<ApiType>;
@@ -1235,6 +1226,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/
@@ -1690,6 +1685,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       InvalidIssuingAccount: AugmentedError<ApiType>;
       /**
+       * invalid message sender
+       **/
+      InvalidMessageSender: AugmentedError<ApiType>;
+      /**
        * StringCF
        **/
       StringCF: AugmentedError<ApiType>;
@@ -1827,6 +1826,28 @@ declare module '@polkadot/api-base/types/errors' {
        * The tip hash is unknown.
        **/
       UnknownTip: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    toPangolinParachainBacking: {
+      /**
+       * Insufficient balance.
+       **/
+      InsufficientBalance: AugmentedError<ApiType>;
+      /**
+       * Message nonce duplicated.
+       **/
+      NonceDuplicated: AugmentedError<ApiType>;
+      /**
+       * Redeem Daily Limited
+       **/
+      RingDailyLimited: AugmentedError<ApiType>;
+      /**
+       * Ring Lock LIMITED.
+       **/
+      RingLockLimited: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
