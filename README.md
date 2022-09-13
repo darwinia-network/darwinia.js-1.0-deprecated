@@ -206,7 +206,7 @@ You could find more usecases at example directory of root project.
 
 Those api derive from RPC calls and storage queries base on pangolin endpoint at now. In futrue we could
 maintain darwinia, crab, pangolin and pangoro different derived api. taking an 'usableBalance' exmple to 
-show how derived api working.  @darwiniaapi-derive library bersion must be greater than 2.8.0.
+show how derived api working.  @darwiniaapi-derive library version must be greater than 2.8.0.
 
 ```bash
   yarn add @darwinia/api-derive
