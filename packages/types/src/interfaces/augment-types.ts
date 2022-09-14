@@ -1,6 +1,10 @@
 // Auto-generated via `yarn polkadot-types-from-defs`, do not edit
 /* eslint-disable */
 
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/types/types/registry';
+
 import type { LockIdentifier, Status, UsableBalance } from '@darwinia/types/interfaces/balances';
 import type { BridgedBlockHash, BridgedHeaderHash, CrabRuntimeMessagesDarwiniaMessageCrabToDarwiniaMessagesParameter, DeliveredMessages, DispatchErrorModule, FixedU128, LaneId, MessageId, MessageNonce, MessagePayload, RawStorageProof, RelayerId, TechnicalMember, UnrewardedRelayer } from '@darwinia/types/interfaces/bridges';
 import type { BSCHeader } from '@darwinia/types/interfaces/bsc';
@@ -14,10 +18,10 @@ import type { Announcement, CrabRuntimePalletsProxyProxyType, DarwiniaRuntimePal
 import type { EthereumRelayProofs, RelayAffirmationId, RelayHeaderId, RelayProofs, RelayVotingState } from '@darwinia/types/interfaces/relayerGame';
 import type { PalletStakingIndividualExposure, PowerOf, RewardPoint, SpanIndex, UnappliedSlashOther } from '@darwinia/types/interfaces/staking';
 import type { Data, StorageKey } from '@polkadot/types';
-import type { BitVec, Bool, Bytes, I128, I16, I256, I32, I64, I8, Json, Null, OptionBool, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
+import type { BitVec, Bool, Bytes, F32, F64, I128, I16, I256, I32, I64, I8, Json, Null, OptionBool, Raw, Text, Type, U128, U16, U256, U32, U64, U8, USize, bool, f32, f64, i128, i16, i256, i32, i64, i8, u128, u16, u256, u32, u64, u8, usize } from '@polkadot/types-codec';
 
 declare module '@polkadot/types/types/registry' {
-  export interface InterfaceTypes {
+  interface InterfaceTypes {
     Address: Address;
     AddressT: AddressT;
     Announcement: Announcement;
@@ -70,6 +74,10 @@ declare module '@polkadot/types/types/registry' {
     ExitSucceed: ExitSucceed;
     Exposure: Exposure;
     ExposureT: ExposureT;
+    f32: f32;
+    F32: F32;
+    f64: f64;
+    F64: F64;
     Fee: Fee;
     FixedU128: FixedU128;
     i128: i128;

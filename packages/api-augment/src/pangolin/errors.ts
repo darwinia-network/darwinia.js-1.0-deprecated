@@ -1609,7 +1609,9 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       IncorrectSlashingSpans: AugmentedError<ApiType>;
       /**
-       * Can not bond with value less than minimum required.
+       * Cannot have a validator or nominator role, with value less than the minimum defined by
+       * governance (see `MinValidatorBond` and `MinNominatorBond`). If unbonding is the
+       * intention, `chill` first to remove one's role as validator/nominator.
        **/
       InsufficientBond: AugmentedError<ApiType>;
       /**
@@ -1712,6 +1714,10 @@ declare module '@polkadot/api-base/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
     system: {
+      /**
+       * The origin filter prevent the call to be dispatched.
+       **/
+      CallFiltered: AugmentedError<ApiType>;
       /**
        * Failed to extract the runtime version from the new runtime.
        * 

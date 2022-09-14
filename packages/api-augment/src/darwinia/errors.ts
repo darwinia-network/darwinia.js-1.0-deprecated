@@ -417,6 +417,114 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    ecdsaAuthority: {
+      /**
+       * This authority had already finished his duty.
+       **/
+      AlreadySubmitted: AugmentedError<ApiType>;
+      /**
+       * Require at least one authority. Not allow to decrease below one.
+       **/
+      AtLeastOneAuthority: AugmentedError<ApiType>;
+      /**
+       * The authority is already existed.
+       **/
+      AuthorityExisted: AugmentedError<ApiType>;
+      /**
+       * Failed to verify the signature.
+       **/
+      BadSignature: AugmentedError<ApiType>;
+      /**
+       * Didn't find any authorities changes to sign.
+       **/
+      NoAuthoritiesChange: AugmentedError<ApiType>;
+      /**
+       * Didn't find any new message root to sign.
+       **/
+      NoNewMessageRoot: AugmentedError<ApiType>;
+      /**
+       * This is not an authority.
+       **/
+      NotAuthority: AugmentedError<ApiType>;
+      /**
+       * Currently, the authorities is changing.
+       **/
+      OnAuthoritiesChange: AugmentedError<ApiType>;
+      /**
+       * Too many authorities.
+       **/
+      TooManyAuthorities: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    ecdsaRelayAuthority: {
+      /**
+       * Authorities Count - TOO LOW
+       **/
+      AuthoritiesCountTL: AugmentedError<ApiType>;
+      /**
+       * Authorities - MISMATCHED
+       **/
+      AuthoritiesMis: AugmentedError<ApiType>;
+      /**
+       * Authority - ALREADY EXISTED
+       **/
+      AuthorityAE: AugmentedError<ApiType>;
+      /**
+       * Authority - IN TERM
+       **/
+      AuthorityIT: AugmentedError<ApiType>;
+      /**
+       * Authority - NOT EXISTED
+       **/
+      AuthorityNE: AugmentedError<ApiType>;
+      /**
+       * Candidate - ALREADY EXISTED
+       **/
+      CandidateAE: AugmentedError<ApiType>;
+      /**
+       * Candidate - NOT EXISTED
+       **/
+      CandidateNE: AugmentedError<ApiType>;
+      /**
+       * Next Authorities - NOT EXISTED
+       **/
+      NextAuthoritiesNE: AugmentedError<ApiType>;
+      /**
+       * On Authorities Change - DISABLED
+       **/
+      OnAuthoritiesChangeDis: AugmentedError<ApiType>;
+      /**
+       * Scheduled Sign -NOT EXISTED
+       **/
+      ScheduledSignNE: AugmentedError<ApiType>;
+      /**
+       * Signature - INVALID
+       **/
+      SignatureInv: AugmentedError<ApiType>;
+      /**
+       * Stake - INSUFFICIENT
+       **/
+      StakeIns: AugmentedError<ApiType>;
+      /**
+       * Term - MISMATCHED
+       **/
+      TermMis: AugmentedError<ApiType>;
+      /**
+       * Too many members
+       **/
+      TooManyMembers: AugmentedError<ApiType>;
+      /**
+       * Too many scheduled `MmrToSign`.
+       **/
+      TooManySchedules: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     electionProviderMultiPhase: {
       /**
        * The call is not allowed at this point.
@@ -462,6 +570,38 @@ declare module '@polkadot/api-base/types/errors' {
        * The signed submission consumes too much weight
        **/
       SignedTooMuchWeight: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    ethereum: {
+      /**
+       * The internal transaction failed.
+       **/
+      InternalTransactionExitError: AugmentedError<ApiType>;
+      InternalTransactionFatalError: AugmentedError<ApiType>;
+      InternalTransactionRevertError: AugmentedError<ApiType>;
+      /**
+       * Signature is invalid.
+       **/
+      InvalidSignature: AugmentedError<ApiType>;
+      /**
+       * Message transaction invalid
+       **/
+      MessageTransactionError: AugmentedError<ApiType>;
+      /**
+       * Message validate invalid
+       **/
+      MessageValidateError: AugmentedError<ApiType>;
+      /**
+       * Pre-log is present, therefore transact is not allowed.
+       **/
+      PreLogExists: AugmentedError<ApiType>;
+      /**
+       * The internal call failed.
+       **/
+      ReadyOnlyCall: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -591,68 +731,6 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
-    ethereumRelayAuthorities: {
-      /**
-       * Authorities Count - TOO LOW
-       **/
-      AuthoritiesCountTL: AugmentedError<ApiType>;
-      /**
-       * Authorities - MISMATCHED
-       **/
-      AuthoritiesMis: AugmentedError<ApiType>;
-      /**
-       * Authority - ALREADY EXISTED
-       **/
-      AuthorityAE: AugmentedError<ApiType>;
-      /**
-       * Authority - IN TERM
-       **/
-      AuthorityIT: AugmentedError<ApiType>;
-      /**
-       * Authority - NOT EXISTED
-       **/
-      AuthorityNE: AugmentedError<ApiType>;
-      /**
-       * Candidate - ALREADY EXISTED
-       **/
-      CandidateAE: AugmentedError<ApiType>;
-      /**
-       * Candidate - NOT EXISTED
-       **/
-      CandidateNE: AugmentedError<ApiType>;
-      /**
-       * Next Authorities - NOT EXISTED
-       **/
-      NextAuthoritiesNE: AugmentedError<ApiType>;
-      /**
-       * On Authorities Change - DISABLED
-       **/
-      OnAuthoritiesChangeDis: AugmentedError<ApiType>;
-      /**
-       * Scheduled Sign -NOT EXISTED
-       **/
-      ScheduledSignNE: AugmentedError<ApiType>;
-      /**
-       * Scheduled Items - TOO MANY
-       **/
-      ScheduledTM: AugmentedError<ApiType>;
-      /**
-       * Signature - INVALID
-       **/
-      SignatureInv: AugmentedError<ApiType>;
-      /**
-       * Stake - INSUFFICIENT
-       **/
-      StakeIns: AugmentedError<ApiType>;
-      /**
-       * Term - MISMATCHED
-       **/
-      TermMis: AugmentedError<ApiType>;
-      /**
-       * Generic error
-       **/
-      [key: string]: AugmentedError<ApiType>;
-    };
     ethereumRelayerGame: {
       /**
        * Active Games - TOO MANY
@@ -707,11 +785,45 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       [key: string]: AugmentedError<ApiType>;
     };
+    evm: {
+      /**
+       * Not enough balance to perform action
+       **/
+      BalanceLow: AugmentedError<ApiType>;
+      /**
+       * Calculating total fee overflowed
+       **/
+      FeeOverflow: AugmentedError<ApiType>;
+      /**
+       * Gas price is too low.
+       **/
+      GasPriceTooLow: AugmentedError<ApiType>;
+      /**
+       * Nonce is invalid
+       **/
+      InvalidNonce: AugmentedError<ApiType>;
+      /**
+       * Calculating total payment overflowed
+       **/
+      PaymentOverflow: AugmentedError<ApiType>;
+      /**
+       * Withdraw fee failed
+       **/
+      WithdrawFailed: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
     feeMarket: {
       /**
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/
@@ -1333,7 +1445,9 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       IncorrectSlashingSpans: AugmentedError<ApiType>;
       /**
-       * Can not bond with value less than minimum required.
+       * Cannot have a validator or nominator role, with value less than the minimum defined by
+       * governance (see `MinValidatorBond` and `MinNominatorBond`). If unbonding is the
+       * intention, `chill` first to remove one's role as validator/nominator.
        **/
       InsufficientBond: AugmentedError<ApiType>;
       /**
@@ -1402,6 +1516,10 @@ declare module '@polkadot/api-base/types/errors' {
       [key: string]: AugmentedError<ApiType>;
     };
     system: {
+      /**
+       * The origin filter prevent the call to be dispatched.
+       **/
+      CallFiltered: AugmentedError<ApiType>;
       /**
        * Failed to extract the runtime version from the new runtime.
        * 

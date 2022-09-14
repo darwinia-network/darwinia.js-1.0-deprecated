@@ -17,50 +17,47 @@ declare module '@polkadot/api-base/types/events' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     balances: {
       /**
-       * A balance was set by root. \[who, free, reserved\]
+       * A balance was set by root.
        **/
-      BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      BalanceSet: AugmentedEvent<ApiType, [who: AccountId32, free: u128, reserved: u128], { who: AccountId32, free: u128, reserved: u128 }>;
       /**
-       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
-       * deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees).
        **/
-      Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * An account was removed whose balance was non-zero but below ExistentialDeposit,
-       * resulting in an outright loss. \[account, balance\]
+       * resulting in an outright loss.
        **/
-      DustLost: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      DustLost: AugmentedEvent<ApiType, [account: AccountId32, amount: u128], { account: AccountId32, amount: u128 }>;
       /**
-       * An account was created with some free balance. \[account, free_balance\]
+       * An account was created with some free balance.
        **/
-      Endowed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Endowed: AugmentedEvent<ApiType, [account: AccountId32, freeBalance: u128], { account: AccountId32, freeBalance: u128 }>;
       /**
-       * Some balance was reserved (moved from free to reserved). \[who, value\]
+       * Some balance was reserved (moved from free to reserved).
        **/
-      Reserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Reserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Some balance was moved from the reserve of the first account to the second account.
        * Final argument indicates the destination balance type.
-       * \[from, to, balance, destination_status\]
        **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
+      ReserveRepatriated: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus], { from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus }>;
       /**
-       * Some amount was removed from the account (e.g. for misbehavior). \[who,
-       * amount_slashed\]
+       * Some amount was removed from the account (e.g. for misbehavior).
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Transfer succeeded. \[from, to, value\]
+       * Transfer succeeded.
        **/
-      Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
       /**
-       * Some balance was unreserved (moved from reserved to free). \[who, value\]
+       * Some balance was unreserved (moved from reserved to free).
        **/
-      Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Unreserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       * Some amount was withdrawn from the account (e.g. for transaction fees).
        **/
-      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Withdraw: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -142,7 +139,7 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * Collected enough authorities change signatures.
        **/
-      CollectedEnoughAuthoritiesChangeSignatures: AugmentedEvent<ApiType, [operation: DarwiniaEcdsaAuthorityPrimitivesOperation, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>>], { operation: DarwiniaEcdsaAuthorityPrimitivesOperation, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>> }>;
+      CollectedEnoughAuthoritiesChangeSignatures: AugmentedEvent<ApiType, [operation: DarwiniaEcdsaAuthorityPrimitivesOperation, newThreshold: Option<u32>, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>>], { operation: DarwiniaEcdsaAuthorityPrimitivesOperation, newThreshold: Option<u32>, message: U8aFixed, signatures: Vec<ITuple<[H160, SpCoreEcdsaSignature]>> }>;
       /**
        * Collected enough new message root signatures.
        **/
@@ -165,19 +162,19 @@ declare module '@polkadot/api-base/types/events' {
        * The election has been finalized, with `Some` of the given computation, or else if the
        * election failed, `None`.
        **/
-      ElectionFinalized: AugmentedEvent<ApiType, [Option<PalletElectionProviderMultiPhaseElectionCompute>]>;
+      ElectionFinalized: AugmentedEvent<ApiType, [electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute>], { electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute> }>;
       /**
        * An account has been rewarded for their signed submission being finalized.
        **/
-      Rewarded: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Rewarded: AugmentedEvent<ApiType, [account: AccountId32, value: u128], { account: AccountId32, value: u128 }>;
       /**
        * The signed phase of the given round has started.
        **/
-      SignedPhaseStarted: AugmentedEvent<ApiType, [u32]>;
+      SignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
       /**
        * An account has been slashed for submitting an invalid signed submission.
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [account: AccountId32, value: u128], { account: AccountId32, value: u128 }>;
       /**
        * A solution was stored with the given compute.
        * 
@@ -186,11 +183,11 @@ declare module '@polkadot/api-base/types/events' {
        * 
        * The `bool` is `true` when a previous solution was ejected to make room for this one.
        **/
-      SolutionStored: AugmentedEvent<ApiType, [PalletElectionProviderMultiPhaseElectionCompute, bool]>;
+      SolutionStored: AugmentedEvent<ApiType, [electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool], { electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool }>;
       /**
        * The unsigned phase of the given round has started.
        **/
-      UnsignedPhaseStarted: AugmentedEvent<ApiType, [u32]>;
+      UnsignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
       /**
        * Generic event
        **/
@@ -198,18 +195,17 @@ declare module '@polkadot/api-base/types/events' {
     };
     ethereum: {
       /**
-       * DVM transfer. \[from, to, value\]
+       * DVM transfer.
        **/
-      DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
+      DVMTransfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: U256], { from: AccountId32, to: AccountId32, amount: U256 }>;
       /**
-       * An ethereum transaction was successfully executed. \[from, to/contract_address,
-       * transaction_hash, exit_reason\]
+       * An ethereum transaction was successfully executed.
        **/
-      Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
+      Executed: AugmentedEvent<ApiType, [from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason], { from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason }>;
       /**
-       * Kton transfer \[from, to, value\]
+       * Kton transfer.
        **/
-      KtonDVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
+      KtonDVMTransfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: U256], { from: AccountId32, to: AccountId32, amount: U256 }>;
       /**
        * Generic event
        **/
@@ -217,34 +213,26 @@ declare module '@polkadot/api-base/types/events' {
     };
     evm: {
       /**
-       * A deposit has been made at a given address. \[sender, address, value\]
+       * A contract has been created at given.
        **/
-      BalanceDeposit: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      Created: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A withdrawal has been made from a given address. \[sender, address, value\]
+       * A contract was attempted to be created, but the execution failed.
        **/
-      BalanceWithdraw: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      CreatedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A contract has been created at given \[address\].
+       * A contract has been executed successfully with states applied.
        **/
-      Created: AugmentedEvent<ApiType, [H160]>;
+      Executed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A \[contract\] was attempted to be created, but the execution failed.
-       **/
-      CreatedFailed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed successfully with states applied.
-       **/
-      Executed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees
+       * A contract has been executed with errors. States are reverted with only gas fees
        * applied.
        **/
-      ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
+      ExecutedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
        * Ethereum events from contracts.
        **/
-      Log: AugmentedEvent<ApiType, [EthereumLog]>;
+      Log: AugmentedEvent<ApiType, [log: EthereumLog], { log: EthereumLog }>;
       /**
        * Generic event
        **/
@@ -252,9 +240,9 @@ declare module '@polkadot/api-base/types/events' {
     };
     grandpa: {
       /**
-       * New authority set has been applied. \[authority_set\]
+       * New authority set has been applied.
        **/
-      NewAuthorities: AugmentedEvent<ApiType, [Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>>]>;
+      NewAuthorities: AugmentedEvent<ApiType, [authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>>], { authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>> }>;
       /**
        * Current authority set has been paused.
        **/
@@ -274,13 +262,13 @@ declare module '@polkadot/api-base/types/events' {
        **/
       AllGood: AugmentedEvent<ApiType, []>;
       /**
-       * A new heartbeat was received from `AuthorityId` \[authority_id\]
+       * A new heartbeat was received from `AuthorityId`.
        **/
-      HeartbeatReceived: AugmentedEvent<ApiType, [PalletImOnlineSr25519AppSr25519Public]>;
+      HeartbeatReceived: AugmentedEvent<ApiType, [authorityId: PalletImOnlineSr25519AppSr25519Public], { authorityId: PalletImOnlineSr25519AppSr25519Public }>;
       /**
-       * At the end of the session, at least one validator was found to be \[offline\].
+       * At the end of the session, at least one validator was found to be offline.
        **/
-      SomeOffline: AugmentedEvent<ApiType, [Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>>]>;
+      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>>], { offline: Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>> }>;
       /**
        * Generic event
        **/
@@ -288,50 +276,47 @@ declare module '@polkadot/api-base/types/events' {
     };
     kton: {
       /**
-       * A balance was set by root. \[who, free, reserved\]
+       * A balance was set by root.
        **/
-      BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      BalanceSet: AugmentedEvent<ApiType, [who: AccountId32, free: u128, reserved: u128], { who: AccountId32, free: u128, reserved: u128 }>;
       /**
-       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
-       * deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees).
        **/
-      Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * An account was removed whose balance was non-zero but below ExistentialDeposit,
-       * resulting in an outright loss. \[account, balance\]
+       * resulting in an outright loss.
        **/
-      DustLost: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      DustLost: AugmentedEvent<ApiType, [account: AccountId32, amount: u128], { account: AccountId32, amount: u128 }>;
       /**
-       * An account was created with some free balance. \[account, free_balance\]
+       * An account was created with some free balance.
        **/
-      Endowed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Endowed: AugmentedEvent<ApiType, [account: AccountId32, freeBalance: u128], { account: AccountId32, freeBalance: u128 }>;
       /**
-       * Some balance was reserved (moved from free to reserved). \[who, value\]
+       * Some balance was reserved (moved from free to reserved).
        **/
-      Reserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Reserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Some balance was moved from the reserve of the first account to the second account.
        * Final argument indicates the destination balance type.
-       * \[from, to, balance, destination_status\]
        **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
+      ReserveRepatriated: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus], { from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus }>;
       /**
-       * Some amount was removed from the account (e.g. for misbehavior). \[who,
-       * amount_slashed\]
+       * Some amount was removed from the account (e.g. for misbehavior).
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Transfer succeeded. \[from, to, value\]
+       * Transfer succeeded.
        **/
-      Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
       /**
-       * Some balance was unreserved (moved from reserved to free). \[who, value\]
+       * Some balance was unreserved (moved from reserved to free).
        **/
-      Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Unreserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       * Some amount was withdrawn from the account (e.g. for transaction fees).
        **/
-      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Withdraw: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -343,7 +328,7 @@ declare module '@polkadot/api-base/types/events' {
        * (kind-specific) time slot. This event is not deposited for duplicate slashes.
        * \[kind, timeslot\].
        **/
-      Offence: AugmentedEvent<ApiType, [U8aFixed, Bytes]>;
+      Offence: AugmentedEvent<ApiType, [kind: U8aFixed, timeslot: Bytes], { kind: U8aFixed, timeslot: Bytes }>;
       /**
        * Generic event
        **/
@@ -412,10 +397,10 @@ declare module '@polkadot/api-base/types/events' {
     };
     session: {
       /**
-       * New session has happened. Note that the argument is the \[session_index\], not the
+       * New session has happened. Note that the argument is the session index, not the
        * block number as the type might suggest.
        **/
-      NewSession: AugmentedEvent<ApiType, [u32]>;
+      NewSession: AugmentedEvent<ApiType, [sessionIndex: u32], { sessionIndex: u32 }>;
       /**
        * Generic event
        **/
@@ -528,15 +513,15 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * The \[sudoer\] just switched identity; the old key is supplied.
        **/
-      KeyChanged: AugmentedEvent<ApiType, [AccountId32]>;
+      KeyChanged: AugmentedEvent<ApiType, [newSudoer: AccountId32], { newSudoer: AccountId32 }>;
       /**
        * A sudo just took place. \[result\]
        **/
-      Sudid: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
+      Sudid: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * A sudo just took place. \[result\]
        **/
-      SudoAsDone: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
+      SudoAsDone: AugmentedEvent<ApiType, [sudoResult: Result<Null, SpRuntimeDispatchError>], { sudoResult: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * Generic event
        **/

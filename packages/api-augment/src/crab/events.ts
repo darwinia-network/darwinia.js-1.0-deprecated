@@ -17,50 +17,47 @@ declare module '@polkadot/api-base/types/events' {
   interface AugmentedEvents<ApiType extends ApiTypes> {
     balances: {
       /**
-       * A balance was set by root. \[who, free, reserved\]
+       * A balance was set by root.
        **/
-      BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      BalanceSet: AugmentedEvent<ApiType, [who: AccountId32, free: u128, reserved: u128], { who: AccountId32, free: u128, reserved: u128 }>;
       /**
-       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
-       * deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees).
        **/
-      Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * An account was removed whose balance was non-zero but below ExistentialDeposit,
-       * resulting in an outright loss. \[account, balance\]
+       * resulting in an outright loss.
        **/
-      DustLost: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      DustLost: AugmentedEvent<ApiType, [account: AccountId32, amount: u128], { account: AccountId32, amount: u128 }>;
       /**
-       * An account was created with some free balance. \[account, free_balance\]
+       * An account was created with some free balance.
        **/
-      Endowed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Endowed: AugmentedEvent<ApiType, [account: AccountId32, freeBalance: u128], { account: AccountId32, freeBalance: u128 }>;
       /**
-       * Some balance was reserved (moved from free to reserved). \[who, value\]
+       * Some balance was reserved (moved from free to reserved).
        **/
-      Reserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Reserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Some balance was moved from the reserve of the first account to the second account.
        * Final argument indicates the destination balance type.
-       * \[from, to, balance, destination_status\]
        **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
+      ReserveRepatriated: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus], { from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus }>;
       /**
-       * Some amount was removed from the account (e.g. for misbehavior). \[who,
-       * amount_slashed\]
+       * Some amount was removed from the account (e.g. for misbehavior).
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Transfer succeeded. \[from, to, value\]
+       * Transfer succeeded.
        **/
-      Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
       /**
-       * Some balance was unreserved (moved from reserved to free). \[who, value\]
+       * Some balance was unreserved (moved from reserved to free).
        **/
-      Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Unreserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       * Some amount was withdrawn from the account (e.g. for transaction fees).
        **/
-      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Withdraw: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -78,33 +75,33 @@ declare module '@polkadot/api-base/types/events' {
     };
     bounties: {
       /**
-       * A bounty is awarded to a beneficiary. \[index, beneficiary\]
+       * A bounty is awarded to a beneficiary.
        **/
-      BountyAwarded: AugmentedEvent<ApiType, [u32, AccountId32]>;
+      BountyAwarded: AugmentedEvent<ApiType, [index: u32, beneficiary: AccountId32], { index: u32, beneficiary: AccountId32 }>;
       /**
-       * A bounty proposal is funded and became active. \[index\]
+       * A bounty proposal is funded and became active.
        **/
-      BountyBecameActive: AugmentedEvent<ApiType, [u32]>;
+      BountyBecameActive: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
-       * A bounty is cancelled. \[index\]
+       * A bounty is cancelled.
        **/
-      BountyCanceled: AugmentedEvent<ApiType, [u32]>;
+      BountyCanceled: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
-       * A bounty is claimed by beneficiary. \[index, payout, beneficiary\]
+       * A bounty is claimed by beneficiary.
        **/
-      BountyClaimed: AugmentedEvent<ApiType, [u32, u128, AccountId32]>;
+      BountyClaimed: AugmentedEvent<ApiType, [index: u32, payout: u128, beneficiary: AccountId32], { index: u32, payout: u128, beneficiary: AccountId32 }>;
       /**
-       * A bounty expiry is extended. \[index\]
+       * A bounty expiry is extended.
        **/
-      BountyExtended: AugmentedEvent<ApiType, [u32]>;
+      BountyExtended: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
-       * New bounty proposal. \[index\]
+       * New bounty proposal.
        **/
-      BountyProposed: AugmentedEvent<ApiType, [u32]>;
+      BountyProposed: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
-       * A bounty proposal was rejected; funds were slashed. \[index, bond\]
+       * A bounty proposal was rejected; funds were slashed.
        **/
-      BountyRejected: AugmentedEvent<ApiType, [u32, u128]>;
+      BountyRejected: AugmentedEvent<ApiType, [index: u32, bond: u128], { index: u32, bond: u128 }>;
       /**
        * Generic event
        **/
@@ -237,41 +234,34 @@ declare module '@polkadot/api-base/types/events' {
     council: {
       /**
        * A motion was approved by the required threshold.
-       * \[proposal_hash\]
        **/
-      Approved: AugmentedEvent<ApiType, [H256]>;
+      Approved: AugmentedEvent<ApiType, [proposalHash: H256], { proposalHash: H256 }>;
       /**
        * A proposal was closed because its threshold was reached or after its duration was up.
-       * \[proposal_hash, yes, no\]
        **/
-      Closed: AugmentedEvent<ApiType, [H256, u32, u32]>;
+      Closed: AugmentedEvent<ApiType, [proposalHash: H256, yes: u32, no: u32], { proposalHash: H256, yes: u32, no: u32 }>;
       /**
        * A motion was not approved by the required threshold.
-       * \[proposal_hash\]
        **/
-      Disapproved: AugmentedEvent<ApiType, [H256]>;
+      Disapproved: AugmentedEvent<ApiType, [proposalHash: H256], { proposalHash: H256 }>;
       /**
        * A motion was executed; result will be `Ok` if it returned without error.
-       * \[proposal_hash, result\]
        **/
-      Executed: AugmentedEvent<ApiType, [H256, Result<Null, SpRuntimeDispatchError>]>;
+      Executed: AugmentedEvent<ApiType, [proposalHash: H256, result: Result<Null, SpRuntimeDispatchError>], { proposalHash: H256, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * A single member did some action; result will be `Ok` if it returned without error.
-       * \[proposal_hash, result\]
        **/
-      MemberExecuted: AugmentedEvent<ApiType, [H256, Result<Null, SpRuntimeDispatchError>]>;
+      MemberExecuted: AugmentedEvent<ApiType, [proposalHash: H256, result: Result<Null, SpRuntimeDispatchError>], { proposalHash: H256, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * A motion (given hash) has been proposed (by given account) with a threshold (given
        * `MemberCount`).
-       * \[account, proposal_index, proposal_hash, threshold\]
        **/
-      Proposed: AugmentedEvent<ApiType, [AccountId32, u32, H256, u32]>;
+      Proposed: AugmentedEvent<ApiType, [account: AccountId32, proposalIndex: u32, proposalHash: H256, threshold: u32], { account: AccountId32, proposalIndex: u32, proposalHash: H256, threshold: u32 }>;
       /**
        * A motion (given hash) has been voted on by given account, leaving
        * a tally (yes votes and no votes given respectively as `MemberCount`).
-       * \[account, proposal_hash, voted, yes, no\]
        **/
-      Voted: AugmentedEvent<ApiType, [AccountId32, H256, bool, u32, u32]>;
+      Voted: AugmentedEvent<ApiType, [account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32], { account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32 }>;
       /**
        * Generic event
        **/
@@ -365,78 +355,73 @@ declare module '@polkadot/api-base/types/events' {
     };
     democracy: {
       /**
-       * A proposal \[hash\] has been blacklisted permanently.
+       * A proposal_hash has been blacklisted permanently.
        **/
-      Blacklisted: AugmentedEvent<ApiType, [H256]>;
+      Blacklisted: AugmentedEvent<ApiType, [proposalHash: H256], { proposalHash: H256 }>;
       /**
-       * A referendum has been cancelled. \[ref_index\]
+       * A referendum has been cancelled.
        **/
-      Cancelled: AugmentedEvent<ApiType, [u32]>;
+      Cancelled: AugmentedEvent<ApiType, [refIndex: u32], { refIndex: u32 }>;
       /**
-       * An account has delegated their vote to another account. \[who, target\]
+       * An account has delegated their vote to another account.
        **/
-      Delegated: AugmentedEvent<ApiType, [AccountId32, AccountId32]>;
+      Delegated: AugmentedEvent<ApiType, [who: AccountId32, target: AccountId32], { who: AccountId32, target: AccountId32 }>;
       /**
-       * A proposal has been enacted. \[ref_index, result\]
+       * A proposal has been enacted.
        **/
-      Executed: AugmentedEvent<ApiType, [u32, Result<Null, SpRuntimeDispatchError>]>;
+      Executed: AugmentedEvent<ApiType, [refIndex: u32, result: Result<Null, SpRuntimeDispatchError>], { refIndex: u32, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * An external proposal has been tabled.
        **/
       ExternalTabled: AugmentedEvent<ApiType, []>;
       /**
-       * A proposal has been rejected by referendum. \[ref_index\]
+       * A proposal has been rejected by referendum.
        **/
-      NotPassed: AugmentedEvent<ApiType, [u32]>;
+      NotPassed: AugmentedEvent<ApiType, [refIndex: u32], { refIndex: u32 }>;
       /**
-       * A proposal has been approved by referendum. \[ref_index\]
+       * A proposal has been approved by referendum.
        **/
-      Passed: AugmentedEvent<ApiType, [u32]>;
+      Passed: AugmentedEvent<ApiType, [refIndex: u32], { refIndex: u32 }>;
       /**
        * A proposal could not be executed because its preimage was invalid.
-       * \[proposal_hash, ref_index\]
        **/
-      PreimageInvalid: AugmentedEvent<ApiType, [H256, u32]>;
+      PreimageInvalid: AugmentedEvent<ApiType, [proposalHash: H256, refIndex: u32], { proposalHash: H256, refIndex: u32 }>;
       /**
        * A proposal could not be executed because its preimage was missing.
-       * \[proposal_hash, ref_index\]
        **/
-      PreimageMissing: AugmentedEvent<ApiType, [H256, u32]>;
+      PreimageMissing: AugmentedEvent<ApiType, [proposalHash: H256, refIndex: u32], { proposalHash: H256, refIndex: u32 }>;
       /**
-       * A proposal's preimage was noted, and the deposit taken. \[proposal_hash, who, deposit\]
+       * A proposal's preimage was noted, and the deposit taken.
        **/
-      PreimageNoted: AugmentedEvent<ApiType, [H256, AccountId32, u128]>;
+      PreimageNoted: AugmentedEvent<ApiType, [proposalHash: H256, who: AccountId32, deposit: u128], { proposalHash: H256, who: AccountId32, deposit: u128 }>;
       /**
        * A registered preimage was removed and the deposit collected by the reaper.
-       * \[proposal_hash, provider, deposit, reaper\]
        **/
-      PreimageReaped: AugmentedEvent<ApiType, [H256, AccountId32, u128, AccountId32]>;
+      PreimageReaped: AugmentedEvent<ApiType, [proposalHash: H256, provider: AccountId32, deposit: u128, reaper: AccountId32], { proposalHash: H256, provider: AccountId32, deposit: u128, reaper: AccountId32 }>;
       /**
        * A proposal preimage was removed and used (the deposit was returned).
-       * \[proposal_hash, provider, deposit\]
        **/
-      PreimageUsed: AugmentedEvent<ApiType, [H256, AccountId32, u128]>;
+      PreimageUsed: AugmentedEvent<ApiType, [proposalHash: H256, provider: AccountId32, deposit: u128], { proposalHash: H256, provider: AccountId32, deposit: u128 }>;
       /**
-       * A motion has been proposed by a public account. \[proposal_index, deposit\]
+       * A motion has been proposed by a public account.
        **/
-      Proposed: AugmentedEvent<ApiType, [u32, u128]>;
+      Proposed: AugmentedEvent<ApiType, [proposalIndex: u32, deposit: u128], { proposalIndex: u32, deposit: u128 }>;
       /**
-       * A referendum has begun. \[ref_index, threshold\]
+       * A referendum has begun.
        **/
-      Started: AugmentedEvent<ApiType, [u32, PalletDemocracyVoteThreshold]>;
+      Started: AugmentedEvent<ApiType, [refIndex: u32, threshold: PalletDemocracyVoteThreshold], { refIndex: u32, threshold: PalletDemocracyVoteThreshold }>;
       /**
-       * A public proposal has been tabled for referendum vote. \[proposal_index, deposit,
-       * depositors\]
+       * A public proposal has been tabled for referendum vote.
        **/
-      Tabled: AugmentedEvent<ApiType, [u32, u128, Vec<AccountId32>]>;
+      Tabled: AugmentedEvent<ApiType, [proposalIndex: u32, deposit: u128, depositors: Vec<AccountId32>], { proposalIndex: u32, deposit: u128, depositors: Vec<AccountId32> }>;
       /**
-       * An \[account\] has cancelled a previous delegation operation.
+       * An account has cancelled a previous delegation operation.
        **/
-      Undelegated: AugmentedEvent<ApiType, [AccountId32]>;
+      Undelegated: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
       /**
-       * An external proposal has been vetoed. \[who, proposal_hash, until\]
+       * An external proposal has been vetoed.
        **/
-      Vetoed: AugmentedEvent<ApiType, [AccountId32, H256, u32]>;
+      Vetoed: AugmentedEvent<ApiType, [who: AccountId32, proposalHash: H256, until: u32], { who: AccountId32, proposalHash: H256, until: u32 }>;
       /**
        * Generic event
        **/
@@ -447,19 +432,19 @@ declare module '@polkadot/api-base/types/events' {
        * The election has been finalized, with `Some` of the given computation, or else if the
        * election failed, `None`.
        **/
-      ElectionFinalized: AugmentedEvent<ApiType, [Option<PalletElectionProviderMultiPhaseElectionCompute>]>;
+      ElectionFinalized: AugmentedEvent<ApiType, [electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute>], { electionCompute: Option<PalletElectionProviderMultiPhaseElectionCompute> }>;
       /**
        * An account has been rewarded for their signed submission being finalized.
        **/
-      Rewarded: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Rewarded: AugmentedEvent<ApiType, [account: AccountId32, value: u128], { account: AccountId32, value: u128 }>;
       /**
        * The signed phase of the given round has started.
        **/
-      SignedPhaseStarted: AugmentedEvent<ApiType, [u32]>;
+      SignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
       /**
        * An account has been slashed for submitting an invalid signed submission.
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [account: AccountId32, value: u128], { account: AccountId32, value: u128 }>;
       /**
        * A solution was stored with the given compute.
        * 
@@ -468,11 +453,11 @@ declare module '@polkadot/api-base/types/events' {
        * 
        * The `bool` is `true` when a previous solution was ejected to make room for this one.
        **/
-      SolutionStored: AugmentedEvent<ApiType, [PalletElectionProviderMultiPhaseElectionCompute, bool]>;
+      SolutionStored: AugmentedEvent<ApiType, [electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool], { electionCompute: PalletElectionProviderMultiPhaseElectionCompute, prevEjected: bool }>;
       /**
        * The unsigned phase of the given round has started.
        **/
-      UnsignedPhaseStarted: AugmentedEvent<ApiType, [u32]>;
+      UnsignedPhaseStarted: AugmentedEvent<ApiType, [round: u32], { round: u32 }>;
       /**
        * Generic event
        **/
@@ -480,18 +465,17 @@ declare module '@polkadot/api-base/types/events' {
     };
     ethereum: {
       /**
-       * DVM transfer. \[from, to, value\]
+       * DVM transfer.
        **/
-      DVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
+      DVMTransfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: U256], { from: AccountId32, to: AccountId32, amount: U256 }>;
       /**
-       * An ethereum transaction was successfully executed. \[from, to/contract_address,
-       * transaction_hash, exit_reason\]
+       * An ethereum transaction was successfully executed.
        **/
-      Executed: AugmentedEvent<ApiType, [H160, H160, H256, EvmCoreErrorExitReason]>;
+      Executed: AugmentedEvent<ApiType, [from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason], { from: H160, to: H160, transactionHash: H256, exitReason: EvmCoreErrorExitReason }>;
       /**
-       * Kton transfer \[from, to, value\]
+       * Kton transfer.
        **/
-      KtonDVMTransfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, U256]>;
+      KtonDVMTransfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: U256], { from: AccountId32, to: AccountId32, amount: U256 }>;
       /**
        * Generic event
        **/
@@ -499,34 +483,26 @@ declare module '@polkadot/api-base/types/events' {
     };
     evm: {
       /**
-       * A deposit has been made at a given address. \[sender, address, value\]
+       * A contract has been created at given.
        **/
-      BalanceDeposit: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      Created: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A withdrawal has been made from a given address. \[sender, address, value\]
+       * A contract was attempted to be created, but the execution failed.
        **/
-      BalanceWithdraw: AugmentedEvent<ApiType, [AccountId32, H160, U256]>;
+      CreatedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A contract has been created at given \[address\].
+       * A contract has been executed successfully with states applied.
        **/
-      Created: AugmentedEvent<ApiType, [H160]>;
+      Executed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
-       * A \[contract\] was attempted to be created, but the execution failed.
-       **/
-      CreatedFailed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed successfully with states applied.
-       **/
-      Executed: AugmentedEvent<ApiType, [H160]>;
-      /**
-       * A \[contract\] has been executed with errors. States are reverted with only gas fees
+       * A contract has been executed with errors. States are reverted with only gas fees
        * applied.
        **/
-      ExecutedFailed: AugmentedEvent<ApiType, [H160]>;
+      ExecutedFailed: AugmentedEvent<ApiType, [address: H160], { address: H160 }>;
       /**
        * Ethereum events from contracts.
        **/
-      Log: AugmentedEvent<ApiType, [EthereumLog]>;
+      Log: AugmentedEvent<ApiType, [log: EthereumLog], { log: EthereumLog }>;
       /**
        * Generic event
        **/
@@ -559,9 +535,9 @@ declare module '@polkadot/api-base/types/events' {
     };
     grandpa: {
       /**
-       * New authority set has been applied. \[authority_set\]
+       * New authority set has been applied.
        **/
-      NewAuthorities: AugmentedEvent<ApiType, [Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>>]>;
+      NewAuthorities: AugmentedEvent<ApiType, [authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>>], { authoritySet: Vec<ITuple<[SpFinalityGrandpaAppPublic, u64]>> }>;
       /**
        * Current authority set has been paused.
        **/
@@ -577,47 +553,46 @@ declare module '@polkadot/api-base/types/events' {
     };
     identity: {
       /**
-       * A name was cleared, and the given balance returned. \[who, deposit\]
+       * A name was cleared, and the given balance returned.
        **/
-      IdentityCleared: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      IdentityCleared: AugmentedEvent<ApiType, [who: AccountId32, deposit: u128], { who: AccountId32, deposit: u128 }>;
       /**
-       * A name was removed and the given balance slashed. \[who, deposit\]
+       * A name was removed and the given balance slashed.
        **/
-      IdentityKilled: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      IdentityKilled: AugmentedEvent<ApiType, [who: AccountId32, deposit: u128], { who: AccountId32, deposit: u128 }>;
       /**
-       * A name was set or reset (which will remove all judgements). \[who\]
+       * A name was set or reset (which will remove all judgements).
        **/
-      IdentitySet: AugmentedEvent<ApiType, [AccountId32]>;
+      IdentitySet: AugmentedEvent<ApiType, [who: AccountId32], { who: AccountId32 }>;
       /**
-       * A judgement was given by a registrar. \[target, registrar_index\]
+       * A judgement was given by a registrar.
        **/
-      JudgementGiven: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      JudgementGiven: AugmentedEvent<ApiType, [target: AccountId32, registrarIndex: u32], { target: AccountId32, registrarIndex: u32 }>;
       /**
-       * A judgement was asked from a registrar. \[who, registrar_index\]
+       * A judgement was asked from a registrar.
        **/
-      JudgementRequested: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      JudgementRequested: AugmentedEvent<ApiType, [who: AccountId32, registrarIndex: u32], { who: AccountId32, registrarIndex: u32 }>;
       /**
-       * A judgement request was retracted. \[who, registrar_index\]
+       * A judgement request was retracted.
        **/
-      JudgementUnrequested: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      JudgementUnrequested: AugmentedEvent<ApiType, [who: AccountId32, registrarIndex: u32], { who: AccountId32, registrarIndex: u32 }>;
       /**
-       * A registrar was added. \[registrar_index\]
+       * A registrar was added.
        **/
-      RegistrarAdded: AugmentedEvent<ApiType, [u32]>;
+      RegistrarAdded: AugmentedEvent<ApiType, [registrarIndex: u32], { registrarIndex: u32 }>;
       /**
-       * A sub-identity was added to an identity and the deposit paid. \[sub, main, deposit\]
+       * A sub-identity was added to an identity and the deposit paid.
        **/
-      SubIdentityAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      SubIdentityAdded: AugmentedEvent<ApiType, [sub: AccountId32, main: AccountId32, deposit: u128], { sub: AccountId32, main: AccountId32, deposit: u128 }>;
       /**
        * A sub-identity was removed from an identity and the deposit freed.
-       * \[sub, main, deposit\]
        **/
-      SubIdentityRemoved: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      SubIdentityRemoved: AugmentedEvent<ApiType, [sub: AccountId32, main: AccountId32, deposit: u128], { sub: AccountId32, main: AccountId32, deposit: u128 }>;
       /**
        * A sub-identity was cleared, and the given deposit repatriated from the
-       * main identity account to the sub-identity account. \[sub, main, deposit\]
+       * main identity account to the sub-identity account.
        **/
-      SubIdentityRevoked: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      SubIdentityRevoked: AugmentedEvent<ApiType, [sub: AccountId32, main: AccountId32, deposit: u128], { sub: AccountId32, main: AccountId32, deposit: u128 }>;
       /**
        * Generic event
        **/
@@ -629,13 +604,13 @@ declare module '@polkadot/api-base/types/events' {
        **/
       AllGood: AugmentedEvent<ApiType, []>;
       /**
-       * A new heartbeat was received from `AuthorityId` \[authority_id\]
+       * A new heartbeat was received from `AuthorityId`.
        **/
-      HeartbeatReceived: AugmentedEvent<ApiType, [PalletImOnlineSr25519AppSr25519Public]>;
+      HeartbeatReceived: AugmentedEvent<ApiType, [authorityId: PalletImOnlineSr25519AppSr25519Public], { authorityId: PalletImOnlineSr25519AppSr25519Public }>;
       /**
-       * At the end of the session, at least one validator was found to be \[offline\].
+       * At the end of the session, at least one validator was found to be offline.
        **/
-      SomeOffline: AugmentedEvent<ApiType, [Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>>]>;
+      SomeOffline: AugmentedEvent<ApiType, [offline: Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>>], { offline: Vec<ITuple<[AccountId32, DarwiniaStakingStructsExposure]>> }>;
       /**
        * Generic event
        **/
@@ -643,17 +618,17 @@ declare module '@polkadot/api-base/types/events' {
     };
     indices: {
       /**
-       * A account index was assigned. \[index, who\]
+       * A account index was assigned.
        **/
-      IndexAssigned: AugmentedEvent<ApiType, [AccountId32, u32]>;
+      IndexAssigned: AugmentedEvent<ApiType, [who: AccountId32, index: u32], { who: AccountId32, index: u32 }>;
       /**
-       * A account index has been freed up (unassigned). \[index\]
+       * A account index has been freed up (unassigned).
        **/
-      IndexFreed: AugmentedEvent<ApiType, [u32]>;
+      IndexFreed: AugmentedEvent<ApiType, [index: u32], { index: u32 }>;
       /**
-       * A account index has been frozen to its current account ID. \[index, who\]
+       * A account index has been frozen to its current account ID.
        **/
-      IndexFrozen: AugmentedEvent<ApiType, [u32, AccountId32]>;
+      IndexFrozen: AugmentedEvent<ApiType, [index: u32, who: AccountId32], { index: u32, who: AccountId32 }>;
       /**
        * Generic event
        **/
@@ -661,50 +636,47 @@ declare module '@polkadot/api-base/types/events' {
     };
     kton: {
       /**
-       * A balance was set by root. \[who, free, reserved\]
+       * A balance was set by root.
        **/
-      BalanceSet: AugmentedEvent<ApiType, [AccountId32, u128, u128]>;
+      BalanceSet: AugmentedEvent<ApiType, [who: AccountId32, free: u128, reserved: u128], { who: AccountId32, free: u128, reserved: u128 }>;
       /**
-       * Some amount was deposited into the account (e.g. for transaction fees). \[who,
-       * deposit\]
+       * Some amount was deposited into the account (e.g. for transaction fees).
        **/
-      Deposit: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Deposit: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * An account was removed whose balance was non-zero but below ExistentialDeposit,
-       * resulting in an outright loss. \[account, balance\]
+       * resulting in an outright loss.
        **/
-      DustLost: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      DustLost: AugmentedEvent<ApiType, [account: AccountId32, amount: u128], { account: AccountId32, amount: u128 }>;
       /**
-       * An account was created with some free balance. \[account, free_balance\]
+       * An account was created with some free balance.
        **/
-      Endowed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Endowed: AugmentedEvent<ApiType, [account: AccountId32, freeBalance: u128], { account: AccountId32, freeBalance: u128 }>;
       /**
-       * Some balance was reserved (moved from free to reserved). \[who, value\]
+       * Some balance was reserved (moved from free to reserved).
        **/
-      Reserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Reserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Some balance was moved from the reserve of the first account to the second account.
        * Final argument indicates the destination balance type.
-       * \[from, to, balance, destination_status\]
        **/
-      ReserveRepatriated: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128, FrameSupportTokensMiscBalanceStatus]>;
+      ReserveRepatriated: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus], { from: AccountId32, to: AccountId32, amount: u128, destinationStatus: FrameSupportTokensMiscBalanceStatus }>;
       /**
-       * Some amount was removed from the account (e.g. for misbehavior). \[who,
-       * amount_slashed\]
+       * Some amount was removed from the account (e.g. for misbehavior).
        **/
-      Slashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Slashed: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Transfer succeeded. \[from, to, value\]
+       * Transfer succeeded.
        **/
-      Transfer: AugmentedEvent<ApiType, [AccountId32, AccountId32, u128]>;
+      Transfer: AugmentedEvent<ApiType, [from: AccountId32, to: AccountId32, amount: u128], { from: AccountId32, to: AccountId32, amount: u128 }>;
       /**
-       * Some balance was unreserved (moved from reserved to free). \[who, value\]
+       * Some balance was unreserved (moved from reserved to free).
        **/
-      Unreserved: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Unreserved: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
-       * Some amount was withdrawn from the account (e.g. for transaction fees). \[who, value\]
+       * Some amount was withdrawn from the account (e.g. for transaction fees).
        **/
-      Withdraw: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      Withdraw: AugmentedEvent<ApiType, [who: AccountId32, amount: u128], { who: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -748,21 +720,20 @@ declare module '@polkadot/api-base/types/events' {
     multisig: {
       /**
        * A multisig operation has been approved by someone.
-       * \[approving, timepoint, multisig, call_hash\]
        **/
-      MultisigApproval: AugmentedEvent<ApiType, [AccountId32, PalletMultisigTimepoint, AccountId32, U8aFixed]>;
+      MultisigApproval: AugmentedEvent<ApiType, [approving: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed], { approving: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed }>;
       /**
-       * A multisig operation has been cancelled. \[cancelling, timepoint, multisig, call_hash\]
+       * A multisig operation has been cancelled.
        **/
-      MultisigCancelled: AugmentedEvent<ApiType, [AccountId32, PalletMultisigTimepoint, AccountId32, U8aFixed]>;
+      MultisigCancelled: AugmentedEvent<ApiType, [cancelling: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed], { cancelling: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed }>;
       /**
-       * A multisig operation has been executed. \[approving, timepoint, multisig, call_hash\]
+       * A multisig operation has been executed.
        **/
-      MultisigExecuted: AugmentedEvent<ApiType, [AccountId32, PalletMultisigTimepoint, AccountId32, U8aFixed, Result<Null, SpRuntimeDispatchError>]>;
+      MultisigExecuted: AugmentedEvent<ApiType, [approving: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed, result: Result<Null, SpRuntimeDispatchError>], { approving: AccountId32, timepoint: PalletMultisigTimepoint, multisig: AccountId32, callHash: U8aFixed, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
-       * A new multisig operation has begun. \[approving, multisig, call_hash\]
+       * A new multisig operation has begun.
        **/
-      NewMultisig: AugmentedEvent<ApiType, [AccountId32, AccountId32, U8aFixed]>;
+      NewMultisig: AugmentedEvent<ApiType, [approving: AccountId32, multisig: AccountId32, callHash: U8aFixed], { approving: AccountId32, multisig: AccountId32, callHash: U8aFixed }>;
       /**
        * Generic event
        **/
@@ -774,7 +745,7 @@ declare module '@polkadot/api-base/types/events' {
        * (kind-specific) time slot. This event is not deposited for duplicate slashes.
        * \[kind, timeslot\].
        **/
-      Offence: AugmentedEvent<ApiType, [U8aFixed, Bytes]>;
+      Offence: AugmentedEvent<ApiType, [kind: U8aFixed, timeslot: Bytes], { kind: U8aFixed, timeslot: Bytes }>;
       /**
        * Generic event
        **/
@@ -782,12 +753,12 @@ declare module '@polkadot/api-base/types/events' {
     };
     phragmenElection: {
       /**
-       * A \[candidate\] was slashed by \[amount\] due to failing to obtain a seat as member or
+       * A candidate was slashed by amount due to failing to obtain a seat as member or
        * runner-up.
        * 
        * Note that old members and runners-up are also candidates.
        **/
-      CandidateSlashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      CandidateSlashed: AugmentedEvent<ApiType, [candidate: AccountId32, amount: u128], { candidate: AccountId32, amount: u128 }>;
       /**
        * Internal error happened while trying to perform election.
        **/
@@ -798,26 +769,26 @@ declare module '@polkadot/api-base/types/events' {
        **/
       EmptyTerm: AugmentedEvent<ApiType, []>;
       /**
-       * A \[member\] has been removed. This should always be followed by either `NewTerm` or
+       * A member has been removed. This should always be followed by either `NewTerm` or
        * `EmptyTerm`.
        **/
-      MemberKicked: AugmentedEvent<ApiType, [AccountId32]>;
+      MemberKicked: AugmentedEvent<ApiType, [member: AccountId32], { member: AccountId32 }>;
       /**
-       * A new term with \[new_members\]. This indicates that enough candidates existed to run
+       * A new term with new_members. This indicates that enough candidates existed to run
        * the election, not that enough have has been elected. The inner value must be examined
        * for this purpose. A `NewTerm(\[\])` indicates that some candidates got their bond
        * slashed and none were elected, whilst `EmptyTerm` means that no candidates existed to
        * begin with.
        **/
-      NewTerm: AugmentedEvent<ApiType, [Vec<ITuple<[AccountId32, u128]>>]>;
+      NewTerm: AugmentedEvent<ApiType, [newMembers: Vec<ITuple<[AccountId32, u128]>>], { newMembers: Vec<ITuple<[AccountId32, u128]>> }>;
       /**
        * Someone has renounced their candidacy.
        **/
-      Renounced: AugmentedEvent<ApiType, [AccountId32]>;
+      Renounced: AugmentedEvent<ApiType, [candidate: AccountId32], { candidate: AccountId32 }>;
       /**
-       * A \[seat holder\] was slashed by \[amount\] by being forcefully removed from the set.
+       * A seat holder was slashed by amount by being forcefully removed from the set.
        **/
-      SeatHolderSlashed: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      SeatHolderSlashed: AugmentedEvent<ApiType, [seatHolder: AccountId32, amount: u128], { seatHolder: AccountId32, amount: u128 }>;
       /**
        * Generic event
        **/
@@ -825,23 +796,22 @@ declare module '@polkadot/api-base/types/events' {
     };
     proxy: {
       /**
-       * An announcement was placed to make a call in the future. \[real, proxy, call_hash\]
+       * An announcement was placed to make a call in the future.
        **/
-      Announced: AugmentedEvent<ApiType, [AccountId32, AccountId32, H256]>;
+      Announced: AugmentedEvent<ApiType, [real: AccountId32, proxy: AccountId32, callHash: H256], { real: AccountId32, proxy: AccountId32, callHash: H256 }>;
       /**
        * Anonymous account has been created by new proxy with given
-       * disambiguation index and proxy type. \[anonymous, who, proxy_type,
-       * disambiguation_index\]
+       * disambiguation index and proxy type.
        **/
-      AnonymousCreated: AugmentedEvent<ApiType, [AccountId32, AccountId32, CrabRuntimePalletsProxyProxyType, u16]>;
+      AnonymousCreated: AugmentedEvent<ApiType, [anonymous: AccountId32, who: AccountId32, proxyType: CrabRuntimePalletsProxyProxyType, disambiguationIndex: u16], { anonymous: AccountId32, who: AccountId32, proxyType: CrabRuntimePalletsProxyProxyType, disambiguationIndex: u16 }>;
       /**
-       * A proxy was added. \[delegator, delegatee, proxy_type, delay\]
+       * A proxy was added.
        **/
-      ProxyAdded: AugmentedEvent<ApiType, [AccountId32, AccountId32, CrabRuntimePalletsProxyProxyType, u32]>;
+      ProxyAdded: AugmentedEvent<ApiType, [delegator: AccountId32, delegatee: AccountId32, proxyType: CrabRuntimePalletsProxyProxyType, delay: u32], { delegator: AccountId32, delegatee: AccountId32, proxyType: CrabRuntimePalletsProxyProxyType, delay: u32 }>;
       /**
-       * A proxy was executed correctly, with the given \[result\].
+       * A proxy was executed correctly, with the given.
        **/
-      ProxyExecuted: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
+      ProxyExecuted: AugmentedEvent<ApiType, [result: Result<Null, SpRuntimeDispatchError>], { result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * Generic event
        **/
@@ -850,32 +820,28 @@ declare module '@polkadot/api-base/types/events' {
     recovery: {
       /**
        * Lost account has been successfully recovered by rescuer account.
-       * \[lost, rescuer\]
        **/
-      AccountRecovered: AugmentedEvent<ApiType, [AccountId32, AccountId32]>;
+      AccountRecovered: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32 }>;
       /**
        * A recovery process for lost account by rescuer account has been closed.
-       * \[lost, rescuer\]
        **/
-      RecoveryClosed: AugmentedEvent<ApiType, [AccountId32, AccountId32]>;
+      RecoveryClosed: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32 }>;
       /**
-       * A recovery process has been set up for an \[account\].
+       * A recovery process has been set up for an account.
        **/
-      RecoveryCreated: AugmentedEvent<ApiType, [AccountId32]>;
+      RecoveryCreated: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
       /**
        * A recovery process has been initiated for lost account by rescuer account.
-       * \[lost, rescuer\]
        **/
-      RecoveryInitiated: AugmentedEvent<ApiType, [AccountId32, AccountId32]>;
+      RecoveryInitiated: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32 }>;
       /**
-       * A recovery process has been removed for an \[account\].
+       * A recovery process has been removed for an account.
        **/
-      RecoveryRemoved: AugmentedEvent<ApiType, [AccountId32]>;
+      RecoveryRemoved: AugmentedEvent<ApiType, [lostAccount: AccountId32], { lostAccount: AccountId32 }>;
       /**
        * A recovery process for lost account by rescuer account has been vouched for by sender.
-       * \[lost, rescuer, sender\]
        **/
-      RecoveryVouched: AugmentedEvent<ApiType, [AccountId32, AccountId32, AccountId32]>;
+      RecoveryVouched: AugmentedEvent<ApiType, [lostAccount: AccountId32, rescuerAccount: AccountId32, sender: AccountId32], { lostAccount: AccountId32, rescuerAccount: AccountId32, sender: AccountId32 }>;
       /**
        * Generic event
        **/
@@ -901,10 +867,10 @@ declare module '@polkadot/api-base/types/events' {
     };
     session: {
       /**
-       * New session has happened. Note that the argument is the \[session_index\], not the
+       * New session has happened. Note that the argument is the session index, not the
        * block number as the type might suggest.
        **/
-      NewSession: AugmentedEvent<ApiType, [u32]>;
+      NewSession: AugmentedEvent<ApiType, [sessionIndex: u32], { sessionIndex: u32 }>;
       /**
        * Generic event
        **/
@@ -1094,41 +1060,34 @@ declare module '@polkadot/api-base/types/events' {
     technicalCommittee: {
       /**
        * A motion was approved by the required threshold.
-       * \[proposal_hash\]
        **/
-      Approved: AugmentedEvent<ApiType, [H256]>;
+      Approved: AugmentedEvent<ApiType, [proposalHash: H256], { proposalHash: H256 }>;
       /**
        * A proposal was closed because its threshold was reached or after its duration was up.
-       * \[proposal_hash, yes, no\]
        **/
-      Closed: AugmentedEvent<ApiType, [H256, u32, u32]>;
+      Closed: AugmentedEvent<ApiType, [proposalHash: H256, yes: u32, no: u32], { proposalHash: H256, yes: u32, no: u32 }>;
       /**
        * A motion was not approved by the required threshold.
-       * \[proposal_hash\]
        **/
-      Disapproved: AugmentedEvent<ApiType, [H256]>;
+      Disapproved: AugmentedEvent<ApiType, [proposalHash: H256], { proposalHash: H256 }>;
       /**
        * A motion was executed; result will be `Ok` if it returned without error.
-       * \[proposal_hash, result\]
        **/
-      Executed: AugmentedEvent<ApiType, [H256, Result<Null, SpRuntimeDispatchError>]>;
+      Executed: AugmentedEvent<ApiType, [proposalHash: H256, result: Result<Null, SpRuntimeDispatchError>], { proposalHash: H256, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * A single member did some action; result will be `Ok` if it returned without error.
-       * \[proposal_hash, result\]
        **/
-      MemberExecuted: AugmentedEvent<ApiType, [H256, Result<Null, SpRuntimeDispatchError>]>;
+      MemberExecuted: AugmentedEvent<ApiType, [proposalHash: H256, result: Result<Null, SpRuntimeDispatchError>], { proposalHash: H256, result: Result<Null, SpRuntimeDispatchError> }>;
       /**
        * A motion (given hash) has been proposed (by given account) with a threshold (given
        * `MemberCount`).
-       * \[account, proposal_index, proposal_hash, threshold\]
        **/
-      Proposed: AugmentedEvent<ApiType, [AccountId32, u32, H256, u32]>;
+      Proposed: AugmentedEvent<ApiType, [account: AccountId32, proposalIndex: u32, proposalHash: H256, threshold: u32], { account: AccountId32, proposalIndex: u32, proposalHash: H256, threshold: u32 }>;
       /**
        * A motion (given hash) has been voted on by given account, leaving
        * a tally (yes votes and no votes given respectively as `MemberCount`).
-       * \[account, proposal_hash, voted, yes, no\]
        **/
-      Voted: AugmentedEvent<ApiType, [AccountId32, H256, bool, u32, u32]>;
+      Voted: AugmentedEvent<ApiType, [account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32], { account: AccountId32, proposalHash: H256, voted: bool, yes: u32, no: u32 }>;
       /**
        * Generic event
        **/
@@ -1166,25 +1125,25 @@ declare module '@polkadot/api-base/types/events' {
     };
     tips: {
       /**
-       * A new tip suggestion has been opened. \[tip_hash\]
+       * A new tip suggestion has been opened.
        **/
-      NewTip: AugmentedEvent<ApiType, [H256]>;
+      NewTip: AugmentedEvent<ApiType, [tipHash: H256], { tipHash: H256 }>;
       /**
-       * A tip suggestion has been closed. \[tip_hash, who, payout\]
+       * A tip suggestion has been closed.
        **/
-      TipClosed: AugmentedEvent<ApiType, [H256, AccountId32, u128]>;
+      TipClosed: AugmentedEvent<ApiType, [tipHash: H256, who: AccountId32, payout: u128], { tipHash: H256, who: AccountId32, payout: u128 }>;
       /**
-       * A tip suggestion has reached threshold and is closing. \[tip_hash\]
+       * A tip suggestion has reached threshold and is closing.
        **/
-      TipClosing: AugmentedEvent<ApiType, [H256]>;
+      TipClosing: AugmentedEvent<ApiType, [tipHash: H256], { tipHash: H256 }>;
       /**
-       * A tip suggestion has been retracted. \[tip_hash\]
+       * A tip suggestion has been retracted.
        **/
-      TipRetracted: AugmentedEvent<ApiType, [H256]>;
+      TipRetracted: AugmentedEvent<ApiType, [tipHash: H256], { tipHash: H256 }>;
       /**
-       * A tip suggestion has been slashed. \[tip_hash, finder, deposit\]
+       * A tip suggestion has been slashed.
        **/
-      TipSlashed: AugmentedEvent<ApiType, [H256, AccountId32, u128]>;
+      TipSlashed: AugmentedEvent<ApiType, [tipHash: H256, finder: AccountId32, deposit: u128], { tipHash: H256, finder: AccountId32, deposit: u128 }>;
       /**
        * Generic event
        **/
@@ -1254,9 +1213,13 @@ declare module '@polkadot/api-base/types/events' {
       BatchCompleted: AugmentedEvent<ApiType, []>;
       /**
        * Batch of dispatches did not complete fully. Index of first failing dispatch given, as
-       * well as the error. \[index, error\]
+       * well as the error.
        **/
-      BatchInterrupted: AugmentedEvent<ApiType, [u32, SpRuntimeDispatchError]>;
+      BatchInterrupted: AugmentedEvent<ApiType, [index: u32, error: SpRuntimeDispatchError], { index: u32, error: SpRuntimeDispatchError }>;
+      /**
+       * A call was dispatched. \[result\]
+       **/
+      DispatchedAs: AugmentedEvent<ApiType, [Result<Null, SpRuntimeDispatchError>]>;
       /**
        * A single item within a Batch of dispatches has completed with no error.
        **/
@@ -1270,13 +1233,12 @@ declare module '@polkadot/api-base/types/events' {
       /**
        * An \[account\] has become fully vested.
        **/
-      VestingCompleted: AugmentedEvent<ApiType, [AccountId32]>;
+      VestingCompleted: AugmentedEvent<ApiType, [account: AccountId32], { account: AccountId32 }>;
       /**
        * The amount vested has been updated. This could indicate a change in funds available.
        * The balance given is the amount which is left unvested (and thus locked).
-       * \[account, unvested\]
        **/
-      VestingUpdated: AugmentedEvent<ApiType, [AccountId32, u128]>;
+      VestingUpdated: AugmentedEvent<ApiType, [account: AccountId32, unvested: u128], { account: AccountId32, unvested: u128 }>;
       /**
        * Generic event
        **/

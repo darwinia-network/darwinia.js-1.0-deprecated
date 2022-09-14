@@ -7,9 +7,9 @@ import '@polkadot/api-base/types/storage';
 
 import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
-import type { BTreeMap, Bytes, Option, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
+import type { BTreeMap, Bytes, Option, U256, U8aFixed, Vec, WrapperKeepOpaque, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
-import type { AccountId32, Call, H160, H256, Perbill, Percent } from '@polkadot/types/interfaces/runtime';
+import type { AccountId32, Call, H160, H256, Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
 import type {
   BpHeaderChainAuthoritySet,
@@ -18,15 +18,16 @@ import type {
   BpMessagesMessageKey,
   BpMessagesOperatingMode,
   BpMessagesOutboundLaneData,
+  DarwiniaBalancesBalanceLock,
   DarwiniaBalancesReleases,
   DarwiniaBalancesReserveData,
   DarwiniaBridgeEthereumEthereumRelayHeaderParcel,
   DarwiniaCommonRuntimeImplsAccountData,
-  DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign,
-  DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority,
-  DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange,
-  DarwiniaRelayPrimitivesRelayerGameRelayAffirmation,
-  DarwiniaRelayPrimitivesRelayerGameRelayVotingState,
+  DarwiniaEcdsaAuthorityPrimitivesCommitment,
+  DarwiniaEcdsaAuthorityPrimitivesOperation,
+  DarwiniaRelayAuthorityPrimitivesAuthority,
+  DarwiniaRelayAuthorityPrimitivesMmrRootToSign,
+  DarwiniaRelayAuthorityPrimitivesScheduledAuthoritiesChange,
   DarwiniaRuntimePalletsSessionSessionKeys,
   DarwiniaStakingSlashingRk,
   DarwiniaStakingSlashingSlashingSpans,
@@ -41,13 +42,18 @@ import type {
   DarwiniaStakingStructsStakingLedger,
   DarwiniaStakingStructsUnappliedSlash,
   DarwiniaStakingStructsValidatorPrefs,
+  DpRelayerGameRelayAffirmation,
+  DpRelayerGameRelayVotingState,
+  EthereumBlock,
+  EthereumReceiptReceiptV3,
+  EthereumTransactionTransactionV2,
+  FpRpcTransactionStatus,
   FrameSupportWeightsPerDispatchClassU64,
   FrameSystemAccountInfo,
   FrameSystemEventRecord,
   FrameSystemLastRuntimeUpgradeInfo,
   FrameSystemPhase,
   PalletAuthorshipUncleEntryItem,
-  PalletBalancesBalanceLock,
   PalletBountiesBounty,
   PalletCollectiveVotes,
   PalletDemocracyPreimageStatus,
@@ -90,6 +96,7 @@ import type {
   SpConsensusBabeBabeEpochConfiguration,
   SpConsensusBabeDigestsNextConfigDescriptor,
   SpCoreCryptoKeyTypeId,
+  SpCoreEcdsaSignature,
   SpRuntimeDigest,
   SpRuntimeHeader,
   SpStakingOffenceOffenceDetails
@@ -203,7 +210,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Randomness under construction.
        *
-       * We make a tradeoff between storage accesses and list length.
+       * We make a trade-off between storage accesses and list length.
        * We store the under-construction randomness in segments of up to
        * `UNDER_CONSTRUCTION_SEGMENT_LENGTH`.
        *
@@ -232,7 +239,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -247,6 +254,15 @@ declare module '@polkadot/api-base/types/storage' {
        * The total units issued in the system.
        **/
       totalIssuance: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    baseFee: {
+      baseFeePerGas: AugmentedQuery<ApiType, () => Observable<U256>, []> & QueryableStorageEntry<ApiType, []>;
+      elasticity: AugmentedQuery<ApiType, () => Observable<Permill>, []> & QueryableStorageEntry<ApiType, []>;
+      isActive: AugmentedQuery<ApiType, () => Observable<bool>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -390,11 +406,7 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
-    darwiniaHeaderMMR: {
-      /**
-       * Migration step.
-       **/
-      migrationStep: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+    darwiniaHeaderMmr: {
       /**
        * Size of the MMR
        **/
@@ -489,6 +501,96 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    ecdsaAuthority: {
+      /**
+       * The current active authorities.
+       **/
+      authorities: AugmentedQuery<ApiType, () => Observable<Vec<H160>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The authorities change waiting for signing.
+       **/
+      authoritiesChangeToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesOperation, Option<u32>, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The new message root waiting for signing.
+       **/
+      newMessageRootToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesCommitment, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The incoming authorities.
+       **/
+      nextAuthorities: AugmentedQuery<ApiType, () => Observable<Vec<H160>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The nonce of the current active authorities. AKA term/session/era.
+       **/
+      nonce: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Record the previous message root.
+       *
+       * Use for checking if the message root getter get the same message root as the previous one.
+       * And if this is empty, it means the message root is require to be relayed.
+       **/
+      previousMessageRoot: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[u32, H256]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    ecdsaRelayAuthority: {
+      /**
+       * Authority must elect from candidates
+       *
+       * Once you become an authority, you must serve for a specific term.
+       * Before that, you can't renounce.
+       **/
+      authorities: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaRelayAuthorityPrimitivesAuthority>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The authorities change requirements.
+       *
+       * Once the signatures count reaches the sign threshold storage will be killed then raise a
+       * signed event Params.
+       * 1. the message to sign
+       * 1. collected signatures
+       **/
+      authoritiesToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[U8aFixed, Vec<ITuple<[AccountId32, U8aFixed]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Anyone can request to be an authority with some stake.
+       *
+       * Once you requested, you'll enter the candidates.
+       * This request can be canceled at any time.
+       **/
+      candidates: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaRelayAuthorityPrimitivesAuthority>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * All the relay requirements from the backing module here.
+       *
+       * If the map's key has existed, it means the mmr root relay requirement is valid.
+       *
+       * Once the signatures count reaches the sign threshold storage will be killed then raise a
+       * signed event Params.
+       * 1. the mmr root to be signed, collected signatures
+       **/
+      mmrRootsToSign: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<DarwiniaRelayAuthorityPrimitivesMmrRootToSign>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
+      /**
+       * The `MmrRootsToSign` keys cache.
+       *
+       * Only use for update the `MmrRootsToSign` once the authorities changed.
+       **/
+      mmrRootsToSignKeys: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The incoming authorities for the next term.
+       **/
+      nextAuthorities: AugmentedQuery<ApiType, () => Observable<Option<DarwiniaRelayAuthorityPrimitivesScheduledAuthoritiesChange>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Term index counter, play the same role as nonce in extrinsic.
+       **/
+      nextTerm: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The mmr root signature submit duration, will be delayed if on authorities change.
+       **/
+      submitDuration: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     electionProviderMultiPhase: {
       /**
        * Current phase.
@@ -568,6 +670,40 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    ethereum: {
+      /**
+       * Mapping for block number and hashes.
+       **/
+      blockHash: AugmentedQuery<ApiType, (arg: U256 | AnyNumber | Uint8Array) => Observable<H256>, [U256]> & QueryableStorageEntry<ApiType, [U256]>;
+      /**
+       * The current Ethereum block.
+       **/
+      currentBlock: AugmentedQuery<ApiType, () => Observable<Option<EthereumBlock>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current Ethereum receipts.
+       **/
+      currentReceipts: AugmentedQuery<ApiType, () => Observable<Option<Vec<EthereumReceiptReceiptV3>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * The current transaction statuses.
+       **/
+      currentTransactionStatuses: AugmentedQuery<ApiType, () => Observable<Option<Vec<FpRpcTransactionStatus>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Current building block's transactions and receipts.
+       **/
+      pending: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[EthereumTransactionTransactionV2, FpRpcTransactionStatus, EthereumReceiptReceiptV3]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Remaining kton balance for dvm account.
+       **/
+      remainingKtonBalance: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<u128>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * Remaining ring balance for dvm account.
+       **/
+      remainingRingBalance: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<u128>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     ethereumBacking: {
       depositRedeemAddress: AugmentedQuery<ApiType, () => Observable<H160>, []> & QueryableStorageEntry<ApiType, []>;
       ktonTokenAddress: AugmentedQuery<ApiType, () => Observable<H160>, []> & QueryableStorageEntry<ApiType, []>;
@@ -602,71 +738,8 @@ declare module '@polkadot/api-base/types/storage' {
        * Dags merkle roots of ethereum epoch (each epoch is 30000)
        **/
       dagsMerkleRoots: AugmentedQuery<ApiType, (arg: u64 | AnyNumber | Uint8Array) => Observable<U8aFixed>, [u64]> & QueryableStorageEntry<ApiType, [u64]>;
-      pendingRelayHeaderParcels: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, DarwiniaBridgeEthereumEthereumRelayHeaderParcel, DarwiniaRelayPrimitivesRelayerGameRelayVotingState]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      pendingRelayHeaderParcels: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, DarwiniaBridgeEthereumEthereumRelayHeaderParcel, DpRelayerGameRelayVotingState]>>>, []> & QueryableStorageEntry<ApiType, []>;
       receiptVerifyFee: AugmentedQuery<ApiType, () => Observable<u128>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Generic query
-       **/
-      [key: string]: QueryableStorageEntry<ApiType>;
-    };
-    ethereumRelayAuthorities: {
-      /**
-       * Authority must elect from candidates
-       *
-       * Only council or root can be the voter of the election
-       *
-       * Once you become an authority, you must serve for a specific term.
-       * Before that, you can't renounce
-       **/
-      authorities: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * The authorities change requirements
-       *
-       * Once the signatures count reaches the sign threshold storage will be killed then raise a signed event
-       *
-       * Params
-       * 1. the message to sign
-       * 1. collected signatures
-       **/
-      authoritiesToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[U8aFixed, Vec<ITuple<[AccountId32, U8aFixed]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * Anyone can request to be an authority with some stake
-       * Also submit your signer at the same time (for ethereum: your ethereum address in H160 format)
-       *
-       * Once you requested, you'll enter the candidates
-       *
-       * This request can be canceled at any time
-       **/
-      candidates: AugmentedQuery<ApiType, () => Observable<Vec<DarwiniaRelayPrimitivesRelayAuthoritiesRelayAuthority>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * All the relay requirements from the backing module here
-       *
-       * If the map's key has existed, it means the mmr root relay requirement is valid
-       *
-       * Once the signatures count reaches the sign threshold storage will be killed then raise a signed event
-       *
-       * Params
-       * 1. the mmr root to be signed, collected signatures
-       **/
-      mmrRootsToSign: AugmentedQuery<ApiType, (arg: u32 | AnyNumber | Uint8Array) => Observable<Option<DarwiniaRelayPrimitivesRelayAuthoritiesMmrRootToSign>>, [u32]> & QueryableStorageEntry<ApiType, [u32]>;
-      /**
-       * The `MmrRootsToSign` keys cache
-       *
-       * Only use for update the `MmrRootsToSign` once the authorities changed
-       **/
-      mmrRootsToSignKeys: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * The scheduled change of authority set
-       **/
-      nextAuthorities: AugmentedQuery<ApiType, () => Observable<Option<DarwiniaRelayPrimitivesRelayAuthoritiesScheduledAuthoritiesChange>>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * A term index counter, play the same role as nonce in extrinsic
-       **/
-      nextTerm: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
-      /**
-       * The mmr root signature submit duration, will be delayed if on authorities change
-       **/
-      submitDuration: AugmentedQuery<ApiType, () => Observable<u32>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Generic query
        **/
@@ -679,7 +752,7 @@ declare module '@polkadot/api-base/types/storage' {
        * The first key is game id, the second key is round index
        * then you will get the affirmations under that round in that game
        **/
-      affirmations: AugmentedQuery<ApiType, (arg1: u64 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Vec<DarwiniaRelayPrimitivesRelayerGameRelayAffirmation>>, [u64, u32]> & QueryableStorageEntry<ApiType, [u64, u32]>;
+      affirmations: AugmentedQuery<ApiType, (arg1: u64 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Vec<DpRelayerGameRelayAffirmation>>, [u64, u32]> & QueryableStorageEntry<ApiType, [u64, u32]>;
       /**
        * All the closed games here
        *
@@ -712,6 +785,14 @@ declare module '@polkadot/api-base/types/storage' {
        * All the stakes here
        **/
       stakes: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<u128>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
+    evm: {
+      accountCodes: AugmentedQuery<ApiType, (arg: H160 | string | Uint8Array) => Observable<Bytes>, [H160]> & QueryableStorageEntry<ApiType, [H160]>;
+      accountStorages: AugmentedQuery<ApiType, (arg1: H160 | string | Uint8Array, arg2: H256 | string | Uint8Array) => Observable<H256>, [H160, H256]> & QueryableStorageEntry<ApiType, [H160, H256]>;
       /**
        * Generic query
        **/
@@ -820,7 +901,7 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       keys: AugmentedQuery<ApiType, () => Observable<Vec<PalletImOnlineSr25519AppSr25519Public>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
-       * For each session index, we keep a mapping of 'SessionIndex` and `AuthIndex` to
+       * For each session index, we keep a mapping of `SessionIndex` and `AuthIndex` to
        * `WrapperOpaque<BoundedOpaqueNetworkState>`.
        **/
       receivedHeartbeats: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: u32 | AnyNumber | Uint8Array) => Observable<Option<WrapperOpaque<PalletImOnlineBoundedOpaqueNetworkState>>>, [u32, u32]> & QueryableStorageEntry<ApiType, [u32, u32]>;
@@ -840,7 +921,7 @@ declare module '@polkadot/api-base/types/storage' {
        * Any liquidity locks on some account balances.
        * NOTE: Should only be accessed when setting, changing and freeing a lock.
        **/
-      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<PalletBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
+      locks: AugmentedQuery<ApiType, (arg: AccountId32 | string | Uint8Array) => Observable<Vec<DarwiniaBalancesBalanceLock>>, [AccountId32]> & QueryableStorageEntry<ApiType, [AccountId32]>;
       /**
        * Named reserves on some account balances.
        **/
@@ -878,8 +959,15 @@ declare module '@polkadot/api-base/types/storage' {
        **/
       [key: string]: QueryableStorageEntry<ApiType>;
     };
+    messageGadget: {
+      commitmentContract: AugmentedQuery<ApiType, () => Observable<H160>, []> & QueryableStorageEntry<ApiType, []>;
+      /**
+       * Generic query
+       **/
+      [key: string]: QueryableStorageEntry<ApiType>;
+    };
     multisig: {
-      calls: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[Bytes, AccountId32, u128]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
+      calls: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[WrapperKeepOpaque<Call>, AccountId32, u128]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
       /**
        * The set of open multisig operations.
        **/
@@ -1016,7 +1104,9 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Indices of disabled validators.
        *
-       * The set is cleared when `on_session_ending` returns a new set of identities.
+       * The vec is always kept sorted so that we can find whether a given validator is
+       * disabled using binary search. It gets cleared when `on_session_ending` returns
+       * a new set of identities.
        **/
       disabledValidators: AugmentedQuery<ApiType, () => Observable<Vec<u32>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
@@ -1293,6 +1383,18 @@ declare module '@polkadot/api-base/types/storage' {
        * All slashing events on nominators, mapped by era to the highest slash value of the era.
        **/
       nominatorSlashInEra: AugmentedQuery<ApiType, (arg1: u32 | AnyNumber | Uint8Array, arg2: AccountId32 | string | Uint8Array) => Observable<Option<DarwiniaStakingSlashingRk>>, [u32, AccountId32]> & QueryableStorageEntry<ApiType, [u32, AccountId32]>;
+      /**
+       * Indices of validators that have offended in the active era and whether they are currently
+       * disabled.
+       *
+       * This value should be a superset of disabled validators since not all offences lead to the
+       * validator being disabled (if there was no slash). This is needed to track the percentage of
+       * validators that have offended in the current era, ensuring a new era is forced if
+       * `OffendingValidatorsThreshold` is reached. The vec is always kept sorted so that we can find
+       * whether a given validator has previously offended using binary search. It gets cleared when
+       * the era ends.
+       **/
+      offendingValidators: AugmentedQuery<ApiType, () => Observable<Vec<ITuple<[u32, bool]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * Where the reward payment should be made. Keyed by stash.
        **/
