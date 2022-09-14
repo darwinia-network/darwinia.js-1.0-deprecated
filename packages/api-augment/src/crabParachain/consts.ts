@@ -1,14 +1,20 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
-import type { U8aFixed, Vec, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/consts';
+
+import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
+import type { U8aFixed, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
 import type { Codec } from '@polkadot/types-codec/types';
 import type { Permill } from '@polkadot/types/interfaces/runtime';
-import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from '@polkadot/types/lookup';
+import type { FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from '@polkadot/types/lookup';
+
+export type __AugmentedConst<ApiType extends ApiTypes> = AugmentedConst<ApiType>;
 
 declare module '@polkadot/api-base/types/consts' {
-  export interface AugmentedConsts<ApiType extends ApiTypes> {
+  interface AugmentedConsts<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The number of blocks back we should accept uncles.
@@ -97,6 +103,20 @@ declare module '@polkadot/api-base/types/consts' {
        * Some reward goes to Treasury.
        **/
       treasuryPalletId: FrameSupportPalletId & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    fromCrabIssuing: {
+      /**
+       * The local token decimals.
+       **/
+      decimalMultiplier: u128 & AugmentedConst<ApiType>;
+      /**
+       * The pallet id of this pallet
+       **/
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/
@@ -242,14 +262,6 @@ declare module '@polkadot/api-base/types/consts' {
        * transactions.
        **/
       operationalFeeMultiplier: u8 & AugmentedConst<ApiType>;
-      /**
-       * The fee to be paid for making a transaction; the per-byte portion.
-       **/
-      transactionByteFee: u128 & AugmentedConst<ApiType>;
-      /**
-       * The polynomial that is applied in order to derive fee from weight.
-       **/
-      weightToFee: Vec<FrameSupportWeightsWeightToFeeCoefficient> & AugmentedConst<ApiType>;
       /**
        * Generic const
        **/

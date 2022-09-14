@@ -1,10 +1,16 @@
 // Auto-generated via `yarn polkadot-types-from-chain`, do not edit
 /* eslint-disable */
 
-import type { ApiTypes } from '@polkadot/api-base/types';
+// import type lookup before we augment - in some environments
+// this is required to allow for ambient/previous definitions
+import '@polkadot/api-base/types/errors';
+
+import type { ApiTypes, AugmentedError } from '@polkadot/api-base/types';
+
+export type __AugmentedError<ApiType extends ApiTypes> = AugmentedError<ApiType>;
 
 declare module '@polkadot/api-base/types/errors' {
-  export interface AugmentedErrors<ApiType extends ApiTypes> {
+  interface AugmentedErrors<ApiType extends ApiTypes> {
     authorship: {
       /**
        * The uncle is genesis.
@@ -211,6 +217,10 @@ declare module '@polkadot/api-base/types/errors' {
        **/
       TooManyCandidates: AugmentedError<ApiType>;
       /**
+       * Too many invulnerables
+       **/
+      TooManyInvulnerables: AugmentedError<ApiType>;
+      /**
        * Unknown error
        **/
       Unknown: AugmentedError<ApiType>;
@@ -228,6 +238,10 @@ declare module '@polkadot/api-base/types/errors' {
        * The relayer has been enrolled.
        **/
       AlreadyEnrolled: AugmentedError<ApiType>;
+      /**
+       * Locked collateral is too low to cover one order.
+       **/
+      CollateralTooLow: AugmentedError<ApiType>;
       /**
        * Insufficient balance.
        **/
@@ -268,6 +282,32 @@ declare module '@polkadot/api-base/types/errors' {
        * The message index given is unknown.
        **/
       Unknown: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    fromCrabIssuing: {
+      /**
+       * Backing not configured
+       **/
+      BackingAccountNone: AugmentedError<ApiType>;
+      /**
+       * Insufficient balance.
+       **/
+      InsufficientBalance: AugmentedError<ApiType>;
+      /**
+       * Message nonce duplicated.
+       **/
+      NonceDuplicated: AugmentedError<ApiType>;
+      /**
+       * Redeem Daily Limited
+       **/
+      RingDailyLimited: AugmentedError<ApiType>;
+      /**
+       * Issue value overflow
+       **/
+      ValueOverFlow: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
@@ -468,6 +508,20 @@ declare module '@polkadot/api-base/types/errors' {
        * A call which is incompatible with the proxy type's filter was attempted.
        **/
       Unproxyable: AugmentedError<ApiType>;
+      /**
+       * Generic error
+       **/
+      [key: string]: AugmentedError<ApiType>;
+    };
+    remoteGovernance: {
+      /**
+       * Only available on emergency mode.
+       **/
+      EmergencyOnly: AugmentedError<ApiType>;
+      /**
+       * Origin MUST be `SourceRoot`.
+       **/
+      RequireSourceRoot: AugmentedError<ApiType>;
       /**
        * Generic error
        **/
