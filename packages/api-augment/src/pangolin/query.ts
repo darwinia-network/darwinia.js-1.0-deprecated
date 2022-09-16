@@ -7,7 +7,7 @@ import '@polkadot/api-base/types/storage';
 
 import type { ApiTypes, AugmentedQuery, QueryableStorageEntry } from '@polkadot/api-base/types';
 import type { Data } from '@polkadot/types';
-import type { BTreeMap, Bytes, Null, Option, U256, U8aFixed, Vec, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
+import type { BTreeMap, Bytes, Null, Option, U256, U8aFixed, Vec, WrapperKeepOpaque, WrapperOpaque, bool, u128, u32, u64 } from '@polkadot/types-codec';
 import type { AnyNumber, ITuple } from '@polkadot/types-codec/types';
 import type { AccountId32, Call, H160, H256, Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
 import type { Event } from '@polkadot/types/interfaces/system';
@@ -212,7 +212,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * Randomness under construction.
        *
-       * We make a tradeoff between storage accesses and list length.
+       * We make a trade-off between storage accesses and list length.
        * We store the under-construction randomness in segments of up to
        * `UNDER_CONSTRUCTION_SEGMENT_LENGTH`.
        *
@@ -619,7 +619,7 @@ declare module '@polkadot/api-base/types/storage' {
       /**
        * The authorities change waiting for signing.
        **/
-      authoritiesChangeToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesOperation, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
+      authoritiesChangeToSign: AugmentedQuery<ApiType, () => Observable<Option<ITuple<[DarwiniaEcdsaAuthorityPrimitivesOperation, Option<u32>, U8aFixed, Vec<ITuple<[H160, SpCoreEcdsaSignature]>>]>>>, []> & QueryableStorageEntry<ApiType, []>;
       /**
        * The new message root waiting for signing.
        **/
@@ -1079,7 +1079,7 @@ declare module '@polkadot/api-base/types/storage' {
       [key: string]: QueryableStorageEntry<ApiType>;
     };
     multisig: {
-      calls: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[Bytes, AccountId32, u128]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
+      calls: AugmentedQuery<ApiType, (arg: U8aFixed | string | Uint8Array) => Observable<Option<ITuple<[WrapperKeepOpaque<Call>, AccountId32, u128]>>>, [U8aFixed]> & QueryableStorageEntry<ApiType, [U8aFixed]>;
       /**
        * The set of open multisig operations.
        **/

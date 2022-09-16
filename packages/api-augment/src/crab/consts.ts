@@ -191,14 +191,21 @@ declare module '@polkadot/api-base/types/consts' {
     };
     crabParachainFeeMarket: {
       /**
-       * Reward parameters
+       * The slash ratio for assigned relayers.
        **/
-      assignedRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      assignedRelayerSlashRatio: Permill & AugmentedConst<ApiType>;
       /**
        * The collateral relayer need to lock for each order.
+       * 
+       * This also represents the maximum slash value for a single delayed order.
+       * Please note that if this value is set to zero the fee market will be suspended.
        **/
       collateralPerOrder: u128 & AugmentedConst<ApiType>;
       confirmRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      /**
+       * Reward parameters
+       **/
+      guardRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       lockId: U8aFixed & AugmentedConst<ApiType>;
       messageRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       /**
@@ -220,14 +227,21 @@ declare module '@polkadot/api-base/types/consts' {
     };
     darwiniaFeeMarket: {
       /**
-       * Reward parameters
+       * The slash ratio for assigned relayers.
        **/
-      assignedRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      assignedRelayerSlashRatio: Permill & AugmentedConst<ApiType>;
       /**
        * The collateral relayer need to lock for each order.
+       * 
+       * This also represents the maximum slash value for a single delayed order.
+       * Please note that if this value is set to zero the fee market will be suspended.
        **/
       collateralPerOrder: u128 & AugmentedConst<ApiType>;
       confirmRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      /**
+       * Reward parameters
+       **/
+      guardRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       lockId: U8aFixed & AugmentedConst<ApiType>;
       messageRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       /**

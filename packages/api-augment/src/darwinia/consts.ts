@@ -6,8 +6,8 @@
 import '@polkadot/api-base/types/consts';
 
 import type { ApiTypes, AugmentedConst } from '@polkadot/api-base/types';
-import type { U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
-import type { Codec } from '@polkadot/types-codec/types';
+import type { Bytes, U8aFixed, Vec, bool, u128, u16, u32, u64, u8 } from '@polkadot/types-codec';
+import type { Codec, ITuple } from '@polkadot/types-codec/types';
 import type { Perbill, Percent, Permill } from '@polkadot/types/interfaces/runtime';
 import type { DpAssetTokenMetadata, FrameSupportPalletId, FrameSupportWeightsRuntimeDbWeight, FrameSupportWeightsWeightToFeeCoefficient, FrameSystemLimitsBlockLength, FrameSystemLimitsBlockWeights, SpVersionRuntimeVersion } from '@polkadot/types/lookup';
 
@@ -200,6 +200,50 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
+    ecdsaAuthority: {
+      /**
+       * Chain's ID, which is using for constructing the message. (follow EIP-712 SPEC)
+       **/
+      chainId: Bytes & AugmentedConst<ApiType>;
+      /**
+       * The maximum number of authorities.
+       **/
+      maxAuthorities: u32 & AugmentedConst<ApiType>;
+      /**
+       * How long should we wait for the message root to be signed.
+       * 
+       * If the collecting new message root signatures process takes more than
+       * `MaxPendingPeriod`, we will drop the root. And update the root with a new one.
+       **/
+      maxPendingPeriod: u32 & AugmentedConst<ApiType>;
+      /**
+       * The signing threshold.
+       * 
+       * Once `signatures_count / authorities_count >= threshold`, we say the message is trusted.
+       **/
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      /**
+       * The interval of checking the message root.
+       **/
+      syncInterval: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
+    ecdsaRelayAuthority: {
+      lockId: U8aFixed & AugmentedConst<ApiType>;
+      maxMembers: u32 & AugmentedConst<ApiType>;
+      maxSchedules: u32 & AugmentedConst<ApiType>;
+      opCodes: ITuple<[U8aFixed, U8aFixed]> & AugmentedConst<ApiType>;
+      signThreshold: Perbill & AugmentedConst<ApiType>;
+      submitDuration: u32 & AugmentedConst<ApiType>;
+      termDuration: u32 & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     electionProviderMultiPhase: {
       /**
        * Maximum length (bytes) that the mined solution should consume.
@@ -285,6 +329,13 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
+    ethereum: {
+      palletId: FrameSupportPalletId & AugmentedConst<ApiType>;
+      /**
+       * Generic const
+       **/
+      [key: string]: Codec;
+    };
     ethereumBacking: {
       advancedFee: u128 & AugmentedConst<ApiType>;
       feePalletId: FrameSupportPalletId & AugmentedConst<ApiType>;
@@ -307,17 +358,6 @@ declare module '@polkadot/api-base/types/consts' {
        **/
       [key: string]: Codec;
     };
-    ethereumRelayAuthorities: {
-      lockId: U8aFixed & AugmentedConst<ApiType>;
-      maxCandidates: u32 & AugmentedConst<ApiType>;
-      signThreshold: Perbill & AugmentedConst<ApiType>;
-      submitDuration: u32 & AugmentedConst<ApiType>;
-      termDuration: u32 & AugmentedConst<ApiType>;
-      /**
-       * Generic const
-       **/
-      [key: string]: Codec;
-    };
     ethereumRelayerGame: {
       lockId: U8aFixed & AugmentedConst<ApiType>;
       maxActiveGames: u8 & AugmentedConst<ApiType>;
@@ -328,14 +368,21 @@ declare module '@polkadot/api-base/types/consts' {
     };
     feeMarket: {
       /**
-       * Reward parameters
+       * The slash ratio for assigned relayers.
        **/
-      assignedRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      assignedRelayerSlashRatio: Permill & AugmentedConst<ApiType>;
       /**
        * The collateral relayer need to lock for each order.
+       * 
+       * This also represents the maximum slash value for a single delayed order.
+       * Please note that if this value is set to zero the fee market will be suspended.
        **/
       collateralPerOrder: u128 & AugmentedConst<ApiType>;
       confirmRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
+      /**
+       * Reward parameters
+       **/
+      guardRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       lockId: U8aFixed & AugmentedConst<ApiType>;
       messageRelayersRewardRatio: Permill & AugmentedConst<ApiType>;
       /**
