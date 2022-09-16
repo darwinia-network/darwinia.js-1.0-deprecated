@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/api-evm",
-    "version": "2.8.9",
+    "version": "2.8.10",
     "description": "Interfaces for interacting with contracts",
     "main": "index.js",
     "keywords": [

@@ -1,6 +1,6 @@
 {
     "name": "@darwinia/rpc-augment",
-    "version": "2.8.9",
+    "version": "2.8.10",
     "description": "RPC generated augmentation",
     "keywords": [
         "darwinia",
